@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="page-header">Page Heading
+    <small>Secondary Text</small>
+</h1>
+{% for post in posts %}
+<h2><a href="#">{{ post.title }}</a></h2>
+<p><span class="glyphicon glyphicon-time"></span>{{ post.timestamp }}</p>
+<hr>
+<p>{{ post.body }}</p>
+<a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+<hr>
+{% endfor %}
+
+<!-- Pager -->
+                <ul class="pager">
+                    <li class="previous">
+                        <a href="#">&larr; Older</a>
+                    </li>
+                    <li class="next">
+                        <a href="#">Newer &rarr;</a>
+                    </li>
+                </ul>
+{% endblock %}
