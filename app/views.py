@@ -1,8 +1,13 @@
-from flask import render_template, request, flash, redirect, url_for, g
+from flask import render_template, request, flash, redirect, url_for, g, make_response
 from flask_login import logout_user, login_user, current_user, login_required
 from app import app, db, models
 from sqlalchemy import desc
 
+import random
+from io import StringIO
+
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -94,3 +99,21 @@ def new():
         db.session.commit()
         flash('Todo item was successfully created')
         return redirect(url_for('index'))
+
+
+#
+# @app.route('/plot.png')
+# def plot():
+#     fig = Figure()
+#     axis = fig.add_subplot(1, 1, 1)
+#
+#     xs = range(100)
+#     ys = [random.randint(1, 50) for x in xs]
+#
+#     axis.plot(xs, ys)
+#     canvas = FigureCanvas(fig)
+#     output = StringIO.StringIO()
+#     canvas.print_png(output)
+#     response = make_response(output.getvalue())
+#     response.mimetype = 'image/png'
+#     return response
