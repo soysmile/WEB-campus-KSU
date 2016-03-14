@@ -71,3 +71,8 @@ class Person(db.Model):
     department = db.Column(db.String(50))
     group = db.Column(db.Integer())
     room_id = db.Column(db.Integer, db.ForeignKey('room.id'))
+
+
+class Temperature(db.Model):
+    date = db.Column(db.DateTime, primary_key=True)
+    temperature = db.Column(db.Integer)
