@@ -1,10 +1,7 @@
-from flask import render_template, request, flash, redirect, url_for, g, jsonify
+from flask import render_template, request, flash, redirect, url_for, g
 from flask_login import logout_user, login_user, current_user, login_required
 from app import app, db, models
 from sqlalchemy import desc, asc
-import json
-from datetime import date, time, datetime
-
 
 
 @app.route('/', methods=['GET', 'POST'])
