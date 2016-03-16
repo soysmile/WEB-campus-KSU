@@ -83,3 +83,11 @@ class Person(db.Model):
 class Temperature(db.Model):
     date = db.Column(db.DateTime, primary_key=True)
     temperature = db.Column(db.Integer)
+
+    def __init__(self, temperature, date=None):
+        if date is not None:
+            self.date = date
+            self.temperature = temperature
+        else:
+            self.date = datetime.utcnow()
+            self.temperature = temperature

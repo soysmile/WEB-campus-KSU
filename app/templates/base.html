@@ -42,12 +42,14 @@
                   <li class="active"><a href="/">Home</a></li>
 
                   <li><a href="/new">New Post</a></li>
+                  <li><a href="/hostels">Hostels</a></li>
+                  <li><a href="/plot">Plot</a></li>
               </ul><ul class="nav navbar-nav navbar-right">
               {% if g.user.is_authenticated %}
               <li><a href="{{ url_for('user', username=g.user.username) }}">Hello, {{ g.user.username }} </a></li>
               <li><a href="{{ url_for('logout') }}">Logout </a></li>
               {% endif %}
-              
+
               {% if not g.user.is_authenticated %}
               <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>

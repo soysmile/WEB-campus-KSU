@@ -1,7 +1,11 @@
-from flask import render_template, request, flash, redirect, url_for, g
+from flask import render_template, request, flash, redirect, url_for, g, jsonify
 from flask_login import logout_user, login_user, current_user, login_required
 from app import app, db, models
-from sqlalchemy import desc
+from sqlalchemy import desc, asc
+import json
+from datetime import date, time, datetime
+
+
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -97,5 +101,9 @@ def new():
 
 @app.route('/plot')
 def plot():
-    values = models.Temperature.query.all()
-    return render_template('plot.html', values=values)
+    normal_t = 15
+    buffer = []
+    values = models.Temperature.query.order_by(asc(models.Temperature.date)).limit(31).all()
+    for value in values:
+        buffer.append({"date": value.date.strftime('%Y-%m-%d'), "temperature": value.temperature})
+    return render_template('plot.html', values=buffer, NORMAL_T=normal_t)
