@@ -94,6 +94,7 @@ def new():
         flash('Todo item was successfully created')
         return redirect(url_for('index'))
 
+
 @app.route('/plot')
 def plot():
     values = models.Temperature.query.all()

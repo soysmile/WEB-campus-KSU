@@ -69,8 +69,15 @@ class Person(db.Model):
     first_name = db.Column(db.String(30))
     last_name = db.Column(db.String(30))
     department = db.Column(db.String(50))
-    group = db.Column(db.Integer())
+    group = db.Column(db.Integer)
     room_id = db.Column(db.Integer, db.ForeignKey('room.id'))
+    birthday = db.Column(db.Date)
+    speciality = db.Column(db.String(30))
+    p_series = db.Column(db.String(2))
+    p_number = db.Column(db.Integer)
+    date_of_issue = db.Column(db.Date)
+    issue = db.Column(db.String(50))
+    phone_number = db.Column(db.Integer)
 
 
 class Temperature(db.Model):
