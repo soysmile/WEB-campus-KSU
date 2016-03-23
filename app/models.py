@@ -42,14 +42,6 @@ class Post(db.Model):
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime)
 
-    def __init__(self, title, body):
-        self.title = title
-        self.body = body
-        self.timestamp = datetime.utcnow()
-
-    def __repr__(self):
-        return '<Post %r>' % self.body
-
 
 class Hostel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -81,13 +73,6 @@ class Person(db.Model):
 
 
 class Temperature(db.Model):
-    date = db.Column(db.DateTime, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.Date, unique=True)
     temperature = db.Column(db.Integer)
-
-    def __init__(self, temperature, date=None):
-        if date is not None:
-            self.date = date
-            self.temperature = temperature
-        else:
-            self.date = datetime.utcnow()
-            self.temperature = temperature

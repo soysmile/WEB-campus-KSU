@@ -1,7 +1,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 {% extends 'base.html' %}
 {% block content %}
-<canvas id="chart" width="740" height="200"></canvas>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <canvas id="chart" width="740" height="200"></canvas>
+        </div>
+    </div>
+</div>
+
 <script>
 var json = {{ values | tojson }};
 

@@ -1,20 +1,24 @@
 from flask import render_template, request, flash, redirect, url_for, g
-from flask_login import logout_user, login_user, current_user, login_required
+from flask_login import logout_user, login_user, current_user
 from app import app, db, models
 from sqlalchemy import desc, asc
 
 
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/index', methods=['GET', 'POST'])
+@app.route('/')
+@app.route('/index')
 def index():
-    if request.method == 'GET':
-        posts = models.Post.query.order_by(desc(models.Post.timestamp)).limit(100).all()
-        return render_template('index.html', posts=posts)
-    login()
+    # добавить пагинацию
+    posts = models.Post.query.order_by(desc(models.Post.timestamp)).limit(100).all()
+    return render_template('index.html', posts=posts)
+
+
+@app.route('/post/<id>')
+def detail_view_post(id):
+    post = models.Post.query.filter_by(id=id).first()
+    return render_template('post.html', post=post)
 
 
 @app.route('/hostels', methods=['GET', 'POST'])
-@login_required
 def rooms():
     hostels = models.Hostel.query.all()
     return render_template('hostels.html', hostels=hostels)
@@ -74,7 +78,6 @@ def before_request():
 
 
 @app.route('/user/<username>')
-@login_required
 def user(username):
     user = models.User.query.filter_by(username=username).first()
     if user == None:
@@ -83,22 +86,9 @@ def user(username):
     return render_template('profile.html', user=user)
 
 
-@app.route('/new', methods=['GET', 'POST'])
-@login_required
-def new():
-    if request.method == "GET":
-        return render_template('new.html')
-    else:
-        post = models.Post(request.form['title'], request.form['body'])
-        db.session.add(post)
-        db.session.commit()
-        flash('Todo item was successfully created')
-        return redirect(url_for('index'))
-
-
 @app.route('/plot')
 def plot():
-    normal_t = 15
+    normal_t = 50
     buffer = []
     values = models.Temperature.query.order_by(asc(models.Temperature.date)).limit(31).all()
     for value in values:

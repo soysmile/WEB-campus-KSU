@@ -1,18 +1,40 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1 class="page-header">Page Heading
-    <small>Secondary Text</small>
-</h1>
-{% for post in posts %}
-<h2><a href="#">{{ post.title }}</a></h2>
-<p><span class="glyphicon glyphicon-time"></span>{{ post.timestamp }}</p>
-<hr>
-<p>{{ post.body }}</p>
-<a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-<hr>
-{% endfor %}
 
+<div class="mainHeader homeHeader">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 clearfix">
+                <h1 class="pageTitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </h1>
+                <div class="btnGroup">
+                    <a class="btn btn-success btn-lg" href="/"><i class="fa fa-line-chart"></i>Sample 1</a>
+                    <a class="btn btn-success btn-lg" href="/"><i class="fa fa-bullhorn"></i>Samle 2</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+<div class="row">
+            <div class="col-md-12">
+
+
+<h1 class="page-header">News</h1>
+{% for post in posts %}
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h2><a href="{{ url_for('detail_view_post', id=post.id) }}">{{ post.title }}</a></h2>
+        <p><span class="glyphicon glyphicon-time"></span> {{ post.timestamp }}</p>
+        <p>{{ post.body }}</p>
+    </div>
+    <div class="panel-footer">
+        <a class="btn btn-primary" href="{{ url_for('detail_view_post', id=post.id) }}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div>
+</div>
+
+{% endfor %}
 <!-- Pager -->
                 <ul class="pager">
                     <li class="previous">
@@ -22,4 +44,8 @@
                         <a href="#">Newer &rarr;</a>
                     </li>
                 </ul>
+                </div>
+</div>
+    </div>
+
 {% endblock %}
