@@ -40,10 +40,13 @@ def room_detail(room):
 def register():
     if request.method == 'GET':
         return render_template('register.html')
-    user = models.User(request.form['username'], request.form['password'], request.form['email'])
-    db.session.add(user)
+    person = models.Person(request.form['first_name'], request.form['last_name'], request.form['department'],
+                           request.form['group'], request.form['birthday'], request.form['speciality'],
+                           request.form['p_series'], request.form['p_number'], request.form['date_of_issue'],
+                           request.form['issue'], request.form['phone_number'])
+    db.session.add(person)
     db.session.commit()
-    flash('User successfully registered')
+    flash('Заявка подана')
     return redirect(url_for('index'))
 
 
