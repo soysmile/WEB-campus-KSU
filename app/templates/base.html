@@ -1,25 +1,22 @@
-    <!DOCTYPE html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <title>Hostel</title>
-        <!-- Bootstrap Core CSS -->
-        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
-        <!-- Custom CSS -->
-        <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Hostel</title>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link href="/admin/static/vendor/select2/select2.css?v=3.5.2" rel="stylesheet">
+    <link href="/admin/static/vendor/bootstrap-daterangepicker/daterangepicker-bs2.css?v=1.3.22" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    </head>
-
-    <body>
+<body>
     <div class="navbar navbar-inverse navbar-static-top primaryNav" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -36,10 +33,13 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="/hostels">Hostels</a></li>
+                        <a href="/hostels">Общежития</a></li>
                     </li>
                     <li>
-                        <a href="/plot">Plot</a>
+                        <a href="/plot">График</a>
+                    </li>
+                    <li>
+                        <a href="/register">Регистрация</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav pull-right">
@@ -47,25 +47,28 @@
                         <a href="/admin">Admin</a>
                     </li>
                 </ul>
+
             </div>
         </div>
     </div>
 
+
+
 {% block content %}{% endblock %}
-<footer>
+ <footer>
     <div class="container">
         <p>Footer</p>
             </div>
     </footer>
 
-
-
-    <!-- jQuery -->
     <script src="{{ url_for('static', filename='js/jquery-2.2.1.min.js') }}"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    </div>
-    </body>
+    <script src="/admin/static/vendor/moment.min.js?v=2.9.0" type="text/javascript"></script>
+    <script src="/admin/static/vendor/select2/select2.min.js?v=3.5.2" type="text/javascript"></script>
+    <script src="/admin/static/vendor/bootstrap-daterangepicker/daterangepicker.js?v=1.3.22"></script>
+    <script src="/admin/static/admin/js/form.js?v=1.0.0"></script>
 
-    </html>
+</body>
+<div id="clever-extension-is-installed" style="display: none"></div>
+</html>

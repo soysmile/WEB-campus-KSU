@@ -1,7 +1,8 @@
-from flask import render_template, request, flash, redirect, url_for, g
-from flask_login import logout_user, login_user, current_user
-from app import app, db, models
+from flask import render_template, flash, redirect, url_for, request
 from sqlalchemy import desc, asc
+from app import app, models, db
+from datetime import date
+from app import forms
 
 
 @app.route('/')
@@ -38,55 +39,40 @@ def room_detail(room):
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if request.method == 'GET':
-        return render_template('register.html')
-    person = models.Person(request.form['first_name'], request.form['last_name'], request.form['department'],
-                           request.form['group'], request.form['birthday'], request.form['speciality'],
-                           request.form['p_series'], request.form['p_number'], request.form['date_of_issue'],
-                           request.form['issue'], request.form['phone_number'])
-    db.session.add(person)
-    db.session.commit()
-    flash('Заявка подана')
-    return redirect(url_for('index'))
+    form = forms.RegistrationForm(request.form)
+    if request.method == 'POST' and form.validate():
+        person = models.Person(form.first_name.data, form.last_name.data, form.department.data,
+                               form.group.data, form.birthday.data, form.speciality.data,
+                               form.p_series.data, form.p_number.data, form.date_of_issue.data,
+                               form.issue.data, form.phone_number.data)
+        print(person)
+        db.session.add(person)
+        db.session.commit()
+        flash('Thanks for registering')
+        return redirect(url_for('index'))
+    return render_template('register.html', form=form)
 
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'GET':
-        return render_template('login.html')
-    username = request.form['username']
-    password = request.form['password']
-    remember_me = False
-    if 'remember_me' in request.form:
-        remember_me = True
-    registered_user = models.User.query.filter_by(username=username, password=password).first()
-    if registered_user is None:
-        flash('Username or Password is invalid', 'error')
-        return redirect(url_for('login'))
-    login_user(registered_user, remember=remember_me)
-    login_user(registered_user)
-    flash('Logged in successfully')
-    return redirect(request.args.get('next') or url_for('index'))
-
-
-@app.route('/logout')
-def logout():
-    logout_user()
-    return redirect(url_for('index'))
-
-
-@app.before_request
-def before_request():
-    g.user = current_user
+# @app.route('/register', methods=['GET', 'POST'])
+# def register():
+#     if request.method == 'GET':
+#         return render_template('register.html')
+#     pm = models.Person(request.form['first_name'], request.form['last_name'], request.form['department'],
+#                        int(request.form['group']), date(request.form['birthday']), request.form['speciality'],
+#                        request.form['p_series'], request.form['p_number'], date(request.form['date_of_issue']),
+#                        request.form['issue'], request.form['phone_number'])
+#     db.session.add(pm)
+#     db.session.commit()
+#     print(pm.phone_number)
+#     return redirect(url_for('index'))
 
 
 @app.route('/user/<username>')
 def user(username):
-    user = models.User.query.filter_by(username=username).first()
-    if user == None:
+    user_ = models.User.query.filter_by(username=username).first()
+    if user_ is None:
         flash('User %s not found.' % username)
         return redirect(url_for('index'))
-    return render_template('profile.html', user=user)
+    return render_template('profile.html', user=user_)
 
 
 @app.route('/plot')

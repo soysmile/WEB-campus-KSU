@@ -1,19 +1,13 @@
-from app import db, login_manager
-from datetime import datetime
+from app import db
 
 
 class User(db.Model):
-    id = db.Column('user_id', db.Integer, primary_key=True)
-    username = db.Column('username', db.String(20), unique=True, index=True)
-    password = db.Column('password', db.String(10))
-    email = db.Column('email', db.String(50), unique=True, index=True)
-    registered_on = db.Column('registered_on', db.DateTime)
-
-    def __init__(self, username, password, email):
-        self.username = username
-        self.password = password
-        self.email = email
-        self.registered_on = datetime.utcnow()
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(100))
+    last_name = db.Column(db.String(100))
+    login = db.Column(db.String(80), unique=True)
+    email = db.Column(db.String(120))
+    password = db.Column(db.String(64))
 
     def is_authenticated(self):
         return True
@@ -27,13 +21,9 @@ class User(db.Model):
     def get_id(self):
         return self.id
 
-    def __repr__(self):
-        return '<User %r>' % self.username
-
-
-@login_manager.user_loader
-def load_user(id):
-    return User.query.get(int(id))
+    # Required for administrative interface
+    def __unicode__(self):
+        return self.username
 
 
 class Post(db.Model):
@@ -51,6 +41,7 @@ class Hostel(db.Model):
 
 class Room(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    room_number = db.Column(db.Integer)
     numbers_of_person = db.Column(db.Integer())
     hostel_id = db.Column(db.Integer, db.ForeignKey('hostel.id'))
     person = db.relationship('Person', backref='room', lazy='dynamic')
@@ -76,3 +67,5 @@ class Temperature(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, unique=True)
     temperature = db.Column(db.Integer)
+
+
