@@ -52,19 +52,6 @@ def register():
         return redirect(url_for('index'))
     return render_template('register.html', form=form)
 
-# @app.route('/register', methods=['GET', 'POST'])
-# def register():
-#     if request.method == 'GET':
-#         return render_template('register.html')
-#     pm = models.Person(request.form['first_name'], request.form['last_name'], request.form['department'],
-#                        int(request.form['group']), date(request.form['birthday']), request.form['speciality'],
-#                        request.form['p_series'], request.form['p_number'], date(request.form['date_of_issue']),
-#                        request.form['issue'], request.form['phone_number'])
-#     db.session.add(pm)
-#     db.session.commit()
-#     print(pm.phone_number)
-#     return redirect(url_for('index'))
-
 
 @app.route('/user/<username>')
 def user(username):
