@@ -1,56 +1,5 @@
-<!DOCTYPE html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Hostel</title>
-    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
-    <link href="/admin/static/vendor/select2/select2.css?v=3.5.2" rel="stylesheet">
-    <link href="/admin/static/vendor/bootstrap-daterangepicker/daterangepicker-bs2.css?v=1.3.22" rel="stylesheet">
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-
-<body>
-    <div class="navbar navbar-inverse navbar-static-top primaryNav" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-    				<span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">
-                    <img src="http://agenciasampling.com.br/asampling/assets/img/sample/shortcode/logo/1.png">
-                </a>
-            </div>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="/hostels">Общежития</a></li>
-                    </li>
-                    <li>
-                        <a href="/plot">График</a>
-                    </li>
-                    <li>
-                        <a href="/register">Регистрация</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav pull-right">
-                    <li>
-                        <a href="/admin">Admin</a>
-                    </li>
-                </ul>
-
-            </div>
-        </div>
-    </div>
+{% extends 'base.html' %}
+{% block content %}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -63,22 +12,4 @@
             </div>
         </div>
     </div>
-</div>
-    <br/>
- <footer>
-    <div class="container">
-        <p>Footer</p>
-            </div>
-    </footer>
-
-    <script src="{{ url_for('static', filename='js/jquery-2.2.1.min.js') }}"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    <script src="/admin/static/vendor/moment.min.js?v=2.9.0" type="text/javascript"></script>
-    <script src="/admin/static/vendor/select2/select2.min.js?v=3.5.2" type="text/javascript"></script>
-    <script src="/admin/static/vendor/bootstrap-daterangepicker/daterangepicker.js?v=1.3.22"></script>
-    <script src="/admin/static/admin/js/form.js?v=1.0.0"></script>
-
-</body>
-<div id="clever-extension-is-installed" style="display: none"></div>
-</html>
+</div>{% endblock %}
