@@ -35,8 +35,12 @@ class Post(db.Model):
 
 class Hostel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    number = db.Column(db.Integer)
     adress = db.Column(db.String(140))
     rooms = db.relationship('Room', backref='hostel', lazy='dynamic')
+
+    def __str__(self):
+        return str(self.number)
 
 
 class Room(db.Model):
@@ -46,6 +50,8 @@ class Room(db.Model):
     hostel_id = db.Column(db.Integer, db.ForeignKey('hostel.id'))
     person = db.relationship('Person', backref='room', lazy='dynamic')
 
+    def __str__(self):
+        return str(self.room_number)
 
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -61,6 +67,9 @@ class Person(db.Model):
     date_of_issue = db.Column(db.Date)
     issue = db.Column(db.String(50))
     phone_number = db.Column(db.Integer)
+
+    def __str__(self):
+        return self.first_name + '' + self.last_name
 
     def __init__(self, first_name, last_name, department, group, birthday, speciality, p_series, p_number, date_of_issue, issue, phone_number):
         self.first_name = first_name

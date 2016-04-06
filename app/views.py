@@ -19,7 +19,7 @@ def detail_view_post(id):
     return render_template('post.html', post=post)
 
 
-@app.route('/hostels', methods=['GET', 'POST'])
+@app.route('/hostels')
 def rooms():
     hostels = models.Hostel.query.all()
     return render_template('hostels.html', hostels=hostels)

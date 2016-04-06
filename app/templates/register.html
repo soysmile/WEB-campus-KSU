@@ -7,8 +7,12 @@
             {% for f in form if f.type != 'CSRFTokenField' %}
             <fieldset class="form-group">
                 {{ f.label }}
+                {% if f.name == 'birthday' or f.name == 'date_of_issue' %}
+                {{ f(**{'data-date-format': 'YYYY-MM-DD', 'data-role': 'datepicker', 'class': 'form-control'})}}
+                {% else %}
                 {{ f(class="form-control") }}
-            {% if f.errors %}
+                {% endif %}
+                {% if f.errors %}
             <ul>
                 {% for e in f.errors %}
                 <li>{{ e }}</li>
@@ -24,4 +28,4 @@
 </div>
 {% endblock %}
 
-<input data-date-format="YYYY-MM-DD" data-role="datepicker" id="date" name="date" type="text" value="" class="active">
+
