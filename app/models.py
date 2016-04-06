@@ -62,6 +62,19 @@ class Person(db.Model):
     issue = db.Column(db.String(50))
     phone_number = db.Column(db.Integer)
 
+    def __init__(self, first_name, last_name, department, group, birthday, speciality, p_series, p_number, date_of_issue, issue, phone_number):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.department = department
+        self.group = group
+        self.birthday = birthday
+        self.speciality = speciality
+        self.p_series = p_series
+        self.p_number = p_number
+        self.date_of_issue = date_of_issue
+        self.issue = issue
+        self.phone_number = phone_number
+
 
 class Temperature(db.Model):
     id = db.Column(db.Integer, primary_key=True)

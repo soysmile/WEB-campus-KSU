@@ -31,4 +31,3 @@ class RegistrationForm(form.Form):
     date_of_issue = fields.DateField(validators=[validators.required()])
     issue = fields.StringField(validators=[validators.required()])
     phone_number = fields.IntegerField(validators=[validators.required()])
-
