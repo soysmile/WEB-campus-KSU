@@ -1,9 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% for hostel in hostels %}
-<p><a href="{{ url_for('hostel_detail', hostel=hostel.id) }}">Hostel: {{ hostel.id }}. Adress: {{ hostel.adress }}</a></p>
-{% endfor %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">Hostels</h1>
+            <div class="panel panel-default">
+                {% for hostel in hostels %}
+                <div class="panel-body">
+                    <h4><p><a href="{{ url_for('hostel_detail', hostel=hostel.id) }}">Hostel: {{ hostel.number }}. Adress: {{ hostel.adress }}</a></p></h4>
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+    </div>
+</div>
+
+
 
 
 {% endblock %}

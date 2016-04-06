@@ -1,7 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% for person in persons %}
-<p>{{ person.first_name }} {{person.last_name }} {{ person.department }} {{ person. group}}</p>
-{% endfor %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">Persons</h1>
+            <div class="panel panel-default">
+                {% for person in persons %}
+                <div class="panel-body">
+                    <h4><p>{{ person.first_name }} {{person.last_name }} {{ person.department }} {{ person. group}}</p>
+
+</h4>
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+    </div>
+</div>
+
 {% endblock %}

@@ -53,6 +53,7 @@ class Room(db.Model):
     def __str__(self):
         return str(self.room_number)
 
+
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(30))
@@ -69,7 +70,7 @@ class Person(db.Model):
     phone_number = db.Column(db.Integer)
 
     def __str__(self):
-        return self.first_name + '' + self.last_name
+        return self.first_name + ' ' + self.last_name
 
     def __init__(self, first_name, last_name, department, group, birthday, speciality, p_series, p_number, date_of_issue, issue, phone_number):
         self.first_name = first_name

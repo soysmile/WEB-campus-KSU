@@ -1,7 +1,6 @@
 from flask import render_template, flash, redirect, url_for, request
 from sqlalchemy import desc, asc
 from app import app, models, db
-from datetime import date
 from app import forms
 
 
@@ -51,15 +50,6 @@ def register():
         flash('Thanks for registering')
         return redirect(url_for('index'))
     return render_template('register.html', form=form)
-
-
-@app.route('/user/<username>')
-def user(username):
-    user_ = models.User.query.filter_by(username=username).first()
-    if user_ is None:
-        flash('User %s not found.' % username)
-        return redirect(url_for('index'))
-    return render_template('profile.html', user=user_)
 
 
 @app.route('/plot')
