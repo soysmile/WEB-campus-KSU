@@ -13,7 +13,8 @@
                         <fieldset class="form-group">
                             {{ f.label }}
                             {% if f.name == 'birthday' or f.name == 'date_of_issue' %}
-                            {{ f(**{'data-date-format': 'YYYY-MM-DD', 'data-role': 'datepicker', 'class': 'form-control'})}}
+                            {{ f(**{'data-date-format': 'YYYY-MM-DD', 'data-role': 'datepicker', 'class':
+                            'form-control'})}}
                             {% else %}
                             {{ f(class="form-control") }}
                             {% endif %}

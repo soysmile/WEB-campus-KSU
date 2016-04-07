@@ -1,15 +1,12 @@
 from sqlalchemy import *
-from migrate import *
 
-
-from migrate.changeset import schema
 pre_meta = MetaData()
 post_meta = MetaData()
 hostel = Table('hostel', post_meta,
-    Column('id', Integer, primary_key=True, nullable=False),
-    Column('number', Integer),
-    Column('adress', String(length=140)),
-)
+               Column('id', Integer, primary_key=True, nullable=False),
+               Column('number', Integer),
+               Column('adress', String(length=140)),
+               )
 
 
 def upgrade(migrate_engine):

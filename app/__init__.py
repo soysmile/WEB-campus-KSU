@@ -1,10 +1,10 @@
-from flask import Flask, url_for, redirect, request
-from flask_sqlalchemy import SQLAlchemy
-import flask_login as login
 import flask_admin as admin
-from flask_login import LoginManager
-from flask_admin.contrib import sqla
+import flask_login as login
+from flask import Flask, url_for, redirect, request
 from flask_admin import helpers, expose
+from flask_admin.contrib import sqla
+from flask_login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -27,14 +27,12 @@ def init_login():
 
 # Create customized model view class
 class MyModelView(sqla.ModelView):
-
     def is_accessible(self):
         return login.current_user.is_authenticated
 
 
 # Create customized index view class that handles login & registration
 class MyAdminIndexView(admin.AdminIndexView):
-
     @expose('/')
     def index(self):
         if not login.current_user.is_authenticated:
@@ -71,7 +69,6 @@ admin_panel.add_view(MyModelView(models.Room, db.session))
 admin_panel.add_view(MyModelView(models.Person, db.session))
 admin_panel.add_view(MyModelView(models.Post, db.session))
 admin_panel.add_view(MyModelView(models.Temperature, db.session))
-
 
 if __name__ == '__main__':
     app.run(debug=True)

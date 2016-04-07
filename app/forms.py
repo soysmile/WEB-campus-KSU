@@ -1,5 +1,6 @@
-from app import db, models
 from wtforms import form, fields, validators
+
+from app import db, models
 
 
 class LoginForm(form.Form):

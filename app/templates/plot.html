@@ -7,7 +7,9 @@
             <h1 class="page-header">Plot</h1>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <center><canvas id="chart" width="740" height="200"></canvas></center>
+                    <center>
+                        <canvas id="chart" width="740" height="200"></canvas>
+                    </center>
                 </div>
             </div>
         </div>
@@ -43,6 +45,7 @@ var barChartData = {
             ],
         };
     var myLine = new Chart(document.getElementById("chart").getContext("2d")).Line(barChartData);
+
 
 </script>
 {% endblock %}
