@@ -14,7 +14,6 @@ from app import views, models
 from app.forms import LoginForm
 
 
-
 # Initialize flask-login
 def init_login():
     login_manager = LoginManager()
@@ -54,7 +53,6 @@ class MyAdminIndexView(admin.AdminIndexView):
             return redirect(url_for('.index'))
         self._template_args['form'] = form
         return super(MyAdminIndexView, self).index()
-
 
     @expose('/logout/')
     def logout_view(self):

@@ -14,8 +14,8 @@ def index():
 
 
 @app.route('/post/<id>')
-def detail_view_post(id):
-    post = models.Post.query.filter_by(id=id).first()
+def detail_view_post(_id):
+    post = models.Post.query.filter_by(id=_id).first()
     return render_template('post.html', post=post)
 
 
@@ -27,8 +27,8 @@ def rooms():
 
 @app.route('/hostels/<hostel>')
 def hostel_detail(hostel):
-    rooms = models.Room.query.filter_by(hostel_id=hostel).all()
-    return render_template('hostel_view.html', rooms=rooms)
+    _rooms = models.Room.query.filter_by(hostel_id=hostel).all()
+    return render_template('hostel_view.html', rooms=_rooms)
 
 
 @app.route('/rooms/<room>')
