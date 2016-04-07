@@ -54,7 +54,12 @@ class Room(db.Model):
     person = db.relationship('Person', backref='room', lazy='dynamic')
 
     def __str__(self):
-        return str(self.room_number)
+        # костыль
+        if self.hostel_id == 1:
+            hostel = 4
+        elif self.hostel_id == 2:
+            hostel = 3
+        return str(hostel) + '_' + str(self.room_number)
 
 
 class Person(db.Model):
