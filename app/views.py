@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, abort
 from sqlalchemy import desc, asc
 
 from app import app, models, db
@@ -17,7 +17,10 @@ def index():
 @app.route('/post/<id>')
 def detail_view_post(id):
     post = models.Post.query.filter_by(id=id).first()
-    return render_template('post.html', post=post)
+    if post:
+        return render_template('post.html', post=post)
+    else:
+        abort(404)
 
 
 @app.route('/hostels')
