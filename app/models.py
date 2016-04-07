@@ -72,7 +72,8 @@ class Person(db.Model):
     def __str__(self):
         return self.first_name + ' ' + self.last_name
 
-    def __init__(self, first_name, last_name, department, group, birthday, speciality, p_series, p_number, date_of_issue, issue, phone_number):
+    def __init__(self, first_name, last_name, department, group, birthday, speciality, p_series, p_number,
+                 date_of_issue, issue, phone_number):
         self.first_name = first_name
         self.last_name = last_name
         self.department = department
@@ -90,5 +91,3 @@ class Temperature(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, unique=True)
     temperature = db.Column(db.Integer)
-
-

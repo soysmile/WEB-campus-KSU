@@ -3,11 +3,12 @@ from sqlalchemy import desc, asc
 from app import app, models, db
 from app import forms
 
+NORMAL_T = 25
+
 
 @app.route('/')
 @app.route('/index')
 def index():
-    # добавить пагинацию
     posts = models.Post.query.order_by(desc(models.Post.timestamp)).limit(100).all()
     return render_template('index.html', posts=posts)
 
@@ -54,9 +55,8 @@ def register():
 
 @app.route('/plot')
 def plot():
-    normal_t = 50
     buffer = []
     values = models.Temperature.query.order_by(asc(models.Temperature.date)).limit(31).all()
     for value in values:
         buffer.append({"date": value.date.strftime('%Y-%m-%d'), "temperature": value.temperature})
-    return render_template('plot.html', values=buffer, NORMAL_T=normal_t)
+    return render_template('plot.html', values=buffer, NORMAL_T=NORMAL_T)
