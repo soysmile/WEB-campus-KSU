@@ -15,8 +15,8 @@ def index():
 
 
 @app.route('/post/<id>')
-def detail_view_post(_id):
-    post = models.Post.query.filter_by(id=_id).first()
+def detail_view_post(id):
+    post = models.Post.query.filter_by(id=id).first()
     return render_template('post.html', post=post)
 
 
