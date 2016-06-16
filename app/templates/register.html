@@ -12,7 +12,7 @@
                         {% for f in form if f.type != 'CSRFTokenField' %}
                         <fieldset class="form-group">
                             {{ f.label }}
-                            {% if f.name == 'birthday' or f.name == 'date_of_issue' %}
+                            {% if f.name == 'birthday' %}
                             {{ f(**{'data-date-format': 'YYYY-MM-DD', 'data-role': 'datepicker', 'class':
                             'form-control'})}}
                             {% else %}

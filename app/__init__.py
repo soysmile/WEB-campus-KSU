@@ -1,6 +1,6 @@
 import flask_admin as admin
 import flask_login as login
-from flask import Flask, url_for, redirect, request
+from flask import Flask, url_for, redirect, request, g
 from flask_admin import helpers, expose
 from flask_admin.contrib import sqla
 from flask_login import LoginManager
@@ -69,6 +69,7 @@ admin_panel.add_view(MyModelView(models.Room, db.session))
 admin_panel.add_view(MyModelView(models.Person, db.session))
 admin_panel.add_view(MyModelView(models.Post, db.session))
 admin_panel.add_view(MyModelView(models.Temperature, db.session))
+admin_panel.add_view(MyModelView(models.Register, db.session))
 
 if __name__ == '__main__':
     app.run(debug=True)

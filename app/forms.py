@@ -1,5 +1,4 @@
 from wtforms import form, fields, validators
-
 from app import db, models
 
 
@@ -23,12 +22,28 @@ class LoginForm(form.Form):
 class RegistrationForm(form.Form):
     first_name = fields.StringField(validators=[validators.required()])
     last_name = fields.StringField(validators=[validators.required()])
+    middle_name = fields.StringField(validators=[validators.required()])
     department = fields.StringField(validators=[validators.required()])
     group = fields.IntegerField(validators=[validators.required()])
+    form_of_education = fields.StringField(validators=[validators.required()])
     birthday = fields.DateField(validators=[validators.required()])
-    speciality = fields.StringField(validators=[validators.required()])
-    p_series = fields.StringField(validators=[validators.required()])
-    p_number = fields.IntegerField(validators=[validators.required()])
-    date_of_issue = fields.DateField(validators=[validators.required()])
-    issue = fields.StringField(validators=[validators.required()])
-    phone_number = fields.IntegerField(validators=[validators.required()])
+    passport = fields.StringField(validators=[validators.required()])
+    parents = fields.StringField(validators=[validators.required()])
+    index = fields.IntegerField(validators=[validators.required()])
+    region = fields.StringField(validators=[validators.required()])
+    district = fields.StringField(validators=[validators.required()])
+    settlement = fields.StringField(validators=[validators.required()])
+    street = fields.StringField(validators=[validators.required()])
+    phone_number = fields.StringField(validators=[validators.required()])
+    phone_number_parent = fields.StringField(validators=[validators.required()])
+    note = fields.StringField(validators=[validators.required()])
+
+
+class SearchForm(form.Form):
+    value = fields.StringField()
+    radio = fields.RadioField(choices=[('first_name', 'Фамилия'), ('last_name', 'Имя')], default='first_name')
+
+
+class SearchForm2(form.Form):
+    hostel_id = fields.IntegerField()
+    room_id = fields.IntegerField()

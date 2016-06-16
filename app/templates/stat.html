@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">Persons</h1>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4>Всего комнат: {{ stats['Всего комнат'] }}</h4>
+                    <h4>Всего комнат в 2 общежитии: {{ stats['Всего комнат в 2 общежитии'] }}</h4>
+                    <h4>Всего комнат в 3 общежитии: {{ stats['Всего комнат в 3 общежитии'] }}</h4>
+                    <h4>Всего комнат в 4 общежитии: {{ stats['Всего комнат в 4 общежитии'] }}</h4>
+                    <h4>Одна свободное место: {{ free_1 }}</h4>
+                    <h4>Два свободны мест: {{ free_2 }}</h4>
+                    <h4>Три свободных мест: {{ free_3 }}</h4>
+                    <h4>Четыре свободных мест: {{ free_4 }}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

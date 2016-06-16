@@ -17,11 +17,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-
-
             <h1 class="page-header">News</h1>
             {% for post in posts %}
-
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h2><a href="{{ url_for('detail_view_post', id=post.id) }}">{{ post.title }}</a></h2>
@@ -33,7 +30,6 @@
                             class="glyphicon glyphicon-chevron-right"></span></a>
                 </div>
             </div>
-
             {% endfor %}
             <!-- Pager -->
             <ul class="pager">

@@ -5,13 +5,24 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="page-header">Persons</h1>
+            <h1 class="page-header">Жильцы комнаты {{ places.room_number }} общежития # {{ places.hostel_id }} </h1>
             <div class="panel panel-default">
                 {% for person in persons %}
                 <div class="panel-body">
-                    <h4>{{ person.first_name }} {{person.last_name }} {{ person.department }} {{ person. group}}</h4>
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('person', id=person.id) }}"><h4>{{ person.first_name }} {{person.last_name }} {{ person.department }} {{ person. group}}</h4></a>
+                    {% else %}
+                        <a href="{{ url_for('person', id=person.id) }}"><h4>{{ person.department }} {{ person. group}}</h4></a>
+                    {% endif %}
+
                 </div>
                 {% endfor %}
+            {% if persons|length != places.numbers_of_person %}
+                <div class="panel-body">
+                <h3>Свободных мест: {{ places.numbers_of_person - persons|length }}</h3>
+                <h3><a href="{{ url_for('register') }}">Оставить заявку</a></h3>
+                </div>
+            {% endif %}
             </div>
         </div>
     </div>
