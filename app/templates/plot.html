@@ -23,6 +23,8 @@
 var json2 = {{ values2 | tojson }};
 var json3 = {{ values3 | tojson }};
 var json4 = {{ values4 | tojson }};
+var upperline = [];
+var lowerline = [];
 
 var chartjsData2 = [];
 var chartjsData3 = [];
@@ -32,6 +34,8 @@ var buffer = [];
 for (var i = 0; i < json2.length; i++) {
     chartjsData2.push(json2[i].temperature);
     chartisLabel.push(json2[i].date);
+	upperline.push(24);
+	lowerline.push(17);
 }
 for (var i = 0; i < json3.length; i++) {
     chartjsData3.push(json3[i].temperature);
@@ -49,15 +53,29 @@ var barChartData = {
                     strokeColor : "rgba(255,0,0,1)",
                     data : chartjsData2
 
-                },                {
+                },
+                {
                     fillColor : "rgba(220,280,220,0)",
                     strokeColor : "rgba(0,255,0,1)",
                     data : chartjsData3
 
-                },                {
+                },
+                {
                     fillColor : "rgba(220,280,220,0)",
                     strokeColor : "rgba(0,0,255,1)",
                     data : chartjsData4
+
+                },
+                {
+                    fillColor : "rgba(220,280,220,0)",
+                    strokeColor : "rgba(0,0,255,1)",
+                    data : lowerline
+
+                },
+                {
+                    fillColor : "rgba(220,280,220,0)",
+                    strokeColor : "rgba(255,0,0,1)",
+                    data : upperline
 
                 },
             ],
