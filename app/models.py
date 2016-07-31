@@ -156,5 +156,11 @@ class Register(db.Model):
 
 class Temperature(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.Date, unique=True)
-    temperature = db.Column(db.Integer)
+    date = db.Column(db.Date)
+    temperature = db.Column(db.Float)
+    hostel_id = db.Column(db.Integer)
+
+    def __init__(self, date=None, temperature=None, hostel_id=None):
+        self.date = date
+        self.temperature = temperature
+        self.hostel_id = hostel_id

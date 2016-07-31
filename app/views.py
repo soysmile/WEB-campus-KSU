@@ -54,7 +54,7 @@ def rooms():
     elif request.method == 'POST':
         if request.form['button'] == 'secondS':
             return redirect(url_for('room_detail', hostel=form2.hostel_id.data, room=form2.room_id.data))
-        #     persons = models.Person.query.filter_by(hostel_id=form2.hostel_id.data, room_id=form2.room_id.data).all()
+        # persons = models.Person.query.filter_by(hostel_id=form2.hostel_id.data, room_id=form2.room_id.data).all()
         #     places = models.Room.query.filter_by(hostel_id=form2.hostel_id.data, room_number=form2.room_id.data).first()
         #     return render_template('room_view.html', persons=persons, places=places)
         elif request.form['button'] == 'firstS':
@@ -115,11 +115,22 @@ def register():
 
 @app.route('/plot')
 def plot():
-    buffer = []
-    values = models.Temperature.query.order_by(asc(models.Temperature.date)).limit(31).all()
-    for value in values:
-        buffer.append({"date": value.date.strftime('%Y-%m-%d'), "temperature": value.temperature})
-    return render_template('plot.html', values=buffer, NORMAL_T=NORMAL_T)
+    buffer2 = []
+    buffer3 = []
+    buffer4 = []
+    values2 = models.Temperature.query.filter_by(hostel_id=2).order_by(asc(models.Temperature.date)).all()
+    values3 = models.Temperature.query.filter_by(hostel_id=3).order_by(asc(models.Temperature.date)).all()
+    values4 = models.Temperature.query.filter_by(hostel_id=4).order_by(asc(models.Temperature.date)).all()
+    for value in values2:
+        buffer2.append({"date": value.date.strftime('%Y-%m-%d'), "temperature": value.temperature})
+
+    for value in values3:
+        buffer3.append({"date": value.date.strftime('%Y-%m-%d'), "temperature": value.temperature})
+
+    for value in values4:
+        buffer4.append({"date": value.date.strftime('%Y-%m-%d'), "temperature": value.temperature})
+
+    return render_template('plot.html', values2=buffer2, values3=buffer3, values4=buffer4, NORMAL_T=NORMAL_T)
 
 
 @app.route('/person/<id>')
