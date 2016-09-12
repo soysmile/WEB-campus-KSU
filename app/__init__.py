@@ -14,6 +14,7 @@ from app import views, models
 from app.forms import LoginForm
 
 
+
 # Initialize flask-login
 def init_login():
     login_manager = LoginManager()
@@ -70,6 +71,7 @@ admin_panel.add_view(MyModelView(models.Person, db.session))
 admin_panel.add_view(MyModelView(models.Post, db.session))
 admin_panel.add_view(MyModelView(models.Temperature, db.session))
 admin_panel.add_view(MyModelView(models.Register, db.session))
+admin_panel.add_view(MyModelView(models.Statistics, db.session))
 
 if __name__ == '__main__':
     app.run(debug=True)

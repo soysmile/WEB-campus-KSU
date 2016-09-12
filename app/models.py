@@ -132,7 +132,7 @@ class Register(db.Model):
         return self.first_name + ' ' + self.last_name + ' ' + self.birthday
 
     def __init__(self, first_name=None, last_name=None, department=None, group=None, birthday=None, phone_number=None,
-                 middle_name=None, form_of_education=None,  passport=None, parents=None,
+                 middle_name=None, form_of_education=None, passport=None, parents=None,
                  index=None, region=None, district=None, street=None, settlement=None, phone_number_parent=None,
                  note=None):
         self.first_name = first_name
@@ -164,3 +164,28 @@ class Temperature(db.Model):
         self.date = date
         self.temperature = temperature
         self.hostel_id = hostel_id
+
+
+class Statistics(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.Date, unique=True)
+    places_all = db.Column(db.Integer)  # Всего комнат в общежитиях
+    places2 = db.Column(db.Integer)  # Всего комнат во 2 общежитии
+    places3 = db.Column(db.Integer)  # Всего комнат в 3 общежитии
+    places4 = db.Column(db.Integer)  # Всего комнат в 4 общежитии
+    free_1 = db.Column(db.Integer)  # Одна свободная комната
+    free_2 = db.Column(db.Integer)  # Две свободных комнат
+    free_3 = db.Column(db.Integer)  # Три свободных комнат
+    free_4 = db.Column(db.Integer)  # Четыре свободные комнаты
+
+    def __init__(self, date=None, places_all=None, places2=None, places3=None, places4=None, free1=None, free2=None,
+                 free3=None, free4=None):
+        self.date = date
+        self.places_all = places_all
+        self.places2 = places2
+        self.places3 = places3
+        self.places4 = places4
+        self.free_1 = free1
+        self.free_2 = free2
+        self.free_3 = free3
+        self.free_4 = free4

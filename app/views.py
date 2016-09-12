@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request, abort, g
 from sqlalchemy import desc, asc
 from flask_login import login_user, logout_user, current_user, login_required
-
+from datetime import datetime, date
 from app import app, models, db, forms
 
 NORMAL_T = 25
@@ -54,9 +54,6 @@ def rooms():
     elif request.method == 'POST':
         if request.form['button'] == 'secondS':
             return redirect(url_for('room_detail', hostel=form2.hostel_id.data, room=form2.room_id.data))
-        # persons = models.Person.query.filter_by(hostel_id=form2.hostel_id.data, room_id=form2.room_id.data).all()
-        #     places = models.Room.query.filter_by(hostel_id=form2.hostel_id.data, room_number=form2.room_id.data).first()
-        #     return render_template('room_view.html', persons=persons, places=places)
         elif request.form['button'] == 'firstS':
             kwargs = {form.radio.data: form.value.data}
             search_result = models.Person.query.filter_by(**kwargs).all()
@@ -139,30 +136,39 @@ def person(id):
     return render_template('person.html', person=person_)
 
 
-@app.route('/stat')
+@app.route('/stat', methods=['GET', 'POST'])
 def stat():
-    free_1 = 0
-    free_2 = 0
-    free_3 = 0
-    free_4 = 0
-    places_all = models.Room.query.all()
-    places2 = models.Room.query.filter_by(hostel_id=2).all()
-    places3 = models.Room.query.filter_by(hostel_id=3).all()
-    places4 = models.Room.query.filter_by(hostel_id=4).all()
-    for places in places_all:
-        person_buffer = models.Person.query.filter_by(hostel_id=places.hostel_id, room_id=places.room_number).all()
-        room_buffer = models.Room.query.filter_by(hostel_id=places.hostel_id, room_number=places.room_number).first()
-        if room_buffer.numbers_of_person is None:
-            room_buffer.numbers_of_person = 0
-        if int(room_buffer.numbers_of_person) - len(person_buffer) == 1:
-            free_1 += 1
-        elif int(room_buffer.numbers_of_person) - len(person_buffer) == 2:
-            free_2 += 1
-        elif int(room_buffer.numbers_of_person) - len(person_buffer) == 3:
-            free_3 += 1
-        elif int(room_buffer.numbers_of_person) - len(person_buffer) == 4:
-            free_4 += 1
-
-    stats = {'Всего комнат': len(places_all), 'Всего комнат в 2 общежитии': len(places2),
-             'Всего комнат в 3 общежитии': len(places3), 'Всего комнат в 4 общежитии': len(places4)}
-    return render_template('stat.html', stats=stats, free_1=free_1, free_2=free_2, free_3=free_3, free_4=free_4)
+    if request.method == 'POST':
+        last = models.Statistics.query.order_by(desc(models.Statistics.date)).first()
+        if last.date == datetime.date(datetime.now()):
+            flash('Сегодя уже было обновление!')
+            return redirect('stat')
+        else:
+            free_1 = 0
+            free_2 = 0
+            free_3 = 0
+            free_4 = 0
+            places_all = models.Room.query.all()
+            places2 = models.Room.query.filter_by(hostel_id=2).all()
+            places3 = models.Room.query.filter_by(hostel_id=3).all()
+            places4 = models.Room.query.filter_by(hostel_id=4).all()
+            for places in places_all:
+                person_buffer = models.Person.query.filter_by(hostel_id=places.hostel_id, room_id=places.room_number).all()
+                room_buffer = models.Room.query.filter_by(hostel_id=places.hostel_id, room_number=places.room_number).first()
+                if room_buffer.numbers_of_person is None:
+                    room_buffer.numbers_of_person = 0
+                if int(room_buffer.numbers_of_person) - len(person_buffer) == 1:
+                    free_1 += 1
+                elif int(room_buffer.numbers_of_person) - len(person_buffer) == 2:
+                    free_2 += 1
+                elif int(room_buffer.numbers_of_person) - len(person_buffer) == 3:
+                    free_3 += 1
+                elif int(room_buffer.numbers_of_person) - len(person_buffer) == 4:
+                    free_4 += 1
+            stats = models.Statistics(datetime.date(datetime.now()), len(places_all), len(places2), len(places3), len(places3), free_1, free_2, free_3, free_4)
+            db.session.add(stats)
+            db.session.commit()
+            return redirect('stat')
+    elif request.method == 'GET':
+        stats = models.Statistics.query.order_by(desc(models.Statistics.date)).first()
+        return render_template('stat.html', stats=stats)
