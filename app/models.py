@@ -131,10 +131,9 @@ class Register(db.Model):
     def __str__(self):
         return self.first_name + ' ' + self.last_name + ' ' + self.birthday
 
-    def __init__(self, first_name=None, last_name=None, department=None, group=None, birthday=None, phone_number=None,
-                 middle_name=None, form_of_education=None, passport=None, parents=None,
-                 index=None, region=None, district=None, street=None, settlement=None, phone_number_parent=None,
-                 note=None):
+    def __init__(self, first_name=None, last_name=None, middle_name=None, department=None, group=None,
+                 form_of_education=None, birthday=None, passport=None, parents=None, index=None, region=None,
+                 district=None, settlement=None, street=None, phone_number=None, phone_number_parent=None, note=None):
         self.first_name = first_name
         self.last_name = last_name
         self.middle_name = middle_name
