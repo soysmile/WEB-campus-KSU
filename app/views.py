@@ -1,7 +1,7 @@
-from flask import render_template, flash, redirect, url_for, request, abort, g
+from flask import render_template, flash, redirect, url_for, request, abort
 from sqlalchemy import desc, asc
-from flask_login import login_user, logout_user, current_user, login_required
-from datetime import datetime, date
+from flask_login import login_user, logout_user
+from datetime import datetime
 from app import app, models, db, forms
 
 NORMAL_T = 25
@@ -68,11 +68,10 @@ def hostel_detail(hostel):
         _rooms = models.Room.query.filter_by(hostel_id=hostel).all()
         floors = models.Room.query.order_by(models.Room.floor).filter_by(hostel_id=hostel).group_by(
             models.Room.floor).all()
-        return render_template('hostel_view.html', hostel=hostel_number, rooms=_rooms, floors=floors)
+        return render_template('hostel_view.html', hostel_number=hostel_number, rooms=_rooms, floors=floors)
     else:
         blocks = models.Block.query.filter_by(hostel_id=hostel)
-    floors = models.Block.query.order_by(models.Block.floor).filter_by(hostel_id=hostel).group_by(
-        models.Block.floor).all()
+        floors = models.Block.query.order_by(models.Block.floor).filter_by(hostel_id=hostel).group_by(models.Block.floor).all()
     return render_template('blocks.html', hostel_number=hostel_number, blocks=blocks, floors=floors)
 
 
@@ -106,9 +105,9 @@ def hostel_detail_free(hostel):
 def room_detail(hostel, room):
     hostel_number = hostel
     hostel = models.Hostel.query.filter_by(number=hostel).first().id
-    print(hostel, hostel_number)
-    persons = models.Person.query.filter_by(hostel_id=hostel_number, room_id=room).all()
-    places = models.Room.query.filter_by(hostel_id=hostel, room_number=room).first()
+    room = models.Room.query.filter_by(hostel_id=hostel, room_number=room).first().id
+    persons = models.Person.query.filter_by(hostel_id=hostel, room_id=room).all()
+    places = models.Room.query.filter_by(hostel_id=hostel, id=room).first()
     if places is not None:
         return render_template('room_view.html', hostel_number=hostel_number, persons=persons, places=places)
     else:

@@ -1,5 +1,4 @@
-from app import db, app
-import sys
+from app import db
 
 
 class User(db.Model):
@@ -101,7 +100,8 @@ class Person(db.Model):
         return str(self.first_name) + ' ' + str(self.last_name)
 
     def __init__(self, first_name=None, last_name=None, department=None, group=None, birthday=None, phone_number=None,
-                 middle_name=None, form_of_education=None, hostel_id=None, room_id=None, passport=None, parents=None,
+                 middle_name=None, form_of_education=None, hostel_number=None, room_number=None, passport=None,
+                 parents=None,
                  index=None, region=None, district=None, street=None, settlement=None, phone_number_parent=None,
                  note=None):
         self.first_name = first_name
@@ -110,8 +110,8 @@ class Person(db.Model):
         self.department = department
         self.group = group
         self.form_of_education = form_of_education
-        self.hostel_id = hostel_id
-        self.room_id = room_id
+        self.hostel_id = Hostel.query.filter_by(number=hostel_number).first().id
+        self.room_id = Room.query.filter_by(hostel_id=self.hostel_id, room_number=room_number).first().id
         self.birthday = birthday
         self.passport = passport
         self.parents = parents

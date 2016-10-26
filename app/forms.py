@@ -41,7 +41,7 @@ class RegistrationForm(form.Form):
 
 class SearchForm(form.Form):
     value = fields.StringField()
-    radio = fields.RadioField(choices=[('first_name', 'Фамилия'), ('last_name', 'Имя')], default='first_name')
+    radio = fields.RadioField(choices=[('first_name', 'Имя'), ('last_name', 'Фамилия')], default='first_name')
 
 
 class SearchForm2(form.Form):
