@@ -62,10 +62,28 @@ def rooms():
 
 @app.route('/hostels/<hostel>')
 def hostel_detail(hostel):
-    _rooms = models.Room.query.filter_by(hostel_id=hostel).all()
-    floors = models.Room.query.order_by(models.Room.floor).filter_by(hostel_id=hostel).group_by(models.Room.floor).all()
-    persons = models.Person.query.filter_by(hostel_id=hostel).all()
-    return render_template('hostel_view.html', rooms=_rooms, floors=floors, persons=persons)
+    hostel_number = hostel
+    hostel = models.Hostel.query.filter_by(number=hostel).first().id
+    if int(hostel_number) == 2:
+        _rooms = models.Room.query.filter_by(hostel_id=hostel).all()
+        floors = models.Room.query.order_by(models.Room.floor).filter_by(hostel_id=hostel).group_by(
+            models.Room.floor).all()
+        return render_template('hostel_view.html', hostel=hostel_number, rooms=_rooms, floors=floors)
+    else:
+        blocks = models.Block.query.filter_by(hostel_id=hostel)
+    floors = models.Block.query.order_by(models.Block.floor).filter_by(hostel_id=hostel).group_by(
+        models.Block.floor).all()
+    return render_template('blocks.html', hostel_number=hostel_number, blocks=blocks, floors=floors)
+
+
+@app.route('/hostel/<hostel>/<block>')
+def block_view(hostel, block):
+    hostel_number = hostel
+    block_number = block
+    hostel_id = models.Hostel.query.filter_by(number=hostel).first().id
+    block_id = models.Block.query.filter_by(number=block_number).first().id
+    rooms = models.Room.query.filter_by(hostel_id=hostel_id, block_id=block_id).all()
+    return render_template('block_view.html', rooms=rooms)
 
 
 @app.route('/hostels/<hostel>/free')
@@ -153,8 +171,10 @@ def stat():
             places3 = models.Room.query.filter_by(hostel_id=3).all()
             places4 = models.Room.query.filter_by(hostel_id=4).all()
             for places in places_all:
-                person_buffer = models.Person.query.filter_by(hostel_id=places.hostel_id, room_id=places.room_number).all()
-                room_buffer = models.Room.query.filter_by(hostel_id=places.hostel_id, room_number=places.room_number).first()
+                person_buffer = models.Person.query.filter_by(hostel_id=places.hostel_id,
+                                                              room_id=places.room_number).all()
+                room_buffer = models.Room.query.filter_by(hostel_id=places.hostel_id,
+                                                          room_number=places.room_number).first()
                 if room_buffer.numbers_of_person is None:
                     room_buffer.numbers_of_person = 0
                 if int(room_buffer.numbers_of_person) - len(person_buffer) == 1:
@@ -165,7 +185,8 @@ def stat():
                     free_3 += 1
                 elif int(room_buffer.numbers_of_person) - len(person_buffer) == 4:
                     free_4 += 1
-            stats = models.Statistics(datetime.date(datetime.now()), len(places_all), len(places2), len(places3), len(places3), free_1, free_2, free_3, free_4)
+            stats = models.Statistics(datetime.date(datetime.now()), len(places_all), len(places2), len(places3),
+                                      len(places3), free_1, free_2, free_3, free_4)
             db.session.add(stats)
             db.session.commit()
             return redirect('stat')

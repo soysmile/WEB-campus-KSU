@@ -9,8 +9,8 @@
             <div class="panel panel-default">
                 {% for hostel in hostels %}
                 <div class="panel-body">
-                    <h4><a href="{{ url_for('hostel_detail', hostel=hostel.id) }}">Hostel: {{ hostel.number }}. Address:
-                        {{ hostel.adress }}</a></h4>
+                    <h4><a href="{{ url_for('hostel_detail', hostel=hostel.number   ) }}">Hostel: {{ hostel.number }}. Address:
+                        {{ hostel.address }}</a></h4>
                 </div>
                 {% endfor %}
             </div>

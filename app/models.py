@@ -40,20 +40,39 @@ class Post(db.Model):
 class Hostel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     number = db.Column(db.Integer)
-    adress = db.Column(db.String(140))
+    address = db.Column(db.String(140))
+    blocks = db.relationship('Block', backref='hostel', lazy='dynamic')
     rooms = db.relationship('Room', backref='hostel', lazy='dynamic')
 
     def __str__(self):
         return str(self.number)
 
 
+class Block(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    hostel_id = db.Column(db.Integer, db.ForeignKey('hostel.id'))
+    number = db.Column(db.String(50))
+    hot_water = db.Column(db.Boolean)
+    windows = db.Column(db.Boolean)
+    rooms = db.relationship('Room', backref='block', lazy='dynamic')
+    floor = db.Column(db.Integer)
+
+    def __str__(self):
+        return str(Hostel.query.filter_by(id=self.hostel_id).first().number) + '_' + str(self.number)
+
+
 class Room(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     room_number = db.Column(db.Integer)
-    numbers_of_person = db.Column(db.Integer())
+    numbers_of_person = db.Column(db.Integer)
     floor = db.Column(db.Integer)
+    block_id = db.Column(db.Integer, db.ForeignKey('block.id'))
     hostel_id = db.Column(db.Integer, db.ForeignKey('hostel.id'))
     person = db.relationship('Person', backref='room', lazy='dynamic')
+
+    def __str__(self):
+        hostel_number = Hostel.query.filter_by(id=self.hostel.id).first().number
+        return str(hostel_number) + '_' + str(self.room_number)
 
 
 class Person(db.Model):
@@ -79,7 +98,7 @@ class Person(db.Model):
     note = db.Column(db.String(255))
 
     def __str__(self):
-        return self.first_name + ' ' + self.last_name + ' ' + self.birthday
+        return str(self.first_name) + ' ' + str(self.last_name)
 
     def __init__(self, first_name=None, last_name=None, department=None, group=None, birthday=None, phone_number=None,
                  middle_name=None, form_of_education=None, hostel_id=None, room_id=None, passport=None, parents=None,

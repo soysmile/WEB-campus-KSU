@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-
 <div class="container">
     <div class="row">
-        <h1 class="page-header">Комнаты в общежитии # {{ floors[0].hostel_id }}</h1>
+        <h1 class="page-header">Комнаты в общежитии # {{ hostel }}</h1>
         <div class="col-md-8">
             <div class="panel panel-default">
                 {% for floor in floors %}

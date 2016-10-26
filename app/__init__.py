@@ -72,6 +72,6 @@ admin_panel.add_view(MyModelView(models.Post, db.session))
 admin_panel.add_view(MyModelView(models.Temperature, db.session))
 admin_panel.add_view(MyModelView(models.Register, db.session))
 admin_panel.add_view(MyModelView(models.Statistics, db.session))
-
+admin_panel.add_view(MyModelView(models.Block, db.session))
 if __name__ == '__main__':
     app.run(debug=True)
