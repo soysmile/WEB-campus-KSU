@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container">
 {% for room in rooms %}
-    <h4><a href="{{ url_for('room_detail', hostel=room.hostel_id, room=room.room_number) }}">{{ room.room_number }}</a></h4>
+    <h4><a href="{{ url_for('room_detail', hostel=hostel_number, room=room.room_number) }}">{{ room.room_number }}</a></h4>
 
 {% endfor %}
 </div>

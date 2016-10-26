@@ -83,7 +83,7 @@ def block_view(hostel, block):
     hostel_id = models.Hostel.query.filter_by(number=hostel).first().id
     block_id = models.Block.query.filter_by(number=block_number).first().id
     rooms = models.Room.query.filter_by(hostel_id=hostel_id, block_id=block_id).all()
-    return render_template('block_view.html', rooms=rooms)
+    return render_template('block_view.html', hostel_number=hostel_number, rooms=rooms)
 
 
 @app.route('/hostels/<hostel>/free')
@@ -104,10 +104,13 @@ def hostel_detail_free(hostel):
 
 @app.route('/rooms/<hostel>/<room>')
 def room_detail(hostel, room):
-    persons = models.Person.query.filter_by(hostel_id=hostel, room_id=room).all()
+    hostel_number = hostel
+    hostel = models.Hostel.query.filter_by(number=hostel).first().id
+    print(hostel, hostel_number)
+    persons = models.Person.query.filter_by(hostel_id=hostel_number, room_id=room).all()
     places = models.Room.query.filter_by(hostel_id=hostel, room_number=room).first()
     if places is not None:
-        return render_template('room_view.html', persons=persons, places=places)
+        return render_template('room_view.html', hostel_number=hostel_number, persons=persons, places=places)
     else:
         abort(404)
 
