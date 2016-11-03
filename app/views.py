@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from flask import render_template, flash, redirect, url_for, request, abort
 from sqlalchemy import desc, asc
 from flask_login import login_user, logout_user
@@ -195,3 +197,10 @@ def stat():
     elif request.method == 'GET':
         stats = models.Statistics.query.order_by(desc(models.Statistics.date)).first()
         return render_template('stat.html', stats=stats)
+
+
+@app.route('/future/hostels/<hostel>')
+def future_hostel_query(hostel):
+    return hostel
+# TODO: графическое представление. Canvas or png.
+

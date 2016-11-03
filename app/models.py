@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from app import db
 
 
@@ -52,7 +54,7 @@ class Block(db.Model):
     hostel_id = db.Column(db.Integer, db.ForeignKey('hostel.id'))
     number = db.Column(db.String(50))
     hot_water = db.Column(db.Boolean)
-    windows = db.Column(db.Boolean)
+    # windows = db.Column(db.Boolean)
     rooms = db.relationship('Room', backref='block', lazy='dynamic')
     floor = db.Column(db.Integer)
 

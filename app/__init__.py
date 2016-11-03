@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import flask_admin as admin
 import flask_login as login
 from flask import Flask, url_for, redirect, request, g

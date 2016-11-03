@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os
 
 WTF_CSRF_ENABLED = True

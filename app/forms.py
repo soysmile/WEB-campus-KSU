@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from wtforms import form, fields, validators
 from app import db, models
 

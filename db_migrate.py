@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import types
 
 from migrate.versioning import api
