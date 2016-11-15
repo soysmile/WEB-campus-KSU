@@ -12,9 +12,14 @@
                             {% for block in blocks %}
                                 {% if floor.floor == block.floor  %}
                                     <div class="col-md-4" style="float:left;">
-                                        <h4><a href="{{ url_for('block_view', hostel=hostel_number, block=block.number) }}" style="display:inline;">{{ block.number }}
+                                        <h4><a href="{{ url_for('block_view', hostel=hostel_number, block=block.number) }}" style="display:inline;">
+                                            {{ block.number }}
                                         {% if block.hot_water %}<span class="glyphicon glyphicon-fire" title="Гарячая вода"></span>{% endif %}
-                                        {% if block.windows %}<span class="glyphicon glyphicon-modal-window" title="Металопластиковые окна"></span>{% endif %}
+                                        {% if block.sex == 'm' %}
+                                            М
+                                        {% elif block.sex == 'f' %}
+                                            Ж
+                                        {% endif %}
 
                                     </a></h4></div>
                                 {% endif %}

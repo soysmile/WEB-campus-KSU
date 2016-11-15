@@ -8,6 +8,7 @@ from flask_admin.contrib import sqla
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 
+
 app = Flask(__name__)
 app.config.from_object('config')
 db = SQLAlchemy(app)
@@ -66,7 +67,7 @@ init_login()
 
 # Create admin
 admin_panel = admin.Admin(app, 'Admin', index_view=MyAdminIndexView(), base_template='my_master.html')
-admin_panel.add_view(MyModelView(models.User, db.session))
+admin_panel.add_view(MyModelView(models.User, db.session, 'Пользователи'))
 admin_panel.add_view(MyModelView(models.Hostel, db.session))
 admin_panel.add_view(MyModelView(models.Room, db.session))
 admin_panel.add_view(MyModelView(models.Person, db.session))
@@ -75,5 +76,3 @@ admin_panel.add_view(MyModelView(models.Temperature, db.session))
 admin_panel.add_view(MyModelView(models.Register, db.session))
 admin_panel.add_view(MyModelView(models.Statistics, db.session))
 admin_panel.add_view(MyModelView(models.Block, db.session))
-if __name__ == '__main__':
-    app.run(debug=True)

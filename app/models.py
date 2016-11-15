@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from app import db
+from app import db, app
+import datetime
 
 
 class User(db.Model):
@@ -35,7 +36,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(30))
     body = db.Column(db.String(140))
-    timestamp = db.Column(db.DateTime)
+    timestamp = db.Column(db.DateTime, default=datetime.datetime.utcnow())
 
 
 class Hostel(db.Model):
@@ -54,9 +55,9 @@ class Block(db.Model):
     hostel_id = db.Column(db.Integer, db.ForeignKey('hostel.id'))
     number = db.Column(db.String(50))
     hot_water = db.Column(db.Boolean)
-    # windows = db.Column(db.Boolean)
     rooms = db.relationship('Room', backref='block', lazy='dynamic')
     floor = db.Column(db.Integer)
+    sex = db.Column(db.String(2))
 
     def __str__(self):
         return str(Hostel.query.filter_by(id=self.hostel_id).first().number) + '_' + str(self.number)
@@ -65,8 +66,11 @@ class Block(db.Model):
 class Room(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     room_number = db.Column(db.Integer)
+    note = db.Column(db.String(30))
     numbers_of_person = db.Column(db.Integer)
     floor = db.Column(db.Integer)
+    windows = db.Column(db.Boolean)
+    service = db.Column(db.Boolean)
     block_id = db.Column(db.Integer, db.ForeignKey('block.id'))
     hostel_id = db.Column(db.Integer, db.ForeignKey('hostel.id'))
     person = db.relationship('Person', backref='room', lazy='dynamic')
@@ -209,3 +213,4 @@ class Statistics(db.Model):
         self.free_2 = free2
         self.free_3 = free3
         self.free_4 = free4
+
