@@ -2,9 +2,10 @@
 
 from flask import render_template, flash, redirect, url_for, request, abort
 from sqlalchemy import desc, asc
-from flask_login import login_user, logout_user
-from datetime import datetime
+from flask_login import login_user, logout_user, current_user
+from datetime import datetime, timedelta
 from app import app, models, db, forms
+from uuid import uuid4
 
 NORMAL_T = 25
 
@@ -16,25 +17,108 @@ def index():
     return render_template('index.html', posts=posts)
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/reg', methods=['POST'])
+def invite_reg():
+    if request.method == 'POST':
+        person = models.Person.query.filter_by(invite=request.form['invite']).first()
+        if person:
+            return render_template('reg_user.html', user=person)
+        else:
+            return abort(404)
+    else:
+        return render_template('invite.html')
+
+
+@app.route('/login', methods=['POST'])
 def login():
-    if request.method == 'GET':
-        return render_template('login.html')
     username = request.form['username']
     password = request.form['password']
     registered_user = models.User.query.filter_by(login=username, password=password).first()
     if registered_user is None:
         flash('Username or Password is invalid', 'error')
-        return redirect(url_for('login'))
+        return redirect(url_for('login_reg'))
+    print(registered_user)
     login_user(registered_user)
     flash('Logged in successfully')
     return redirect(request.args.get('next') or url_for('index'))
+
+
+@app.route('/add_user', methods=['POST'])
+def add_user():
+    person = models.Person.query.filter_by(id=request.form['id']).first()
+    first_name = person.first_name
+    last_name = person.last_name
+    login = request.form['login']
+    email = request.form['email']
+    password = request.form['password']
+    person = person.id
+    db.session.add(models.User(first_name, last_name, login, email, password, person))
+    db.session.commit()
+    return redirect(url_for('login'))
+
+
+@app.route('/login_reg', methods=['GET'])
+def login_reg():
+    return render_template('login.html')
 
 
 @app.route('/logout/')
 def logout_view():
     logout_user()
     return redirect(url_for('index'))
+
+
+@app.route('/profile')
+def profile():
+    paypay = {'Sep': 0, 'Oct': 0, 'Nov': 0, 'Dec': 0, 'Jan': 0, 'Feb': 0, 'Mar': 0, 'Apr': 0, 'May': 0, 'Jun': 0,
+              'Jul': 0, 'Aug': 0}
+    person = models.Person.query.filter_by(id=current_user.person_id).first()
+    payment = models.Payment.query.filter_by(person=person.id).all()
+    for pay in payment:
+        if pay.date.month == 9:
+            paypay['Sep'] = 1
+        elif pay.date.month == 10:
+            paypay['Oct'] = 1
+        elif pay.date.month == 11:
+            paypay['Nov'] = 1
+        elif pay.date.month == 12:
+            paypay['Dec'] = 1
+        elif pay.date.month == 1:
+            paypay['Jan'] = 1
+        elif pay.date.month == 2:
+            paypay['Feb'] = 1
+        elif pay.date.month == 3:
+            paypay['Mar'] = 1
+        elif pay.date.month == 4:
+            paypay['Apr'] = 1
+        elif pay.date.month == 5:
+            paypay['May'] = 1
+        elif pay.date.month == 6:
+            paypay['Jun'] = 1
+        elif pay.date.month == 7:
+            paypay['Jul'] = 1
+        elif pay.date.month == 8:
+            paypay['Aug'] = 1
+    work = models.Work.query.filter_by(person=person.id).all()
+    hours = timedelta()
+    for w in work:
+        hours += w.end - w.start
+    return render_template('profile.html', person=person, payment=paypay, hours=hours, work=work)
+
+
+@app.route('/washing', methods=['GET', 'POST'])
+def washing():
+    days_list = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    start = datetime(year=datetime.now().year, month=datetime.now().month, day=datetime.now().day, hour=0, minute=0,
+                     second=0, microsecond=1)
+    end = start + timedelta(days=6 - start.weekday(), hours=23, minutes=59, seconds=59, microseconds=59)
+    days = start.weekday()
+    print(days)
+    washing = models.Washing.query.filter(models.Washing.start > str(start)).filter(models.Washing.end < str(end)).all()
+    washing_ = {'Monday': [], 'Tuesday': [], 'Wednesday': [], 'Thursday': [], 'Friday': [], 'Saturday': [], 'Sunday': []}
+    for wash in washing:
+        washing_[wash.start.strftime("%A")].append([wash.start, wash.end, wash.person])
+    return render_template('washing.html', washing=washing_, days=days, days_list=days_list)
 
 
 @app.route('/post/<id>')
@@ -73,7 +157,8 @@ def hostel_detail(hostel):
         return render_template('hostel_view.html', hostel_number=hostel_number, rooms=_rooms, floors=floors)
     else:
         blocks = models.Block.query.filter_by(hostel_id=hostel)
-        floors = models.Block.query.order_by(models.Block.floor).filter_by(hostel_id=hostel).group_by(models.Block.floor).all()
+        floors = models.Block.query.order_by(models.Block.floor).filter_by(hostel_id=hostel).group_by(
+            models.Block.floor).all()
     return render_template('blocks.html', hostel_number=hostel_number, blocks=blocks, floors=floors)
 
 
@@ -108,12 +193,22 @@ def room_detail(hostel, room):
     hostel_number = hostel
     hostel = models.Hostel.query.filter_by(number=hostel).first().id
     room = models.Room.query.filter_by(hostel_id=hostel, room_number=room).first().id
-    persons = models.Person.query.filter_by(hostel_id=hostel, room_id=room).all()
+    persons = models.Person.query.filter_by(room=room).all()
     places = models.Room.query.filter_by(hostel_id=hostel, id=room).first()
     if places is not None:
         return render_template('room_view.html', hostel_number=hostel_number, persons=persons, places=places)
     else:
         abort(404)
+
+
+@app.route('/fix')
+def fix():
+    persons = models.Person.query.all()
+    for person in persons:
+        room = models.Room.query.filter_by(hostel_id=person.hostel_id, id=person.room_id).first().id
+        person.invite = str(uuid4())
+        db.session.commit()
+    return 'ok'
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -202,5 +297,5 @@ def stat():
 @app.route('/future/hostels/<hostel>')
 def future_hostel_query(hostel):
     return hostel
-# TODO: графическое представление. Canvas or png.
 
+# TODO: графическое представление. Canvas or png.

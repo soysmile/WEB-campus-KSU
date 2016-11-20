@@ -2,6 +2,7 @@
 
 from app import db, app
 import datetime
+from uuid import uuid4
 
 
 class User(db.Model):
@@ -11,6 +12,16 @@ class User(db.Model):
     login = db.Column(db.String(80), unique=True)
     email = db.Column(db.String(120))
     password = db.Column(db.String(64))
+    permission = db.Column(db.String(5))
+    person_id = db.Column(db.Integer, db.ForeignKey('person.id'))
+
+    def __init__(self, first_name=None, last_name=None, login=None, email=None, password=None, person_id=None):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.login = login
+        self.email = email
+        self.password = password
+        self.person_id = person_id
 
     @staticmethod
     def is_authenticated():
@@ -23,6 +34,12 @@ class User(db.Model):
     @staticmethod
     def is_anonymous():
         return False
+
+    def is_admin(self):
+        if self.permission == 'su':
+            return True
+        else:
+            return False
 
     def get_id(self):
         return self.id
@@ -38,6 +55,10 @@ class Post(db.Model):
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, default=datetime.datetime.utcnow())
 
+    def __init__(self, id=None, title=None, body=None, timestamp=None):
+        print(id, title, body, timestamp)
+        self.title = title
+        self.body = body
 
 class Hostel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -73,7 +94,6 @@ class Room(db.Model):
     service = db.Column(db.Boolean)
     block_id = db.Column(db.Integer, db.ForeignKey('block.id'))
     hostel_id = db.Column(db.Integer, db.ForeignKey('hostel.id'))
-    person = db.relationship('Person', backref='room', lazy='dynamic')
 
     def __str__(self):
         hostel_number = Hostel.query.filter_by(id=self.hostel.id).first().number
@@ -88,8 +108,8 @@ class Person(db.Model):
     department = db.Column(db.String(50))
     group = db.Column(db.Integer)
     form_of_education = db.Column(db.String(255))
-    hostel_id = db.Column(db.Integer, db.ForeignKey('hostel.id'))
-    room_id = db.Column(db.Integer, db.ForeignKey('room.id'))
+    hostel_id = db.Column(db.Integer)
+    room_id = db.Column(db.Integer)
     birthday = db.Column(db.String(255))
     passport = db.Column(db.String(255))
     parents = db.Column(db.String(255))
@@ -101,34 +121,21 @@ class Person(db.Model):
     phone_number_parent = db.Column(db.String(255))
     phone_number = db.Column(db.String(255))
     note = db.Column(db.String(255))
+    invite = db.Column(db.String(255), index=True, default=str(uuid4()))
+    room = db.Column(db.Integer, db.ForeignKey('room.id'))
+    user = db.relationship('User', backref='perosn_user', lazy='dynamic')
+    payment = db.relationship('Payment', backref='person_payment', lazy='dynamic')
+    work = db.relationship('Work', backref='person_work', lazy='dynamic')
+    washing = db.relationship('Washing', backref='person_washing', lazy='dynamic')
 
     def __str__(self):
         return str(self.first_name) + ' ' + str(self.last_name)
 
-    def __init__(self, first_name=None, last_name=None, department=None, group=None, birthday=None, phone_number=None,
-                 middle_name=None, form_of_education=None, hostel_number=None, room_number=None, passport=None,
-                 parents=None,
-                 index=None, region=None, district=None, street=None, settlement=None, phone_number_parent=None,
-                 note=None):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.middle_name = middle_name
-        self.department = department
-        self.group = group
-        self.form_of_education = form_of_education
-        self.hostel_id = Hostel.query.filter_by(number=hostel_number).first().id
-        self.room_id = Room.query.filter_by(hostel_id=self.hostel_id, room_number=room_number).first().id
-        self.birthday = birthday
-        self.passport = passport
-        self.parents = parents
-        self.index = index
-        self.region = region
-        self.district = district
-        self.settlement = settlement
-        self.street = street
-        self.phone_number_parent = phone_number_parent
-        self.phone_number = phone_number
-        self.note = note
+    def set_invite(self):
+        self.invite = str(uuid4())
+
+    def __init__(self):
+        self.set_invite()
 
 
 class Register(db.Model):
@@ -214,3 +221,28 @@ class Statistics(db.Model):
         self.free_3 = free3
         self.free_4 = free4
 
+
+class Payment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.Date, unique=True)
+    person = db.Column(db.Integer, db.ForeignKey('person.id'))
+
+    def __init__(self, date=None, person=None):
+        pass
+
+
+class Work(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    start = db.Column(db.DateTime)
+    end = db.Column(db.DateTime)
+    person = db.Column(db.Integer, db.ForeignKey('person.id'))
+
+
+class Washing(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    start = db.Column(db.DateTime)
+    end = db.Column(db.DateTime)
+    person = db.Column(db.Integer, db.ForeignKey('person.id'))
+
+    def __init__(self, **kwargs):
+        print(kwargs)
