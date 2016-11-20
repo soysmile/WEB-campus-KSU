@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h1 class="page-header">Стирка</h1>
+            <div class="col-md-12">
+                {% for i in days_list[days:] %}
+                    <h1 class="page-header">{{ i }}</h1>
+                    <table class="table table-reflow">
+                        <thead>
+                        <tr>
+                            <th>Начало</th>
+                            <th>Конец</th>
+                            <th>Житель</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for wash in range(0, 3) %}
+                            {% if washing.get(i)[wash] %}
+                                <tr>
+                                    <td>{{ washing.get(i)[wash][0]}}</td>
+                                    <td>{{ washing.get(i)[wash][1]}}</td>
+                                    <td>{{ washing.get(i)[wash][2]}}</td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    <td colspan=3><div style="text-align: center;"><button type="button" class="btn btn-info">Зарезервировать</button></div></td>
+                                </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <br>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
