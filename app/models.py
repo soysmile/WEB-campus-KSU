@@ -1,19 +1,18 @@
 # -*- coding: utf-8 -*-
 
 from app import db, app
+from sqlalchemy import event
 import datetime
 from uuid import uuid4
 
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(100))
-    last_name = db.Column(db.String(100))
     login = db.Column(db.String(80), unique=True)
     email = db.Column(db.String(120))
     password = db.Column(db.String(64))
     permission = db.Column(db.String(5))
-    person_id = db.Column(db.Integer, db.ForeignKey('person.id'))
+    person_id = db.Column(db.Integer, db.ForeignKey('person.id'), unique=True)
 
     def __init__(self, first_name=None, last_name=None, login=None, email=None, password=None, person_id=None):
         self.first_name = first_name
@@ -59,6 +58,7 @@ class Post(db.Model):
         print(id, title, body, timestamp)
         self.title = title
         self.body = body
+
 
 class Hostel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -246,3 +246,8 @@ class Washing(db.Model):
 
     def __init__(self, **kwargs):
         print(kwargs)
+
+
+@event.listens_for(Washing, 'after_insert')
+def after_insert(*args):
+    print('ok')

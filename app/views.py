@@ -17,18 +17,6 @@ def index():
     return render_template('index.html', posts=posts)
 
 
-@app.route('/reg', methods=['POST'])
-def invite_reg():
-    if request.method == 'POST':
-        person = models.Person.query.filter_by(invite=request.form['invite']).first()
-        if person:
-            return render_template('reg_user.html', user=person)
-        else:
-            return abort(404)
-    else:
-        return render_template('invite.html')
-
-
 @app.route('/login', methods=['POST'])
 def login():
     username = request.form['username']
@@ -36,36 +24,49 @@ def login():
     registered_user = models.User.query.filter_by(login=username, password=password).first()
     if registered_user is None:
         flash('Username or Password is invalid', 'error')
-        return redirect(url_for('login_reg'))
-    print(registered_user)
+        return redirect(url_for('registration'))
     login_user(registered_user)
     flash('Logged in successfully')
     return redirect(request.args.get('next') or url_for('index'))
-
-
-@app.route('/add_user', methods=['POST'])
-def add_user():
-    person = models.Person.query.filter_by(id=request.form['id']).first()
-    first_name = person.first_name
-    last_name = person.last_name
-    login = request.form['login']
-    email = request.form['email']
-    password = request.form['password']
-    person = person.id
-    db.session.add(models.User(first_name, last_name, login, email, password, person))
-    db.session.commit()
-    return redirect(url_for('login'))
-
-
-@app.route('/login_reg', methods=['GET'])
-def login_reg():
-    return render_template('login.html')
 
 
 @app.route('/logout/')
 def logout_view():
     logout_user()
     return redirect(url_for('index'))
+
+
+@app.route('/registration', methods=['POST'])
+def invite_reg():
+    person = models.Person.query.filter_by(invite=request.form['invite']).first()
+    if person:
+        return render_template('reg_user.html', user=person)
+    else:
+        return abort(404)
+
+
+@app.route('/add_user', methods=['POST'])
+def add_user():
+    person = models.Person.query.filter_by(id=request.form['id']).first()
+    login = request.form['login']
+    email = request.form['email']
+    password = request.form['password']
+    db.session.add(models.User(login=login, email=email, password=password, person_id=person.id))
+    db.session.commit()
+    registered_user = models.User.query.filter_by(login=login, password=password).first()
+    if registered_user is None:
+        flash('Username or Password is invalid', 'error')
+        return redirect(url_for('invite_reg'))
+    login_user(registered_user)
+    person.invite = None
+    db.session.commit()
+    flash('Logged in successfully')
+    return redirect(url_for('profile'))
+
+
+@app.route('/login_reg', methods=['GET'])
+def login_reg():
+    return render_template('login.html')
 
 
 @app.route('/profile')
@@ -115,7 +116,8 @@ def washing():
     days = start.weekday()
     print(days)
     washing = models.Washing.query.filter(models.Washing.start > str(start)).filter(models.Washing.end < str(end)).all()
-    washing_ = {'Monday': [], 'Tuesday': [], 'Wednesday': [], 'Thursday': [], 'Friday': [], 'Saturday': [], 'Sunday': []}
+    washing_ = {'Monday': [], 'Tuesday': [], 'Wednesday': [], 'Thursday': [], 'Friday': [], 'Saturday': [],
+                'Sunday': []}
     for wash in washing:
         washing_[wash.start.strftime("%A")].append([wash.start, wash.end, wash.person])
     return render_template('washing.html', washing=washing_, days=days, days_list=days_list)
