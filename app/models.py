@@ -4,15 +4,35 @@ from app import db, app
 from sqlalchemy import event
 import datetime
 from uuid import uuid4
+from flask_security import UserMixin, RoleMixin
+
+roles_users = db.Table(
+    'roles_users',
+    db.Column('user_id', db.Integer(), db.ForeignKey('user.id')),
+    db.Column('role_id', db.Integer(), db.ForeignKey('role.id'))
+)
 
 
-class User(db.Model):
+class Role(db.Model, RoleMixin):
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(80), unique=True)
+    description = db.Column(db.String(255))
+
+    def __str__(self):
+        return self.name
+
+    def __hash__(self):
+        return hash(self.name)
+
+
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     login = db.Column(db.String(80), unique=True)
     email = db.Column(db.String(120))
     password = db.Column(db.String(64))
     permission = db.Column(db.String(5))
     person_id = db.Column(db.Integer, db.ForeignKey('person.id'), unique=True)
+    roles = db.relationship('Role', secondary=roles_users, backref=db.backref('users', lazy='dynamic'))
 
     def __init__(self, first_name=None, last_name=None, login=None, email=None, password=None, person_id=None):
         self.first_name = first_name
@@ -44,8 +64,8 @@ class User(db.Model):
         return self.id
 
     # Required for administrative interface
-    def __unicode__(self):
-        return self.username
+    def __str__(self):
+        return self.login
 
 
 class Post(db.Model):
@@ -94,6 +114,7 @@ class Room(db.Model):
     service = db.Column(db.Boolean)
     block_id = db.Column(db.Integer, db.ForeignKey('block.id'))
     hostel_id = db.Column(db.Integer, db.ForeignKey('hostel.id'))
+    person = db.relationship('Person', backref='person_room', lazy='dynamic')
 
     def __str__(self):
         hostel_number = Hostel.query.filter_by(id=self.hostel.id).first().number
@@ -102,8 +123,8 @@ class Room(db.Model):
 
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(255))
     last_name = db.Column(db.String(255))
+    first_name = db.Column(db.String(255))
     middle_name = db.Column(db.String(255))
     department = db.Column(db.String(50))
     group = db.Column(db.Integer)
@@ -121,12 +142,14 @@ class Person(db.Model):
     phone_number_parent = db.Column(db.String(255))
     phone_number = db.Column(db.String(255))
     note = db.Column(db.String(255))
+    email = db.Column(db.String(255))
     invite = db.Column(db.String(255), index=True, default=str(uuid4()))
     room = db.Column(db.Integer, db.ForeignKey('room.id'))
     user = db.relationship('User', backref='perosn_user', lazy='dynamic')
     payment = db.relationship('Payment', backref='person_payment', lazy='dynamic')
     work = db.relationship('Work', backref='person_work', lazy='dynamic')
     washing = db.relationship('Washing', backref='person_washing', lazy='dynamic')
+    violation = db.relationship('Violation', backref='person_violation', lazy='dynamic')
 
     def __str__(self):
         return str(self.first_name) + ' ' + str(self.last_name)
@@ -225,6 +248,7 @@ class Statistics(db.Model):
 class Payment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, unique=True)
+    price = db.Column(db.Float)
     person = db.Column(db.Integer, db.ForeignKey('person.id'))
 
     def __init__(self, date=None, person=None):
@@ -244,10 +268,19 @@ class Washing(db.Model):
     end = db.Column(db.DateTime)
     person = db.Column(db.Integer, db.ForeignKey('person.id'))
 
-    def __init__(self, **kwargs):
-        print(kwargs)
+
+class Violation(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.Date)
+    description = db.Column(db.String(255))
+    person = db.Column(db.Integer, db.ForeignKey('person.id'))
 
 
-@event.listens_for(Washing, 'after_insert')
+@event.listens_for(Person, 'after_insert')
 def after_insert(*args):
-    print('ok')
+    from app import mail
+    from flask_mail import Message
+    from config import MAIL_DEFAULT_SENDER
+    msg = Message('Инвайт-код', sender=MAIL_DEFAULT_SENDER, recipients=[args[2].email])
+    msg.html = '<b>Привет!</b> твой инвайт код %s' % args[2].invite
+    mail.send(msg)

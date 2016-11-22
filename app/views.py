@@ -24,7 +24,7 @@ def login():
     registered_user = models.User.query.filter_by(login=username, password=password).first()
     if registered_user is None:
         flash('Username or Password is invalid', 'error')
-        return redirect(url_for('registration'))
+        return redirect(url_for('index'))
     login_user(registered_user)
     flash('Logged in successfully')
     return redirect(request.args.get('next') or url_for('index'))
@@ -78,33 +78,48 @@ def profile():
     for pay in payment:
         if pay.date.month == 9:
             paypay['Sep'] = 1
+            paypay['Sep_price'] = pay.price
         elif pay.date.month == 10:
             paypay['Oct'] = 1
+            paypay['Oct_price'] = pay.price
         elif pay.date.month == 11:
             paypay['Nov'] = 1
+            paypay['Nov_price'] = pay.price
         elif pay.date.month == 12:
             paypay['Dec'] = 1
+            paypay['Dec_price'] = pay.price
         elif pay.date.month == 1:
             paypay['Jan'] = 1
+            paypay['Jan_price'] = pay.price
         elif pay.date.month == 2:
             paypay['Feb'] = 1
+            paypay['Feb_price'] = pay.price
         elif pay.date.month == 3:
             paypay['Mar'] = 1
+            paypay['Mar_price'] = pay.price
         elif pay.date.month == 4:
             paypay['Apr'] = 1
+            paypay['Apr_price'] = pay.price
         elif pay.date.month == 5:
             paypay['May'] = 1
+            paypay['May_price'] = pay.price
         elif pay.date.month == 6:
             paypay['Jun'] = 1
+            paypay['Jun_price'] = pay.price
         elif pay.date.month == 7:
             paypay['Jul'] = 1
+            paypay['Jul_price'] = pay.price
         elif pay.date.month == 8:
             paypay['Aug'] = 1
+            paypay['Aug_price'] = pay.price
+
     work = models.Work.query.filter_by(person=person.id).all()
     hours = timedelta()
     for w in work:
         hours += w.end - w.start
-    return render_template('profile.html', person=person, payment=paypay, hours=hours, work=work)
+
+    violations = models.Violation.query.filter_by(person=person.id).all()
+    return render_template('profile.html', person=person, payment=paypay, hours=hours, work=work, violations=violations)
 
 
 @app.route('/washing', methods=['GET', 'POST'])

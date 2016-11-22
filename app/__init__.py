@@ -7,14 +7,20 @@ from flask_admin import helpers, expose
 from flask_admin.contrib import sqla
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
+from flask_mail import Mail
+from flask_security import current_user, login_required, RoleMixin, Security, SQLAlchemyUserDatastore, UserMixin, utils
+
 
 app = Flask(__name__)
 app.config.from_object('config')
 db = SQLAlchemy(app)
+mail = Mail(app)
 
 from app import views, models
 from app.forms import LoginForm
 
+user_datastore = SQLAlchemyUserDatastore(db, models.User, models.User)
+security = Security(app, user_datastore)
 
 # Initialize flask-login
 def init_login():
@@ -27,14 +33,18 @@ def init_login():
         return db.session.query(models.User).get(user_id)
 
 
-class MyPersonView(sqla.ModelView):
-    column_exclude_list = ('id', )
-    column_searchable_list = ('first_name', 'last_name')
-
 # Create customized model view class
 class MyModelView(sqla.ModelView):
     def is_accessible(self):
-        return login.current_user.is_authenticated
+        if login.current_user.is_authenticated:
+            return login.current_user.has_role('admin')
+
+
+class MyPersonView(MyModelView):
+    """Just for test"""
+    column_exclude_list = ('id', 'hostel_id', 'room_id', 'parents', 'index', 'note', 'invite', 'phone_number_parent', 'street')
+    column_searchable_list = ('first_name', 'last_name')
+    column_labels = {'first_name': 'Имя', 'last_name': 'Фамилия', 'middle_name': 'Отчество'}
 
 
 # Create customized index view class that handles login & registration
@@ -72,7 +82,6 @@ admin_panel = admin.Admin(app, 'Admin', index_view=MyAdminIndexView(), base_temp
 admin_panel.add_view(MyModelView(models.User, db.session, 'Пользователи'))
 admin_panel.add_view(MyModelView(models.Hostel, db.session))
 admin_panel.add_view(MyModelView(models.Room, db.session))
-# admin_panel.add_view(MyModelView(models.Person, db.session))
 admin_panel.add_view(MyPersonView(models.Person, db.session))
 admin_panel.add_view(MyModelView(models.Post, db.session))
 admin_panel.add_view(MyModelView(models.Temperature, db.session))
@@ -82,3 +91,5 @@ admin_panel.add_view(MyModelView(models.Block, db.session))
 admin_panel.add_view(MyModelView(models.Payment, db.session))
 admin_panel.add_view(MyModelView(models.Work, db.session))
 admin_panel.add_view(MyModelView(models.Washing, db.session))
+admin_panel.add_view(MyModelView(models.Violation, db.session))
+admin_panel.add_view(MyModelView(models.Role, db.session))

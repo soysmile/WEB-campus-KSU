@@ -37,9 +37,10 @@
                 <li><a href="/plot">График</a></li>
                 <li><a href="/register">Регистрация</a></li>
                 <li><a href="/stat">Статистика</a></li>
-                {% if current_user.is_authenticated %}
-                    <li><a href="/profile">Hello, {{ current_user.login }}</a></li>
+                {% if current_user.is_authenticated and current_user.has_role('admin')%}
                     <li><a href="/admin">Admin</a></li>
+                {% elif current_user.is_authenticated and not current_user.has_role('admin') %}
+                    <li><a href="/profile">Hello, {{ current_user.login }}</a></li>
                 {% else %}
                     <li><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Авторизация</button></li>
                     <li><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrationModal">Регистрация</button></li>
@@ -47,6 +48,7 @@
             </ul>
         </div>
     </div>
+
 </div>
 
 <!-- Button trigger modal -->
@@ -107,6 +109,7 @@
     </div>
   </div>
 </div>
+
 
 {% block content %}{% endblock %}
 <br/>
