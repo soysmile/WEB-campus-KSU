@@ -12,6 +12,7 @@ Flask-Script
 Flask-SQLAlchemy
 Flask-WhooshAlchemy
 Flask-WTF
+Flask-Mail
 itsdangerous
 jdcal
 Jinja2
