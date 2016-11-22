@@ -9,10 +9,10 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 
-MAIL_SERVER = 'smtp.yandex.ru'
+MAIL_SERVER = 'smtp.gmail.com'
 MAIL_PORT = 465
-MAIL_USE_TLS = True
-MAIL_USE_SSL = False
+MAIL_USE_TLS = False
+MAIL_USE_SSL = True
 MAIL_USERNAME = 'ksu.studgorodok'
 MAIL_PASSWORD = 'studgorodok.ksu'
-MAIL_DEFAULT_SENDER = 'ksu.studgorodok@yandex.ru'
+MAIL_DEFAULT_SENDER = 'ksu.studgorodok@gmail.com'
