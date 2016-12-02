@@ -13,12 +13,7 @@
                                 {% if floor.floor == room.floor  %}
                                     {% set  places = [0] %}
                                     <div class="col-md-2">
-                                <h4><a href="{{ url_for('room_detail', hostel=hostel_number, room=room.room_number) }}">
-                                    {{ room.room_number }}
-                                    {% if room.windows %}
-                                        <span class="glyphicon glyphicon-modal-window"></span>
-                                        {% endif %}
-                                </a></h4>
+                                <h4><a href="{{ url_for('room_detail', hostel=hostel_number, room=room.room_number) }}">{{ room.room_number }}</a></h4>
                                 </div>
 
                                 {% endif %}

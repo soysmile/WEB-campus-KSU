@@ -3,21 +3,18 @@
 
 <div class="mainHeader homeHeader">
     <div class="container">
-        <div class="row">
-            <div class="col-xs-12 clearfix">
-                <h1 class="pageTitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </h1>
-                <div class="btnGroup">
-                    <a class="btn btn-success btn-lg" href="/"><i class="fa fa-line-chart"></i>Sample 1</a>
-                    <a class="btn btn-success btn-lg" href="/"><i class="fa fa-bullhorn"></i>Samle 2</a>
-                </div>
-            </div>
-        </div>
-    </div>
+        <div id="featured"> 
+			<a href="#" target="_blank"><img src="../static/img/test1.jpg" alt="Ezio" rel="ezioCaption"  /></a>
+			
+		</div> 
+		<span class="orbit-caption" id="ezioCaption">This is an <em>awesome caption</em> Note. <strong>Note:</strong> This whole image is linked</span>
+		<span class="orbit-caption" id="marcusCaption">This is an <em>awesome caption</em> for Marcus with a <a href="#" target="_blank" style="color: #fff">link</a></span>
+    </div>    
 </div>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="page-header">News</h1>
+            <h1 class="page-header">ТОП Новости</h1>
             {% for post in posts %}
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -26,7 +23,7 @@
                     <p>{{ post.body }}</p>
                 </div>
                 <div class="panel-footer">
-                    <a class="btn btn-primary" href="{{ url_for('detail_view_post', id=post.id) }}">Read More <span
+                    <a class="btn btn-primary" href="{{ url_for('detail_view_post', id=post.id) }}">Подробнее <span
                             class="glyphicon glyphicon-chevron-right"></span></a>
                 </div>
             </div>
@@ -34,10 +31,10 @@
             <!-- Pager -->
             <ul class="pager">
                 <li class="previous">
-                    <a href="#">&larr; Older</a>
+                    <a href="#">&larr; Назад</a>
                 </li>
                 <li class="next">
-                    <a href="#">Newer &rarr;</a>
+                    <a href="#">Вперед &rarr;</a>
                 </li>
             </ul>
         </div>

@@ -2,7 +2,7 @@
 
 from flask import render_template, flash, redirect, url_for, request, abort
 from sqlalchemy import desc, asc
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_user, logout_user, current_user, login_required
 from datetime import datetime, timedelta
 from app import app, models, db, forms
 from uuid import uuid4
@@ -64,11 +64,6 @@ def add_user():
     return redirect(url_for('profile'))
 
 
-@app.route('/login_reg', methods=['GET'])
-def login_reg():
-    return render_template('login.html')
-
-
 @app.route('/profile')
 def profile():
     paypay = {'Sep': 0, 'Oct': 0, 'Nov': 0, 'Dec': 0, 'Jan': 0, 'Feb': 0, 'Mar': 0, 'Apr': 0, 'May': 0, 'Jun': 0,
@@ -122,19 +117,22 @@ def profile():
     return render_template('profile.html', person=person, payment=paypay, hours=hours, work=work, violations=violations)
 
 
+@login_required
 @app.route('/washing', methods=['GET', 'POST'])
 def washing():
+    hostel_id = models.Room.query.filter_by(
+        id=models.Person.query.filter_by(id=current_user.person_id).first().room).first().hostel_id
     days_list = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     start = datetime(year=datetime.now().year, month=datetime.now().month, day=datetime.now().day, hour=0, minute=0,
                      second=0, microsecond=1)
     end = start + timedelta(days=6 - start.weekday(), hours=23, minutes=59, seconds=59, microseconds=59)
     days = start.weekday()
-    print(days)
-    washing = models.Washing.query.filter(models.Washing.start > str(start)).filter(models.Washing.end < str(end)).all()
+    washing = models.Washing.query.filter(models.Washing.start > str(start)).filter(
+        models.Washing.end < str(end)).filter(models.Washing.hostel == hostel_id).all()
     washing_ = {'Monday': [], 'Tuesday': [], 'Wednesday': [], 'Thursday': [], 'Friday': [], 'Saturday': [],
                 'Sunday': []}
     for wash in washing:
-        washing_[wash.start.strftime("%A")].append([wash.start, wash.end, wash.person])
+        washing_[wash.start.strftime("%A")].append([wash.start, wash.end, models.Person.query.filter_by(id=wash.person).first().last_name + ' ' + models.Person.query.filter_by(id=wash.person).first().first_name])
     return render_template('washing.html', washing=washing_, days=days, days_list=days_list)
 
 
@@ -314,5 +312,4 @@ def stat():
 @app.route('/future/hostels/<hostel>')
 def future_hostel_query(hostel):
     return hostel
-
 # TODO: графическое представление. Canvas or png.

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-
-from app import db, app
+from app import db
 from sqlalchemy import event
 import datetime
 from uuid import uuid4
 from flask_security import UserMixin, RoleMixin
+from flask import flash
 
 roles_users = db.Table(
     'roles_users',
@@ -30,7 +30,6 @@ class User(db.Model, UserMixin):
     login = db.Column(db.String(80), unique=True)
     email = db.Column(db.String(120))
     password = db.Column(db.String(64))
-    permission = db.Column(db.String(5))
     person_id = db.Column(db.Integer, db.ForeignKey('person.id'), unique=True)
     roles = db.relationship('Role', secondary=roles_users, backref=db.backref('users', lazy='dynamic'))
 
@@ -86,6 +85,7 @@ class Hostel(db.Model):
     address = db.Column(db.String(140))
     blocks = db.relationship('Block', backref='hostel', lazy='dynamic')
     rooms = db.relationship('Room', backref='hostel', lazy='dynamic')
+    washings = db.relationship('Washing', backref='hostel_washing', lazy='dynamic')
 
     def __str__(self):
         return str(self.number)
@@ -145,7 +145,7 @@ class Person(db.Model):
     email = db.Column(db.String(255))
     invite = db.Column(db.String(255), index=True, default=str(uuid4()))
     room = db.Column(db.Integer, db.ForeignKey('room.id'))
-    user = db.relationship('User', backref='perosn_user', lazy='dynamic')
+    user = db.relationship('User', backref='person_user', lazy='dynamic')
     payment = db.relationship('Payment', backref='person_payment', lazy='dynamic')
     work = db.relationship('Work', backref='person_work', lazy='dynamic')
     washing = db.relationship('Washing', backref='person_washing', lazy='dynamic')
@@ -251,9 +251,6 @@ class Payment(db.Model):
     price = db.Column(db.Float)
     person = db.Column(db.Integer, db.ForeignKey('person.id'))
 
-    def __init__(self, date=None, person=None):
-        pass
-
 
 class Work(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -267,6 +264,7 @@ class Washing(db.Model):
     start = db.Column(db.DateTime)
     end = db.Column(db.DateTime)
     person = db.Column(db.Integer, db.ForeignKey('person.id'))
+    hostel = db.Column(db.Integer, db.ForeignKey('hostel.id'))
 
 
 class Violation(db.Model):
@@ -276,11 +274,22 @@ class Violation(db.Model):
     person = db.Column(db.Integer, db.ForeignKey('person.id'))
 
 
+@event.listens_for(Person, 'before_insert')
+def before_insert(*args):
+    if args[2].room:
+        room = Room.query.filter_by(id=args[2].room).first()
+        persons = Person.query.filter_by(room=args[2].room).all()
+        if room.numbers_of_person < len(persons) + 1:
+            flash('В этой комнате уже проживает %s жильцов. Комната не установлена' % room.numbers_of_person)
+            args[2].room = None
+
+
 @event.listens_for(Person, 'after_insert')
 def after_insert(*args):
-    from app import mail
-    from flask_mail import Message
-    from config import MAIL_DEFAULT_SENDER
-    msg = Message('Инвайт-код', sender=MAIL_DEFAULT_SENDER, recipients=[args[2].email])
-    msg.html = '<b>Привет!</b> твой инвайт код %s' % args[2].invite
-    mail.send(msg)
+    if args[2].email and args[2].room:
+        from app import mail
+        from flask_mail import Message
+        from config import MAIL_DEFAULT_SENDER
+        msg = Message('Инвайт-код', sender=MAIL_DEFAULT_SENDER, recipients=[args[2].email])
+        msg.html = '<b>Привет!</b> твой инвайт код %s' % args[2].invite
+        mail.send(msg)
