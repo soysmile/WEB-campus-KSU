@@ -11,7 +11,7 @@ from flask_mobility.decorators import mobile_template
 NORMAL_T = 25
 
 
-@mobile_template('mobility/index.html')
+@mobile_template('{mobile/}index.html')
 @app.route('/')
 @app.route('/index')
 def index():
