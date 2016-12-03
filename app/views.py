@@ -6,22 +6,18 @@ from flask_login import login_user, logout_user, current_user, login_required
 from datetime import datetime, timedelta
 from app import app, models, db, forms
 from uuid import uuid4
-from flask_mobility.decorators import mobilized
+from flask_mobility.decorators import mobile_template
 
 NORMAL_T = 25
 
 
+@mobile_template('{mobile/}index.html')
 @app.route('/')
 @app.route('/index')
-def index():
+def index(template):
     posts = models.Post.query.order_by(desc(models.Post.timestamp)).limit(100).all()
-    return render_template('index.html', posts=posts)
+    return render_template(template, posts=posts)
 
-
-@mobilized(index)
-def index():
-    posts = models.Post.query.order_by(desc(models.Post.timestamp)).limit(100).all()
-    return render_template('mobile/index.html', posts=posts)
 
 
 @app.route('/login', methods=['POST'])
