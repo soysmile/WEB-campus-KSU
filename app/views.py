@@ -11,9 +11,9 @@ from flask_mobility.decorators import mobile_template
 NORMAL_T = 25
 
 
-@mobile_template('{mobile/}index.html')
 @app.route('/')
 @app.route('/index')
+@mobile_template('{mobile/}index.html')
 def index(template):
     posts = models.Post.query.order_by(desc(models.Post.timestamp)).limit(100).all()
     return render_template(template, posts=posts)
