@@ -19,7 +19,6 @@ def index(template):
     return render_template(template, posts=posts)
 
 
-
 @app.route('/login', methods=['POST'])
 def login():
     username = request.form['username']
