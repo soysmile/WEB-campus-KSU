@@ -6,10 +6,12 @@ from flask_login import login_user, logout_user, current_user, login_required
 from datetime import datetime, timedelta
 from app import app, models, db, forms
 from uuid import uuid4
+from flask_mobility.decorators import mobile_template
 
 NORMAL_T = 25
 
 
+@mobile_template('mobility/index.html')
 @app.route('/')
 @app.route('/index')
 def index():
@@ -132,7 +134,8 @@ def washing():
     washing_ = {'Monday': [], 'Tuesday': [], 'Wednesday': [], 'Thursday': [], 'Friday': [], 'Saturday': [],
                 'Sunday': []}
     for wash in washing:
-        washing_[wash.start.strftime("%A")].append([wash.start, wash.end, models.Person.query.filter_by(id=wash.person).first().last_name + ' ' + models.Person.query.filter_by(id=wash.person).first().first_name])
+        washing_[wash.start.strftime("%A")].append([wash.start, wash.end, models.Person.query.filter_by(
+            id=wash.person).first().last_name + ' ' + models.Person.query.filter_by(id=wash.person).first().first_name])
     return render_template('washing.html', washing=washing_, days=days, days_list=days_list)
 
 
@@ -312,4 +315,5 @@ def stat():
 @app.route('/future/hostels/<hostel>')
 def future_hostel_query(hostel):
     return hostel
+
 # TODO: графическое представление. Canvas or png.

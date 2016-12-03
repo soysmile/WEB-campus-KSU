@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">Register</h1>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form method="POST" action="">
+                        {{ form.hidden_tag() if form.hidden_tag }}
+                        {% for f in form if f.type != 'CSRFTokenField' %}
+                        <fieldset class="form-group">
+                            {{ f.label }}
+                            {% if f.name == 'birthday' %}
+                            {{ f(**{'data-date-format': 'YYYY-MM-DD', 'data-role': 'datepicker', 'class':
+                            'form-control'})}}
+                            {% else %}
+                            {{ f(class="form-control") }}
+                            {% endif %}
+                            {% if f.errors %}
+                            <ul>
+                                {% for e in f.errors %}
+                                <li>{{ e }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </fieldset>
+                        {% endfor %}
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </form>
+                    {{ link | safe }}
+                </div>
+                <div class="reg_image">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
