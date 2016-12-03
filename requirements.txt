@@ -30,3 +30,4 @@ Tempita
 Werkzeug
 Whoosh
 WTForms
+Flask-mobility
