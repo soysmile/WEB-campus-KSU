@@ -279,6 +279,7 @@ def stat():
             flash('Сегодя уже было обновление!')
             return redirect('stat')
         else:
+
             free_1 = 0
             free_2 = 0
             free_3 = 0
