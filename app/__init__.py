@@ -46,7 +46,7 @@ class MyPersonView(MyModelView):
     """Just for test"""
     column_exclude_list = ('id', 'hostel_id', 'room_id', 'parents', 'index', 'note', 'invite', 'phone_number_parent', 'street', 'passport')
     column_searchable_list = ('first_name', 'last_name')
-    column_labels = {'first_name': 'Имя', 'last_name': 'Фамилия', 'middle_name': 'Отчество'}
+    # column_labels = {'first_name': 'Имя', 'last_name': 'Фамилия', 'middle_name': 'Отчество'}
 
 
 # Create customized index view class that handles login & registration
@@ -81,7 +81,7 @@ init_login()
 
 # Create admin
 admin_panel = admin.Admin(app, 'Admin', index_view=MyAdminIndexView(), base_template='my_master.html')
-admin_panel.add_view(MyModelView(models.User, db.session, 'Пользователи'))
+# admin_panel.add_view(MyModelView(models.User, db.session, 'Пользователи'))
 admin_panel.add_view(MyModelView(models.Hostel, db.session))
 admin_panel.add_view(MyModelView(models.Room, db.session))
 admin_panel.add_view(MyPersonView(models.Person, db.session))
