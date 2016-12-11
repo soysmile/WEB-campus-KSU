@@ -115,6 +115,7 @@ class Room(db.Model):
     block_id = db.Column(db.Integer, db.ForeignKey('block.id'))
     hostel_id = db.Column(db.Integer, db.ForeignKey('hostel.id'))
     person = db.relationship('Person', backref='person_room', lazy='dynamic')
+    register = db.relationship('Register', backref='register_room', lazy='dynamic')
 
     def __str__(self):
         hostel_number = Hostel.query.filter_by(id=self.hostel.id).first().number
@@ -157,8 +158,8 @@ class Person(db.Model):
     def set_invite(self):
         self.invite = str(uuid4())
 
-    def __init__(self):
-        self.set_invite()
+        # def __init__(self):
+        #     self.set_invite()
 
 
 class Register(db.Model):
@@ -169,7 +170,6 @@ class Register(db.Model):
     department = db.Column(db.String(50))
     group = db.Column(db.Integer)
     form_of_education = db.Column(db.String(255))
-    hostel_id = db.Column(db.Integer, db.ForeignKey('hostel.id'))
     room_id = db.Column(db.Integer, db.ForeignKey('room.id'))
     birthday = db.Column(db.String(255))
     passport = db.Column(db.String(255))
@@ -181,6 +181,7 @@ class Register(db.Model):
     street = db.Column(db.String(255))
     phone_number_parent = db.Column(db.String(255))
     phone_number = db.Column(db.String(255))
+    email = db.Column(db.String(255))
     note = db.Column(db.String(255))
 
     def __str__(self):
@@ -282,6 +283,7 @@ def before_insert(*args):
         if room.numbers_of_person < len(persons) + 1:
             flash('В этой комнате уже проживает %s жильцов. Комната не установлена' % room.numbers_of_person)
             args[2].room = None
+            raise BufferError
 
 
 @event.listens_for(Person, 'after_insert')
@@ -290,6 +292,46 @@ def after_insert(*args):
         from app import mail
         from flask_mail import Message
         from config import MAIL_DEFAULT_SENDER
-        msg = Message('Инвайт-код', sender=MAIL_DEFAULT_SENDER, recipients=[args[2].email])
-        msg.html = '<b>Привет!</b> твой инвайт код %s' % args[2].invite
+        print(args[2].first_name, args[2].room, args[2].invite)
+        msg = Message('Поселення', sender=MAIL_DEFAULT_SENDER, recipients=[args[2].email])
+        msg.html = """<b>Привіт, {0}!</b><br/>
+        Вітаємо, твоя кімната для проживання <b>{1}</b><br/>
+        Для активації особистого кабінету на сайті перейди за <a href='ksu-hostel.herokuapp.com/{2}'>посиланням</a>""".format(
+            args[2].first_name, args[2].room, args[2].invite)
         mail.send(msg)
+
+
+@event.listens_for(Register, 'before_update')
+def before_update(*args):
+    if args[2].room_id:
+        session = db.create_scoped_session()
+        p = Person(last_name=args[2].last_name,
+                   first_name=args[2].first_name,
+                   middle_name=args[2].middle_name,
+                   department=args[2].department,
+                   group=args[2].group,
+                   form_of_education=args[2].form_of_education,
+                   birthday=args[2].birthday,
+                   passport=args[2].passport,
+                   parents=args[2].parents,
+                   index=args[2].index,
+                   region=args[2].region,
+                   district=args[2].district,
+                   settlement=args[2].settlement,
+                   street=args[2].street,
+                   phone_number_parent=args[2].phone_number_parent,
+                   phone_number=args[2].phone_number,
+                   note=args[2].note,
+                   email=args[2].email,
+                   room=args[2].room_id)
+        try:
+            session.add(p)
+            session.commit()
+        except BufferError:
+            args[2].room_id = None
+
+
+@event.listens_for(Register, 'after_update')
+def after_update(*args):
+    Register.query.filter_by(id=args[2].id).delete()
+    Register.birthday.get_children()

@@ -219,14 +219,15 @@ def room_detail(hostel, room):
         abort(404)
 
 
-@app.route('/fix')
-def fix():
-    persons = models.Person.query.all()
-    for person in persons:
-        room = models.Room.query.filter_by(hostel_id=person.hostel_id, id=person.room_id).first().id
-        person.invite = str(uuid4())
-        db.session.commit()
-    return 'ok'
+#
+# @app.route('/fix')
+# def fix():
+#     persons = models.Person.query.all()
+#     for person in persons:
+#         room = models.Room.query.filter_by(hostel_id=person.hostel_id, id=person.room_id).first().id
+#         person.invite = str(uuid4())
+#         db.session.commit()
+#     return 'ok'
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -279,7 +280,6 @@ def stat():
             flash('Сегодя уже было обновление!')
             return redirect('stat')
         else:
-
             free_1 = 0
             free_2 = 0
             free_3 = 0
@@ -310,11 +310,55 @@ def stat():
             return redirect('stat')
     elif request.method == 'GET':
         stats = models.Statistics.query.order_by(desc(models.Statistics.date)).first()
-        return render_template('stat.html', stats=stats)
+
+        departments = [
+            {'department': 'ФІФ', 'len': len(models.Person.query.filter_by(department='ФІФ').all())},
+            {'department': 'ФБГЕ', 'len': len(models.Person.query.filter_by(department='ФБГЕ').all())},
+            {'department': 'ФДПО', 'len': len(models.Person.query.filter_by(department='ФДПО').all())},
+            {'department': 'ФЕМ', 'len': len(models.Person.query.filter_by(department='ФЕМ').all())},
+            {'department': 'ФКМ', 'len': len(models.Person.query.filter_by(department='ФКМ').all())},
+            {'department': 'ФПІС', 'len': len(models.Person.query.filter_by(department='ФПІС').all())},
+            {'department': 'ФПЗЛТ', 'len': len(models.Person.query.filter_by(department='ФПЗЛТ').all())},
+            {'department': 'ФТСО', 'len': len(models.Person.query.filter_by(department='ФТСО').all())},
+            {'department': 'ФФВС', 'len': len(models.Person.query.filter_by(department='ФФВС').all())},
+            {'department': 'ФФЖ', 'len': len(models.Person.query.filter_by(department='ФФЖ').all())},
+            {'department': 'ФФМІ', 'len': len(models.Person.query.filter_by(department='ФФМІ').all())},
+            {'department': 'ЮФ', 'len': len(models.Person.query.filter_by(department='ЮФ').all())},
+            {'department': 'переклад', 'len': len(models.Person.query.filter_by(department='переклад').all())},
+        ]
+        print(departments)
+
+        rooms = [{'hostel': 2, 'len': len(models.Room.query.filter_by(hostel_id=1).all())},
+                 {'hostel': 3, 'len': len(models.Room.query.filter_by(hostel_id=2).all())},
+                 {'hostel': 4, 'len': len(models.Room.query.filter_by(hostel_id=3).all())}]
+
+        #
+        # for places in places_all:
+        #     person_buffer = models.Person.query.filter_by(hostel_id=places.hostel_id,
+        #                                                   room_id=places.room_number).all()
+        #     room_buffer = models.Room.query.filter_by(hostel_id=places.hostel_id,
+        #                                               room_number=places.room_number).first()
+        #     if room_buffer.numbers_of_person is None:
+        #         room_buffer.numbers_of_person = 0
+        #     if int(room_buffer.numbers_of_person) - len(person_buffer) == 1:
+        #         free_1 += 1
+        #     elif int(room_buffer.numbers_of_person) - len(person_buffer) == 2:
+        #         free_2 += 1
+        #     elif int(room_buffer.numbers_of_person) - len(person_buffer) == 3:
+        #         free_3 += 1
+        #     elif int(room_buffer.numbers_of_person) - len(person_buffer) == 4:
+        #         free_4 += 1
+        #
 
 
-@app.route('/future/hostels/<hostel>')
-def future_hostel_query(hostel):
-    return hostel
+        return render_template('stat.html', stats=stats, departments=departments, rooms=rooms)
 
-# TODO: графическое представление. Canvas or png.
+
+@app.route('/fix')
+def fix():
+    persons = models.Person.query.all()
+    for person in persons:
+        room = models.Room.query.filter_by(hostel_id=person.hostel_id, id=person.room_id).first()
+        person.room = room.id
+        print(person, room.id)
+        db.session.commit()

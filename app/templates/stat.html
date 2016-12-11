@@ -1,24 +1,13 @@
 {% extends 'base.html' %}
-
 {% block content %}
-
 <div class="container">
-
     <div class="row">
         <div class="col-md-12">
-            <h1 class="page-header">Persons</h1>
+            <h1 class="page-header">Статистика</h1>
             <div class="panel panel-default">
-                <div class="panel-body">
-                    {% with messages = get_flashed_messages() %}
-                        {% if messages %}
-                            <ul class=flashes>
-                                {% for message in messages %}
-                                    <li>{{ message }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-                    {% endwith %}
+                <h1 class="page-header">Текстовая статистика</h1>
 
+                <div class="panel-body">
                     <h4>Всего комнат: {{ stats.places_all }}</h4>
                     <h4>Всего комнат в 2 общежитии: {{ stats.places2 }}</h4>
                     <h4>Всего комнат в 3 общежитии: {{ stats.places3 }}</h4>
@@ -33,8 +22,100 @@
                     </form>
                 </div>
             </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="page-header">Факультеты</h1>
+                    <canvas id="departments"></canvas>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="page-header">Комнаты в общежитиях</h1>
+                <canvas id="rooms"></canvas>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script>
+        var ctx = document.getElementById("departments");
+        var json = {{ departments | tojson }};
+        var data = [];
+        var labels = [];
+        for (var i = 0; i < json.length; i++) {
+            data.push(json[i].len);
+            labels.push(json[i].department);
+        }
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ]
+        }]
+    }
+});
+</script>
+    <script>
+        var ctx = document.getElementById("rooms");
+        var json = {{ rooms | tojson }};
+        var data = [];
+        var labels = [];
+        for (var i = 0; i < json.length; i++) {
+            data.push(json[i].len);
+            labels.push(json[i].hostel);
+        }
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ]
+        }]
+    }
+});
+</script>
 {% endblock %}
