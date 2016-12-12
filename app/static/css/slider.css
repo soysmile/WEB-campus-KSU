@@ -150,4 +150,24 @@ div.slider-nav {display: none;}
 			background-position: -7px 0;
 		 }
  
- 
+/*SLIDER 2*/
+.slider {
+        width: 50%;
+        margin: 100px auto;
+    }
+
+    .slick-slide {
+      margin: 0px 20px;
+    }
+
+    .slick-slide img {
+      width: 100%;
+    }
+    .slick-slide iframe {
+      width: 100%;
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+        color: black;
+    }
