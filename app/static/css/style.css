@@ -496,7 +496,11 @@ ul.text-info{
 }
 /*Main menu*/
 .panel.panel-default{
+<<<<<<< HEAD
     text-align: center;
+=======
+    text-align: left;
+>>>>>>> c901103536e8f3b18ee31cf27aca7d5abff01e07
     display: block;
     width: 31%;
     height: auto;
@@ -506,6 +510,10 @@ ul.text-info{
     margin-left: 1%;
     margin-bottom: 20px;
     box-shadow:10px 10px 10px 0px rgba(0,0,0,0.25);
+<<<<<<< HEAD
+=======
+    background-image: url(../img/120.png);
+>>>>>>> c901103536e8f3b18ee31cf27aca7d5abff01e07
     background-repeat: repeat;
     border-color: lightgray;
     border-radius: 5px;
@@ -657,11 +665,19 @@ footer {
     width: 100%;
     z-index: 1;
     
+<<<<<<< HEAD
 }
 .navbar-fixed-bottom
 {
     position: absolute;
 }
+=======
+}
+.navbar-fixed-bottom
+{
+    position: absolute;
+}
+>>>>>>> c901103536e8f3b18ee31cf27aca7d5abff01e07
 .navbar-fixed-top{
     position: relative;
 }
@@ -680,6 +696,7 @@ footer {
     z-index: 999999;
 }
 .btn.btn-primary{
+<<<<<<< HEAD
     float: center;
     background-color: darkgray;
     border-color: transparent;
@@ -687,6 +704,14 @@ footer {
 .btn.btn-primary:hover{
     background-color: #811515;
     color: white;
+=======
+    float: right;
+    background-color: darkgray;
+    border-color: transparent;
+}
+.btn-primary:hover{
+    background-color: #811515;
+>>>>>>> c901103536e8f3b18ee31cf27aca7d5abff01e07
     border-color: transparent;
     transition-duration: 0.5s;
 }
@@ -694,11 +719,18 @@ footer {
 	color: #811515;
 	font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size: 13px;
+<<<<<<< HEAD
 	font-weight: 600;
 	padding: 20px 14px;
 	text-transform: uppercase;
     text-shadow:4px 4px 4px rgba(0,0,0,0.5);
     opacity: 0.75;
+=======
+	font-weight: 400;
+	padding: 20px 14px;
+	text-transform: uppercase;
+    text-shadow:4px 4px 4px rgba(0,0,0,0.5);
+>>>>>>> c901103536e8f3b18ee31cf27aca7d5abff01e07
 
 }
 #loginm{
@@ -712,6 +744,7 @@ footer {
     border-radius: 5px;
     box-shadow:10px 10px 10px 0px rgba(0,0,0,0.25);
 }
+<<<<<<< HEAD
 #dir-panel{
     text-align: left;
     background-image: url(../img/120.png);
@@ -887,3 +920,11 @@ input#radio-1{
 .form-group label{
     margin-left: 5px;
 }
+=======
+.col-md-8{
+    
+}
+.map1{
+    float: right;
+}
+>>>>>>> c901103536e8f3b18ee31cf27aca7d5abff01e07
