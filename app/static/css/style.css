@@ -4,16 +4,21 @@ body {
 	line-height: 1.6;
 	font-weight: 300;
 	color: #565656;
-    background-color: #fafaf8;
+background-image: url(../img/121.png);
+    background-repeat: repeat;
+    margin-bottom: 80px;
 }
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 html.preview,
 body.preview {
-	height: 100%;
 	min-height: 100%;
 	overflow: hidden;
 }
 html.preview {
-	padding-top: 60px;
 }
 /*********************************************************
 	STYLE RESETS
@@ -177,6 +182,11 @@ h2.pageTitle {
 	background-color: #f5f5f5;
 	color: #008ed6;
 }
+.navbar-inverse .regnavbar-nav > li > a:hover,
+.navbar-inverse .regnavbar-nav > li > a:focus {
+	background-color: #f5f5f5;
+	color: #008ed6;
+}
 .navbar-brand {
 	float: left;
 	height: auto;
@@ -220,10 +230,10 @@ h2.pageTitle {
 	margin-left: 4px;
 
 }
-.navbar .navbar-nav .open .dropdown-menu {
+.navbar .regnavbar-nav .navbar-nav .open .dropdown-menu {
 	right: auto;
 }
-.navbar .navbar-nav .open .dropdown-menu.inverse {
+.navbar .regnavbar-nav .navbar-nav .open .dropdown-menu.inverse {
 	left: auto;
 	right: 0;
 }
@@ -231,19 +241,23 @@ h2.pageTitle {
     background-color: #008ed6;
     color: #FFFFFF;
 }
+.navbar-inverse .regnavbar-nav > .open > a, .navbar-inverse .regnavbar-nav > .open > a:hover, .regnavbar-inverse .regnavbar-nav > .open > a:focus {
+    background-color: #008ed6;
+    color: #FFFFFF;
+}
 .dropdown-menu > li > a {
 	color: #888;
 	font-weight: 300;
 }
-.navbar .navbar-nav .open .dropdown-menu > li > a:hover,
-.navbar .navbar-nav .open .dropdown-menu > li > a:focus,
-.navbar .navbar-nav .open .dropdown-menu > .active > a,
-.navbar .navbar-nav .open .dropdown-menu > .active > a:hover,
-.navbar .navbar-nav .open .dropdown-menu > .active > a:focus {
+.navbar .navbar-nav .regnavbar-nav .open .dropdown-menu > li > a:hover,
+.navbar .navbar-nav .regnavbar-nav .open .dropdown-menu > li > a:focus,
+.navbar .navbar-nav .regnavbar-nav .open .dropdown-menu > .active > a,
+.navbar .navbar-nav .regnavbar-nav .open .dropdown-menu > .active > a:hover,
+.navbar .navbar-nav .regnavbar-nav .open .dropdown-menu > .active > a:focus {
     background-color: #eee;
     color: #888;
 }
-.navbar .navbar-nav .search_menu.open .dropdown-menu {
+.navbar .navbar-nav .regnavbar-nav .search_menu.open .dropdown-menu {
 	float: left;
 	left: auto;
 	padding: 12px;
@@ -475,18 +489,30 @@ ul.text-info{
     width: 33%; 
     height: auto; 
     margin: 0 auto;
+    box-shadow:10px 10px 10px 0px rgba(0,0,0,0.25);
 }
 .mSlider{
     width: 100%;
 }
 .panel.panel-default{
-    text-align: center;
-    display: block; 
-    width: 33%; 
-    height: auto; 
+    text-align: left;
+    display: block;
+    width: 31%;
+    height: auto;
     margin: 0 auto;
     float: left;
-    margin-right: 5%; 
+    margin-right: 1%;
+    margin-left: 1%;
+    margin-bottom: 20px;
+    box-shadow:10px 10px 10px 0px rgba(0,0,0,0.25);
+    background-image: url(../img/120.png);
+    background-repeat: repeat;
+    border-color: lightgray;
+    border-radius: 5px;
+    color: darkgrey;
+}
+.panel.panel-default a{
+    color:#4c4c4c;
 }
 ul.pager{
     text-align: center;
@@ -620,14 +646,23 @@ ul.pager{
 
 /*END*/
 footer {
-    top:100%;
-    position: relative;
     height: 85px;
 	background-color: #811515;
 	color: #ffffff;
 	font-size: 14px;
+
+    left: 0;
+    
+
+    width: 100%;
+    z-index: 1;
+    
 }
-.navbar-fixed-bottom, .navbar-fixed-top{
+.navbar-fixed-bottom
+{
+    position: absolute;
+}
+.navbar-fixed-top{
     position: relative;
 }
 .panel-body{
@@ -644,6 +679,40 @@ footer {
     background-size: 100%;
     z-index: 999999;
 }
-.col-md-12{
+.btn.btn-primary{
+    float: right;
+    background-color: darkgray;
+    border-color: transparent;
+}
+.btn-primary:hover{
+    background-color: #811515;
+    border-color: transparent;
+    transition-duration: 0.5s;
+}
+.navbar-inverse .navbar-nav > li > a:hover{
+	color: #811515;
+	font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 13px;
+	font-weight: 400;
+	padding: 20px 14px;
+	text-transform: uppercase;
+    text-shadow:4px 4px 4px rgba(0,0,0,0.5);
+
+}
+#loginm{
+    float: right;
+}
+.panel.panel-collapse{
+    text-align: left;
+    background-image: url(../img/120.png);
+    background-repeat: repeat;
+    border-color: lightgray;
+    border-radius: 5px;
+    box-shadow:10px 10px 10px 0px rgba(0,0,0,0.25);
+}
+.col-md-8{
     
+}
+.map1{
+    float: right;
 }
