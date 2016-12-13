@@ -82,6 +82,42 @@
                     <canvas id="foe"></canvas>
                 </div>
             </div>
+
+                        <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="page-header">Пластиковые окна в общежитии 2</h1>
+                    <canvas id="windows_2"></canvas>
+                </div>
+            </div>
+
+                        <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="page-header">Пластиковые окна в общежитии 3</h1>
+                    <canvas id="windows_3"></canvas>
+                </div>
+            </div>
+
+                        <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="page-header">Пластиковые окна в общежитии 4</h1>
+                    <canvas id="windows_4"></canvas>
+                </div>
+            </div>
+                                    <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="page-header">Блоки с горячей водой в общ. 3</h1>
+                    <canvas id="hot_watter_3"></canvas>
+                </div>
+            </div>
+
+                                    <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="page-header">Блоки с горячей водой в общ. 4</h1>
+                    <canvas id="hot_watter_4"></canvas>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </div>
@@ -316,6 +352,56 @@
     }
 });
 </script>
+     <script>
+        var ctx = document.getElementById("departments_4");
+        var json = {{ departments_4 | tojson }};
+        var data = [];
+        var labels = [];
+        for (var i = 0; i < json.length; i++) {
+            data.push(json[i].len);
+            labels.push(json[i].department);
+        }
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ]
+        }]
+    }
+});
+</script>
 
     <script>
         var ctx = document.getElementById("places_2");
@@ -466,6 +552,240 @@
             data.push(json[i].len);
             labels.push(json[i].foe);
         }
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ]
+        }]
+    }
+});
+</script>
+
+
+
+    <script>
+        var ctx = document.getElementById("windows_2");
+        var json = {{ windows_2 | tojson }};
+        var data = [json[0].rooms-json[0].windows, json[0].windows];
+        var labels = ['Деревяные', 'Пластиковые'];
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ]
+        }]
+    }
+});
+</script>
+    <script>
+        var ctx = document.getElementById("windows_3");
+        var json = {{ windows_3 | tojson }};
+        var data = [json[0].rooms-json[0].windows, json[0].windows];
+        var labels = ['Деревяные', 'Пластиковые'];
+
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ]
+        }]
+    }
+});
+</script>
+    <script>
+        var ctx = document.getElementById("windows_4");
+        var json = {{ windows_4 | tojson }};
+        var data = [json[0].rooms-json[0].windows, json[0].windows];
+        var labels = ['Деревяные', 'Пластиковые'];
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ]
+        }]
+    }
+});
+</script>
+    <script>
+        var ctx = document.getElementById("hot_watter_3");
+        var json = {{ hot_water_3 | tojson }};
+        var data = [json[0].blocks-json[0].hot, json[0].hot];
+        var labels = ['', 'Бойлер'];
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ]
+        }]
+    }
+});
+</script>
+    <script>
+        var ctx = document.getElementById("hot_watter_4");
+        var json = {{ hot_water_4 | tojson }};
+        var data = [json[0].blocks-json[0].hot, json[0].hot];
+        var labels = ['', 'Бойлер'];
         var myChart = new Chart(ctx, {
             type: 'doughnut',
             data: {

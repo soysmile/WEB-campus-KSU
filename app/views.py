@@ -418,12 +418,24 @@ def stat():
             hostel4[0]['places'] += int(room.numbers_of_person)
 
         foe = [{'foe': 'бюджет', 'len': len(models.Person.query.filter_by(form_of_education='б').all())},
-                  {'foe': 'контракт', 'len': len(models.Person.query.filter_by(form_of_education='к').all())}]
+               {'foe': 'контракт', 'len': len(models.Person.query.filter_by(form_of_education='к').all())}]
 
+        windows_2 = [{'windows': len(models.Room.query.filter_by(windows=1, hostel_id=1).all()),
+                      'rooms': len(models.Room.query.filter_by(hostel_id=1).all())}]
+        windows_3 = [{'windows': len(models.Room.query.filter_by(windows=1, hostel_id=2).all()),
+                      'rooms': len(models.Room.query.filter_by(hostel_id=2).all())}]
+        windows_4 = [{'windows': len(models.Room.query.filter_by(windows=1, hostel_id=3).all()),
+                      'rooms': len(models.Room.query.filter_by(hostel_id=3).all())}]
+
+        hot_water_3 = [{'hot': len(models.Block.query.filter_by(hot_water=1, hostel_id=2).all()),
+                         'blocks': len(models.Block.query.filter_by(hostel_id=2).all())}]
+        hot_water_4 = [{'hot': len(models.Block.query.filter_by(hot_water=1, hostel_id=3).all()),
+                         'blocks': len(models.Block.query.filter_by(hostel_id=3).all())}]
 
         return render_template('stat.html', stats=stats, departments=departments, rooms=rooms, courses=courses,
                                departments_2=departments_2, departments_3=departments_3, departments_4=departments_4,
-                               hostel2=hostel2, hostel3=hostel3, hostel4=hostel4, foe=foe)
+                               hostel2=hostel2, hostel3=hostel3, hostel4=hostel4, foe=foe, windows_2=windows_2,
+                               windows_3=windows_3, windows_4=windows_4, hot_water_3=hot_water_3, hot_water_4=hot_water_4)
 
 
 @app.route('/fix')

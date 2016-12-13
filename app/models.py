@@ -279,8 +279,7 @@ class Violation(db.Model):
 def before_insert(*args):
     if args[2].room:
         room = Room.query.filter_by(id=args[2].room).first()
-        persons = Person.query.filter_by(room=args[2].room).all()
-        if room.numbers_of_person < len(persons) + 1:
+        if room.numbers_of_person < len(Person.query.filter_by(room=args[2].room).all()) + 1:
             flash('В этой комнате уже проживает %s жильцов. Комната не установлена' % room.numbers_of_person)
             args[2].room = None
             raise BufferError
@@ -334,4 +333,3 @@ def before_update(*args):
 @event.listens_for(Register, 'after_update')
 def after_update(*args):
     Register.query.filter_by(id=args[2].id).delete()
-    Register.birthday.get_children()
