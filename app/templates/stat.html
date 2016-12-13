@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <h1 class="page-header">Статистика</h1>
             <div class="panel panel-default">
-                <h1 class="page-header">Текстовая статистика</h1>
+                <h1 class="page-header">Общая статистика</h1>
 
                 <div class="panel-body">
                     <h4>Всего комнат: {{ stats.places_all }}</h4>
@@ -18,7 +18,7 @@
                     <h4>Четыре свободных мест: {{ stats.free_4 }}</h4>
                     <h4>Дата обновления данных: {{ stats.date }}</h4>
                     <form role="form" method="POST">
-                        <button type="submit" class="btn btn-default" value="secondS" name="button">Обновить!</button>
+                        <button type="submit" id="stat-update" class="btn btn-default" value="secondS" name="button">Обновить</button>
                     </form>
                 </div>
             </div>
@@ -32,6 +32,54 @@
                 <div class="panel-body">
                     <h1 class="page-header">Комнаты в общежитиях</h1>
                 <canvas id="rooms"></canvas>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="page-header">Курсы</h1>
+                    <canvas id="courses"></canvas>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="page-header">Факультеты в общежитии 2</h1>
+                    <canvas id="departments_2"></canvas>
+                </div>
+            </div>
+                        <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="page-header">Факультеты в общежитии 3</h1>
+                    <canvas id="departments_3"></canvas>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="page-header">Факультеты в общежитии 4</h1>
+                    <canvas id="departments_4"></canvas>
+                </div>
+            </div>
+                        <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="page-header">Места в общежитии 2</h1>
+                    <canvas id="places_2"></canvas>
+                </div>
+            </div>
+                        <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="page-header">Места в общежитии 3</h1>
+                    <canvas id="places_3"></canvas>
+                </div>
+            </div>
+                        <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="page-header">Места в общежитии 4</h1>
+                    <canvas id="places_4"></canvas>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="page-header">Форма обучения</h1>
+                    <canvas id="foe"></canvas>
                 </div>
             </div>
         </div>
@@ -118,4 +166,347 @@
     }
 });
 </script>
+    <script>
+        var ctx = document.getElementById("courses");
+        var json = {{ courses | tojson }};
+        var data = [];
+        var labels = [];
+        for (var i = 0; i < json.length; i++) {
+            data.push(json[i].len);
+            labels.push(json[i].course);
+        }
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ]
+        }]
+    }
+});
+</script>
+    <script>
+        var ctx = document.getElementById("departments_2");
+        var json = {{ departments_2 | tojson }};
+        var data = [];
+        var labels = [];
+        for (var i = 0; i < json.length; i++) {
+            data.push(json[i].len);
+            labels.push(json[i].department);
+        }
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ]
+        }]
+    }
+});
+</script>
+    <script>
+        var ctx = document.getElementById("departments_3");
+        var json = {{ departments_3 | tojson }};
+        var data = [];
+        var labels = [];
+        for (var i = 0; i < json.length; i++) {
+            data.push(json[i].len);
+            labels.push(json[i].department);
+        }
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ]
+        }]
+    }
+});
+</script>
+
+    <script>
+        var ctx = document.getElementById("places_2");
+        var json = {{ hostel2 | tojson }};
+        var data = [json[0].places-json[0].persons, json[0].persons];
+        var labels = ['Свободно', 'Занято'];
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ]
+        }]
+    }
+});
+</script>
+    <script>
+        var ctx = document.getElementById("places_3");
+        var json = {{ hostel3 | tojson }};
+        var data = [json[0].places-json[0].persons, json[0].persons];
+        var labels = ['Свободно', 'Занято'];
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ]
+        }]
+    }
+});
+</script>
+    <script>
+        var ctx = document.getElementById("places_4");
+        var json = {{ hostel4 | tojson }};
+        var data = [json[0].places-json[0].persons, json[0].persons];
+        var labels = ['Свободно', 'Занято'];
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ]
+        }]
+    }
+});
+</script>
+
+
+        <script>
+        var ctx = document.getElementById("foe");
+        var json = {{ foe | tojson }};
+        var data = [];
+        var labels = [];
+        for (var i = 0; i < json.length; i++) {
+            data.push(json[i].len);
+            labels.push(json[i].foe);
+        }
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ]
+        }]
+    }
+});
+</script>
+
+
 {% endblock %}

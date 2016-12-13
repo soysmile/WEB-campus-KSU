@@ -44,8 +44,12 @@ class MyModelView(sqla.ModelView):
 
 class MyPersonView(MyModelView):
     """Just for test"""
-    column_exclude_list = ('id', 'hostel_id', 'room_id', 'parents', 'index', 'note', 'invite', 'phone_number_parent', 'street', 'passport')
+    column_exclude_list = ('id',  'parents', 'index', 'note', 'invite', 'phone_number_parent', 'street', 'passport')
     column_searchable_list = ('first_name', 'last_name')
+    edit_modal = True
+    create_modal = True
+    can_export = True
+    column_editable_list = ['first_name', 'last_name']
     # column_labels = {'first_name': 'Имя', 'last_name': 'Фамилия', 'middle_name': 'Отчество'}
 
 

@@ -4,38 +4,54 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="page-header">Plot</h1>
-            <div class="panel panel-default">
+            <h1 class="page-header">Темпертурный график</h1>
+            <div id="graph" class="panel panel-default">
                 <div class="panel-body">
-                    <font color="red">Hostel 2</font>
-                    <font color="blue">Hostel 3</font>
-                    <font color="green">Hostel 4</font>
+                    <font color="red">Общежитие 2</font>
+                    <font color="blue">Общежитие 3</font>
+                    <font color="green">Общежитие 4</font>
                     <center>
-                        <canvas id="chart" width="740" height="400"></canvas>
+                        <canvas id="chart2" width="740" height="400"></canvas>
                     </center>
                 </div>
             </div>
         </div>
     </div>
 </div>
+    <script>
+        Chart.types.Line.extend({
+            name: "LineAlt",
+            draw: function () {
+                Chart.types.Line.prototype.draw.apply(this, arguments);
 
-<script>
-var json2 = {{ values2 | tojson }};
+                var scale = this.scale;
+                // draw lines
+                this.chart.ctx.save();
+                this.chart.ctx.fillStyle = "rgba(255, 52, 21, 0.2)";
+                this.chart.ctx.beginPath();
+                this.chart.ctx.rect(scale.calculateX(0), scale.calculateY(30), 740, scale.calculateY(24));
+                this.chart.ctx.fill();
+
+                this.chart.ctx.fillStyle = "rgba(52, 21, 255, 0.2)";
+                this.chart.ctx.beginPath();
+                this.chart.ctx.rect(scale.calculateX(0), scale.calculateY(17), 740, scale.calculateY(14));
+                this.chart.ctx.fill();
+
+                this.chart.ctx.restore();
+            }
+        });
+        var json2 = {{ values2 | tojson }};
 var json3 = {{ values3 | tojson }};
 var json4 = {{ values4 | tojson }};
-var upperline = [];
-var lowerline = [];
+
 
 var chartjsData2 = [];
 var chartjsData3 = [];
 var chartjsData4 = [];
-var chartisLabel = [];
-var buffer = [];
+var chartisLabel = [];;
 for (var i = 0; i < json2.length; i++) {
     chartjsData2.push(json2[i].temperature);
     chartisLabel.push(json2[i].date);
-	upperline.push(24);
-	lowerline.push(17);
 }
 for (var i = 0; i < json3.length; i++) {
     chartjsData3.push(json3[i].temperature);
@@ -45,43 +61,45 @@ for (var i = 0; i < json4.length; i++) {
     chartjsData4.push(json4[i].temperature);
 }
 
-var barChartData = {
+
+var data = {
             labels : chartisLabel,
             datasets : [
                 {
+                    label: "Двойка",
+                    color: "#09355C",
                     fillColor : "rgba(220,280,220,0)",
                     strokeColor : "rgba(255,0,0,1)",
+                    pointColor: "red",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
                     data : chartjsData2
 
                 },
                 {
+                    label: "Тройка",
+                    color: "#09355C",
                     fillColor : "rgba(220,280,220,0)",
                     strokeColor : "rgba(0,255,0,1)",
+                    pointColor: "green",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
                     data : chartjsData3
 
                 },
                 {
+                    label: "Четв'рка",
+                    color: "#09355C",
                     fillColor : "rgba(220,280,220,0)",
                     strokeColor : "rgba(0,0,255,1)",
+                    pointColor: "blue",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
                     data : chartjsData4
 
-                },
-                {
-                    fillColor : "rgba(220,280,220,0)",
-                    strokeColor : "rgba(0,0,255,1)",
-                    data : lowerline
+                }
 
-                },
-                {
-                    fillColor : "rgba(220,280,220,0)",
-                    strokeColor : "rgba(255,0,0,1)",
-                    data : upperline
-
-                },
-            ],
+            ]
         };
-    var myLine = new Chart(document.getElementById("chart").getContext("2d")).Line(barChartData);
 
-
-</script>
+var ctx = document.getElementById('chart2').getContext('2d');
+new Chart(ctx).LineAlt(data);
+    </script>
 {% endblock %}
