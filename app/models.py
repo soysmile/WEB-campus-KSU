@@ -53,12 +53,6 @@ class User(db.Model, UserMixin):
     def is_anonymous():
         return False
 
-    def is_admin(self):
-        if self.permission == 'su':
-            return True
-        else:
-            return False
-
     def get_id(self):
         return self.id
 

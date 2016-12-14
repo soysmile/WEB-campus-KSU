@@ -401,21 +401,7 @@ ul.text-info{
     
 }
 }
-.mainHeader {
-	padding: 34px 0;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	color: #fff;
-	margin-bottom: 30px;
-	/*527593*/
-}
-.homeHeader {
-	text-align: center;
-	padding: 10px 0;
-    margin: 0;
-}
+
 .mainHeader h1 {
 	font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	margin: 0;
@@ -885,6 +871,86 @@ input#radio-1{
 input.form-control {
     border-radius: 25px;
 }
+@media screen and (max-width: 992px) {
+  #panel-register{
+      width: 85%;
+      position: relative;
+      left:1%;
+      right:1%;     
+}
+    #graph{
+      width: 85%;
+      position: relative;
+      left:1%;
+      right:1%;   
+    }
+    /**/
+}
+@media screen and(max-width: 1280px and min-width:1024px) {
+    .col-md-4{
+        width: 570px;
+    }
+    #map1{
+        left:-80px;
+    height: 400px;
+    width: 300px;
+    position: relative !important;
+    overflow: visible !important;
+    }
+    #dir-panel{
+        width: 210px;
+    }
+    input#value.form-control {
+    width: 98%;
+    }
+    input#hostel_id.form-control {
+    width: 98%;
+    }
+    input#room_id.form-control {
+    width: 98%;
+    }
+    .btn.btn-default{
+    width: 170px;
+    left: 35%;
+    right:35%;
+    position: relative;
+    }
+    .flex-slider img{
+    position: relative;
+    width: 700px;
+    height: 200px;
+    display: block;
+}
+}
+@media screen and(max-width: 1024px) {
+#graph{
+      width: 100%;
+      position: relative;
+      left:10%;
+      right:10%;   
+    }
+    .flex-slider img{
+    position: relative;
+    width: 500px;
+    height: 200px;
+    display: block;
+}
+}
+
+@media screen and(max-width: 1366px and min-width:1280px) {
+ #graph{
+      width: 85%;
+      position: relative;
+      left:5%;
+      right:5%;   
+    }
+    .flex-slider img{
+    position: relative;
+    width: 1000px;
+    height: 300px;
+    display: block;
+}
+}
 #reg-panel{
     background-image: url(../img/120.png);
     background-repeat: repeat;
@@ -918,4 +984,19 @@ input.form-control {
     position: relative;
     left:0;
 
+}
+.mainHeader {
+	padding: 34px 0;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	color: #fff;
+	margin-bottom: 30px;
+	/*527593*/
+}
+.homeHeader {
+	text-align: center;
+	padding: 10px 0;
+    margin: 0;
 }
