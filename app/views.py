@@ -19,6 +19,8 @@ def index(template):
     return render_template(template, posts=posts)
 
 
+# TODO ПАГИНАЦИЯ ПОИСК
+
 @app.route('/login', methods=['POST'])
 def login():
     username = request.form['username']
@@ -338,7 +340,7 @@ def stat():
             {'department': 'ФТСО', 'len': len(models.Person.query.filter_by(department='ФТСО', hostel_id=1).all())},
             {'department': 'ФФВС', 'len': len(models.Person.query.filter_by(department='ФФВС', hostel_id=1).all())},
             {'department': 'ФФЖ', 'len': len(models.Person.query.filter_by(department='ФФЖ', hostel_id=1).all())},
-            {'department': 'ФФМІ', 'len': len(models.Person.query.filter_by(department='ФФМІ, hostel_id=1').all())},
+            {'department': 'ФФМІ', 'len': len(models.Person.query.filter_by(department='ФФМІ', hostel_id=1).all())},
             {'department': 'ЮФ', 'len': len(models.Person.query.filter_by(department='ЮФ', hostel_id=1).all())},
             {'department': 'переклад',
              'len': len(models.Person.query.filter_by(department='переклад', hostel_id=1).all())},

@@ -11,7 +11,6 @@ from flask_mail import Mail
 from flask_security import current_user, login_required, RoleMixin, Security, SQLAlchemyUserDatastore, UserMixin, utils
 from flask.ext.mobility import Mobility
 
-
 app = Flask(__name__)
 app.config.from_object('config')
 db = SQLAlchemy(app)
@@ -23,6 +22,7 @@ from app.forms import LoginForm
 
 user_datastore = SQLAlchemyUserDatastore(db, models.User, models.User)
 security = Security(app, user_datastore)
+
 
 # Initialize flask-login
 def init_login():
@@ -44,13 +44,17 @@ class MyModelView(sqla.ModelView):
 
 class MyPersonView(MyModelView):
     """Just for test"""
-    column_exclude_list = ('id',  'parents', 'index', 'note', 'invite', 'phone_number_parent', 'street', 'passport')
+    column_exclude_list = ('id', 'parents', 'index', 'note', 'invite', 'phone_number_parent', 'street', 'passport')
     column_searchable_list = ('first_name', 'last_name')
     edit_modal = True
     create_modal = True
     can_export = True
     column_editable_list = ['first_name', 'last_name']
     # column_labels = {'first_name': 'Имя', 'last_name': 'Фамилия', 'middle_name': 'Отчество'}
+
+
+class MyTemperatureView(MyModelView):
+    can_export = True
 
 
 # Create customized index view class that handles login & registration
@@ -90,7 +94,7 @@ admin_panel.add_view(MyModelView(models.Hostel, db.session))
 admin_panel.add_view(MyModelView(models.Room, db.session))
 admin_panel.add_view(MyPersonView(models.Person, db.session))
 admin_panel.add_view(MyModelView(models.Post, db.session))
-admin_panel.add_view(MyModelView(models.Temperature, db.session))
+admin_panel.add_view(MyTemperatureView(models.Temperature, db.session))
 admin_panel.add_view(MyModelView(models.Register, db.session))
 admin_panel.add_view(MyModelView(models.Statistics, db.session))
 admin_panel.add_view(MyModelView(models.Block, db.session))
