@@ -106,6 +106,7 @@ class Room(db.Model):
     floor = db.Column(db.Integer)
     windows = db.Column(db.Boolean)
     service = db.Column(db.Boolean)
+    econom = db.Column(db.Boolean)
     block_id = db.Column(db.Integer, db.ForeignKey('block.id'))
     hostel_id = db.Column(db.Integer, db.ForeignKey('hostel.id'))
     person = db.relationship('Person', backref='person_room', lazy='dynamic')

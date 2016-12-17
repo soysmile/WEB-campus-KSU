@@ -5,8 +5,8 @@ from sqlalchemy import desc, asc
 from flask_login import login_user, logout_user, current_user, login_required
 from datetime import datetime, timedelta
 from app import app, models, db, forms
-from uuid import uuid4
 from flask_mobility.decorators import mobile_template
+
 
 NORMAL_T = 25
 
@@ -220,18 +220,6 @@ def room_detail(hostel, room):
     else:
         abort(404)
 
-
-#
-# @app.route('/fix')
-# def fix():
-#     persons = models.Person.query.all()
-#     for person in persons:
-#         room = models.Room.query.filter_by(hostel_id=person.hostel_id, id=person.room_id).first().id
-#         person.invite = str(uuid4())
-#         db.session.commit()
-#     return 'ok'
-
-
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = forms.RegistrationForm(request.form)
@@ -430,21 +418,20 @@ def stat():
                       'rooms': len(models.Room.query.filter_by(hostel_id=3).all())}]
 
         hot_water_3 = [{'hot': len(models.Block.query.filter_by(hot_water=1, hostel_id=2).all()),
-                         'blocks': len(models.Block.query.filter_by(hostel_id=2).all())}]
+                        'blocks': len(models.Block.query.filter_by(hostel_id=2).all())}]
         hot_water_4 = [{'hot': len(models.Block.query.filter_by(hot_water=1, hostel_id=3).all()),
-                         'blocks': len(models.Block.query.filter_by(hostel_id=3).all())}]
+                        'blocks': len(models.Block.query.filter_by(hostel_id=3).all())}]
+
+        econom_2 = [{'econom': len(models.Room.query.filter_by(econom=True, hostel_id=1).all()),
+                     'rooms': len(models.Room.query.filter_by(hostel_id=1).all())}]
+        econom_3 = [{'econom': len(models.Room.query.filter_by(econom=True, hostel_id=2).all()),
+                     'rooms': len(models.Room.query.filter_by(hostel_id=2).all())}]
+        econom_4 = [{'econom': len(models.Room.query.filter_by(econom=True, hostel_id=3).all()),
+                     'rooms': len(models.Room.query.filter_by(hostel_id=3).all())}]
 
         return render_template('stat.html', stats=stats, departments=departments, rooms=rooms, courses=courses,
                                departments_2=departments_2, departments_3=departments_3, departments_4=departments_4,
                                hostel2=hostel2, hostel3=hostel3, hostel4=hostel4, foe=foe, windows_2=windows_2,
-                               windows_3=windows_3, windows_4=windows_4, hot_water_3=hot_water_3, hot_water_4=hot_water_4)
+                               windows_3=windows_3, windows_4=windows_4, hot_water_3=hot_water_3,
+                               hot_water_4=hot_water_4, econom_2=econom_2, econom_3=econom_3, econom_4=econom_4)
 
-
-@app.route('/fix')
-def fix():
-    persons = models.Person.query.all()
-    for person in persons:
-        room = models.Room.query.filter_by(hostel_id=person.hostel_id, id=person.room_id).first()
-        person.room = room.id
-        print(person, room.id)
-        db.session.commit()

@@ -57,6 +57,10 @@ class MyTemperatureView(MyModelView):
     can_export = True
 
 
+class MyRoomView(MyModelView):
+    column_editable_list = ['econom', 'service', 'windows']
+
+
 # Create customized index view class that handles login & registration
 class MyAdminIndexView(admin.AdminIndexView):
     @expose('/')
@@ -91,7 +95,7 @@ init_login()
 admin_panel = admin.Admin(app, 'Admin', index_view=MyAdminIndexView(), base_template='my_master.html')
 # admin_panel.add_view(MyModelView(models.User, db.session, 'Пользователи'))
 admin_panel.add_view(MyModelView(models.Hostel, db.session))
-admin_panel.add_view(MyModelView(models.Room, db.session))
+admin_panel.add_view(MyRoomView(models.Room, db.session))
 admin_panel.add_view(MyPersonView(models.Person, db.session))
 admin_panel.add_view(MyModelView(models.Post, db.session))
 admin_panel.add_view(MyTemperatureView(models.Temperature, db.session))

@@ -110,6 +110,8 @@
                 </div>
             </div>
 
+
+
                                     <div class="panel panel-default">
                 <div class="panel-body">
                     <h1 class="page-header">Блоки с горячей водой в общ. 4</h1>
@@ -117,6 +119,28 @@
                 </div>
             </div>
 
+
+
+
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="page-header">Эконом 2</h1>
+                    <canvas id="econom_2"></canvas>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="page-header">Эконом 3</h1>
+                    <canvas id="econom_3"></canvas>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="page-header">Эконом 4</h1>
+                    <canvas id="econom_4"></canvas>
+                </div>
+            </div>
 
 
 
@@ -406,7 +430,6 @@
     }
 });
 </script>
-
     <script>
         var ctx = document.getElementById("places_2");
         var json = {{ hostel2 | tojson }};
@@ -545,8 +568,6 @@
     }
 });
 </script>
-
-
         <script>
         var ctx = document.getElementById("foe");
         var json = {{ foe | tojson }};
@@ -597,9 +618,6 @@
     }
 });
 </script>
-
-
-
     <script>
         var ctx = document.getElementById("windows_2");
         var json = {{ windows_2 | tojson }};
@@ -831,6 +849,147 @@
     }
 });
 </script>
+
+
+        <script>
+        var ctx = document.getElementById("econom_2");
+        var json = {{ econom_2 | tojson }};
+        var data = [json[0].rooms-json[0].econom, json[0].econom];
+        var labels = ['Обычные', 'Эконом'];
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ]
+        }]
+    }
+});
+</script>
+            <script>
+        var ctx = document.getElementById("econom_3");
+        var json = {{ econom_3 | tojson }};
+        var data = [json[0].rooms-json[0].econom, json[0].econom];
+        var labels = ['Обычные', 'Эконом'];
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ]
+        }]
+    }
+});
+</script>
+            <script>
+        var ctx = document.getElementById("econom_4");
+        var json = {{ econom_4 | tojson }};
+        var data = [json[0].rooms-json[0].econom, json[0].econom];
+        var labels = ['Обычные', 'Эконом'];
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#07bc73",
+                "#7086f3",
+                "#cf335a",
+                "#2c2625",
+                "#fddd18",
+                "#8b288b",
+                "#47d702",
+                "#6052e9",
+                "#dac842",
+                "#cc3e46"
+            ]
+        }]
+    }
+});
+</script>
+
 
 
 {% endblock %}
