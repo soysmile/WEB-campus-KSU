@@ -270,6 +270,13 @@ class Violation(db.Model):
     person = db.Column(db.Integer, db.ForeignKey('person.id'))
 
 
+class Photo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String(255))
+    timestamp = db.Column(db.DateTime)
+    path = db.Column(db.String(255), unique=True)
+
+
 @event.listens_for(Person, 'before_insert')
 def before_insert(*args):
     if args[2].room:

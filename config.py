@@ -16,3 +16,8 @@ MAIL_USE_SSL = True
 MAIL_USERNAME = 'ksu.studgorodok'
 MAIL_PASSWORD = 'studgorodok.ksu'
 MAIL_DEFAULT_SENDER = 'ksu.studgorodok@gmail.com'
+
+
+UPLOAD_FOLDER = os.path.join(basedir, 'app', 'static', 'images')
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+

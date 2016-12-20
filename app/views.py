@@ -6,9 +6,10 @@ from flask_login import login_user, logout_user, current_user, login_required
 from datetime import datetime, timedelta
 from app import app, models, db, forms
 from flask_mobility.decorators import mobile_template
-
-
-NORMAL_T = 25
+import os
+from werkzeug.utils import secure_filename
+from config import ALLOWED_EXTENSIONS
+from flask import send_from_directory
 
 
 @app.route('/')
@@ -220,6 +221,7 @@ def room_detail(hostel, room):
     else:
         abort(404)
 
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = forms.RegistrationForm(request.form)
@@ -253,7 +255,7 @@ def plot():
     for value in values4:
         buffer4.append({"date": value.date.strftime('%Y-%m-%d'), "temperature": value.temperature})
 
-    return render_template('plot.html', values2=buffer2, values3=buffer3, values4=buffer4, NORMAL_T=NORMAL_T)
+    return render_template('plot.html', values2=buffer2, values3=buffer3, values4=buffer4)
 
 
 @app.route('/person/<id>')
@@ -333,6 +335,8 @@ def stat():
             {'department': 'переклад',
              'len': len(models.Person.query.filter_by(department='переклад', hostel_id=1).all())},
         ]
+
+        print(departments_2)
 
         departments_3 = [
             {'department': 'ФІФ', 'len': len(models.Person.query.filter_by(department='ФІФ', hostel_id=2).all())},
@@ -435,3 +439,81 @@ def stat():
                                windows_3=windows_3, windows_4=windows_4, hot_water_3=hot_water_3,
                                hot_water_4=hot_water_4, econom_2=econom_2, econom_3=econom_3, econom_4=econom_4)
 
+
+@app.route('/load')
+def load():
+    from openpyxl import load_workbook
+    import os
+    from config import basedir
+    wb = load_workbook(os.path.join(basedir, '1.xlsx'))
+    ws = wb['БАЗА']
+    for row in range(1, ws.max_row + 1):
+        try:
+            hostel_id = models.Hostel.query.filter_by(number=ws['G%s' % row].value).first().id
+            room = models.Room.query.filter_by(
+                hostel_id=hostel_id,
+                room_number=ws['H%s' % row].value).first().id
+        except:
+            hostel_id = None
+            print('ERROR', ws['A%s' % row].value)
+            room = None
+        m = models.Person(first_name=ws['A%s' % row].value,
+                          last_name=ws['B%s' % row].value,
+                          middle_name=ws['C%s' % row].value,
+                          department=ws['D%s' % row].value,
+                          group=ws['E%s' % row].value,
+                          form_of_education=ws['F%s' % row].value,
+                          hostel_id=hostel_id,
+                          room_id=ws['H%s' % row].value,
+                          birthday=ws['I%s' % row].value,
+                          passport=ws['J%s' % row].value,
+                          parents=ws['K%s' % row].value,
+                          index=ws['L%s' % row].value,
+                          region=ws['M%s' % row].value,
+                          district=ws['N%s' % row].value,
+                          settlement=ws['O%s' % row].value,
+                          street=ws['P%s' % row].value,
+                          phone_number_parent=ws['Q%s' % row].value,
+                          phone_number=ws['R%s' % row].value,
+                          note=ws['S%s' % row].value,
+                          room=room)
+        db.session.add(m)
+        db.session.commit()
+
+
+@app.route('/update')
+def update():
+    m = models.Person.query.all()
+    for item in m:
+        item.hostel_id -= 1
+        db.session.commit()
+
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+
+@app.route('/photo', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        # if user does not select file, browser also
+        # submit a empty part without filename
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(
+                str(datetime.utcnow()).replace(' ', '').replace('.', '_') + '.' + file.filename.rsplit('.', 1)[1])
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            db.session.add(models.Photo(path=filename, timestamp=datetime.utcnow()))
+            db.session.commit()
+            return redirect(url_for('upload_file'))
+    else:
+        photo = models.Photo.query.order_by(desc(models.Photo.timestamp)).limit(100).all()
+
+        return render_template('photo.html', photos=photo, uf=app.config['UPLOAD_FOLDER'])
