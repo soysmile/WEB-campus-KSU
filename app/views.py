@@ -226,15 +226,29 @@ def room_detail(hostel, room):
 def register():
     form = forms.RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
-        person = models.Register(form.first_name.data, form.last_name.data, form.middle_name.data, form.department.data,
-                                 form.group.data, form.form_of_education.data, form.birthday.data, form.passport.data,
-                                 form.parents.data, form.index.data, form.region.data, form.district.data,
-                                 form.settlement.data, form.street.data, form.phone_number.data,
-                                 form.phone_number_parent.data, form.note.data)
-        db.session.add(person)
-        db.session.commit()
-        flash('Thanks for registering')
-        return redirect(url_for('index'))
+        """
+        Основная информация
+        """
+        main_info = [form.room_type.data, form.reason.data, form.first_name.data, form.last_name.data,
+                     form.middle_name.data, form.birthday.data, form.department.data, form.specialty.data,
+                     form.group.data, form.work.data, form.s_passport.data, form.n_passport.data, form.d_passport.data,
+                     form.k_passport.data, form.phone_number.data]
+        print(main_info)
+
+
+
+
+
+
+        # person = models.Register(form.first_name.data, form.last_name.data, form.middle_name.data, form.department.data,
+        #                          form.group.data, form.form_of_education.data, form.birthday.data, form.passport.data,
+        #                          form.parents.data, form.index.data, form.region.data, form.district.data,
+        #                          form.settlement.data, form.street.data, form.phone_number.data,
+        #                          form.phone_number_parent.data, form.note.data)
+        # db.session.add(person)
+        # db.session.commit()
+        # flash('Thanks for registering')
+        # return redirect(url_for('index'))
     return render_template('register.html', form=form)
 
 

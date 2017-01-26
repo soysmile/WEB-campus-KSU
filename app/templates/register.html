@@ -1,40 +1,434 @@
 {% extends 'base.html' %}
 {% block content %}
+    <div class="container" xmlns:display="http://www.w3.org/1999/xhtml">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">Регистрация</h1>
+                <div id="panel-register">
+                    <div id="reg-panel" class="panel-body">
+                        <form method="POST" action="">
+                            {{ form.hidden_tag() if form.hidden_tag }}
+                            <div class="col-md-6">
+                                <fieldset class="form-group">
+                                    {{ form.room_type.label }}
+                                    {{ form.room_type(class="form-control", style="height:100%") }}
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6">
+                                <fieldset class="form-group">
+                                    {{ form.reason.label }}
+                                    {{ form.reason(class="form-control") }}
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <fieldset class="form-group">
+                                        {{ form.last_name.label }}
+                                        {{ form.last_name(class="form-control") }}
+                                    </fieldset>
+                                </div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h1 class="page-header">Регистрация</h1>
-            <div id="panel-register" class="panel panel-default">
-                <div id="reg-panel" class="panel-body">
-                    <form method="POST" action="">
-                        {{ form.hidden_tag() if form.hidden_tag }}
-                        {% for f in form if f.type != 'CSRFTokenField' %}
-                        <fieldset class="form-group">
-                            {{ f.label }}
-                            {% if f.name == 'birthday' %}
-                            {{ f(**{'data-date-format': 'YYYY-MM-DD', 'data-role': 'datepicker', 'class':
-                            'form-control'})}}
-                            {% else %}
-                            {{ f(class="form-control") }}
-                            {% endif %}
-                            {% if f.errors %}
-                            <ul>
-                                {% for e in f.errors %}
-                                <li>{{ e }}</li>
-                                {% endfor %}
-                            </ul>
-                            {% endif %}
-                        </fieldset>
-                        {% endfor %}
-                        <button class="btn btn-primary" type="submit">Отправить</button>
-                    </form>
-                    {{ link | safe }}
+                                <div class="col-md-4">
+                                    <fieldset class="form-group">
+                                        {{ form.first_name.label }}
+                                        {{ form.first_name(class="form-control") }}
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-4">
+                                    <fieldset class="form-group">
+                                        {{ form.middle_name.label }}
+                                        {{ form.middle_name(class="form-control") }}
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <fieldset class="form-group">
+                                        {{ form.birthday.label }}
+                                        {{ form.birthday(**{'data-date-format': 'YYYY-MM-DD', 'data-role': 'datepicker', 'class': 'form-control'}) }}
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-4">
+                                    <fieldset class="form-group">
+                                        {{ form.department.label }}
+                                        {{ form.department(class="form-control") }}
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-4">
+                                    <fieldset class="form-group">
+                                        {{ form.specialty.label }}
+                                        {{ form.specialty(class="form-control") }}
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <fieldset class="form-group">
+                                            {{ form.group.label }}
+                                            {{ form.group(class="form-control") }}
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <fieldset class="form-group">
+                                            {{ form.work.label }}
+                                            {{ form.work(class="form-control") }}
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <fieldset class="form-group">
+                                            {{ form.s_passport.label }}
+                                            {{ form.s_passport(class="form-control") }}
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <fieldset class="form-group">
+                                            {{ form.n_passport.label }}
+                                            {{ form.n_passport(class="form-control") }}
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <fieldset class="form-group">
+                                            {{ form.d_passport.label }}
+                                            {{ form.d_passport(**{'data-date-format': 'YYYY-MM-DD', 'data-role': 'datepicker', 'class': 'form-control'}) }}
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <fieldset class="form-group">
+                                            {{ form.k_passport.label }}
+                                            {{ form.k_passport(class="form-control") }}
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <fieldset class="form-group">
+                                            {{ form.phone_number.label }}
+                                            {{ form.phone_number(class="form-control") }}
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <fieldset class="form-group">
+                                            {{ form.lived_radio.label }}
+                                            {{ form.lived_radio(class="form-control", style="height:100%") }}
+                                        </fieldset>
+                                    </div>
+                                </div>
+
+
+                                <div id="lived">
+                                    <div class="col-md-12">
+                                        <div class="col-md-6">
+                                            <fieldset class="form-group">
+                                                {{ form.lived_hostel.label }}
+                                                {{ form.lived_hostel(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <fieldset class="form-group">
+                                                {{ form.lived_room.label }}
+                                                {{ form.lived_room(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    $(document).ready(function () {
+                                        $('input[type=radio][name=lived_radio]').change(function () {
+                                            if (this.value == 'lived') {
+                                                $("#lived").show();
+
+                                            }
+                                            else if (this.value == 'nolived') {
+                                                $("#lived").hide();
+                                            }
+                                        });
+                                    });
+
+                                </script>
+                                <script>
+                                    $("#lived").hide();
+                                </script>
+
+
+                                <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <fieldset class="form-group">
+                                            {{ form.form_of_education.label }}
+                                            {{ form.form_of_education(class="form-control") }}
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <fieldset class="form-group">
+                                            {{ form.family_radio.label }}
+                                            {{ form.family_radio(class="form-control", style="height:100%") }}
+                                        </fieldset>
+                                    </div>
+                                </div>
+
+
+                                <script>
+                                    $(document).ready(function () {
+                                        $('input[type=radio][name=family_radio]').change(function () {
+                                            if (this.value == 'y') {
+                                                $("#family").hide();
+                                                $("#husband_wife").show();
+
+                                            }
+                                            else if (this.value == 'n') {
+                                                $("#husband_wife").hide();
+                                                $("#family").show();
+                                            }
+                                        });
+                                    });
+
+                                </script>
+                                <div id="family">
+                                    <div class="col-md-12">
+                                        <div class="col-md-6">
+                                            <fieldset class="form-group">
+                                                {{ form.father.label }}
+                                                {{ form.father(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <fieldset class="form-group">
+                                                {{ form.father_work.label }}
+                                                {{ form.father_work(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-12">
+                                        <div class="col-md-6">
+                                            <fieldset class="form-group">
+                                                {{ form.mother.label }}
+                                                {{ form.mother(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <fieldset class="form-group">
+                                                {{ form.mother_work.label }}
+                                                {{ form.mother_work(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-12">
+                                        <fieldset class="form-group">
+                                            {{ form.brothers_sisters.label }}
+                                            {{ form.brothers_sisters(class="form-control") }}
+                                        </fieldset>
+                                    </div>
+
+
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <fieldset class="form-group">
+                                                {{ form.parents_street.label }}
+                                                {{ form.parents_street(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <fieldset class="form-group">
+                                                {{ form.parents_home.label }}
+                                                {{ form.parents_home(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <fieldset class="form-group">
+                                                {{ form.parents_apartment.label }}
+                                                {{ form.parents_apartment(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <fieldset class="form-group">
+                                                {{ form.parents_settlement.label }}
+                                                {{ form.parents_settlement(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <fieldset class="form-group">
+                                                {{ form.parents_district.label }}
+                                                {{ form.parents_district(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <fieldset class="form-group">
+                                                {{ form.parents_region.label }}
+                                                {{ form.parents_region(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <fieldset class="form-group">
+                                                {{ form.parents_index.label }}
+                                                {{ form.parents_index(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <fieldset class="form-group">
+                                                {{ form.parents_landline_phone.label }}
+                                                {{ form.parents_landline_phone(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <fieldset class="form-group">
+                                                {{ form.parents_mobile_phone.label }}
+                                                {{ form.parents_mobile_phone(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="husband_wife">
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <fieldset class="form-group">
+                                                {{ form.husband_wife.label }}
+                                                {{ form.husband_wife(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <fieldset class="form-group">
+                                                {{ form.husband_wife_work.label }}
+                                                {{ form.husband_wife_work(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <fieldset class="form-group">
+                                                {{ form.husband_wife_birthday.label }}
+                                                {{ form.husband_wife_birthday(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <fieldset class="form-group">
+                                                {{ form.husband_wife_s_passport.label }}
+                                                {{ form.husband_wife_s_passport(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <fieldset class="form-group">
+                                                {{ form.husband_wife_n_passport.label }}
+                                                {{ form.husband_wife_n_passport(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <fieldset class="form-group">
+                                                {{ form.husband_wife_d_passport.label }}
+                                                {{ form.husband_wife_d_passport(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <fieldset class="form-group">
+                                                {{ form.husband_wife_k_passport.label }}
+                                                {{ form.husband_wife_k_passport(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <fieldset class="form-group">
+                                                {{ form.husband_wife_form_of_education.label }}
+                                                {{ form.husband_wife_form_of_education(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <fieldset class="form-group">
+                                                {{ form.husband_wife_lived.label }}
+                                                {{ form.husband_wife_lived(class="form-control") }}
+                                            </fieldset>
+                                        </div>
+                                    </div>
+
+                                    <div id="hwlived">
+                                        <div class="col-md-12">
+
+                                            <div class="col-md-6">
+                                                <fieldset class="form-group">
+                                                    {{ form.husband_wife_lived_hostel.label }}
+                                                    {{ form.husband_wife_lived_hostel(class="form-control") }}
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <fieldset class="form-group">
+                                                    {{ form.husband_wife_lived_room.label }}
+                                                    {{ form.husband_wife_lived_room(class="form-control") }}
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <script>
+                                        $(document).ready(function () {
+                                            $('input[type=radio][name=husband_wife_lived]').change(function () {
+                                                if (this.value == 'lived') {
+                                                    $("#hwlived").show();
+
+                                                }
+                                                else if (this.value == 'nolived') {
+                                                    $("#hwlived").hide();
+                                                }
+                                            });
+                                        });
+
+                                    </script>
+                                    <script>
+                                        $("#hwlived").hide();
+                                    </script>
+
+
+                                    <div class="col-md-12"></div>
+
+
+                                    <div class="col-md-12">
+                                        <fieldset class="form-group">
+                                            {{ form.childrens.label }}
+                                            {{ form.childrens(class="form-control") }}
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <fieldset class="form-group">
+                                            {{ form.children_live.label }}
+                                            {{ form.children_live(class="form-control") }}
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <script>
+                                    $("#family").hide();
+                                    $("#husband_wife").hide();
+                                </script>
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary" type="submit">Отправить</button>
+                                </div>
+
+                            </div>
+                        </form>
+                        {{ link | safe }}
+                    </div>
                 </div>
-            </div>
-
             </div>
         </div>
     </div>
-</div>
+
+    <script>
+        $(document).ready(function () {
+            var errors = Object.keys({{ form.errors | tojson }});
+            $.each(errors, function (index, value) {
+                console.log(index, value);
+                $("#"+value).parent().addClass("has-error")
+            });
+        });
+    </script>
 {% endblock %}
