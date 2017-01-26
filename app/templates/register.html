@@ -114,8 +114,6 @@
                                         </fieldset>
                                     </div>
                                 </div>
-
-
                                 <div id="lived">
                                     <div class="col-md-12">
                                         <div class="col-md-6">
@@ -174,11 +172,15 @@
                                             if (this.value == 'y') {
                                                 $("#family").hide();
                                                 $("#husband_wife").show();
-
                                             }
                                             else if (this.value == 'n') {
                                                 $("#husband_wife").hide();
                                                 $("#family").show();
+                                            }
+                                            else if (this.value == 'o'){
+                                                $("#husband_wife").hide();
+                                                $("#family").hide();
+
                                             }
                                         });
                                     });

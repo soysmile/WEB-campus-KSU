@@ -226,29 +226,40 @@ def room_detail(hostel, room):
 def register():
     form = forms.RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
-        """
-        Основная информация
-        """
         main_info = [form.room_type.data, form.reason.data, form.first_name.data, form.last_name.data,
                      form.middle_name.data, form.birthday.data, form.department.data, form.specialty.data,
                      form.group.data, form.work.data, form.s_passport.data, form.n_passport.data, form.d_passport.data,
-                     form.k_passport.data, form.phone_number.data]
-        print(main_info)
+                     form.k_passport.data, form.phone_number.data, form.lived_hostel.data, form.lived_room.data,
+                     form.form_of_education.data]
+        main_info = [None if x == '' else x for x in main_info]
+        main_info = models.Register_main(*main_info)
+        db.session.add(main_info)
+        db.session.commit()
 
+        print(main_info.id)
 
+        if form.family_radio.data == 'y':
+            main_family = [main_info.id, form.husband_wife.data, form.husband_wife_work.data, form.husband_wife_birthday.data,
+                           form.husband_wife_s_passport.data, form.husband_wife_n_passport.data,
+                           form.husband_wife_d_passport.data, form.husband_wife_k_passport.data,
+                           form.husband_wife_form_of_education.data, form.husband_wife_lived.data,
+                           form.husband_wife_lived_hostel.data, form.husband_wife_lived_room.data, form.childrens.data,
+                           form.children_live.data]
+            main_family = [None if x == '' else x for x in main_family]
+            db.session.add(models.Register_family(*main_family))
+            db.session.commit()
 
-
-
-
-        # person = models.Register(form.first_name.data, form.last_name.data, form.middle_name.data, form.department.data,
-        #                          form.group.data, form.form_of_education.data, form.birthday.data, form.passport.data,
-        #                          form.parents.data, form.index.data, form.region.data, form.district.data,
-        #                          form.settlement.data, form.street.data, form.phone_number.data,
-        #                          form.phone_number_parent.data, form.note.data)
-        # db.session.add(person)
-        # db.session.commit()
-        # flash('Thanks for registering')
-        # return redirect(url_for('index'))
+        elif form.family_radio.data == 'n':
+            main_student = [main_info.id, form.father.data, form.father_work.data, form.mother.data,
+                            form.mother_work.data, form.brothers_sisters.data, form.parents_street.data,
+                            form.parents_home.data, form.parents_apartment.data, form.parents_settlement.data,
+                            form.parents_district.data, form.parents_region.data, form.parents_index.data,
+                            form.parents_landline_phone.data, form.parents_mobile_phone.data]
+            main_student = [None if x == '' else x for x in main_student]
+            db.session.add(models.Register_student(*main_student))
+            db.session.commit()
+        flash('Thanks for registering')
+        return redirect(url_for('index'))
     return render_template('register.html', form=form)
 
 

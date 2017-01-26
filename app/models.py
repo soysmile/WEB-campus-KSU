@@ -157,6 +157,127 @@ class Person(db.Model):
         #     self.set_invite()
 
 
+class Register_main(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    room_type = db.Column(db.String(25))
+    reason = db.Column(db.String(50))
+    first_name = db.Column(db.String(50))
+    last_name = db.Column(db.String(50))
+    middle_name = db.Column(db.String(50))
+    birthday = db.Column(db.Date)
+    department = db.Column(db.String(50))
+    specialty = db.Column(db.String(50))
+    group = db.Column(db.String(50))
+    work = db.Column(db.String(50))
+    s_passport = db.Column(db.String(50))
+    n_passport = db.Column(db.String(50))
+    d_passport = db.Column(db.Date)
+    k_passport = db.Column(db.String(50))
+    phone_number = db.Column(db.String(50))
+    lived_hostel = db.Column(db.String(50))
+    lived_room = db.Column(db.String(50))
+    form_of_education = db.Column(db.String(50))
+    register_family = db.relationship('Register_family', backref='register_family', lazy='dynamic')
+    register_student = db.relationship('Register_student', backref='register_student', lazy='dynamic')
+
+    def __init__(self, room_type, reason, first_name, last_name, middle_name, birthday, department, specialty, group,
+                 work, s_passport, n_passport, d_passport, k_passport, phone_number, lived_hostel, lived_room,
+                 form_of_education):
+        self.room_type = room_type
+        self.reason = reason
+        self.first_name = first_name
+        self.last_name = last_name
+        self.middle_name = middle_name
+        self.birthday = birthday
+        self.department = department
+        self.specialty = specialty
+        self.group = group
+        self.work = work
+        self.s_passport = s_passport
+        self.n_passport = n_passport
+        self.d_passport = d_passport
+        self.k_passport = k_passport
+        self.phone_number = phone_number
+        self.lived_hostel = lived_hostel
+        self.lived_room = lived_room
+        self.form_of_education = form_of_education
+
+
+class Register_student(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    register_id = db.Column(db.Integer, db.ForeignKey('register_main.id'))
+    father = db.Column(db.String(255))
+    father_work = db.Column(db.String(255))
+    mother = db.Column(db.String(255))
+    mother_work = db.Column(db.String(255))
+    brothers_sisters = db.Column(db.String(255))
+    parents_street = db.Column(db.String(255))
+    parents_home = db.Column(db.String(255))
+    parents_apartment = db.Column(db.String(255))
+    parents_settlement = db.Column(db.String(255))
+    parents_district = db.Column(db.String(255))
+    parents_region = db.Column(db.String(255))
+    parents_index = db.Column(db.Integer)
+    parents_landline_phone = db.Column(db.String(255))
+    parents_mobile_phone = db.Column(db.String(255))
+
+    def __init__(self, register_id, father, father_work, mother, mother_work, brothers_sisters, parents_street,
+                 parents_home, parents_apartment, parents_settlement, parents_district, parents_region, parents_index,
+                 parents_landline_phone, parents_mobile_phone):
+        self.register_id = register_id
+        self.father = father
+        self.father_work = father_work
+        self.mother = mother
+        self.mother_work = mother_work
+        self.brothers_sisters = brothers_sisters
+        self.parents_street = parents_street
+        self.parents_home = parents_home
+        self.parents_apartment = parents_apartment
+        self.parents_settlement = parents_settlement
+        self.parents_district = parents_district
+        self.parents_region = parents_region
+        self.parents_index = parents_index
+        self.parents_landline_phone = parents_landline_phone
+        self.parents_mobile_phone = parents_mobile_phone
+
+
+class Register_family(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    register_id = db.Column(db.Integer, db.ForeignKey('register_main.id'))
+    husband_wife = db.Column(db.String(255))
+    husband_wife_work = db.Column(db.String(255))
+    husband_wife_birthday = db.Column(db.Date)
+    husband_wife_s_passport = db.Column(db.String(255))
+    husband_wife_n_passport = db.Column(db.Integer)
+    husband_wife_d_passport = db.Column(db.Date)
+    husband_wife_k_passport = db.Column(db.String(255))
+    husband_wife_form_of_education = db.Column(db.String(255))
+    husband_wife_lived = db.Column(db.String(255))
+    husband_wife_lived_hostel = db.Column(db.String(255))
+    husband_wife_lived_room = db.Column(db.String(255))
+    childrens = db.Column(db.String(255))
+    children_live = db.Column(db.Boolean)
+
+    def __init__(self, register_id, husband_wife, husband_wife_work, husband_wife_birthday, husband_wife_s_passport,
+                 husband_wife_n_passport, husband_wife_d_passport, husband_wife_k_passport,
+                 husband_wife_form_of_education, husband_wife_lived, husband_wife_lived_hostel, husband_wife_lived_room,
+                 childrens, children_live):
+        self.register_id = register_id
+        self.husband_wife = husband_wife
+        self.husband_wife_work = husband_wife_work
+        self.husband_wife_birthday = husband_wife_birthday
+        self.husband_wife_s_passport = husband_wife_s_passport
+        self.husband_wife_n_passport = husband_wife_n_passport
+        self.husband_wife_d_passport = husband_wife_d_passport
+        self.husband_wife_k_passport = husband_wife_k_passport
+        self.husband_wife_form_of_education = husband_wife_form_of_education
+        self.husband_wife_lived = husband_wife_lived
+        self.husband_wife_lived_hostel = husband_wife_lived_hostel
+        self.husband_wife_lived_room = husband_wife_lived_room
+        self.childrens = childrens
+        self.children_live = children_live
+
+
 class Register(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(255))

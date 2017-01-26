@@ -1,6 +1,3 @@
-ul {
-    list-style-type: none;
-}
 
 body {
 	font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -12,6 +9,11 @@ background-image: url(../img/121.png);
     background-repeat: repeat;
     margin-bottom: 80px;
 }
+
+fieldset>ul {
+    list-style-type: none;
+}
+
 html {
   position: relative;
   min-height: 100%;
@@ -338,6 +340,7 @@ h2.pageTitle {
     text-decoration: none;
     float: left;
 }
+
 ul.text-info{
     margin-left: 1%;
     margin-top: 2%;
@@ -848,10 +851,7 @@ footer {
 #radio{
     padding-right: 40px;
 }
-ul{
-    width: 200px;
-    list-style-type:none;
-}
+
 input#radio-0{
     width: 25px;
     float: left;
