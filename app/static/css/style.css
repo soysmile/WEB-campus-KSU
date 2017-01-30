@@ -718,7 +718,7 @@ footer {
     height: 400px;
     width: 500px;
     position: relative !important;
-    overflow: visible !important;
+    /*overflow: visible !important; */
 }
 .social-icons{
     position: fixed;

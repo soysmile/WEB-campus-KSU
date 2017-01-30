@@ -239,7 +239,8 @@ def register():
         print(main_info.id)
 
         if form.family_radio.data == 'y':
-            main_family = [main_info.id, form.husband_wife.data, form.husband_wife_work.data, form.husband_wife_birthday.data,
+            main_family = [main_info.id, form.husband_wife.data, form.husband_wife_work.data,
+                           form.husband_wife_birthday.data,
                            form.husband_wife_s_passport.data, form.husband_wife_n_passport.data,
                            form.husband_wife_d_passport.data, form.husband_wife_k_passport.data,
                            form.husband_wife_form_of_education.data, form.husband_wife_lived.data,
@@ -542,3 +543,11 @@ def upload_file():
         photo = models.Photo.query.order_by(desc(models.Photo.timestamp)).limit(100).all()
 
         return render_template('photo.html', photos=photo, uf=app.config['UPLOAD_FOLDER'])
+
+
+@app.route('/get_all_register', methods=['GET'])
+def get_all_register():
+   main = models.Register_main.query.all()
+   print(main[0].register_student)
+
+   return render_template('all_register.html', main=main)
