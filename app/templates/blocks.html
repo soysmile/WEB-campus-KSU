@@ -24,13 +24,34 @@
                 {% endfor %}
             </div>
         </div>
-{#        <div class="col-md-4">#}
-{#            <div class="panel panel-collapse">#}
-{#                <form action="{{ url_for('hostel_detail_free', hostel=rooms[0].hostel_id) }}">#}
-{#                    <button type="submit" class="btn btn-default">Показать комнаты в которых есть места</button>#}
-{#                </form>#}
-{#            </div>#}
-{#        </div>#}
+        <div class="col-md-4">
+            <div class="panel panel-body">
+                <h4>Фильтр</h4>
+                <label class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkbox">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Гарячая вода</span>
+                </label>
+            </div>
+        </div>
     </div>
 </div>
+
+    <script>
+
+    $(document).ready(function() {
+        var hot = $('.glyphicon.glyphicon-fire').parent().parent().parent();
+        $("#checkbox").change(function() {
+            if(this.checked) {
+                all = $('.col-md-8').clone();
+                $('.panel.panel-default').empty();
+                for (var i=0;i<hot.length;i++)
+                    $('.panel.panel-default').append(hot[i]);
+            }
+            else if(!this.checked) {
+                $('.col-md-8').empty().append(all[0].children);
+            }
+        });
+    });
+    </script>
 {% endblock %}
