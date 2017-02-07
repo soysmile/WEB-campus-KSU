@@ -10,6 +10,7 @@ import os
 from werkzeug.utils import secure_filename
 from config import ALLOWED_EXTENSIONS
 from flask import send_from_directory
+import json
 
 
 @app.route('/')
@@ -284,6 +285,12 @@ def plot():
     return render_template('plot.html', values2=buffer2, values3=buffer3, values4=buffer4)
 
 
+# @app.route('/plot_range', method=['POST'])
+# def plot_range():
+#     pass
+# db.users.filter(or_(db.users.name == 'Ryan', db.users.country == 'England'))
+
+
 @app.route('/person/<id>')
 def person(id):
     person_ = models.Person.query.filter_by(id=id).first()
@@ -547,7 +554,42 @@ def upload_file():
 
 @app.route('/get_all_register', methods=['GET'])
 def get_all_register():
-   main = models.Register_main.query.all()
-   print(main[0].register_student)
+    family = models.Register_family.query.all()
+    family_main = []
+    student = models.Register_student.query.all()
+    student_main = []
+    if student:
+        for stu in student:
+            student_main.append([stu, models.Register_main.query.filter_by(id=stu.register_id).first()])
 
-   return render_template('all_register.html', main=main)
+    if family:
+        for fam in family:
+            family_main.append([fam, models.Register_main.query.filter_by(id=fam.register_id).first()])
+
+    return render_template('all_register.html', family=family_main, student=student_main)
+
+
+@app.route('/profile/repair', methods=['GET', 'POST'])
+def repair():
+    if request.method == 'GET':
+        repairs = models.Repair.query.filter_by(person=current_user.person_id)
+        return render_template('repair.html', current_user=current_user, repairs=repairs)
+    elif request.method == 'POST':
+        db.session.add(models.Repair(request.form['description'], request.form['tag'], current_user.person_id))
+        db.session.commit()
+        return redirect(url_for('repair'))
+
+
+@app.route('/repair', methods=['GET', 'POST'])
+def all_repair():
+    if request.method == "GET":
+        repairs = db.session.query(models.Repair, models.Person, models.Room, models.Hostel).filter(
+            models.Repair.fix == False).filter(models.Repair.person == models.Person.id).filter(
+            models.Person.room == models.Room.id).filter(models.Room.hostel_id == models.Hostel.id).order_by(
+            desc(models.Repair.open_date)).all()
+        return render_template('all_repair.html', repairs=repairs)
+    else:
+        query = models.Repair.query.filter_by(id=request.form['id']).first()
+        query.fix = True
+        db.session.commit()
+        return json.dumps({'status': 'OK'})

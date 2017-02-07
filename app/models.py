@@ -146,6 +146,7 @@ class Person(db.Model):
     work = db.relationship('Work', backref='person_work', lazy='dynamic')
     washing = db.relationship('Washing', backref='person_washing', lazy='dynamic')
     violation = db.relationship('Violation', backref='person_violation', lazy='dynamic')
+    repair = db.relationship('Repair', backref='person_repair', lazy='dynamic')
 
     def __str__(self):
         return str(self.first_name) + ' ' + str(self.last_name)
@@ -391,6 +392,23 @@ class Violation(db.Model):
     person = db.Column(db.Integer, db.ForeignKey('person.id'))
 
 
+class Repair(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    open_date = db.Column(db.Date)
+    description = db.Column(db.String(255))
+    tag = db.Column(db.String(255))
+    fix = db.Column(db.Boolean)
+    close_date = db.Column(db.Date)
+    person = db.Column(db.Integer, db.ForeignKey('person.id'))
+
+    def __init__(self, description=None, tag=None, person=None):
+        self.open_date = datetime.datetime.now()
+        self.description = description
+        self.tag = tag
+        self.fix = False
+        self.person = person
+
+
 class Photo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(255))
@@ -456,3 +474,9 @@ def before_update(*args):
 @event.listens_for(Register, 'after_update')
 def after_update(*args):
     Register.query.filter_by(id=args[2].id).delete()
+
+
+@event.listens_for(Repair, 'before_update')
+def after_update(*args):
+    if args[2].fix:
+        args[2].close_date = datetime.datetime.now()

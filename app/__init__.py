@@ -57,6 +57,10 @@ class MyTemperatureView(MyModelView):
     can_export = True
 
 
+class MyRepairView(MyModelView):
+    column_editable_list = ['fix']
+
+
 class MyRoomView(MyModelView):
     column_editable_list = ['econom', 'service', 'windows']
 
@@ -110,3 +114,4 @@ admin_panel.add_view(MyModelView(models.Role, db.session))
 admin_panel.add_view(MyModelView(models.Register_main, db.session))
 admin_panel.add_view(MyModelView(models.Register_student, db.session))
 admin_panel.add_view(MyModelView(models.Register_family, db.session))
+admin_panel.add_view(MyRepairView(models.Repair, db.session))

@@ -1,252 +1,252 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
-    <div class="row">
-        <h1 class="page-header">Hello, {{ current_user.login }}</h1>
-        <div class="col-md-8">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="tabbable"> <!-- Only required for left/right tabs -->
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#tab1" data-toggle="tab">Личные данные</a></li>
-                        <li><a href="#tab2" data-toggle="tab">Оплата</a></li>
-                        <li><a href="#tab3" data-toggle="tab">Отработки</a></li>
-                        <li><a href="#tab4" data-toggle="tab">Нарушения</a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="tab1">
-                            <p>{{ person.id }}</p>
-                            <p>{{ person.first_name }}</p>
-                            <p>{{ person.middle_name }}</p>
-                            <p>{{ person.last_name }}</p>
-                            <p>{{ person.department }}</p>
-                            <p>{{ person.group }}</p>
-                        </div>
+    <div class="container">
+        <div class="row">
+            <h1 class="page-header">Hello, {{ current_user.login }}</h1>
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="tabbable"> <!-- Only required for left/right tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab1" data-toggle="tab">Личные данные</a></li>
+                                <li><a href="#tab2" data-toggle="tab">Оплата</a></li>
+                                <li><a href="#tab3" data-toggle="tab">Отработки</a></li>
+                                <li><a href="#tab4" data-toggle="tab">Нарушения</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab1">
+                                    <p>{{ person.id }}</p>
+                                    <p>{{ person.first_name }}</p>
+                                    <p>{{ person.middle_name }}</p>
+                                    <p>{{ person.last_name }}</p>
+                                    <p>{{ person.department }}</p>
+                                    <p>{{ person.group }}</p>
+                                </div>
 
-                        {% if payment %}
-                            <div class="tab-pane" id="tab2">
-                                <br>
-                                {% set price = 0 %}
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th>Sep</th>
-                                        <th>Oct</th>
-                                        <th>Nov</th>
-                                        <th>Dec</th>
-                                        <th>Jan</th>
-                                        <th>Feb</th>
-                                        <th>Mar</th>
-                                        <th>Apr</th>
-                                        <th>May</th>
-                                        <th>Jun</th>
-                                        <th>Jul</th>
-                                        <th>Aug</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        {% if payment['Sep'] %}
-                                            <td>
-                                                <span class="glyphicon glyphicon-ok"></span>
-                                                {% if payment.get('Sep_price') %}
-                                                    <br>
-                                                    {{ payment.get('Sep_price') }}
-                                                    {% set price = price + payment.get('Sep_price') %}
+                                {% if payment %}
+                                    <div class="tab-pane" id="tab2">
+                                        <br>
+                                        {% set price = 0 %}
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>Sep</th>
+                                                <th>Oct</th>
+                                                <th>Nov</th>
+                                                <th>Dec</th>
+                                                <th>Jan</th>
+                                                <th>Feb</th>
+                                                <th>Mar</th>
+                                                <th>Apr</th>
+                                                <th>May</th>
+                                                <th>Jun</th>
+                                                <th>Jul</th>
+                                                <th>Aug</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                {% if payment['Sep'] %}
+                                                    <td>
+                                                        <span class="glyphicon glyphicon-ok"></span>
+                                                        {% if payment.get('Sep_price') %}
+                                                            <br>
+                                                            {{ payment.get('Sep_price') }}
+                                                            {% set price = price + payment.get('Sep_price') %}
+                                                        {% endif %}
+                                                    </td>
+                                                {% else %}
+                                                    <td><span class="glyphicon glyphicon-remove"></span></td>
                                                 {% endif %}
-                                            </td>
-                                        {% else %}
-                                            <td><span class="glyphicon glyphicon-remove"></span></td>
-                                        {% endif %}
-                                        {% if payment['Oct'] %}
-                                            <td><span class="glyphicon glyphicon-ok"></span>
-                                                {% if payment.get('Oct_price') %}
-                                                    <br>{{ payment.get('Oct_price') }}
-                                                    {% set price = price + payment.get('Oct_price') %}
-                                                {% endif %}
-                                            </td>
-                                        {% else %}
+                                                {% if payment['Oct'] %}
+                                                    <td><span class="glyphicon glyphicon-ok"></span>
+                                                        {% if payment.get('Oct_price') %}
+                                                            <br>{{ payment.get('Oct_price') }}
+                                                            {% set price = price + payment.get('Oct_price') %}
+                                                        {% endif %}
+                                                    </td>
+                                                {% else %}
 
-                                            <td><span class="glyphicon glyphicon-remove"></span></td>
-                                        {% endif %}
-                                        {% if payment['Nov'] %}
-                                            <td><span class="glyphicon glyphicon-ok"></span>
-                                                {% if payment.get('Nov_price') %}
-                                                    <br>{{ payment.get('Nov_price') }}
-                                                    {% set price = price + payment.get('Nov_price') %}
+                                                    <td><span class="glyphicon glyphicon-remove"></span></td>
                                                 {% endif %}
-                                            </td>
-                                        {% else %}
-                                            <td><span class="glyphicon glyphicon-remove"></span></td>
-                                        {% endif %}
-                                        {% if payment['Dec'] %}
-                                            <td><span class="glyphicon glyphicon-ok"></span>
-                                                {% if payment.get('Dec_price') %}
-                                                    <br>{{ payment.get('Dec_price') }}
-                                                    {% set price = price + payment.get('Dec_price') %}
+                                                {% if payment['Nov'] %}
+                                                    <td><span class="glyphicon glyphicon-ok"></span>
+                                                        {% if payment.get('Nov_price') %}
+                                                            <br>{{ payment.get('Nov_price') }}
+                                                            {% set price = price + payment.get('Nov_price') %}
+                                                        {% endif %}
+                                                    </td>
+                                                {% else %}
+                                                    <td><span class="glyphicon glyphicon-remove"></span></td>
                                                 {% endif %}
-                                            </td>
-                                        {% else %}
-                                            <td><span class="glyphicon glyphicon-remove"></span></td>
-                                        {% endif %}
-                                {% if payment['Jan'] %}
-                                    <td><span class="glyphicon glyphicon-ok"></span>
-                                        {% if payment.get('Jan_price') %}
-                                            <br>{{ payment.get('Jan_price') }}
-                                            {% set price = price + payment.get('Jan_price') %}
-                                        {% endif %}
-                                    </td>
-                                {% else %}
-                                    <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% if payment['Dec'] %}
+                                                    <td><span class="glyphicon glyphicon-ok"></span>
+                                                        {% if payment.get('Dec_price') %}
+                                                            <br>{{ payment.get('Dec_price') }}
+                                                            {% set price = price + payment.get('Dec_price') %}
+                                                        {% endif %}
+                                                    </td>
+                                                {% else %}
+                                                    <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% endif %}
+                                                {% if payment['Jan'] %}
+                                                    <td><span class="glyphicon glyphicon-ok"></span>
+                                                        {% if payment.get('Jan_price') %}
+                                                            <br>{{ payment.get('Jan_price') }}
+                                                            {% set price = price + payment.get('Jan_price') %}
+                                                        {% endif %}
+                                                    </td>
+                                                {% else %}
+                                                    <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% endif %}
+                                                {% if payment['Feb'] %}
+                                                    <td><span class="glyphicon glyphicon-ok"></span>
+                                                        {% if payment.get('Feb_price') %}
+                                                            <br>{{ payment.get('Feb_price') }}
+                                                            {% set price = price + payment.get('Feb_price') %}
+                                                        {% endif %}
+                                                    </td>
+                                                {% else %}
+                                                    <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% endif %}
+                                                {% if payment['Mar'] %}
+                                                    <td><span class="glyphicon glyphicon-ok"></span>
+                                                        {% if payment.get('Mar_price') %}
+                                                            <br>{{ payment.get('Mar_price') }}
+                                                            {% set price = price + payment.get('Mar_price') %}
+                                                        {% endif %}
+                                                    </td>
+                                                {% else %}
+                                                    <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% endif %}
+                                                {% if payment['Apr'] %}
+                                                    <td><span class="glyphicon glyphicon-ok"></span>
+                                                        {% if payment.get('Apr_price') %}
+                                                            <br>{{ payment.get('Apr_price') }}
+                                                            {% set price = price + payment.get('Apr_price') %}
+                                                        {% endif %}
+                                                    </td>
+                                                {% else %}
+                                                    <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% endif %}
+                                                {% if payment['May'] %}
+                                                    <td><span class="glyphicon glyphicon-ok"></span>
+                                                        {% if payment.get('May_price') %}
+                                                            <br>{{ payment.get('May_price') }}
+                                                            {% set price = price + payment.get('May_price') %}
+                                                        {% endif %}
+                                                    </td>
+                                                {% else %}
+                                                    <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% endif %}
+                                                {% if payment['Jun'] %}
+                                                    <td><span class="glyphicon glyphicon-ok"></span>
+                                                        {% if payment.get('Jun_price') %}
+                                                            <br>{{ payment.get('Jun_price') }}
+                                                            {% set price = price + payment.get('Jun_price') %}
+                                                        {% endif %}
+                                                    </td>
+                                                {% else %}
+                                                    <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% endif %}
+                                                {% if payment['Jul'] %}
+                                                    <td>
+                                                        <span class="glyphicon glyphicon-ok"></span>
+                                                        {% if payment.get('Jul_price') %}
+                                                            <br>
+                                                            {{ payment.get('Jul_price') }}
+                                                            {% set price = price + payment.get('Jul_price') %}
+                                                        {% endif %}
+                                                    </td>
+                                                {% else %}
+                                                    <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% endif %}
+                                                {% if payment['Aug'] %}
+                                                    <td>
+                                                        <span class="glyphicon glyphicon-ok"></span>
+                                                        {% if payment.get('Aug_price') %}
+                                                            <br>
+                                                            {{ payment.get('Aug_price') }}
+                                                            {% set price = price + payment.get('Aug_price') %}
+                                                        {% endif %}
+                                                    </td>
+                                                {% else %}
+                                                    <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% endif %}
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <span class="glyphicon glyphicon-piggy-bank"></span> {{ price }} грн. /полная
+                                        сумма
+                                    </div>
                                 {% endif %}
-                                {% if payment['Feb'] %}
-                                    <td><span class="glyphicon glyphicon-ok"></span>
-                                        {% if payment.get('Feb_price') %}
-                                            <br>{{ payment.get('Feb_price') }}
-                                            {% set price = price + payment.get('Feb_price') %}
-                                        {% endif %}
-                                    </td>
-                                {% else %}
-                                    <td><span class="glyphicon glyphicon-remove"></span></td>
+
+                                {% if work %}
+                                    <div class="tab-pane" id="tab3">
+                                        <br>
+                                        <table class="table table-reflow">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Время начала</th>
+                                                <th>Время окончания</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for w in work %}
+                                                <tr>
+                                                    <th scope="row">{{ w.id }}</th>
+                                                    <td>{{ w.start }}</td>
+                                                    <td>{{ w.end }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                        <span class="glyphicon glyphicon-time"></span> Отработано {{ hours }}/30:00:00
+
+
+                                    </div>
                                 {% endif %}
-                                {% if payment['Mar'] %}
-                                    <td><span class="glyphicon glyphicon-ok"></span>
-                                        {% if payment.get('Mar_price') %}
-                                            <br>{{ payment.get('Mar_price') }}
-                                            {% set price = price + payment.get('Mar_price') %}
-                                        {% endif %}
-                                    </td>
-                                {% else %}
-                                    <td><span class="glyphicon glyphicon-remove"></span></td>
+
+                                {% if violations %}
+                                    <div class="tab-pane" id="tab4">
+                                    <br>
+                                    <table class="table table-reflow">
+                                        <thead>
+                                        <tr>
+                                            <th>Дата</th>
+                                            <th>Описание</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for violation in violations %}
+                                            <tr>
+                                                <td>{{ violation.date }}</td>
+                                                <td>{{ violation.description }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
                                 {% endif %}
-                                {% if payment['Apr'] %}
-                                    <td><span class="glyphicon glyphicon-ok"></span>
-                                        {% if payment.get('Apr_price') %}
-                                            <br>{{ payment.get('Apr_price') }}
-                                            {% set price = price + payment.get('Apr_price') %}
-                                        {% endif %}
-                                    </td>
-                                {% else %}
-                                    <td><span class="glyphicon glyphicon-remove"></span></td>
-                                {% endif %}
-                                {% if payment['May'] %}
-                                    <td><span class="glyphicon glyphicon-ok"></span>
-                                        {% if payment.get('May_price') %}
-                                            <br>{{ payment.get('May_price') }}
-                                            {% set price = price + payment.get('May_price') %}
-                                        {% endif %}
-                                    </td>
-                                {% else %}
-                                    <td><span class="glyphicon glyphicon-remove"></span></td>
-                                {% endif %}
-                                {% if payment['Jun'] %}
-                                    <td><span class="glyphicon glyphicon-ok"></span>
-                                        {% if payment.get('Jun_price') %}
-                                            <br>{{ payment.get('Jun_price') }}
-                                            {% set price = price + payment.get('Jun_price') %}
-                                        {% endif %}
-                                    </td>
-                                {% else %}
-                                    <td><span class="glyphicon glyphicon-remove"></span></td>
-                                {% endif %}
-                                {% if payment['Jul'] %}
-                                    <td>
-                                        <span class="glyphicon glyphicon-ok"></span>
-                                        {% if payment.get('Jul_price') %}
-                                            <br>
-                                            {{ payment.get('Jul_price') }}
-                                            {% set price = price + payment.get('Jul_price') %}
-                                        {% endif %}
-                                    </td>
-                                {% else %}
-                                    <td><span class="glyphicon glyphicon-remove"></span></td>
-                                {% endif %}
-                                {% if payment['Aug'] %}
-                                    <td>
-                                        <span class="glyphicon glyphicon-ok"></span>
-                                        {% if payment.get('Aug_price') %}
-                                            <br>
-                                            {{ payment.get('Aug_price') }}
-                                            {% set price = price + payment.get('Aug_price') %}
-                                        {% endif %}
-                                    </td>
-                                {% else %}
-                                    <td><span class="glyphicon glyphicon-remove"></span></td>
-                                {% endif %}
-                            </tr>
-                            </tbody>
-                        </table>
-                            <span class="glyphicon glyphicon-piggy-bank"></span> {{ price }} грн. /полная сумма
+                                </div>
                             </div>
-                        {% endif %}
-
-                        {% if work %}
-                            <div class="tab-pane" id="tab3">
-                        <br>
-                        <table class="table table-reflow">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Время начала</th>
-                                <th>Время окончания</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for w in work %}
-                                <tr>
-                                    <th scope="row">{{ w.id }}</th>
-                                    <td>{{ w.start }}</td>
-                                    <td>{{ w.end }}</td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                                                                                    <span class="glyphicon glyphicon-time"></span> Отработано {{ hours }}/30:00:00
-
-
-
-                            </div>
-                        {% endif %}
-
-                        {% if violations %}
-                            <div class="tab-pane" id="tab4">
-                    <br>
-                    <table class="table table-reflow">
-                        <thead>
-                        <tr>
-                            <th>Дата</th>
-                            <th>Описание</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for violation in violations %}
-                        <tr>
-                            <td>{{ violation.date }}</td>
-                            <td>{{ violation.description }}</td>
-                        </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                        {% endif %}
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li><a href="/washing">Стирка</a></li>
+                            <li><a href="/repair">Ремонт</a></li>
+                            <li><a href="/logout">Выйти</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                 <ul class="nav nav-pills nav-stacked">
-                     <li><a href="/washing">Стирка</a></li>
-                     <li><a href="#">Ремонт</a></li>
-                     <li><a href="/logout">Выйти</a></li>
-                 </ul>
-            </div>
-        </div>
     </div>
-    </div>
-</div>
 
 {% endblock %}
 

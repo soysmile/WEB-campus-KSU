@@ -7,6 +7,8 @@
             <h1 class="page-header">Темпертурный график</h1>
             <div id="graph" class="panel panel-default">
                 <div class="panel-body">
+
+                    <br>
                     <font color="red">Общежитие 2</font>
                     <font color="blue">Общежитие 3</font>
                     <font color="green">Общежитие 4</font>
@@ -40,26 +42,27 @@
                 this.chart.ctx.restore();
             }
         });
+
         var json2 = {{ values2 | tojson }};
-var json3 = {{ values3 | tojson }};
-var json4 = {{ values4 | tojson }};
+        var json3 = {{ values3 | tojson }};
+        var json4 = {{ values4 | tojson }};
 
+        var chartjsData2 = [];
+        var chartjsData3 = [];
+        var chartjsData4 = [];
+        var chartisLabel = [];
 
-var chartjsData2 = [];
-var chartjsData3 = [];
-var chartjsData4 = [];
-var chartisLabel = [];
-for (var i = 0; i < json2.length; i++) {
-    chartjsData2.push(json2[i].temperature);
-    chartisLabel.push(json2[i].date);
-}
-for (var i = 0; i < json3.length; i++) {
-    chartjsData3.push(json3[i].temperature);
-}
+        for (var i = 0; i < json2.length; i++) {
+            chartjsData2.push(json2[i].temperature);
+            chartisLabel.push(json2[i].date);
+        }
+        for (var i = 0; i < json3.length; i++) {
+            chartjsData3.push(json3[i].temperature);
+        }
 
-for (var i = 0; i < json4.length; i++) {
-    chartjsData4.push(json4[i].temperature);
-}
+        for (var i = 0; i < json4.length; i++) {
+            chartjsData4.push(json4[i].temperature);
+        }
 
 
 var data = {
@@ -96,4 +99,5 @@ var data = {
 var ctx = document.getElementById('chart2').getContext('2d');
 new Chart(ctx).LineAlt(data);
     </script>
+
 {% endblock %}

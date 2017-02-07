@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">Ремонт</h1>
+                <div id="graph" class="panel panel-default">
+                    <div class="panel-body">
+                        <form action="/profile/repair" method="post">
+                            <div class="col-md-6">
+                                <div class="form-group"><label for="comment">Описание:</label>
+                                    <textarea class="form-control" name="description" rows="5"
+                                              id="description"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="sel1">Категория:</label>
+                                    <select class="form-control" name="tag" id="tag">
+                                        <option>Сантехника</option>
+                                        <option>Электрика</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="submit" class="btn btn-info" value="Submit Button">
+                            </div>
+                        </form>
+                    </div>
+                    {% if repairs %}
+                        <div class="col-md-12">Мои заявки</div>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Описание</th>
+                                <th>Дата открытия заявки</th>
+                                <th>Категория</th>
+                                <th>Статус</th>
+                                <th>Дата закрытия</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for repair in repairs %}
+                                {% if repair.fix %}
+                                    <tr class="success">
+                                        {% else %}
+                                    <tr class="danger">
+                                {% endif %}
+                            <td>{{ repair.description}}</td>
+                            <td>{{ repair.open_date}}</td>
+                            <td>{{ repair.tag}}</td>
+                            <td>{{ repair.fix}}</td>
+                            <td>{{ repair.close_date}}</td>
+                            </tr>
+                            {% endfor %}
+
+
+                            </tbody>
+                        </table>
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
