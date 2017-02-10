@@ -1,9 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
+
     <div class="container" xmlns:display="http://www.w3.org/1999/xhtml">
         <div class="row">
             <div class="col-md-12">
                 <button type="button" class="btn btn-primary">Посмотреть все заявки</button>
+                {% for item in student %}
+                {{ item[0] }}
+                {{ item[1] }}
+                {% endfor %}
+
+            {% for item in family %}
+            {{ item[0] }}
+            {{ item[1] }}
+            {% endfor %}
+
+
                 <h1 class="page-header">Регистрация</h1>
                 <div id="panel-register">
                     <div id="reg-panel" class="panel-body">

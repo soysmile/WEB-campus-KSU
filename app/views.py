@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import render_template, flash, redirect, url_for, request, abort
-from sqlalchemy import desc, asc
+from sqlalchemy import desc, asc, or_
 from flask_login import login_user, logout_user, current_user, login_required
 from datetime import datetime, timedelta
 from app import app, models, db, forms
@@ -237,8 +237,6 @@ def register():
         db.session.add(main_info)
         db.session.commit()
 
-        print(main_info.id)
-
         if form.family_radio.data == 'y':
             main_family = [main_info.id, form.husband_wife.data, form.husband_wife_work.data,
                            form.husband_wife_birthday.data,
@@ -265,6 +263,15 @@ def register():
     return render_template('register.html', form=form)
 
 
+@app.route('/all_register')
+def all_register():
+    family = db.session.query(models.Register_main, models.Register_family) \
+        .filter(models.Register_family.register_id == models.Register_main.id).all()
+    student = db.session.query(models.Register_main, models.Register_student) \
+        .filter(models.Register_student.register_id == models.Register_main.id).all()
+    return render_template('all_register.html', family=family, student=student)
+
+
 @app.route('/plot')
 def plot():
     buffer2 = []
@@ -282,13 +289,83 @@ def plot():
     for value in values4:
         buffer4.append({"date": value.date.strftime('%Y-%m-%d'), "temperature": value.temperature})
 
-    return render_template('plot.html', values2=buffer2, values3=buffer3, values4=buffer4)
 
 
-# @app.route('/plot_range', method=['POST'])
-# def plot_range():
-#     pass
-# db.users.filter(or_(db.users.name == 'Ryan', db.users.country == 'England'))
+    # test
+
+    temp = db.session.query(models.Temperature).order_by(asc(models.Temperature.date)).all()
+    buffer = {}
+    for t in temp:
+        if buffer.get(str(t.date)):
+            buffer.get(str(t.date)).update({t.hostel_id: t.temperature})
+        else:
+            buffer.update({str(t.date): {t.hostel_id: t.temperature}})
+
+    # test
+
+    return render_template('plot.html', values2=buffer2, values3=buffer3, values4=buffer4, test=buffer)
+
+
+@app.route('/temp_xlsx', methods=['GET', 'POST'])
+def temp_xlsx():
+    if request.method == 'GET':
+        from openpyxl import Workbook
+        wb = Workbook()
+        ws = wb.active
+        temp = db.session.query(models.Temperature).order_by(asc(models.Temperature.date)).all()
+        buffer = {}
+        for t in temp:
+            if buffer.get(t.date):
+                buffer.get(t.date).update({t.hostel_id: t.temperature})
+            else:
+                buffer.update({t.date: {t.hostel_id: t.temperature}})
+
+        ws.append(['Дата', 'Общежитие 2', 'Общежите 3', 'Общежитие 4'])
+        for i in sorted(buffer):
+            ws.append([i, buffer.get(i).get(2), buffer.get(i).get(3), buffer.get(i).get(4)])
+
+        wb.save('app/temp.xlsx')
+        return send_from_directory('', 'temp.xlsx')
+
+    else:
+        f = request.files['file']
+        if f.filename.split('.')[-1] == 'xlsx':
+            f.save(f.filename)
+            from openpyxl import load_workbook
+            wb = load_workbook(f.filename)
+            ws = wb.worksheets[0]
+            if request.form['row'] and type(request.form['row'] == int):
+                end = request.form['row']
+            else:
+                end = ws.max_row + 1
+            for i in range(2, end):
+                h2 = models.Temperature.query.filter_by(date=ws['A%s' % i].value.date(), hostel_id=2).first()
+                h3 = models.Temperature.query.filter_by(date=ws['A%s' % i].value.date(), hostel_id=3).first()
+                h4 = models.Temperature.query.filter_by(date=ws['A%s' % i].value.date(), hostel_id=4).first()
+                if h2:
+                    h2.temperature = ws['B%s' % i].value
+                else:
+                    db.session.add(models.Temperature(date=ws['A%s' % i].value, temperature=ws['B%s' % i].value, hostel_id=2))
+                if h3:
+                    h3.temperature = ws['C%s' % i].value
+                else:
+                    db.session.add(models.Temperature(date=ws['A%s' % i].value, temperature=ws['C%s' % i].value, hostel_id=3))
+                if h4:
+                    h4.temperature = ws['D%s' % i].value
+                else:
+                    db.session.add(models.Temperature(date=ws['A%s' % i].value, temperature=ws['D%s' % i].value, hostel_id=4))
+                db.session.commit()
+        else:
+            print('Error file extension')
+        return redirect(url_for('plot'))
+
+
+@app.route('/plot_range', methods=['POST'])
+def plot_range():
+    print(models.Temperature.query
+          .filter(models.Temperature.date > datetime.date(datetime(year=2015, month=12, day=30)))
+          .filter(models.Temperature.date < datetime.date(datetime(year=2017, month=12, day=30))).all())
+
 
 
 @app.route('/person/<id>')
