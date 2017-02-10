@@ -31,3 +31,4 @@ Werkzeug
 Whoosh
 WTForms
 Flask-mobility
+openpyxl
