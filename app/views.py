@@ -274,36 +274,17 @@ def all_register():
 
 @app.route('/plot')
 def plot():
-    buffer2 = []
-    buffer3 = []
-    buffer4 = []
-    values2 = models.Temperature.query.filter_by(hostel_id=2).order_by(asc(models.Temperature.date)).all()
-    values3 = models.Temperature.query.filter_by(hostel_id=3).order_by(asc(models.Temperature.date)).all()
-    values4 = models.Temperature.query.filter_by(hostel_id=4).order_by(asc(models.Temperature.date)).all()
-    for value in values2:
-        buffer2.append({"date": value.date.strftime('%Y-%m-%d'), "temperature": value.temperature})
-
-    for value in values3:
-        buffer3.append({"date": value.date.strftime('%Y-%m-%d'), "temperature": value.temperature})
-
-    for value in values4:
-        buffer4.append({"date": value.date.strftime('%Y-%m-%d'), "temperature": value.temperature})
-
-
-
-    # test
-
     temp = db.session.query(models.Temperature).order_by(asc(models.Temperature.date)).all()
     buffer = {}
+    min = temp[0].date.strftime('%m/%d/%Y')
+    max = temp[-1].date.strftime('%m/%d/%Y')
     for t in temp:
         if buffer.get(str(t.date)):
             buffer.get(str(t.date)).update({t.hostel_id: t.temperature})
         else:
             buffer.update({str(t.date): {t.hostel_id: t.temperature}})
 
-    # test
-
-    return render_template('plot.html', values2=buffer2, values3=buffer3, values4=buffer4, test=buffer)
+    return render_template('plot.html',  min=min, max=max)
 
 
 @app.route('/temp_xlsx', methods=['GET', 'POST'])
@@ -345,15 +326,18 @@ def temp_xlsx():
                 if h2:
                     h2.temperature = ws['B%s' % i].value
                 else:
-                    db.session.add(models.Temperature(date=ws['A%s' % i].value, temperature=ws['B%s' % i].value, hostel_id=2))
+                    db.session.add(
+                        models.Temperature(date=ws['A%s' % i].value, temperature=ws['B%s' % i].value, hostel_id=2))
                 if h3:
                     h3.temperature = ws['C%s' % i].value
                 else:
-                    db.session.add(models.Temperature(date=ws['A%s' % i].value, temperature=ws['C%s' % i].value, hostel_id=3))
+                    db.session.add(
+                        models.Temperature(date=ws['A%s' % i].value, temperature=ws['C%s' % i].value, hostel_id=3))
                 if h4:
                     h4.temperature = ws['D%s' % i].value
                 else:
-                    db.session.add(models.Temperature(date=ws['A%s' % i].value, temperature=ws['D%s' % i].value, hostel_id=4))
+                    db.session.add(
+                        models.Temperature(date=ws['A%s' % i].value, temperature=ws['D%s' % i].value, hostel_id=4))
                 db.session.commit()
         else:
             print('Error file extension')
@@ -362,10 +346,21 @@ def temp_xlsx():
 
 @app.route('/plot_range', methods=['POST'])
 def plot_range():
-    print(models.Temperature.query
-          .filter(models.Temperature.date > datetime.date(datetime(year=2015, month=12, day=30)))
-          .filter(models.Temperature.date < datetime.date(datetime(year=2017, month=12, day=30))).all())
-
+    from collections import OrderedDict
+    start = request.form['start'].split('-')
+    end = request.form['end'].split('-')
+    q = models.Temperature.query.filter(
+        models.Temperature.date >= datetime.date(datetime(year=int(start[0]), month=int(start[1]), day=int(start[2])))) \
+        .filter(models.Temperature.date <= datetime.date(datetime(year=int(end[0]), month=int(end[1]), day=int(end[2]))))\
+        .order_by(asc(models.Temperature.date)).all()
+    buffer = OrderedDict()
+    for t in q:
+        if buffer.get(str(t.date)):
+            buffer.get(str(t.date)).update({t.hostel_id: t.temperature})
+        else:
+            buffer.update({str(t.date): {t.hostel_id: t.temperature}})
+    print(buffer)
+    return json.dumps(buffer)
 
 
 @app.route('/person/<id>')
@@ -446,7 +441,6 @@ def stat():
              'len': len(models.Person.query.filter_by(department='переклад', hostel_id=1).all())},
         ]
 
-        print(departments_2)
 
         departments_3 = [
             {'department': 'ФІФ', 'len': len(models.Person.query.filter_by(department='ФІФ', hostel_id=2).all())},
@@ -670,3 +664,12 @@ def all_repair():
         query.fix = True
         db.session.commit()
         return json.dumps({'status': 'OK'})
+
+
+@app.route('/free', methods=['GET'])
+def free():
+    query = db.session.query(models.Person, models.Room, models.Hostel) \
+        .filter(models.Person.room_id == models.Room.id) \
+        .filter(models.Hostel.id == models.Room.hostel_id) \
+        .filter(models.Hostel.id == 3)
+    print(query.all())

@@ -12,35 +12,38 @@
                 <h1 class="page-header">Темпертурный график</h1>
                 <div id="graph" class="panel panel-default">
                     <div class="panel-body">
-
                         <input type="text" id="demo" class="form-control">
-
                         <script type="text/javascript">
                             $(function () {
                                 $('#demo').daterangepicker({
-                                    "showDropdowns": true,
-                                    "minDate": "01/31/2017",
-                                    "maxDate": "01/31/2018"
+                                    "startDate": "{{ min }}",
+                                    "endDate": "{{ max }}",
+                                    "minDate": "{{ min }}",
+                                    "maxDate": "{{ max }}"
                                 }, function (start, end, label) {
-{#                                    $.ajax({#}
-{#                                        type: "POST",#}
-{#                                        url: "/plot_range",#}
-{#                                        data: {'start': start, 'end': end},#}
-{#                                        success: function () {#}
-{#                                            $("#" + selector).remove();#}
-{#                                        }#}
-{#                                    })#}
-                                })
-                            });
+                                    $.ajax({
+                                        type: "POST",
+                                        url: '/plot_range',
+                                        data: {
+                                            "start": start.format('YYYY-MM-DD'), "end": end.format('YYYY-MM-DD')
+                                        },
+                                        success: function (data) {
+                                            var sel = $('#chart2');
+                                            var par = sel.parent();
+                                            par.empty();
+                                            par.append('<canvas id="chart2" width="740" height="400"></canvas>');
+                                            drawPlot(data);
+                                        }
+                                    });
+                                });
+                            })
                         </script>
-
                         <br>
                         <font color="red">Общежитие 2</font>
                         <font color="blue">Общежитие 3</font>
                         <font color="green">Общежитие 4</font>
                         <center>
                             <canvas id="chart2" width="740" height="400"></canvas>
-                            <canvas id="chart_test" width="740" height="400"></canvas>
                         </center>
                     </div>
                 </div>
@@ -66,157 +69,84 @@
         </div>
     </div>
     <script>
-        Chart.types.Line.extend({
-            name: "LineAlt",
-            draw: function () {
-                Chart.types.Line.prototype.draw.apply(this, arguments);
+        function drawPlot(response) {
+            Chart.types.Line.extend({
+                name: "LineAlt",
+                draw: function () {
+                    Chart.types.Line.prototype.draw.apply(this, arguments);
 
-                var scale = this.scale;
-                // draw lines
-                this.chart.ctx.save();
-                this.chart.ctx.fillStyle = "rgba(255, 52, 21, 0.2)";
-                this.chart.ctx.beginPath();
-                this.chart.ctx.rect(scale.calculateX(0), scale.calculateY(30), 740, scale.calculateY(24));
-                this.chart.ctx.fill();
+                    var scale = this.scale;
+                    // draw lines
+                    this.chart.ctx.save();
+                    this.chart.ctx.fillStyle = "rgba(255, 52, 21, 0.2)";
+                    this.chart.ctx.beginPath();
+                    this.chart.ctx.rect(scale.calculateX(0), 0, 740, scale.calculateY(24));
+                    this.chart.ctx.fill();
 
-                this.chart.ctx.fillStyle = "rgba(52, 21, 255, 0.2)";
-                this.chart.ctx.beginPath();
-                this.chart.ctx.rect(scale.calculateX(0), scale.calculateY(17), 740, scale.calculateY(14));
-                this.chart.ctx.fill();
+                    this.chart.ctx.fillStyle = "rgba(52, 21, 255, 0.2)";
+                    this.chart.ctx.beginPath();
+                    this.chart.ctx.rect(scale.calculateX(0), scale.calculateY(17), 740, scale.calculateY(14));
+                    this.chart.ctx.fill();
 
-                this.chart.ctx.restore();
-            }
-        });
-
-        var json2 = {{ values2 | tojson }};
-        var json3 = {{ values3 | tojson }};
-        var json4 = {{ values4 | tojson }};
-
-        var chartjsData2 = [];
-        var chartjsData3 = [];
-        var chartjsData4 = [];
-        var chartisLabel = [];
-
-        for (var i = 0; i < json2.length; i++) {
-            chartjsData2.push(json2[i].temperature);
-            chartisLabel.push(json2[i].date);
-        }
-        for (var i = 0; i < json3.length; i++) {
-            chartjsData3.push(json3[i].temperature);
-        }
-
-        for (var i = 0; i < json4.length; i++) {
-            chartjsData4.push(json4[i].temperature);
-        }
-
-
-        var data = {
-            labels: chartisLabel,
-            datasets: [
-                {
-                    fillColor: "rgba(220,280,220,0)",
-                    strokeColor: "rgba(255,0,0,1)",
-                    pointColor: "red",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: chartjsData2
-
-                },
-                {
-                    fillColor: "rgba(220,280,220,0)",
-                    strokeColor: "rgba(0,255,0,1)",
-                    pointColor: "green",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: chartjsData3
-
-                },
-                {
-                    fillColor: "rgba(220,280,220,0)",
-                    strokeColor: "rgba(0,0,255,1)",
-                    pointColor: "blue",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: chartjsData4
-
+                    this.chart.ctx.restore();
                 }
+            });
 
-            ]
-        };
+            var values = JSON.parse(response);
+            var chartjsData2 = [];
+            var chartjsData3 = [];
+            var chartjsData4 = [];
 
-        var ctx = document.getElementById('chart2').getContext('2d');
-        new Chart(ctx).LineAlt(data);
-    </script>
-    <script>
-        Chart.types.Line.extend({
-            name: "LineAlt",
-            draw: function () {
-                Chart.types.Line.prototype.draw.apply(this, arguments);
 
-                var scale = this.scale;
-                // draw lines
-                this.chart.ctx.save();
-                this.chart.ctx.fillStyle = "rgba(255, 52, 21, 0.2)";
-                this.chart.ctx.beginPath();
-                this.chart.ctx.rect(scale.calculateX(0), scale.calculateY(30), 740, scale.calculateY(24));
-                this.chart.ctx.fill();
+            var labels = Object.keys(values);
 
-                this.chart.ctx.fillStyle = "rgba(52, 21, 255, 0.2)";
-                this.chart.ctx.beginPath();
-                this.chart.ctx.rect(scale.calculateX(0), scale.calculateY(17), 740, scale.calculateY(14));
-                this.chart.ctx.fill();
-
-                this.chart.ctx.restore();
+            for (var i = 0; i < labels.length; i++) {
+                chartjsData2.push(values[labels[i]]['2']);
+                chartjsData3.push(values[labels[i]]['3']);
+                chartjsData4.push(values[labels[i]]['4']);
             }
-        });
-
-        var values = {{ test | tojson }};
-        var chartjsData2 = [];
-        var chartjsData3 = [];
-        var chartjsData4 = [];
 
 
-        var labels = Object.keys(values);
-        for (var i = 0; i < labels.length; i++) {
-            chartjsData2.push(values[labels[i]]['2']);
-            chartjsData3.push(values[labels[i]]['3']);
-            chartjsData4.push(values[labels[i]]['4']);
+            var data = {
+                labels: labels,
+                datasets: [
+                    {
+                        fillColor: "rgba(220,280,220,0)",
+                        strokeColor: "rgba(255,0,0,1)",
+                        pointColor: "red",
+                        pointHighlightStroke: "rgba(220,220,220,1)",
+                        data: chartjsData2
+
+                    },
+                    {
+                        fillColor: "rgba(220,280,220,0)",
+                        strokeColor: "rgba(0,255,0,1)",
+                        pointColor: "green",
+                        pointHighlightStroke: "rgba(220,220,220,1)",
+                        data: chartjsData3
+
+                    },
+                    {
+                        fillColor: "rgba(220,280,220,0)",
+                        strokeColor: "rgba(0,0,255,1)",
+                        pointColor: "blue",
+                        pointHighlightStroke: "rgba(220,220,220,1)",
+                        data: chartjsData4
+
+                    }
+
+                ]
+            };
+
+            var ctx = document.getElementById('chart2').getContext('2d');
+            new Chart(ctx).LineAlt(data);
         }
-
-
-        var data = {
-            labels: labels,
-            datasets: [
-                {
-                    fillColor: "rgba(220,280,220,0)",
-                    strokeColor: "rgba(255,0,0,1)",
-                    pointColor: "red",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: chartjsData2
-
-                },
-                {
-                    fillColor: "rgba(220,280,220,0)",
-                    strokeColor: "rgba(0,255,0,1)",
-                    pointColor: "green",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: chartjsData3
-
-                },
-                {
-                    fillColor: "rgba(220,280,220,0)",
-                    strokeColor: "rgba(0,0,255,1)",
-                    pointColor: "blue",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: chartjsData4
-
-                }
-
-            ]
-        };
-
-        var ctx = document.getElementById('chart_test').getContext('2d');
-        new Chart(ctx).LineAlt(data);
     </script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+
+
+    <script
+            type="text/javascript"
+            src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css"/>
-
 
 {% endblock %}
