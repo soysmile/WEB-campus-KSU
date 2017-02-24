@@ -3,18 +3,60 @@
 
 <div class="mainHeader homeHeader">
     <div class="container">
-        <div id="featured"> 
-			<a href="#" target="_blank"><img src="../static/img/test1.jpg" alt="Ezio" rel="ezioCaption"  /></a>
-            <a href="#" target="_blank"><img src="../static/img/test2.jpg" alt="Ezio" rel="ezioCaption"  /></a>
-            <a href="#" target="_blank"><img src="../static/img/test3.jpg" alt="Ezio" rel="ezioCaption"  /></a>
-            <a href="#" target="_blank"><img src="../static/img/test4.jpg" alt="Ezio" rel="ezioCaption"  /></a>
-			
-		</div> 
-		<span class="orbit-caption" id="ezioCaption">This is an <em>awesome caption</em> Note. <strong>Note:</strong> This whole image is linked</span>
-		<span class="orbit-caption" id="marcusCaption">This is an <em>awesome caption</em> for Marcus with a <a href="#" target="_blank" style="color: #fff">link</a></span>
-    </div>    
+        
+    <div style="min-height: 50px;">
+        <!-- Jssor Slider Begin -->
+        <!-- To move inline styles to css file/block, please specify a class name for each element. --> 
+        <!-- ================================================== -->
+        <div id="slider1_container" style="visibility: hidden; position: relative; margin: 0 auto;
+        top: 0px; left: 0px; width: 1300px; height: 500px; overflow: hidden;">
+            <!-- Loading Screen -->
+            <div u="loading" style="position: absolute; top: 0px; left: 0px;">
+                <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block;
+                top: 0px; left: 0px; width: 100%; height: 100%;">
+                </div>
+                <div style="position: absolute; display: block; background: url(..../static/img/loading.gif) no-repeat center center;
+                top: 0px; left: 0px; width: 100%; height: 100%;">
+                </div>
+            </div>
+            <!-- Slides Container -->
+            <div class="slides" u="slides" style="position: absolute; left: 0px; top: 0px; width: 1300px; height: 500px; overflow: hidden;">
+                <div>
+                    <img u="image" src="../static/img/red.jpg" />
+                    <a href="#">День Святого Валентина</a>
+                    <a href="#"><button class="news-button">Подробнее</button></a>
+                </div>
+                <div>
+                    <img u="image" src="../static/img/purple.jpg" />
+                </div>
+                <div>
+                    <img u="image" src="../static/img/blue.jpg" />
+                </div>
+            </div
+            <!-- bullet navigator container -->
+            <div u="navigator" class="jssorb21" style="bottom: 26px; right: 6px;">
+                <!-- bullet navigator item prototype -->
+                <div u="prototype"></div>
+            </div>
+            <!--#endregion Bullet Navigator Skin End -->
+            
+            <!--#region Arrow Navigator Skin Begin -->
+            <!-- Help: http://www.jssor.com/tutorial/set-arrow-navigator.html -->
+            
+            <!-- Arrow Left -->
+            <span u="arrowleft" class="jssora21l" style="top: 123px; left: 8px;">
+            </span>
+            <!-- Arrow Right -->
+            <span u="arrowright" class="jssora21r" style="top: 123px; right: 8px;">
+            </span>
+            <!--#endregion Arrow Navigator Skin End -->
+            <a style="display: none" href="http://www.jssor.com">Bootstrap Carousel</a>
+        </div>
+        <!-- Jssor Slider End -->
+    </div>
+
 </div>
-<div class="container">
+<div id="block_view" class="container">
     <div class="row">
         <div class="col-md-12">
             <h1 class="page-header">ТОП Новости</h1>
@@ -44,35 +86,163 @@
     </div>
 </div>
  
-<section class="center slider">
-    <div>
-      <!--<img src="http://placehold.it/350x300?text=1">-->
-        <iframe width="300" height="260" src="https://www.youtube.com/embed/_mIy1BJYIg4" frameborder="0" allowfullscreen></iframe>
+
+
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span12">
+
+    <div class="page-header">
+        <h3>Интересное</h3>
+        <p>Интересные факты и новости</p>
     </div>
-    <div>
-      <img src="http://placehold.it/350x300?text=2">
-    </div>
-    <div>
-      <!--<img src="http://placehold.it/350x300?text=3">-->
-        <iframe width="300" height="260" src="https://www.youtube.com/embed/OCPuYkTgG9c" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <div>
-      <img src="http://placehold.it/350x300?text=4">
-    </div>
-    <div>
-      <img src="http://placehold.it/350x300?text=5">
-    </div>
-    <div>
-      <img src="http://placehold.it/350x300?text=6">
-    </div>
-    <div>
-      <img src="http://placehold.it/350x300?text=7">
-    </div>
-    <div>
-      <img src="http://placehold.it/350x300?text=8">
-    </div>
-    <div>
-      <img src="http://placehold.it/350x300?text=9">
-    </div>
-  </section>
+        
+    <div class="carousel slide" id="myCarousel">
+        <div class="carousel-inner">
+            <div class="item active">
+                    <ul class="thumbnails">
+                        <li class="span3">
+                            <div class="thumbnail">
+                                <a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+                            </div>
+                            <div class="caption">
+                                <h4>Praesent commodo</h4>
+                				<p>Nullam Condimentum Nibh Etiam Sem</p>
+                                <a class="btn btn-mini" href="#">&raquo; Подробнее</a>
+                            </div>
+                        </li>
+                        <li class="span3">
+                            <div class="thumbnail">
+                                <a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+                            </div>
+                            <div class="caption">
+                                <h4>Praesent commodo</h4>
+                				<p>Nullam Condimentum Nibh Etiam Sem</p>
+                                <a class="btn btn-mini" href="#">&raquo; Подробнее</a>
+                            </div>
+                        </li>
+                        <li class="span3">
+                            <div class="thumbnail">
+                                <a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+                            </div>
+                            <div class="caption">
+                                <h4>Praesent commodo</h4>
+                				<p>Nullam Condimentum Nibh Etiam Sem</p>
+                                <a class="btn btn-mini" href="#">&raquo; Подробнее</a>
+                            </div>
+                        </li>
+                        <li class="span3">
+                            <div class="thumbnail">
+                                <a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+                            </div>
+                            <div class="caption">
+                                <h4>Praesent commodo</h4>
+                				<p>Nullam Condimentum Nibh Etiam Sem</p>
+                                <a class="btn btn-mini" href="#">&raquo; Подробнее</a>
+                            </div>
+                        </li>
+                        
+                    </ul>
+              </div><!-- /Slide1 --> 
+            <div class="item">
+                    <ul class="thumbnails">
+                        <li class="span3">
+                            <div class="thumbnail">
+                                <a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+                            </div>
+                            <div class="caption">
+                                <h4>Praesent commodo</h4>
+                				<p>Nullam Condimentum Nibh Etiam Sem</p>
+                                <a class="btn btn-mini" href="#">&raquo; Подробнее</a>
+                            </div>
+                        </li>
+                        <li class="span3">
+                            <div class="thumbnail">
+                                <a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+                            </div>
+                            <div class="caption">
+                                <h4>Praesent commodo</h4>
+                				<p>Nullam Condimentum Nibh Etiam Sem</p>
+                                <a class="btn btn-mini" href="#">&raquo; Подробнее</a>
+                            </div>
+                        </li>
+                        <li class="span3">
+                            <div class="thumbnail">
+                                <a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+                            </div>
+                            <div class="caption">
+                                <h4>Praesent commodo</h4>
+                				<p>Nullam Condimentum Nibh Etiam Sem</p>
+                                <a class="btn btn-mini" href="#">&raquo; Подробнее</a>
+                            </div>
+                        </li>
+                        <li class="span3">
+                            <div class="thumbnail">
+                                <a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+                            </div>
+                            <div class="caption">
+                                <h4>Praesent commodo</h4>
+                				<p>Nullam Condimentum Nibh Etiam Sem</p>
+                                <a class="btn btn-mini" href="#">&raquo; Подробнее</a>
+                            </div>
+                        </li>
+                    </ul>
+              </div><!-- /Slide2 --> 
+            <div class="item">
+                    <ul class="thumbnails">
+                        <li class="span3">
+                            <div class="thumbnail">
+                                <a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+                            </div>
+                            <div class="caption">
+                                <h4>Praesent commodo</h4>
+                				<p>Nullam Condimentum Nibh Etiam Sem</p>
+                                <a class="btn btn-mini" href="#">&raquo; Подробнее</a>
+                            </div>
+                        </li>
+                        <li class="span3">
+                            <div class="thumbnail">
+                                <a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+                            </div>
+                            <div class="caption">
+                                <h4>Praesent commodo</h4>
+                				<p>Nullam Condimentum Nibh Etiam Sem</p>
+                                <a class="btn btn-mini" href="#">&raquo; Подробнее</a>
+                            </div>
+                        </li>
+                        <li class="span3">
+                            <div class="thumbnail">
+                                <a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+                            </div>
+                            <div class="caption">
+                                <h4>Praesent commodo</h4>
+                				<p>Nullam Condimentum Nibh Etiam Sem</p>
+                                <a class="btn btn-mini" href="#">&raquo; Подробнее</a>
+                            </div>
+                        </li>
+                        <li class="span3">
+                            <div class="thumbnail">
+                                <a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+                            </div>
+                            <div class="caption">
+                                <h4>Praesent commodo</h4>
+                				<p>Nullam Condimentum Nibh Etiam Sem</p>
+                                <a class="btn btn-mini" href="#">&raquo; Подробнее</a>
+                            </div>
+                        </li>
+                    </ul>
+              </div><!-- /Slide3 --> 
+        </div>
+        
+        <div class="control-box">                            
+            <a data-slide="prev" href="#myCarousel" class="carousel-control left">‹</a>
+            <a data-slide="next" href="#myCarousel" class="carousel-control right">›</a>
+        </div><!-- /.control-box -->   
+                              
+    </div><!-- /#myCarousel -->
+        
+</div><!-- /.span12 -->          
+</div><!-- /.row --> 
+</div><!-- /.container -->
+
 {% endblock %}

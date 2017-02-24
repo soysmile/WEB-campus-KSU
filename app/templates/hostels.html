@@ -5,10 +5,10 @@
 <div class="container">
     <div class="row">
         <h1 class="page-header">Общежития</h1>
+         
+    <!--
         <div class="col-md-8">
-            <div id="map1"></div>
-            <script src="../static/js/map.js" type="text/javascript"></script>
-           
+            
             <div id="dir-panel" class="panel panel-default">
                 {% for hostel in hostels %}
                 
@@ -20,31 +20,70 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="panel panel-collapse">
-                <form role="form" method="POST">
-                    <a>Поиск</a>
-                    <div class="form-group">
-                        {{ form.value(class="form-control") }}
-                    </div>
-                        {{ form.radio }}
-                    <button type="submit" class="btn btn-default" value="firstS" name="button">Поиск</button>
-                </form>
-                <br/>
-                <form role="form" method="POST">
-                    <div class="form-group">
-                        {{ form2.hostel_id.label }}
-                        {{ form2.hostel_id(class="form-control") }}
-                        {{ form2.room_id.label }}
-                        {{ form2.room_id(class="form-control") }}
-                    </div>
-                    <button type="submit" class="btn btn-default" value="secondS" name="button">Поиск</button>
-                </form>
-            </div>
-        </div>
-        
+        -->
     </div>
 </div>
-
+<main id="mainMap">
+			<section class="interactive-points" id="interactive-1" tabindex="0">
+				<img class="static" src="../static/img/map2.png" alt="Map of London" />
+				<div class="backgrounds">
+					<div class="background__element" style="background-image: url(../static/img/1.jpg)"></div>
+					<div class="background__element" style="background-image: url(../static/img/2.jpg)"></div>
+					<div class="background__element" style="background-image: url(../static/img/3.jpg)"></div>
+					<div class="background__element" style="background-image: url(../static/img/4.jpg)"></div>
+					<div class="background__element" style="background-image: url(../static/img/5.jpg)"></div>
+					<div class="background__element" style="background-image: url(../static/img/6.jpg)"></div>
+				</div>
+				<svg class="points" viewBox="0 0 1885 1080" width="100%" height="100%">
+					<path class="point" d="M409.2,195.4L409.2,195.4c-7.1-7.1-18.6-7.1-25.7,0l0,0c-6.4,6.4-7.1,18.4-1.7,25.7l14.5,21l14.5-21C416.3,213.8,415.6,201.8,409.2,195.4z"/>
+					<path class="point" d="M1069.3,589.7L1069.3,589.7c-7.1-7.1-18.6-7.1-25.7,0l0,0c-6.4,6.4-7.1,18.4-1.7,25.7l14.5,21l14.5-21C1076.4,608.2,1075.7,596.1,1069.3,589.7z"/>
+					<path class="point" d="M1533.8,114.2L1533.8,114.2c-7.1-7.1-18.6-7.1-25.7,0l0,0c-6.4,6.4-7.1,18.4-1.7,25.7l14.5,21l14.5-21C1541,132.6,1540.2,120.6,1533.8,114.2z"/>
+					<path class="point" d="M878.9,247.4L878.9,247.4c-7.1-7.1-18.6-7.1-25.7,0l0,0c-6.4,6.4-7.1,18.4-1.7,25.7l14.5,21l14.5-21C886,265.8,885.3,253.8,878.9,247.4z"/>
+					<path class="point" d="M615.2,658.3L615.2,658.3c-7.1-7.1-18.6-7.1-25.7,0l0,0c-6.4,6.4-7.1,18.4-1.7,25.7l14.5,21l14.5-21C622.3,676.8,621.6,664.7,615.2,658.3z"/>
+					<path class="point" d="M183.5,524L183.5,524c-7.1-7.1-18.6-7.1-25.7,0l0,0c-6.4,6.4-7.1,18.4-1.7,25.7l14.5,21l14.5-21C190.6,542.5,189.9,530.4,183.5,524z"/>
+				</svg>
+				<div class="points-tooltips">
+					<div class="point-tooltip"><h2 class="point-tooltip__title">Rupert Street</h2><br><p class="point-tooltip__description">The connection to London Bridge that no one knew about</p></div>
+					<div class="point-tooltip"><h2 class="point-tooltip__title">Swiss Court</h2><br><p class="point-tooltip__description">The crazy story of a rebel</p></div>
+					<div class="point-tooltip"><h2 class="point-tooltip__title">Bear Street</h2><br><p class="point-tooltip__description">Hidden gems and stories</p></div>
+					<div class="point-tooltip"><h2 class="point-tooltip__title">Leicester Square</h2><br><p class="point-tooltip__description">A never ending love story</p></div>
+					<div class="point-tooltip"><h2 class="point-tooltip__title">Oxendon Street</h2><br><p class="point-tooltip__description">No need to panik, rescue is close</p></div>
+					<div class="point-tooltip"><h2 class="point-tooltip__title">Haymarket</h2><br><p class="point-tooltip__description">Adventures to be discovered</p></div>
+				</div>
+				<div class="points-content">
+					<div class="point-content">
+						<h3 class="point-content__title">The Rupert Connection</h3>
+						<p class="point-content__subtitle">24<sup>th</sup> of February, 1927</p>
+						<p class="point-content__text">Descended from astronomers encyclopaedia galactica from which we spring worldlets intelligent beings gathered by gravity billions.</p>
+					</div>
+					<div class="point-content">
+						<h3 class="point-content__title">Swiss Court, Miss</h3>
+						<p class="point-content__subtitle">3<sup>rd</sup> of March, 1928</p>
+						<p class="point-content__text">Hydrogen atoms circumnavigated Cambrian explosion, a mote of dust suspended in a sunbeam Hypatia.</p>
+					</div>
+					<div class="point-content">
+						<h3 class="point-content__title">Hiding in Bear Street</h3>
+						<p class="point-content__subtitle">19<sup>th</sup> of July, 1927</p>
+						<p class="point-content__text">From which we spring the ash of stellar alchemy from which we spring emerged into consciousness, great turbulent clouds rich in heavy atoms. </p>
+					</div>
+					<div class="point-content">
+						<h3 class="point-content__title">Leicester Square Love</h3>
+						<p class="point-content__subtitle">12<sup>th</sup> of August, 1930</p>
+						<p class="point-content__text">A mote of dust suspended in a sunbeam are creatures of the cosmos decipherment, Orion's sword corpus callosum galaxies shores of the cosmic ocean.</p>
+					</div>
+					<div class="point-content">
+						<h3 class="point-content__title">Oxendon of Oxes</h3>
+						<p class="point-content__subtitle">26<sup>th</sup> of March, 1927</p>
+						<p class="point-content__text">Extraplanetary concept of the number one vanquish the impossible culture trillion the sky calls to us.</p>
+					</div>
+					<div class="point-content">
+						<h3 class="point-content__title">Haymarket Forever</h3>
+						<p class="point-content__subtitle">14<sup>th</sup> of January, 1927</p>
+						<p class="point-content__text">Birth, are creatures of the cosmos Cambrian explosion colonies great turbulent clouds cosmos are creatures of the cosmos! Great turbulent clouds.</p>
+					</div>
+				</div>
+				</a>
+			</section>
+            </main>
 {% endblock %}
 
