@@ -452,11 +452,20 @@ ul.text-info{
 	border-color: #fff;
 }
 .heat{
+    left: 0;
+    right: 0;
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 85px;
-    background-color: #811515;
+    height: 87px;
+    background-image: url(../img/wood.png);
+    position: relative;
+}
+.heat img{
+    top: 15px;
+    position: relative;
+    opacity: 0.9;
+
 }
 @font-face { font-family:Century; src:/fonts/ufonts.com_century;}
 .logo_img{
@@ -736,7 +745,7 @@ footer {
     width: 60px;
     height: 60px;
     background-size: 100%;
-    background-image: url(../img/ico_twitter.png);
+    background-image: url(../img/ico_YouTube.png);
     background-repeat: no-repeat;
     position: relative;
     -webkit-transition: all 0.5s ease;
@@ -757,7 +766,7 @@ footer {
     width: 60px;
     height: 60px;
     background-size: 100%;
-    background-image: url(../img/ico_googlePlus.png);
+    background-image: url(../img/ico_email.png);
     background-repeat: no-repeat;
     position: relative;
     margin-top: 5px;
@@ -1149,7 +1158,7 @@ a {
 }
 /* Container */
 .container-fluid {
-	background: #2f2f2f;
+	background-color: rgba(0, 0, 0, 0.75);
 	margin: 40px auto 10px;
 	padding: 20px 40px 50px;
 	max-width: 100%;
@@ -1158,8 +1167,7 @@ a {
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 	}
 .carousel-inner{
-	
-	right:2%;
+	margin: auto !important;
 }
 /* Page Header */
 .page-header {
@@ -1244,3 +1252,33 @@ a {
 
 
 
+/*SLIDER 3*/
+#cont-fluid-slider{
+    background-color: transparent;
+	margin: 40px auto 10px;
+	padding: 20px 40px 50px;
+	max-width: 100%;
+	position:relative;
+	overflow: hidden;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+#cont-fluid-slider h4{
+	color: grey;
+}
+#cont-fluid-slider p{
+	color: black;
+}
+#cont-fluid-slider .btn.btn-mini {
+	background-color: lightgrey;
+}
+#cont-fluid-slider .page-header {
+	border-bottom: 0px;
+}
+#cont-fluid-slider #myCarousel {
+	margin: auto;
+	top: -10px;
+
+}
+.item{
+	top: -10px;
+}

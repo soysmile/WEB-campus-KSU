@@ -1,10 +1,9 @@
-{% extends 'base.html' %}
+{% extends '_base.html' %}
 {% block head %}
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="/admin/static/vendor/select2/select2.css?v=3.5.2" rel="stylesheet">
-    <link href="/admin/static/vendor/bootstrap-daterangepicker/daterangepicker-bs2.css?v=1.3.22" rel="stylesheet">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.css"/>
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
@@ -18,11 +17,12 @@
                     <div class="panel-body">
                         <input type="text" id="demo" class="form-control">
                         <br>
-                        <center>
+                        <div style="text-align: center;">
                             <canvas id="chart2" width="740" height="400"></canvas>
-                        </center>
+                        </div>
                     </div>
                 </div>
+                {% if current_user.is_authenticated and current_user.has_role('admin') %}
                 <form action="/temp_xlsx" method="get">
                     <button type="submit" class="btn btn-success">Скачать</button>
                 </form>
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                 </form>
-
+                {%  endif %}
             </div>
         </div>
     </div>
@@ -50,13 +50,9 @@
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="/admin/static/vendor/moment.min.js?v=2.9.0" type="text/javascript"></script>
     <script src="/admin/static/vendor/select2/select2.min.js?v=3.5.2" type="text/javascript"></script>
-    <script src="/admin/static/vendor/bootstrap-daterangepicker/daterangepicker.js?v=1.3.22"></script>
-    {#<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.js"></script>#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.js"></script>
     <script src="/admin/static/admin/js/form.js?v=1.0.0"></script>
-    {#        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"#}
-    {#                xmlns="http://www.w3.org/1999/html"></script>#}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-
     <script type="text/javascript">
         $(function () {
             $('#demo').daterangepicker({
@@ -168,8 +164,6 @@
                 ]
             };
             var ctx = $('#chart2');
-
-
             var baseController = Chart.controllers.line;
             Chart.defaults.mytype = Chart.defaults.line;
             Chart.controllers.mytype = Chart.controllers.line.extend({
@@ -200,5 +194,4 @@
                 }
             });
         }</script>
-
 {% endblock %}

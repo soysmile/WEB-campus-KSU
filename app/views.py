@@ -17,8 +17,18 @@ import json
 @app.route('/index')
 @mobile_template('{mobile/}index.html')
 def index(template):
+    from urllib.parse import urlparse
+    video = models.Video_slider.query.order_by(desc(models.Video_slider.date_added)).limit(5).all()
+    params = []
+    for url in video:
+        parsedlink = urlparse(url.url)
+        if parsedlink.netloc == 'youtu.be' or parsedlink.netloc == 'www.youtu.be':
+            params.append(parsedlink.path.replace('/', ''))
+
+        else:
+            params.append(parsedlink.query.replace('v=', ''))
     posts = models.Post.query.order_by(desc(models.Post.timestamp)).limit(100).all()
-    return render_template(template, posts=posts)
+    return render_template(template, posts=posts, video=params)
 
 
 # TODO ПАГИНАЦИЯ ПОИСК
@@ -176,7 +186,11 @@ def hostel_detail(hostel):
         _rooms = models.Room.query.filter_by(hostel_id=hostel).all()
         floors = models.Room.query.order_by(models.Room.floor).filter_by(hostel_id=hostel).group_by(
             models.Room.floor).all()
-        return render_template('hostel_view.html', hostel_number=hostel_number, rooms=_rooms, floors=floors)
+        places = {}
+        for free in models.Room_free.query.all():
+            places.update({str(free.room_id): free.places})
+
+        return render_template('hostel_view.html', hostel_number=hostel_number, rooms=_rooms, floors=floors, room_free=places)
     else:
         blocks = models.Block.query.filter_by(hostel_id=hostel)
         floors = models.Block.query.order_by(models.Block.floor).filter_by(hostel_id=hostel).group_by(
@@ -191,7 +205,12 @@ def block_view(hostel, block):
     hostel_id = models.Hostel.query.filter_by(number=hostel).first().id
     block_id = models.Block.query.filter_by(number=block_number).first().id
     rooms = models.Room.query.filter_by(hostel_id=hostel_id, block_id=block_id).all()
-    return render_template('block_view.html', hostel_number=hostel_number, rooms=rooms)
+    query = [x.id for x in rooms]
+    places = {}
+    for free in db.session.query(models.Room_free).filter(models.Room_free.room_id.in_(query)).all():
+        places.update({str(free.room_id): free.places})
+
+    return render_template('block_view.html', hostel_number=hostel_number, rooms=rooms, room_free=places)
 
 
 @app.route('/hostels/<hostel>/free')
@@ -359,7 +378,6 @@ def plot_range():
             buffer.get(str(t.date)).update({t.hostel_id: t.temperature})
         else:
             buffer.update({str(t.date): {t.hostel_id: t.temperature}})
-    print(buffer)
     return json.dumps(buffer)
 
 
@@ -673,3 +691,12 @@ def free():
         .filter(models.Hostel.id == models.Room.hostel_id) \
         .filter(models.Hostel.id == 3)
     print(query.all())
+
+
+@app.route('/init')
+def init():
+    for room in models.Room.query.all():
+        places = room.numbers_of_person - len(models.Person.query.filter_by(room=room.id).all())
+        db.session.add(models.Room_free(places=places, room_id=room.id))
+        db.session.commit()
+

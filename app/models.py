@@ -111,6 +111,7 @@ class Room(db.Model):
     hostel_id = db.Column(db.Integer, db.ForeignKey('hostel.id'))
     person = db.relationship('Person', backref='person_room', lazy='dynamic')
     register = db.relationship('Register', backref='register_room', lazy='dynamic')
+    free_places_id = db.relationship('Room_free', backref='room_free', lazy='dynamic')
 
     def __str__(self):
         hostel_number = Hostel.query.filter_by(id=self.hostel.id).first().number
@@ -480,3 +481,20 @@ def after_update(*args):
 def after_update(*args):
     if args[2].fix:
         args[2].close_date = datetime.datetime.now()
+
+
+class Room_free(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    places = db.Column(db.Integer)
+    room_id = db.Column(db.Integer, db.ForeignKey('room.id'))
+
+    def __init__(self, places=None, room_id=None):
+        self.places = places
+        self.room_id = room_id
+
+
+class Video_slider(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date_added = db.Column(db.DateTime)
+    url = db.Column(db.String(255))
+    active = db.Column(db.Boolean)
