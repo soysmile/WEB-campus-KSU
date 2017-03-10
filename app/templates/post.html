@@ -8,7 +8,9 @@
                     <div class="panel-body">
                         <div class="pluso" data-background="transparent"
                              data-options="small,round,line,horizontal,nocounter,theme=01"
-                             data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email,print" data-url="ksu-hostel.herokuapp.com/post/{{ post.id }}" data-title="{{ post.title }}" data-description="{{ post.previewtext }}"></div>
+                             data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email,print"
+                             data-image="{% if post.path %}{{ url_for('static', filename='files/'+post.path, _external=True) }}{% else %}https://blog.miguelgrinberg.com/static/flask-book-cover-tiny.png{% endif%}"
+                             data-url="ksu-hostel.herokuapp.com/post/{{ post.id }}" data-title="{{ post.title }}" data-description="{{ post.previewtext }}"></div>
 
                         <p><span class="glyphicon glyphicon-time"></span>{{ post.timestamp }}</p>
                         <hr>
