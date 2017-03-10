@@ -74,6 +74,8 @@ class Post(db.Model):
         self.body = body
         self.path = path
 
+        # Одна батарейка, що була викинута...
+
 
 class Hostel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
