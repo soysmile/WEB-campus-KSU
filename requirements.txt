@@ -32,3 +32,4 @@ Whoosh
 WTForms
 Flask-mobility
 openpyxl
+Pillow
