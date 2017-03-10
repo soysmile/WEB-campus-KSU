@@ -13,6 +13,15 @@ from flask import send_from_directory
 import json
 
 
+@app.context_processor
+def utility_processor():
+    def getthumb(path):
+        import os
+        filename, file_extension = os.path.splitext(path)
+        return filename + '_thumb' + file_extension
+    return dict(getthumb=getthumb)
+
+
 @app.route('/')
 @app.route('/index')
 @mobile_template('{mobile/}index.html')
@@ -190,7 +199,8 @@ def hostel_detail(hostel):
         for free in models.Room_free.query.all():
             places.update({str(free.room_id): free.places})
 
-        return render_template('hostel_view.html', hostel_number=hostel_number, rooms=_rooms, floors=floors, room_free=places)
+        return render_template('hostel_view.html', hostel_number=hostel_number, rooms=_rooms, floors=floors,
+                               room_free=places)
     else:
         blocks = models.Block.query.filter_by(hostel_id=hostel)
         floors = models.Block.query.order_by(models.Block.floor).filter_by(hostel_id=hostel).group_by(
@@ -303,7 +313,7 @@ def plot():
         else:
             buffer.update({str(t.date): {t.hostel_id: t.temperature}})
 
-    return render_template('plot.html',  min=min, max=max)
+    return render_template('plot.html', min=min, max=max)
 
 
 @app.route('/temp_xlsx', methods=['GET', 'POST'])
@@ -370,7 +380,8 @@ def plot_range():
     end = request.form['end'].split('-')
     q = models.Temperature.query.filter(
         models.Temperature.date >= datetime.date(datetime(year=int(start[0]), month=int(start[1]), day=int(start[2])))) \
-        .filter(models.Temperature.date <= datetime.date(datetime(year=int(end[0]), month=int(end[1]), day=int(end[2]))))\
+        .filter(
+        models.Temperature.date <= datetime.date(datetime(year=int(end[0]), month=int(end[1]), day=int(end[2])))) \
         .order_by(asc(models.Temperature.date)).all()
     buffer = OrderedDict()
     for t in q:
@@ -458,7 +469,6 @@ def stat():
             {'department': 'переклад',
              'len': len(models.Person.query.filter_by(department='переклад', hostel_id=1).all())},
         ]
-
 
         departments_3 = [
             {'department': 'ФІФ', 'len': len(models.Person.query.filter_by(department='ФІФ', hostel_id=2).all())},
@@ -700,3 +710,12 @@ def init():
         db.session.add(models.Room_free(places=places, room_id=room.id))
         db.session.commit()
 
+
+@app.route('/employees')
+def employees():
+    return render_template('employees.html')
+
+
+@app.route('/calendar_washing')
+def calendar_washing():
+    return render_template('calendar_washing.html')

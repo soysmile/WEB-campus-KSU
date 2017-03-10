@@ -17,7 +17,7 @@
 
 
                 <h1 class="page-header">Регистрация</h1>
-                <div id="panel-register">
+                <div id="panel-register" class="pr1">
                     <div id="reg-panel" class="panel-body">
                         <form method="POST" action="">
                             {{ form.hidden_tag() if form.hidden_tag }}
@@ -436,7 +436,11 @@
             </div>
         </div>
     </div>
-
+    <script type="text/javascript">
+        $(document).ready(function() {
+            setTimeout ("$('.pr1').show('slow');", 100);
+        });
+</script>
     <script>
         $(document).ready(function () {
             var errors = Object.keys({{ form.errors | tojson }});

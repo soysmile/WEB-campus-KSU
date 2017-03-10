@@ -64,13 +64,15 @@ class User(db.Model, UserMixin):
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(30))
-    body = db.Column(db.String(140))
-    timestamp = db.Column(db.DateTime, default=datetime.datetime.utcnow())
+    previewtext = db.Column(db.String(50))
+    body = db.Column(db.Text)
+    timestamp = db.Column(db.DateTime)
+    path = db.Column(db.String(255))
 
-    def __init__(self, id=None, title=None, body=None, timestamp=None):
-        print(id, title, body, timestamp)
+    def __init__(self, id=None, title=None, body=None, timestamp=None, path=None):
         self.title = title
         self.body = body
+        self.path = path
 
 
 class Hostel(db.Model):

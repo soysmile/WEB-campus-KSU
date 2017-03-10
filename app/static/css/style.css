@@ -38,7 +38,6 @@ a {
     transition: all 0.25s ease 0s;
 }
 a:hover, a:focus {
-    color: #005885;
     text-decoration: none;
 }
 h1, h2, h3, h4, h5 {
@@ -458,8 +457,16 @@ ul.text-info{
     padding: 0;
     width: 100%;
     height: 87px;
-    background-image: url(../img/wood.png);
+    background-color: #811515;
     position: relative;
+}
+#repair{
+    background-color: rgba(0,0,0,0.25);
+    background-repeat: repeat;
+    border-radius: 20px;
+}
+#repair th, td{
+    color: white
 }
 .heat img{
     top: 15px;
@@ -502,7 +509,7 @@ ul.text-info{
 .panel.panel-default{
     text-align: center;
     display: block;
-    width: 31%;
+    width: 230px;
     height: auto;
     margin: 0 auto;
     float: left;
@@ -718,29 +725,48 @@ footer {
     border-radius: 5px;
     box-shadow:10px 10px 10px 0px rgba(0,0,0,0.25);
 }
-#dir-panel{
-    text-align: left;
-    background-image: url(../img/120.png);
-    background-repeat: repeat;
-}
+
 .col-md-8{
     
 }
 #map1{
     float: right;
-    height: 400px;
-    width: 500px;
+    height: 500px;
+    width: 77%;
+    filter: grayscale(100%); 
+    opacity: 0.75;
     position: relative !important;
+    border-radius: 5px;
     /*overflow: visible !important; */
 }
 .social-icons{
     position: fixed;
-    top:55%;
+    top:35%;
     right:10px;
     padding-right: 0;
     margin-right: 0;
 }
-.social-icons:hover{}
+
+.img1:hover{
+	-ms-transform: rotate(360deg); /* IE 9 */
+    -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+    transform: rotate(360deg);
+}
+.img2:hover{
+	-ms-transform: rotate(360deg); /* IE 9 */
+    -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+    transform: rotate(360deg);
+}
+.img3:hover{
+	-ms-transform: rotate(360deg); /* IE 9 */
+    -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+    transform: rotate(360deg);
+}
+.img4:hover{
+	-ms-transform: rotate(360deg); /* IE 9 */
+    -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+    transform: rotate(360deg);
+}
 .img1{ 
     width: 60px;
     height: 60px;
@@ -748,9 +774,11 @@ footer {
     background-image: url(../img/ico_YouTube.png);
     background-repeat: no-repeat;
     position: relative;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
+     -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+
 }
 
 .img2{
@@ -761,6 +789,10 @@ footer {
     background-repeat: no-repeat;
     position: relative;
     margin-top: 5px;
+     -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
 }
 .img3{
     width: 60px;
@@ -770,6 +802,10 @@ footer {
     background-repeat: no-repeat;
     position: relative;
     margin-top: 5px;
+     -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
 }
 .img4{
     width: 60px;
@@ -779,6 +815,10 @@ footer {
     background-repeat: no-repeat;
     position: relative;
     margin-top: 5px;
+     -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
 }
 .img5{
     width: 60px;
@@ -788,6 +828,10 @@ footer {
     background-repeat: no-repeat;
     position: relative;
     margin-top: 5px;
+     -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
 }
 .img6{
     width: 60px;
@@ -797,6 +841,10 @@ footer {
     background-repeat: no-repeat;
     position: relative;
     margin-top: 5px;
+     -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
 }
 
 .h-button{
@@ -968,9 +1016,37 @@ input.form-control {
     display: block;
 }
 }
+#reg-panel input.text {
+    border: 1px solid lime !important; /* Исходная рамка вокруг поля */
+    width: 80%; /* Ширина поля */ 
+   }
+#reg-panel .focus {
+    border: 1px solid lime !important; /* Рамка при получении фокуса */
+    width: 80%; /* Ширина поля */
+}
 #reg-panel{
-    background-image: url(../img/120.png);
+    background-color: rgba(0,0,0,0.25);
     background-repeat: repeat;
+    border-radius: 20px;
+}
+.pr1{
+    display: none;
+}
+#reg-panel label{
+    color: white;
+}
+#reg-panel fieldset{
+    border: 0px;
+    
+}
+#reg-panel ul{
+    text-align: left;
+}
+#room_type label, #lived_radio label, #form_of_education label, #family_radio label{
+    color: black;
+}
+#form_of_education{
+    height: 60px;
 }
 .btn.btn-primary{
     width: 170px;
@@ -1159,7 +1235,7 @@ a {
 /* Container */
 .container-fluid {
 	background-color: rgba(0, 0, 0, 0.75);
-	margin: 40px auto 10px;
+    margin: 40px auto -20px;
 	padding: 20px 40px 50px;
 	max-width: 100%;
 	position:relative;
@@ -1180,7 +1256,12 @@ a {
     color: #c5c5c5;
 }
 
-
+@media screen and(min-width: 1700px){
+	.carousel-inner{
+	left: 3% !important;
+	
+	}
+}
 
 /* Thumbnail Box */
 .caption h4 {
@@ -1198,30 +1279,73 @@ a {
 
 }
 
+#cont-fluid-slider .span3{
+    height: 260px;
+}
 
+#cont-fluid-slider .span3 .caption{
+	position:relative;
+	top: -240px;
+	background-color: rgba(0,0,0,0.6);
+    opacity: 1;
+    padding-bottom: 11px;
+    margin-left: 5px;
+    margin-right: 5px;
+     -webkit-transition: background-color 0.4s ease;
+    -moz-transition: background-color 0.4s ease;
+    -o-transition: background-color 0.4s ease;
+    transition: background-color 0.4s ease;
+}
+#cont-fluid-slider .span3 .caption:hover{
+
+	background-color: rgba(0,0,0,0.75);
+
+}
 /* Carousel Control */
 .control-box {
     text-align: center; 
     width: 100%; 
-
+    background-color: transparent !important;
+    margin-bottom: 30px;
 }
 .carousel-control{
-    background: #fff;
+    background-image:none !important;
+    background: transparent;
     border-radius: 50px;
     display: inline-block;
-    font-size: 64px;
+    font-size: 14px;
     font-weight: 200;
-    line-height: 10px;
-    opacity: 0.5;
+    line-height: 20px;
+    opacity: 1;
     padding: 4px 10px 0px;
     position: static;
     height: 30px;
     width: 100px;
+    background-color: transparent !important;
 }
 .carousel-control.left{
 	margin-right:10%;
+    background-color: lightgray !important;
+    color : dodgerblue;
+    text-shadow: none;
 }
-
+.carousel-control.left:hover{
+    background-color: lightgray !important;
+    color : dodgerblue;
+    text-shadow: none;
+    opacity: 1;
+}
+.carousel-control.right{
+    background-color: lightgray !important;
+    color : dodgerblue;
+    text-shadow: none;
+}
+.carousel-control.right:hover{
+    background-color: lightgray !important;
+    color : dodgerblue;
+    text-shadow: none;
+    opacity: 1;
+}
 /* Mobile Only */
 @media (max-width: 767px) {
     .page-header, .control-box {
@@ -1232,22 +1356,6 @@ a {
     .caption {
     word-break: break-all;
     }
-}
-.slides a{
-    color: white;
-    font-size: 32px;
-    font-weight: 200;
-    position: relative;
-    float: left;
-
-    top:20%;
-    left:2%;
-    animation-duration: 1.5s;
-    background: -webkit-linear-gradient(left, rgba(255,0,0,0.2), rgba(255,0,0,0.8));
-}
-.slides a:hover{
-    color: antiquewhite;
-    text-shadow: -1.5px 0 white, 0 1.5px white, 1.5px 0 white, 0 -1.5px white;
 }
 
 
@@ -1260,13 +1368,14 @@ a {
 	max-width: 100%;
 	position:relative;
 	overflow: hidden;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	
 }
 #cont-fluid-slider h4{
 	color: grey;
 }
 #cont-fluid-slider p{
-	color: black;
+	color: white;
+	font-size: 16px;
 }
 #cont-fluid-slider .btn.btn-mini {
 	background-color: lightgrey;
@@ -1276,9 +1385,319 @@ a {
 }
 #cont-fluid-slider #myCarousel {
 	margin: auto;
-	top: -10px;
 
 }
 .item{
 	top: -10px;
+}
+@media (min-width: 1200px){
+        
+#block_view {
+    width: 1290px !important;
+}
+}
+/*POP UP*/
+.overlay-map {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: visible;
+  opacity: 0;
+    outline: 1px solid red;
+}
+.overlay-map:target {
+  visibility: visible;
+  opacity: 1;
+}
+@media screen and (max-width: 1024px){
+    .popup-map {
+        margin-top: 50% !important;
+
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 50% !important;
+  position: relative;
+  transition: all 5s ease-in-out;
+        outline: 1px solid red;
+}
+}
+.popup-map {
+  margin: 20% auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup-map h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup-map .close-map {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup-map .close-map:hover {
+  color: #06D85F;
+}
+.popup-map .content {
+  max-height: 30%;
+  overflow: auto;
+  background: none;
+}
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup-map{
+    width: 70%;
+  }
+}
+
+/*POP UP*/
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+@media screen and (max-width: 1024px){
+    .popup {
+        margin-top: 50% !important;
+
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 50% !important;
+  position: relative;
+  transition: all 5s ease-in-out;
+        outline: 1px solid red;
+}
+}
+.popup {
+  margin: 20% auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+  background: none;
+}
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+}
+
+#user-panel-in{
+	width: 100%;
+	position:relative;
+}
+#user-panel-in p{
+	text-align: left;
+}
+
+.table.table-reflow th{
+    color: white;
+}
+
+/*CHECK BOX*/
+/* Cначала обозначаем стили для IE8 и более старых версий
+т.е. здесь мы немного облагораживаем стандартный чекбокс. */
+.checkbox {
+  vertical-align: top;
+  margin: 0 3px 0 0;
+  width: 17px;
+  height: 17px;
+}
+/* Это для всех браузеров, кроме совсем старых, которые не поддерживают
+селекторы с плюсом. Показываем, что label кликабелен. */
+.checkbox + label {
+  cursor: pointer;
+}
+
+/* Далее идет оформление чекбокса в современных браузерах, а также IE9 и выше.
+Благодаря тому, что старые браузеры не поддерживают селекторы :not и :checked,
+в них все нижеследующие стили не сработают. */
+
+/* Прячем оригинальный чекбокс. */
+.checkbox:not(checked) {
+  position: absolute;
+  opacity: 0;
+}
+.checkbox:not(checked) + label {
+  position: relative; /* будем позиционировать псевдочекбокс относительно label */
+  padding: 0 0 0 60px; /* оставляем слева от label место под псевдочекбокс */
+}
+/* Оформление первой части чекбокса в выключенном состоянии (фон). */
+.checkbox:not(checked) + label:before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 50px;
+  height: 26px;
+  border-radius: 13px;
+  background: #CDD1DA;
+  box-shadow: inset 0 2px 3px rgba(0,0,0,.2);
+}
+/* Оформление второй части чекбокса в выключенном состоянии (переключатель). */
+.checkbox:not(checked) + label:after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 0 2px 5px rgba(0,0,0,.3);
+  transition: all .2s; /* анимация, чтобы чекбокс переключался плавно */
+}
+/* Меняем фон чекбокса, когда он включен. */
+.checkbox:checked + label:before {
+  background: #9FD468;
+}
+/* Сдвигаем переключатель чекбокса, когда он включен. */
+.checkbox:checked + label:after {
+  left: 26px;
+}
+/* Показываем получение фокуса. */
+.checkbox:focus + label:before {
+  box-shadow: 0 0 0 3px rgba(255,255,0,.5);
+}
+
+
+#dir-panel input{
+    background-color: transparent;
+    margin: 0 auto;
+    width: 220px;
+    border: 0px;
+    border-radius: 10px;
+    font-size: 16px;
+    -webkit-transition: all 0.25s ease 0s;
+    transition: all 0.25s ease 0s;
+}
+#dir-panel input:hover{
+    background: rgba(255, 255, 255, 0.8);
+    color: black;
+    -webkit-transition: all 0.25s ease 0s;
+    transition: all 0.25s ease 0s;
+}
+#dir-panel{
+    height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: rgba(0,0,0,0.25);
+    background-repeat: repeat;
+    border-radius: 20px;
+}
+::-webkit-scrollbar
+{
+  width: 12px;  /* for vertical scrollbars */
+  height: 12px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track
+{
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+    
+    
+}
+#tab1 a{
+    color: white;
+}
+#tab1 a:hover{
+    color: white;
+}
+::-webkit-scrollbar-thumb{
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+}
+#video-slider{
+	padding:0;
+}
+#video-slider iframe{
+	width: 100%;
+}
+.jssorb21{
+	margin-bottom: 1%;
+}
+.bottom-news{
+	position:relative;
+	height: 30px;
+	background-color: rgba(0,0,0,0.5);
+	top:94.5%;
+}
+.bottom-news a{
+	color: white;
+	font-size: 18px;
+	font-weight: 200;
+}
+@media screen and (min-width: 1550px) and (max-width:1920px){
+	#video-slider .item.active {
+	left: 9% !important;
+	
+	}
+}
+.navbar.navbar-inverse.navbar-static-top.primaryNav a{
+	font-size:14px;
+}
+
+#user-panel-in{
+	background-color: rgba(0,0,0,0.25);
+	left:3%;
 }

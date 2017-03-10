@@ -1,26 +1,50 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="menu">
+       
+        <!-- Иконка меню -->
+        <div class="icon-close">
+            <img src="../static/images/close-btn.png">
+        </div>
+ 
+        <!-- Меню -->
+        <ul>
+            <li><a data-toggle="tab" href="#tab1">Личные данные</a></li>
+            <li><a data-toggle="tab" href="#tab2">Оплата</a></li>
+            <li><a data-toggle="tab" href="#tab3">Отработки</a></li>
+            <li><a data-toggle="tab" href="##tab4">Нарушения</a></li>
+            <li><a href="/washing">Стирка</a></li>
+            <li><a href="/repair">Ремонт</a></li>
+            <li><a href="/logout">Выход</a></li>
+        </ul>
+    </div>
+ 
+    <!-- Main body -->
+    <div class="background">
+ 
+        <div class="icon-menu">
+            <img src="../static/images/menu-ham-icon11.png">
+            <span>Меню</span>
+        </div>
+    </div>
+    <script src="../static/js/view-Blocks.js"></script>
+
     <div class="container">
         <div class="row">
-            <h1 class="page-header">Hello, {{ current_user.login }}</h1>
-            <div class="col-md-8">
-                <div class="panel panel-default">
+            <h1 class="page-header">Добро Пожаловать, {{ current_user.login }}</h1>
+            <div class="col-md-12">
+                <div class="panel panel-default" id="user-panel-in">
                     <div class="panel-body">
                         <div class="tabbable"> <!-- Only required for left/right tabs -->
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab1" data-toggle="tab">Личные данные</a></li>
-                                <li><a href="#tab2" data-toggle="tab">Оплата</a></li>
-                                <li><a href="#tab3" data-toggle="tab">Отработки</a></li>
-                                <li><a href="#tab4" data-toggle="tab">Нарушения</a></li>
-                            </ul>
+                            
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tab1">
-                                    <p>{{ person.id }}</p>
-                                    <p>{{ person.first_name }}</p>
-                                    <p>{{ person.middle_name }}</p>
-                                    <p>{{ person.last_name }}</p>
-                                    <p>{{ person.department }}</p>
-                                    <p>{{ person.group }}</p>
+                                    <p><a>Комната: </a>{{ person.id }}</p>
+                                    <p><a>Фамилия: </a>{{ person.first_name }}</p>
+                                    <p><a>Отчество: </a>{{ person.middle_name }}</p>
+                                    <p><a>Имя: </a>{{ person.last_name }}</p>
+                                    <p><a>Факультет: </a>{{ person.department }}</p>
+                                    <p><a>Группа: </a>{{ person.group }}</p>
                                 </div>
 
                                 {% if payment %}
@@ -30,18 +54,18 @@
                                         <table class="table table-bordered">
                                             <thead>
                                             <tr>
-                                                <th>Sep</th>
-                                                <th>Oct</th>
-                                                <th>Nov</th>
-                                                <th>Dec</th>
-                                                <th>Jan</th>
-                                                <th>Feb</th>
-                                                <th>Mar</th>
+                                                <th>Сен</th>
+                                                <th>Окт</th>
+                                                <th>Ноя</th>
+                                                <th>Дек</th>
+                                                <th>Янв</th>
+                                                <th>Февр</th>
+                                                <th>Март</th>
                                                 <th>Apr</th>
-                                                <th>May</th>
-                                                <th>Jun</th>
-                                                <th>Jul</th>
-                                                <th>Aug</th>
+                                                <th>Май</th>
+                                                <th>Июнь</th>
+                                                <th>Июль</th>
+                                                <th>Август</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -178,6 +202,7 @@
                                         </table>
                                         <span class="glyphicon glyphicon-piggy-bank"></span> {{ price }} грн. /полная
                                         сумма
+                                       &nbsp; &nbsp; &nbsp;<span class="glyphicon glyphicon-piggy-bank"></span> 0 грн. /задолжность
                                     </div>
                                 {% endif %}
 
@@ -231,17 +256,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <ul class="nav nav-pills nav-stacked">
-                            <li><a href="/washing">Стирка</a></li>
-                            <li><a href="/repair">Ремонт</a></li>
-                            <li><a href="/logout">Выйти</a></li>
-                        </ul>
                     </div>
                 </div>
             </div>
