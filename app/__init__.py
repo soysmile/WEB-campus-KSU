@@ -15,7 +15,8 @@ from flask_mail import Mail
 from flask_security import Security, SQLAlchemyUserDatastore
 from flask_sqlalchemy import SQLAlchemy
 from jinja2 import Markup
-from wtforms import fields, widgets
+from wtforms import TextAreaField
+from wtforms.widgets import TextArea
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -27,13 +28,16 @@ from app import views, models
 from app.forms import LoginForm
 
 
-class CKTextAreaWidget(widgets.TextArea):
+class CKTextAreaWidget(TextArea):
     def __call__(self, field, **kwargs):
-        kwargs.setdefault('class_', 'ckeditor')
+        if kwargs.get('class'):
+            kwargs['class'] += ' ckeditor'
+        else:
+            kwargs.setdefault('class', 'ckeditor')
         return super(CKTextAreaWidget, self).__call__(field, **kwargs)
 
 
-class CKTextAreaField(fields.TextAreaField):
+class CKTextAreaField(TextAreaField):
     widget = CKTextAreaWidget()
 
 
