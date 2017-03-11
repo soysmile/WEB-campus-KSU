@@ -26,9 +26,15 @@ def utility_processor():
 def webLog(func):
     @wraps(func)
     def newFunc(*args, **kwargs):
-        db.session.add(models.Logger(url=request.url, remote_addr=request.remote_addr, method= request.method, user_agent=request.user_agent, datetime=datetime.now()))
+        if request.headers.getlist("X-Forwarded-For"):
+            ip = request.headers.getlist("X-Forwarded-For")[0]
+        else:
+            ip = request.remote_addr
+        db.session.add(models.Logger(url=request.url, remote_addr=ip, method=request.method,
+                                     user_agent=request.user_agent, datetime=datetime.now()))
         db.session.commit()
         return func(*args, **kwargs)
+
     return newFunc
 
 
@@ -49,6 +55,7 @@ def index(template):
             params.append(parsedlink.query.replace('v=', ''))
     posts = models.Post.query.order_by(desc(models.Post.timestamp)).limit(100).all()
     return render_template(template, posts=posts, video=params)
+
 
 @app.route('/login', methods=['POST'])
 @webLog
