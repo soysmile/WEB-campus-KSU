@@ -1,13 +1,13 @@
-{% extends '_base.html' %}
+{% extends 'base.html' %}
 {% block head %}
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/admin/static/vendor/select2/select2.css?v=3.5.2" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.css"/>
-    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
-{% endblock head %}
+
+{% endblock %}
 {% block content %}
     <div class="container">
         <div class="row">
@@ -23,35 +23,33 @@
                     </div>
                 </div>
                 {% if current_user.is_authenticated and current_user.has_role('admin') %}
-                <form action="/temp_xlsx" method="get">
-                    <button type="submit" class="btn btn-success">Скачать</button>
-                </form>
-                <br>
-                <form action="/temp_xlsx" method="post" enctype="multipart/form-data">
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="usr">Укажите с какой строки начать или оставте пустым, чтобы обновить
-                                полностью:</label>
-                            <input type="text" class="form-control" name="row">
-                            <label class="btn btn-default btn-file">
-                                <input type="file" name="file" hidden>
-                            </label>
-                            <button type="submit" class="btn btn-info">Загрузить</button>
+                    <form action="/temp_xlsx" method="get">
+                        <button type="submit" class="btn btn-success">Скачать</button>
+                    </form>
+                    <br>
+                    <form action="/temp_xlsx" method="post" enctype="multipart/form-data">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="usr">Укажите с какой строки начать или оставте пустым, чтобы обновить
+                                    полностью:</label>
+                                <input type="text" class="form-control" name="row">
+                                <label class="btn btn-default btn-file">
+                                    <input type="file" name="file" hidden>
+                                </label>
+                                <button type="submit" class="btn btn-info">Загрузить</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
-                {%  endif %}
+                    </form>
+                {% endif %}
             </div>
         </div>
     </div>
 {% endblock %}
 {% block js %}
-    <script src="{{ url_for('static', filename='js/jquery-2.2.1.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    <script src="/admin/static/vendor/moment.min.js?v=2.9.0" type="text/javascript"></script>
-    <script src="/admin/static/vendor/select2/select2.min.js?v=3.5.2" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.js"></script>
-    <script src="/admin/static/admin/js/form.js?v=1.0.0"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script type="text/javascript">
         $(function () {
@@ -194,4 +192,5 @@
                 }
             });
         }</script>
+
 {% endblock %}

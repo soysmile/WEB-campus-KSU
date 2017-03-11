@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+    {% block head %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,6 +33,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <script type="text/javascript" src="../static/js/view-Blocks.js"></script>
 
+    {% endblock %}
 
 </head>
 <body>
@@ -170,6 +172,7 @@
 		</div>
 	</div>
 </div>
+{% block js %}
 <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCf9xVQpaYxvzLN-6URK-z0UGzEbCCP-Qs&callback=initMap1">
 </script>
@@ -195,6 +198,7 @@
 <script src="../static/js/imagesloaded.pkgd.min.js"></script>
 -->
 <!--END-->
+{% endblock %}
 </body>
 <div id="clever-extension-is-installed" style="display: none"></div>
 </html>
