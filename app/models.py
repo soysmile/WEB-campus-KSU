@@ -63,8 +63,9 @@ class User(db.Model, UserMixin):
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(30))
-    previewtext = db.Column(db.String(50))
+    title = db.Column(db.String(100))
+    previewtext = db.Column(db.String(100
+                                      ))
     body = db.Column(db.Text)
     timestamp = db.Column(db.DateTime)
     path = db.Column(db.String(255))
@@ -502,3 +503,21 @@ class Video_slider(db.Model):
     date_added = db.Column(db.DateTime)
     url = db.Column(db.String(255))
     active = db.Column(db.Boolean)
+
+
+class Logger(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    url = db.Column(db.String(255))
+    remote_addr = db.Column(db.String(255))
+    method = db.Column(db.String(255))
+    user_agent = db.Column(db.String(255))
+    datetime = db.Column(db.DateTime)
+
+    def __init__(self, url=None, remote_addr=None, method=None, user_agent=None, datetime=None):
+        self.url = str(url)
+        self.remote_addr = str(remote_addr)
+        self.method = str(method)
+        self.user_agent = str(user_agent)
+        self.datetime = datetime
+
+

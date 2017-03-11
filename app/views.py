@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from functools import wraps
 from flask import render_template, flash, redirect, url_for, request, abort
 from sqlalchemy import desc, asc, or_
 from flask_login import login_user, logout_user, current_user, login_required
@@ -19,12 +19,23 @@ def utility_processor():
         import os
         filename, file_extension = os.path.splitext(path)
         return filename + '_thumb' + file_extension
+
     return dict(getthumb=getthumb)
+
+
+def webLog(func):
+    @wraps(func)
+    def newFunc(*args, **kwargs):
+        db.session.add(models.Logger(url=request.url, remote_addr=request.remote_addr, method= request.method, user_agent=request.user_agent, datetime=datetime.now()))
+        db.session.commit()
+        return func(*args, **kwargs)
+    return newFunc
 
 
 @app.route('/')
 @app.route('/index')
 @mobile_template('{mobile/}index.html')
+@webLog
 def index(template):
     from urllib.parse import urlparse
     video = models.Video_slider.query.order_by(desc(models.Video_slider.date_added)).limit(5).all()
@@ -39,10 +50,8 @@ def index(template):
     posts = models.Post.query.order_by(desc(models.Post.timestamp)).limit(100).all()
     return render_template(template, posts=posts, video=params)
 
-
-# TODO ПАГИНАЦИЯ ПОИСК
-
 @app.route('/login', methods=['POST'])
+@webLog
 def login():
     username = request.form['username']
     password = request.form['password']
@@ -56,12 +65,14 @@ def login():
 
 
 @app.route('/logout/')
+@webLog
 def logout_view():
     logout_user()
     return redirect(url_for('index'))
 
 
 @app.route('/registration', methods=['POST'])
+@webLog
 def invite_reg():
     person = models.Person.query.filter_by(invite=request.form['invite']).first()
     if person:
@@ -71,6 +82,7 @@ def invite_reg():
 
 
 @app.route('/add_user', methods=['POST'])
+@webLog
 def add_user():
     person = models.Person.query.filter_by(id=request.form['id']).first()
     login = request.form['login']
@@ -90,6 +102,7 @@ def add_user():
 
 
 @app.route('/profile')
+@webLog
 def profile():
     paypay = {'Sep': 0, 'Oct': 0, 'Nov': 0, 'Dec': 0, 'Jan': 0, 'Feb': 0, 'Mar': 0, 'Apr': 0, 'May': 0, 'Jun': 0,
               'Jul': 0, 'Aug': 0}
@@ -144,6 +157,7 @@ def profile():
 
 @login_required
 @app.route('/washing', methods=['GET', 'POST'])
+@webLog
 def washing():
     hostel_id = models.Room.query.filter_by(
         id=models.Person.query.filter_by(id=current_user.person_id).first().room).first().hostel_id
@@ -163,6 +177,7 @@ def washing():
 
 
 @app.route('/post/<id>')
+@webLog
 def detail_view_post(id):
     post = models.Post.query.filter_by(id=id).first()
     if post:
@@ -172,6 +187,7 @@ def detail_view_post(id):
 
 
 @app.route('/hostels', methods=['GET', 'POST'])
+@webLog
 def rooms():
     form = forms.SearchForm(request.form)
     form2 = forms.SearchForm2(request.form)
@@ -188,6 +204,7 @@ def rooms():
 
 
 @app.route('/hostels/<hostel>')
+@webLog
 def hostel_detail(hostel):
     hostel_number = hostel
     hostel = models.Hostel.query.filter_by(number=hostel).first().id
@@ -209,6 +226,7 @@ def hostel_detail(hostel):
 
 
 @app.route('/hostel/<hostel>/<block>')
+@webLog
 def block_view(hostel, block):
     hostel_number = hostel
     block_number = block
@@ -224,6 +242,7 @@ def block_view(hostel, block):
 
 
 @app.route('/hostels/<hostel>/free')
+@webLog
 def hostel_detail_free(hostel):
     places = models.Room.query.filter_by(hostel_id=hostel).all()
     places_free = []
@@ -240,6 +259,7 @@ def hostel_detail_free(hostel):
 
 
 @app.route('/rooms/<hostel>/<room>')
+@webLog
 def room_detail(hostel, room):
     hostel_number = hostel
     hostel = models.Hostel.query.filter_by(number=hostel).first().id
@@ -253,6 +273,7 @@ def room_detail(hostel, room):
 
 
 @app.route('/register', methods=['GET', 'POST'])
+@webLog
 def register():
     form = forms.RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
@@ -293,6 +314,7 @@ def register():
 
 
 @app.route('/all_register')
+@webLog
 def all_register():
     family = db.session.query(models.Register_main, models.Register_family) \
         .filter(models.Register_family.register_id == models.Register_main.id).all()
@@ -302,6 +324,7 @@ def all_register():
 
 
 @app.route('/plot')
+@webLog
 def plot():
     temp = db.session.query(models.Temperature).order_by(asc(models.Temperature.date)).all()
     buffer = {}
@@ -317,6 +340,7 @@ def plot():
 
 
 @app.route('/temp_xlsx', methods=['GET', 'POST'])
+@webLog
 def temp_xlsx():
     if request.method == 'GET':
         from openpyxl import Workbook
@@ -374,6 +398,7 @@ def temp_xlsx():
 
 
 @app.route('/plot_range', methods=['POST'])
+@webLog
 def plot_range():
     from collections import OrderedDict
     start = request.form['start'].split('-')
@@ -393,12 +418,14 @@ def plot_range():
 
 
 @app.route('/person/<id>')
+@webLog
 def person(id):
     person_ = models.Person.query.filter_by(id=id).first()
     return render_template('person.html', person=person_)
 
 
 @app.route('/stat', methods=['GET', 'POST'])
+@webLog
 def stat():
     if request.method == 'POST':
         last = models.Statistics.query.order_by(desc(models.Statistics.date)).first()
@@ -573,6 +600,7 @@ def stat():
 
 
 @app.route('/load')
+@webLog
 def load():
     from openpyxl import load_workbook
     import os
@@ -614,6 +642,7 @@ def load():
 
 
 @app.route('/update')
+@webLog
 def update():
     m = models.Person.query.all()
     for item in m:
@@ -626,6 +655,7 @@ def allowed_file(filename):
 
 
 @app.route('/photo', methods=['GET', 'POST'])
+@webLog
 def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
@@ -652,6 +682,7 @@ def upload_file():
 
 
 @app.route('/get_all_register', methods=['GET'])
+@webLog
 def get_all_register():
     family = models.Register_family.query.all()
     family_main = []
@@ -669,6 +700,7 @@ def get_all_register():
 
 
 @app.route('/profile/repair', methods=['GET', 'POST'])
+@webLog
 def repair():
     if request.method == 'GET':
         repairs = models.Repair.query.filter_by(person=current_user.person_id)
@@ -680,6 +712,7 @@ def repair():
 
 
 @app.route('/repair', methods=['GET', 'POST'])
+@webLog
 def all_repair():
     if request.method == "GET":
         repairs = db.session.query(models.Repair, models.Person, models.Room, models.Hostel).filter(
@@ -695,6 +728,7 @@ def all_repair():
 
 
 @app.route('/free', methods=['GET'])
+@webLog
 def free():
     query = db.session.query(models.Person, models.Room, models.Hostel) \
         .filter(models.Person.room_id == models.Room.id) \
@@ -704,6 +738,7 @@ def free():
 
 
 @app.route('/init')
+@webLog
 def init():
     for room in models.Room.query.all():
         places = room.numbers_of_person - len(models.Person.query.filter_by(room=room.id).all())
@@ -712,10 +747,12 @@ def init():
 
 
 @app.route('/employees')
+@webLog
 def employees():
     return render_template('employees.html')
 
 
 @app.route('/calendar_washing')
+@webLog
 def calendar_washing():
     return render_template('calendar_washing.html')

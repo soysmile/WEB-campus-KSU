@@ -102,6 +102,7 @@ class MyPostView(MyModelView):
     form_extra_fields = {
         'path': form.ImageUploadField('Image',
                                       base_path=file_path,
+                                      endpoint='static',
                                       thumbnail_size=(360, 240, True))
     }
 
@@ -170,3 +171,4 @@ admin_panel.add_view(MyModelView(models.Register_family, db.session))
 admin_panel.add_view(MyRepairView(models.Repair, db.session))
 admin_panel.add_view(MyModelView(models.Room_free, db.session))
 admin_panel.add_view(MyModelView(models.Video_slider, db.session))
+admin_panel.add_view(MyModelView(models.Logger, db.session))
