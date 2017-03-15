@@ -4,10 +4,14 @@
     <div class="row">
         <div class="col-md-12">
             <h1 class="page-header">Статистика</h1>
-            <div class="panel panel-default">
-                <h1 class="page-header">Общая статистика</h1>
-
-                <div class="panel-body">
+             <div class="stat-menu-view">
+                 
+                <div class="panel panel-default">
+                    <h1 class="page-header">Общая статистика</h1>
+                    <button type="button" class="stat-button">Подробнее</button>
+                
+               
+                <div class="panel-body" id="complete-stat">
                     <h4>Всего комнат: {{ stats.places_all }}</h4>
                     <h4>Всего комнат в 2 общежитии: {{ stats.places2 }}</h4>
                     <h4>Всего комнат в 3 общежитии: {{ stats.places3 }}</h4>
@@ -22,88 +26,88 @@
                     </form>
                 </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-default" id="faculty-stat">
                 <div class="panel-body">
                     <h1 class="page-header">Факультеты</h1>
                     <canvas id="departments"></canvas>
                 </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-default" id="room-campus-stat">
                 <div class="panel-body">
                     <h1 class="page-header">Комнаты в общежитиях</h1>
                 <canvas id="rooms"></canvas>
                 </div>
             </div>
-<div class="panel panel-default">
+            <div class="panel panel-default" id="grade-campus-stat">
                 <div class="panel-body">
                     <h1 class="page-header">Курсы</h1>
                     <canvas id="courses"></canvas>
                 </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-default" id="campus-building2-stat">
                 <div class="panel-body">
                     <h1 class="page-header">Факультеты в общежитии 2</h1>
                     <canvas id="departments_2"></canvas>
                 </div>
             </div>
-                        <div class="panel panel-default">
+                        <div class="panel panel-default" id="campus-building3-stat">
                 <div class="panel-body">
                     <h1 class="page-header">Факультеты в общежитии 3</h1>
                     <canvas id="departments_3"></canvas>
                 </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-default" id="campus-building4-stat">
                 <div class="panel-body">
                     <h1 class="page-header">Факультеты в общежитии 4</h1>
                     <canvas id="departments_4"></canvas>
                 </div>
             </div>
-                        <div class="panel panel-default">
+                        <div class="panel panel-default" id="campus-places2-stat">
                 <div class="panel-body">
                     <h1 class="page-header">Места в общежитии 2</h1>
                     <canvas id="places_2"></canvas>
                 </div>
             </div>
-                        <div class="panel panel-default">
+                        <div class="panel panel-default" id="campus-places3-stat">
                 <div class="panel-body">
                     <h1 class="page-header">Места в общежитии 3</h1>
                     <canvas id="places_3"></canvas>
                 </div>
             </div>
-                        <div class="panel panel-default">
+                        <div class="panel panel-default" id="campus-places4-stat">
                 <div class="panel-body">
                     <h1 class="page-header">Места в общежитии 4</h1>
                     <canvas id="places_4"></canvas>
                 </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-default" id="form-study-stat">
                 <div class="panel-body">
                     <h1 class="page-header">Форма обучения</h1>
                     <canvas id="foe"></canvas>
                 </div>
             </div>
 
-                        <div class="panel panel-default">
+            <div class="panel panel-default" id="windows-campus2-stat">
                 <div class="panel-body">
                     <h1 class="page-header">Пластиковые окна в общежитии 2</h1>
                     <canvas id="windows_2"></canvas>
                 </div>
             </div>
 
-                        <div class="panel panel-default">
+                        <div class="panel panel-default" id="windows-campus3-stat">
                 <div class="panel-body">
                     <h1 class="page-header">Пластиковые окна в общежитии 3</h1>
                     <canvas id="windows_3"></canvas>
                 </div>
             </div>
 
-                        <div class="panel panel-default">
+                        <div class="panel panel-default" id="windows-campus4-stat">
                 <div class="panel-body">
                     <h1 class="page-header">Пластиковые окна в общежитии 4</h1>
                     <canvas id="windows_4"></canvas>
                 </div>
             </div>
-                                    <div class="panel panel-default">
+            <div class="panel panel-default" id="hot-water-campus3">
                 <div class="panel-body">
                     <h1 class="page-header">Блоки с горячей водой в общ. 3</h1>
                     <canvas id="hot_watter_3"></canvas>
@@ -112,7 +116,7 @@
 
 
 
-                                    <div class="panel panel-default">
+            <div class="panel panel-default" id="hot-water-campus4">
                 <div class="panel-body">
                     <h1 class="page-header">Блоки с горячей водой в общ. 4</h1>
                     <canvas id="hot_watter_4"></canvas>
@@ -123,19 +127,19 @@
 
 
 
-            <div class="panel panel-default">
+            <div class="panel panel-default" id="economy-block2">
                 <div class="panel-body">
                     <h1 class="page-header">Эконом 2</h1>
                     <canvas id="econom_2"></canvas>
                 </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-default" id="economy-block3">
                 <div class="panel-body">
                     <h1 class="page-header">Эконом 3</h1>
                     <canvas id="econom_3"></canvas>
                 </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-default" id="economy-block4">
                 <div class="panel-body">
                     <h1 class="page-header">Эконом 4</h1>
                     <canvas id="econom_4"></canvas>
@@ -146,6 +150,7 @@
 
 
             
+            </div>
         </div>
     </div>
 </div>

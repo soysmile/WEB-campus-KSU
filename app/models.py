@@ -75,8 +75,6 @@ class Post(db.Model):
         self.body = body
         self.path = path
 
-        # Одна батарейка, що була викинута...
-
 
 class Hostel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -498,6 +496,20 @@ class Room_free(db.Model):
         self.room_id = room_id
 
 
+class News_Slider(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255))
+    previewtext = db.Column(db.String(255))
+    body = db.Column(db.Text)
+    timestamp = db.Column(db.DateTime)
+    path = db.Column(db.String(255))
+
+    def __init__(self, id=None, title=None, body=None, timestamp=None, path=None):
+        self.title = title
+        self.body = body
+        self.path = path
+
+
 class Video_slider(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date_added = db.Column(db.DateTime)
@@ -519,5 +531,3 @@ class Logger(db.Model):
         self.method = str(method)
         self.user_agent = str(user_agent)
         self.datetime = datetime
-
-

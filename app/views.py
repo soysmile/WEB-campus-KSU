@@ -44,17 +44,17 @@ def webLog(func):
 @webLog
 def index(template):
     from urllib.parse import urlparse
-    video = models.Video_slider.query.order_by(desc(models.Video_slider.date_added)).limit(5).all()
+    newsslider = models.News_Slider.query.order_by(desc(models.News_Slider.timestamp)).limit(3).all()
+    video = models.Video_slider.query.order_by(desc(models.Video_slider.date_added)).filter_by(active=True).limit(12).all()
     params = []
     for url in video:
         parsedlink = urlparse(url.url)
         if parsedlink.netloc == 'youtu.be' or parsedlink.netloc == 'www.youtu.be':
             params.append(parsedlink.path.replace('/', ''))
-
         else:
             params.append(parsedlink.query.replace('v=', ''))
-    posts = models.Post.query.order_by(desc(models.Post.timestamp)).limit(100).all()
-    return render_template(template, posts=posts, video=params)
+    posts = models.Post.query.order_by(desc(models.Post.timestamp)).limit(9).all()
+    return render_template(template, posts=posts, video=params, newsslider=newsslider)
 
 
 @app.route('/login', methods=['POST'])
@@ -763,3 +763,18 @@ def employees():
 @webLog
 def calendar_washing():
     return render_template('calendar_washing.html')
+
+
+@app.route('/sliderpost/<id>')
+@webLog
+def sliderpost(id):
+    post = models.News_Slider.query.filter_by(id=id).first()
+    return render_template('post.html', post=post)
+
+@app.route('/posts')
+@app.route('/posts/page-<int:page>')
+@webLog
+def posts(page=1):
+    PER_PAGE = 10
+    posts = models.Post.query.order_by(desc(models.Post.timestamp)).paginate(page, PER_PAGE, False)
+    return render_template('posts.html', posts=posts, page=page)

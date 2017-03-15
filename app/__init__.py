@@ -119,6 +119,33 @@ class MyRoomView(MyModelView):
     column_editable_list = ['econom', 'service', 'windows']
 
 
+class MyNewsSliderView(MyModelView):
+    form_overrides = dict(body=CKTextAreaField)
+    create_template = 'admin/create.html'
+    edit_template = 'admin/edit.html'
+
+    def _list_thumbnail(view, context, model, name):
+        if not model.path:
+            return ''
+
+        return Markup('<img src="%s">' % url_for('static', filename='files/' + form.thumbgen_filename(model.path)))
+
+    def _body_slice(view, context, model, name):
+        return model.body[:100]
+
+    column_formatters = {
+        'path': _list_thumbnail,
+        'body': _body_slice
+    }
+
+    form_extra_fields = {
+        'path': form.ImageUploadField('Image',
+                                      base_path=file_path,
+                                      endpoint='static',
+                                      thumbnail_size=(360, 240, True))
+    }
+
+
 # Create customized index view class that handles login & registration
 class MyAdminIndexView(admin.AdminIndexView):
     @expose('/')
@@ -172,3 +199,4 @@ admin_panel.add_view(MyRepairView(models.Repair, db.session))
 admin_panel.add_view(MyModelView(models.Room_free, db.session))
 admin_panel.add_view(MyModelView(models.Video_slider, db.session))
 admin_panel.add_view(MyModelView(models.Logger, db.session))
+admin_panel.add_view(MyNewsSliderView(models.News_Slider, db.session))

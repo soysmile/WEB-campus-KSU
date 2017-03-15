@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">Новости</h1>
+                <div id="graph" class="panel panel-default">
+                    <div class="panel-body">
+                        {% for item in posts.items %}
+                            <div class="col-md-10 blogShort">
+                                <h1>{{ item.title }}</h1>
+                                {% if item.path %}
+                                    <img src="../static/files/{{ getthumb(item.path) }}"
+                                         alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
+                                {% endif %}
+                                <em>{{ item.timestamp }}</em>
+                                <article><p>
+                                    {{ item.previewtext }}
+                                </p></article>
+                                <a class="btn btn-blog pull-right marginBottom10"
+                                   href="{{ url_for('detail_view_post', id=item.id) }}">READ MORE</a>
+                            </div>
+                        {% endfor %}
+
+
+                        <br>
+                        <ul class="pagination">
+                            {% if posts.has_prev %}
+                                <li class="active"><a href="{{ url_for('posts', page=posts.prev_num) }}">&laquo;</a>
+                                </li>
+                            {% else %}
+                                <li class="disabled"><a href="#">&laquo;</a>
+                                </li>{% endif %}
+                            {% set pages = posts.pages + 1 %}
+                            {% for i in range(1, pages) %}
+                                {% if i == page %}
+                                    <li class="active"><a href="#">{{ i }}</a></li>
+                                {% else %}
+                                    <li><a href="{{ url_for('posts', page=i) }}">{{ i }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if posts.has_next %}
+                                <li class="active"><a href="{{ url_for('posts', page=posts.next_num) }}">&raquo;</a>
+                                </li>
+                            {% else %}
+                                <li class="disabled"><a href="#">&raquo;</a>
+                                </li>{% endif %}
+                        </ul>
+
+
+                        {#                        <p><span class="glyphicon glyphicon-time"></span>{{ post.timestamp }}</p>#}
+                        {#                        <hr>#}
+                        {#                        <img src="../static/files/{{ post.path }}" alt="">#}
+                        {#                        <p>{{ post.body|safe }}</p>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

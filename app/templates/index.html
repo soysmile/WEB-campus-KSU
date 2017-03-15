@@ -22,29 +22,20 @@
                     <!-- Slides Container -->
                     <div class="slides" u="slides"
                          style="position: absolute; left: 0px; top: 0px; width: 1300px; height: 500px; overflow: hidden;">
-                        <div>
-                            <img u="image" src="../static/img/red.jpg"/>
-                            <div class="bottom-news">
-                                <a href="#">День святого валентина. Праздник для двоих. Подробнее...</a>
-                            </div>
-                        </div>
-                        <div>
-                            <img u="image" src="../static/img/purple.jpg"/>
-                            <div class="bottom-news">
-                                <a href="#">Конкурс фотографий. Попробуй свои силы. Подробнее...</a>
-                            </div>
+                        {% for news in newsslider %}
+                            <div>
+                                <img u="image" src=../static/files/{{ news.path }}/>
+                                <div class="bottom-news">
+                                    <marquee behavior="alternate" direction="right" scrolldelay="1" scrollamount
+                                            ="1" bgcolor=""><a
+                                            href="{{ url_for('sliderpost', id=news.id) }}">{{ news.title }}. {{ news.previewtext }}</a>
+                                    </marquee>
 
-                        </div>
-                        <div>
-                            <img u="image" src="../static/img/blue.jpg"/>
-                            <div class="bottom-news">
-                                <marquee behavior="alternate" direction="right" scrolldelay="1" scrollamount
-                                        ="1" bgcolor="">
-                                    Конкурс фотографий. Попробуй свои силы.
-                                </marquee>
+                                </div>
 
                             </div>
-                        </div>
+                        {% endfor %}
+
                     </div>
                     <!-- bullet navigator container -->
                     <div u="navigator" class="jssorb21" style="bottom: 26px; right: 6px;">
@@ -69,38 +60,7 @@
             </div>
 
         </div>
-        <!--
-<div id="block_view" class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h1 class="page-header">ТОП Новости</h1>
-            {% for post in posts %}
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h2><a href="{{ url_for('detail_view_post', id=post.id) }}">{{ post.title }}</a></h2>
-                    <p><span class="glyphicon glyphicon-time"></span> {{ post.timestamp }}</p>
-                    <p>{{ post.body }}</p>
-                </div>
-                <div class="panel-footer">
-                    <a class="btn btn-primary" href="{{ url_for('detail_view_post', id=post.id) }}">Подробнее <span
-                            class="glyphicon glyphicon-chevron-right"></span></a>
-                </div>
-            </div>
-            {% endfor %}
-            <!-- Pager -->
-        <!--
-            <ul class="pager">
-                <li class="previous">
-                    <a href="#">&larr; Назад</a>
-                </li>
-                <li class="next">
-                    <a href="#">Вперед &rarr;</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
--->
+
         <div id="block_view" class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -132,12 +92,12 @@
                                                             </div>
                                                             <div class="caption">
                                                                 <h2>
-                                                                    <a href="{{ url_for('detail_view_post', id=post.id) }}">{{ post.title }}</a>
+                                                                    <a href="{{ url_for('detail_view_post', id=post.id) }}">{{ post.title[:17] }}</a>
                                                                 </h2>
                                                                 <p><span
                                                                         class="glyphicon glyphicon-time"></span> {{ post.timestamp }}
                                                                 </p>
-                                                                <p>{{ post.previewtext }}</p>
+                                                                <p>{{ post.previewtext[:25] }}</p>
 
                                                                 <a class="btn btn-mini"
                                                                    href="{{ url_for('detail_view_post', id=post.id) }}">&raquo;
@@ -164,12 +124,12 @@
                                                             </div>
                                                             <div class="caption">
                                                                 <h2>
-                                                                    <a href="{{ url_for('detail_view_post', id=post.id) }}">{{ post.title }}</a>
+                                                                    <a href="{{ url_for('detail_view_post', id=post.id) }}">{{ post.title[:17] }}</a>
                                                                 </h2>
                                                                 <p><span
                                                                         class="glyphicon glyphicon-time"></span> {{ post.timestamp }}
                                                                 </p>
-                                                                <p>{{ post.previewtext }}</p>
+                                                                <p>{{ post.previewtext[:25] }}</p>
 
                                                                 <a class="btn btn-mini"
                                                                    href="{{ url_for('detail_view_post', id=post.id) }}">&raquo;
@@ -197,12 +157,12 @@
                                                             </div>
                                                             <div class="caption">
                                                                 <h2>
-                                                                    <a href="{{ url_for('detail_view_post', id=post.id) }}">{{ post.title }}</a>
+                                                                    <a href="{{ url_for('detail_view_post', id=post.id) }}">{{ post.title[:17] }}</a>
                                                                 </h2>
                                                                 <p><span
                                                                         class="glyphicon glyphicon-time"></span> {{ post.timestamp }}
                                                                 </p>
-                                                                <p>{{ post.previewtext }}</p>
+                                                                <p>{{ post.previewtext[:25] }}</p>
 
                                                                 <a class="btn btn-mini"
                                                                    href="{{ url_for('detail_view_post', id=post.id) }}">&raquo;
@@ -218,9 +178,8 @@
                                             <a data-slide="prev" href="#myCarousel" class="carousel-control left">Предидущие</a>
                                             <a data-slide="next" href="#myCarousel" class="carousel-control right">Следующие</a>
                                         </div><!-- /.control-box -->
-
                                     </div><!-- /#myCarousel -->
-
+                                    <a class="btn btn-mini" href="{{ url_for('posts') }}">Все новости</a>
                                 </div><!-- /.span12 -->
                             </div><!-- /.row -->
                         </div><!-- /.container -->
@@ -270,6 +229,7 @@
                                                         </div>
                                                     </li>
                                                 {% endfor %}
+
                                             </ul>
                                         </div><!-- /Slide2 -->
                                         <div class="item">

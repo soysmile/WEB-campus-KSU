@@ -1028,7 +1028,12 @@ input.form-control {
     background-color: rgba(0,0,0,0.25);
     background-repeat: repeat;
     border-radius: 20px;
+    border: 1px solid white;
 }
+.form-control:focus  {
+    border: 1px ridge lime;
+    outline: 0;
+   }
 .pr1{
     display: none;
 }
@@ -1688,9 +1693,8 @@ a {
 	font-weight: 200;
 }
 @media screen and (min-width: 1550px) and (max-width:1920px){
-	#video-slider .item.active {
+	#video-slider .item.active, #video-slider .item {
 	left: 9% !important;
-	
 	}
 }
 .navbar.navbar-inverse.navbar-static-top.primaryNav a{
@@ -1700,4 +1704,47 @@ a {
 #user-panel-in{
 	background-color: rgba(0,0,0,0.25);
 	left:3%;
+}
+.stat-menu-view{
+    border: 1px solid white;
+    border-radius: 20px;
+    position:relative;
+    top: 0px;
+    margin: 0 auto;
+    background-color:white;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+.stat-menu-view button{
+    height: 50px;
+    width: 100%;
+    float: left;
+	color: black;
+    opacity: 0.75;
+    border:0px;
+    background-color: transparent;
+}
+#complete-stat, #faculty-stat, #room-campus-stat, #grade-campus-stat, #campus-building2-stat, #campus-building3-stat, #campus-building4-stat, #campus-places2-stat, #campus-places3-stat, #campus-places4-stat, #form-study-stat, #windows-campus2-stat, #windows-campus3-stat, #windows-campus4-stat, #hot-water-campus3, #hot-water-campus4, #economy-block2, #economy-block3, #economy-block4{
+    display: none;
+}
+.page-header{
+    border-bottom: 0px solid #eee;
+}
+#full-news-view .width. 90%;
+}
+#full-news-view img{
+	width: 40%;
+	float: left;
+}
+.stat-menu-view .panel.panel-default{
+	margin-top: 20px;
+	border: 0px;
+	box-shadow: none;
+}
+.stat-menu-view .panel.panel-default{
+	position:relative;
+	width: 100%;
+	text-align: center;
+	border-radius: 20px;
 }
