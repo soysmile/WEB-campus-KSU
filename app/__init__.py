@@ -67,6 +67,7 @@ class MyModelView(sqla.ModelView):
     list_template = 'admin/list.html'
     create_template = 'admin/create.html'
     edit_template = 'admin/edit.html'
+
     def is_accessible(self):
         if login.current_user.is_authenticated:
             return login.current_user.has_role('admin')
@@ -177,7 +178,7 @@ init_login()
 
 # Create admin
 # admin_panel = admin.Admin(app, 'Admin', index_view=MyAdminIndexView(), base_template='my_master.html')
-admin_panel = admin.Admin(app, 'Example: Layout-BS3', base_template='layout.html', template_mode='bootstrap3')
+admin_panel = admin.Admin(app, 'Example: Layout-BS3', index_view=MyAdminIndexView(), base_template='layout.html', template_mode='bootstrap3')
 admin_panel.add_view(MyModelView(models.User, db.session, 'Пользователи'))
 admin_panel.add_view(MyModelView(models.Hostel, db.session))
 admin_panel.add_view(MyRoomView(models.Room, db.session))
