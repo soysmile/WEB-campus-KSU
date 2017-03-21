@@ -40,9 +40,8 @@ def webLog(func):
 
 @app.route('/')
 @app.route('/index')
-@mobile_template('{mobile/}index.html')
 @webLog
-def index(template):
+def index():
     from urllib.parse import urlparse
     newsslider = models.News_Slider.query.order_by(desc(models.News_Slider.timestamp)).limit(3).all()
     video = models.Video_slider.query.order_by(desc(models.Video_slider.date_added)).filter_by(active=True).limit(12).all()
@@ -54,7 +53,7 @@ def index(template):
         else:
             params.append(parsedlink.query.replace('v=', ''))
     posts = models.Post.query.order_by(desc(models.Post.timestamp)).limit(9).all()
-    return render_template(template, posts=posts, video=params, newsslider=newsslider)
+    return render_template('index.html', posts=posts, video=params, newsslider=newsslider)
 
 
 @app.route('/login', methods=['POST'])

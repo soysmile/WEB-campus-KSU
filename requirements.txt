@@ -33,3 +33,4 @@ WTForms
 Flask-mobility
 openpyxl
 Pillow
+tablib

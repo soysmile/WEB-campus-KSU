@@ -42,15 +42,15 @@ class User(db.Model, UserMixin):
         self.person_id = person_id
 
     @staticmethod
-    def is_authenticated():
+    def is_authenticated(self):
         return True
 
     @staticmethod
-    def is_active():
+    def is_active(self):
         return True
 
     @staticmethod
-    def is_anonymous():
+    def is_anonymous(self):
         return False
 
     def get_id(self):
@@ -117,6 +117,10 @@ class Room(db.Model):
     free_places_id = db.relationship('Room_free', backref='room_free', lazy='dynamic')
 
     def __str__(self):
+        hostel_number = Hostel.query.filter_by(id=self.hostel.id).first().number
+        return str(hostel_number) + '_' + str(self.room_number)
+
+    def __repr__(self):
         hostel_number = Hostel.query.filter_by(id=self.hostel.id).first().number
         return str(hostel_number) + '_' + str(self.room_number)
 
