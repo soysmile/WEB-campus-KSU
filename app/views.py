@@ -829,7 +829,7 @@ def new_get_person():
 def api_news():
     from re import sub
     items = []
-    for x in models.Post.query.all():
+    for x in models.Post.query.order_by(desc(models.Post.timestamp)).all():
         items.append(
             {'id': x.id, 'title': x.title, 'previewtext': sub("<[^>]*>", '', x.previewtext),
              'body': sub("<[^>]*>", '', x.body).replace('\r\n', ''),
