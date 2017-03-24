@@ -802,8 +802,6 @@ def calendar_washing():
 def new_wash():
     from dateutil.parser import parse
     WASH_PER_DAY = 3
-    print(len(models.Washing.query.filter_by(start=parse(request.form['startDate'])).all()))
-
     if len(models.Washing.query.filter_by(start=parse(request.form['startDate'])).all()) < WASH_PER_DAY:
         db.session.add(models.Washing(start=parse(request.form['startDate']), end=parse(request.form['endDate']),
                                       person=request.form['name'], hostel=request.form['location'])
@@ -836,7 +834,6 @@ def api_news():
             {'id': x.id, 'title': x.title, 'previewtext': sub("<[^>]*>", '', x.previewtext),
              'body': sub("<[^>]*>", '', x.body).replace('\r\n', ''),
              'timestamp': x.timestamp, 'path': url_for('static', filename='files/' + x.path)})
-    print(items)
     return jsonify({'status': 200, 'items': items, 'length': len(items)})
 
 
