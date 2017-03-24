@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from functools import wraps
-from flask import render_template, flash, redirect, url_for, request, abort
+from flask import render_template, flash, redirect, url_for, request, abort, jsonify
 from sqlalchemy import desc, asc, or_
 from flask_login import login_user, logout_user, current_user, login_required
 from datetime import datetime, timedelta
@@ -825,3 +825,26 @@ def new_get_person():
                        'room': query[2].room_number,
                        'hostel': query[0].number
                        })
+
+
+@app.route('/api/news')
+def api_news():
+    from re import sub
+    items = []
+    for x in models.Post.query.all():
+        items.append(
+            {'id': x.id, 'title': x.title, 'previewtext': sub("<[^>]*>", '', x.previewtext),
+             'body': sub("<[^>]*>", '', x.body).replace('\r\n', ''),
+             'timestamp': x.timestamp, 'path': url_for('static', filename='files/' + x.path)})
+    print(items)
+    return jsonify({'status': 200, 'items': items, 'length': len(items)})
+
+
+@app.route('/api/news/<int:id>')
+def api_news_single(id):
+    from re import sub
+    x = models.Post.query.filter_by(id=id).first()
+    return jsonify({'status': 200, 'item':
+        {'id': x.id, 'title': x.title, 'previewtext': sub("<[^>]*>", '', x.previewtext),
+         'body': sub("<[^>]*>", '', x.body).replace('\r\n', ''),
+         'timestamp': x.timestamp, 'path': url_for('static', filename='files/' + x.path)}})

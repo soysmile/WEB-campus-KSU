@@ -109,7 +109,7 @@ class MyModelView(Roled, sqla.ModelView):
 
 class MyPersonView(MyModelView):
     """Just for test"""
-    column_exclude_list = ('id', 'parents', 'index', 'note', 'invite', 'phone_number_parent', 'street', 'passport')
+    column_exclude_list = ('id', 'parents', 'index', 'note', 'invite', 'phone_number_parent', 'street', 'passport', 'department', 'group', 'form_of_education', 'hostel_id', 'room_id', 'birthday', 'district', 'email  ')
     column_searchable_list = ('first_name', 'last_name')
     edit_modal = True
     create_modal = True
