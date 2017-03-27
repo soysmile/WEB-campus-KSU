@@ -36,6 +36,7 @@ class CKTextAreaField(TextAreaField):
     widget = CKTextAreaWidget()
 
 
+
 class MyAdminIndexView(admin.AdminIndexView):
     @expose('/')
     def index(self):
@@ -193,7 +194,7 @@ admin_panel.add_view(MyModelView(models.Hostel, db.session, name='Общежит
 admin_panel.add_view(MyRoomView(models.Room, db.session,  name='Комнаты', roles_accepted=['admin']))
 admin_panel.add_view(MyModelView(models.Block, db.session, name='Блоки', roles_accepted=['admin']))
 admin_panel.add_view(MyPersonView(models.Person, db.session, name='Жильцы', roles_accepted=['admin']))
-admin_panel.add_view(MyTemperatureView(models.Temperature, db.session, name='Температура', roles_accepted=['admin']))
+admin_panel.add_view(MyTemperatureView(models.Temperature, db.session, name='Температура', roles_accepted=['admin', 'temperature']))
 admin_panel.add_view(MyModelView(models.Statistics, db.session, name='Статистика', roles_accepted=['admin']))
 admin_panel.add_view(MyModelView(models.Payment, db.session, name='Оплата', roles_accepted=['admin']))
 admin_panel.add_view(MyModelView(models.Work, db.session, name='Отработки', roles_accepted=['admin']))
@@ -202,10 +203,13 @@ admin_panel.add_view(MyModelView(models.Violation, db.session, name='Наруш�
 admin_panel.add_view(MyModelView(models.Role, db.session, name='Роли', roles_accepted=['admin']))
 admin_panel.add_view(MyModelView(models.Register_main, db.session, name='Заявки. Основное', roles_accepted=['admin']))
 admin_panel.add_view(MyModelView(models.Register_student, db.session, name='Заявки. Студентны', roles_accepted=['admin']))
-admin_panel.add_view(MyModelView(models.Register_family, db.session, name='Заявкию Семейные', roles_accepted=['admin']))
+admin_panel.add_view(MyModelView(models.Register_family, db.session, name='Заявки. Семейные', roles_accepted=['admin']))
 admin_panel.add_view(MyRepairView(models.Repair, db.session, name='Ремонт', roles_accepted=['admin']))
 admin_panel.add_view(MyModelView(models.Room_free, db.session, name='Свободные комнаты', roles_accepted=['admin']))
 admin_panel.add_view(MyModelView(models.Logger, db.session, name='Логи', roles_accepted=['admin']))
 admin_panel.add_view(MyPostView(models.Post, db.session, name='Новости', roles_accepted=['admin', 'editor']))
 admin_panel.add_view(MyModelView(models.Video_slider, db.session, name='Сладер видео', roles_accepted=['admin', 'editor']))
 admin_panel.add_view(MyNewsSliderView(models.News_Slider, db.session, name='Слайдер новостей', roles_accepted=['admin', 'editor']))
+admin_panel.add_menu_item(models.Temperature, 'item')
+
+

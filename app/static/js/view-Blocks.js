@@ -1,44 +1,118 @@
-/* Открытие меню */
- 
-var main = function() { //главная функция
- 
-    $('.icon-menu').click(function() { /* выбираем класс icon-menu и
-               добавляем метод click с функцией, вызываемой при клике */
- 
-        $('.menu').animate({ //выбираем класс menu и метод animate
- 
-            left: '0px' /* теперь при клике по иконке, меню, скрытое за
-               левой границей на 285px, изменит свое положение на 0px и станет видимым */
- 
-        }, 200); //скорость движения меню в мс
-         
-        $('body').animate({ //выбираем тег body и метод animate
- 
-            left: '285px' /* чтобы всё содержимое также сдвигалось вправо
-               при открытии меню, установим ему положение 285px */
- 
-        }, 200); //скорость движения меню в мс
+    $(document).ready(function() {
+
+
+        $('#tab1').show('slow');
+        $('#tab2').hide('slow');
+        $('#tab3').hide('slow');
+        $('#tab4').hide('slow');
+        $('#tab5').hide('slow');
+
+        $("#abtn").css({"color": "green"});
+        $("#bbtn").css({"color": "black"});
+        $("#cbtn").css({"color": "black"});
+        $("#dbtn").css({"color": "black"});
+        $("#wbtn").css({"color": "black"});
+
+        $('#abtn').click(function() {
+
+            //$('#a').hide();
+            $('#tab1').animate({
+                height: 'show'
+
+            });
+
+            $("#abtn").css({"color": "green"});
+            $("#bbtn").css({"color": "black"});
+            $("#cbtn").css({"color": "black"});
+            $("#dbtn").css({"color": "black"});
+            $("#wbtn").css({"color": "black"});
+
+            $('#tab2').hide('slow');
+            $('#tab3').hide('slow');
+            $('#tab4').hide('slow');
+            $('#tab5').hide('slow');
+
+        });
+
+        $('#bbtn').click(function() {
+
+            //$('#b').hide();
+            $('#tab2').animate({
+                height: 'show'
+            });
+
+            $("#abtn").css({"color": "black"});
+            $("#bbtn").css({"color": "green"});
+            $("#cbtn").css({"color": "black"});
+            $("#dbtn").css({"color": "black"});
+            $("#wbtn").css({"color": "black"});
+
+            $('#tab1').hide('slow');
+            $('#tab3').hide('slow');
+            $('#tab4').hide('slow');
+            $('#tab5').hide('slow');
+
+        });
+
+        $('#cbtn').click(function() {
+
+            //$('#c').hide();
+            $('#tab3').animate({
+                width : 'show'
+            });
+
+            $("#abtn").css({"color": "black"});
+            $("#bbtn").css({"color": "black"});
+            $("#cbtn").css({"color": "green"});
+            $("#dbtn").css({"color": "black"});
+            $("#wbtn").css({"color": "black"});
+
+            $('#tab1').hide('slow');
+            $('#tab2').hide('slow');
+            $('#tab4').hide('slow');
+            $('#tab5').hide('slow');
+
+        });
+
+        $('#dbtn').click(function() {
+
+            //$('#d').hide();
+            $('#tab4').animate({
+                width : 'show'
+            });
+
+            $("#abtn").css({"color": "black"});
+            $("#bbtn").css({"color": "black"});
+            $("#cbtn").css({"color": "black"});
+            $("#dbtn").css({"color": "green"});
+            $("#wbtn").css({"color": "black"});
+
+            $('#tab1').hide('slow');
+            $('#tab2').hide('slow');
+            $('#tab3').hide('slow');
+            $('#tab5').hide('slow');
+
+        });
+
+        $('#wbtn').click(function() {
+
+            //$('#a').hide();
+            $('#tab5').animate({
+                height: 'show'
+
+            });
+
+            $("#abtn").css({"color": "black"});
+            $("#bbtn").css({"color": "black"});
+            $("#cbtn").css({"color": "black"});
+            $("#dbtn").css({"color": "black"});
+            $("#wbtn").css({"color": "green"});
+
+            $('#tab1').hide('slow');
+            $('#tab2').hide('slow');
+            $('#tab3').hide('slow');
+            $('#tab4').hide('slow');
+
+        });
+
     });
- 
- 
-/* Закрытие меню */
- 
-    $('.icon-close').click(function() { //выбираем класс icon-close и метод click
- 
-        $('.menu').animate({ //выбираем класс menu и метод animate
- 
-            left: '-285px' /* при клике на крестик меню вернется назад в свое
-               положение и скроется */
- 
-        }, 200); //скорость движения меню в мс
-         
-    $('body').animate({ //выбираем тег body и метод animate
- 
-            left: '0px' //а содержимое страницы снова вернется в положение 0px
- 
-        }, 200); //скорость движения меню в мс
-    });
-};
- 
-$(document).ready(main); /* как только страница полностью загрузится, будет
-               вызвана функция main, отвечающая за работу меню */

@@ -7,190 +7,266 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.css"/>
 
+ 
+    <link href="../static/css/rotating-card.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/jquery-2.2.1.min.js') }}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.min.js"></script>
+
+
 {% endblock %}
 {% block content %}
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="page-header">Темпертурный график</h1>
-                <div id="graph" class="panel panel-default">
-                    <div class="panel-body">
-                        <input type="text" id="demo" class="form-control">
-                        <br>
-                        <div style="text-align: center;">
-                            <canvas id="chart2" width="740" height="400"></canvas>
-                        </div>
-                    </div>
-                </div>
-                {% if current_user.is_authenticated and current_user.has_role('admin') %}
-                    <form action="/temp_xlsx" method="get">
-                        <button type="submit" class="btn btn-success">Скачать</button>
-                    </form>
-                    <br>
-                    <form action="/temp_xlsx" method="post" enctype="multipart/form-data">
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="usr">Укажите с какой строки начать или оставте пустым, чтобы обновить
-                                    полностью:</label>
-                                <input type="text" class="form-control" name="row">
-                                <label class="btn btn-default btn-file">
-                                    <input type="file" name="file" hidden>
-                                </label>
-                                <button type="submit" class="btn btn-info">Загрузить</button>
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <div class="col-md-4 col-sm-6">
+                <div class="card-container">
+                    <div class="card">
+                        <div class="front">
+                            <div class="cover">
+                                <img src="https://www.clipartsgram.com/image/129556292-kyz84k3.jpg"/>
                             </div>
-                        </div>
-                    </form>
-                {% endif %}
-            </div>
-        </div>
-    </div>
+                            <div class="user">
+                                <img class="img-circle"
+                                     src="https://www2.mmu.ac.uk/media/mmuacuk/style-assets/images/r-research/profile-Zeyad.jpg"/>
+                            </div>
+                            <div class="content">
+                                <div class="main">
+                                    <h3 class="name">John Marvel</h3>
+                                    <p class="profession">CEO</p>
+                                    <p class="text-center">"I'm the new Sinatra, and since I made it here I can make it
+                                        anywhere, yeah, they love me everywhere"</p>
+                                </div>
+                                <div class="footer">
+                                    <i class="fa fa-mail-forward"></i> Auto Rotation
+                                </div>
+                            </div>
+                        </div> <!-- end front panel -->
+                        <div class="back">
+                            <div class="header">
+                                <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>
+                            </div>
+                            <div class="content">
+                                <div class="main">
+                                    <h4 class="text-center">Job Description</h4>
+                                    <p class="text-center">Web design, Adobe Photoshop, HTML5, CSS3, Corel and many
+                                        others...</p>
+
+                                    <div class="stats-container">
+                                        <div class="stats">
+                                            <h4>235</h4>
+                                            <p>
+                                                Followers
+                                            </p>
+                                        </div>
+                                        <div class="stats">
+                                            <h4>114</h4>
+                                            <p>
+                                                Following
+                                            </p>
+                                        </div>
+                                        <div class="stats">
+                                            <h4>35</h4>
+                                            <p>
+                                                Projects
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="footer">
+                                <div class="social-links text-center">
+                                    <a href="http://deepak646.blogspot.in/" class="facebook"><i
+                                            class="fa fa-facebook fa-fw"></i></a>
+                                    <a href="http://deepak646.blogspot.in/" class="google"><i
+                                            class="fa fa-google-plus fa-fw"></i></a>
+                                    <a href="http://deepak646.blogspot.in/" class="twitter"><i
+                                            class="fa fa-twitter fa-fw"></i></a>
+                                </div>
+                            </div>
+                        </div> <!-- end back panel -->
+                    </div> <!-- end card -->
+                </div> <!-- end card-container -->
+            </div> <!-- end col sm 3 -->
+            <!--         <div class="col-sm-1"></div> -->
+            <div class="col-md-4 col-sm-6">
+                <div class="card-container manual-flip">
+                    <div class="card">
+                        <div class="front">
+                            <div class="cover">
+                                <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg"/>
+                            </div>
+                            <div class="user">
+                                <img class="img-circle"
+                                     src="http://www.outbrain.com/risingstars/wp-content/uploads/708x708-RS-Profile-Ashley-Callahan-400x400.jpg"/>
+                            </div>
+                            <div class="content">
+                                <div class="main">
+                                    <h3 class="name">Andrew Mike</h3>
+                                    <p class="profession">Web Developer</p>
+                                    <p class="text-center">"Lamborghini Mercy <br>Your chick she so thirsty <br>I'm in
+                                        that two seat Lambo"</p>
+                                </div>
+                                <div class="footer">
+                                    <button class="btn btn-simple" onclick="rotateCard(this)">
+                                        <i class="fa fa-mail-forward"></i> Manual Rotation
+                                    </button>
+                                </div>
+                            </div>
+                        </div> <!-- end front panel -->
+                        <div class="back">
+                            <div class="header">
+                                <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>
+                            </div>
+                            <div class="content">
+                                <div class="main">
+                                    <h4 class="text-center">Job Description</h4>
+                                    <p class="text-center">Web design, Adobe Photoshop, HTML5, CSS3, Corel and many
+                                        others...</p>
+
+                                    <div class="stats-container">
+                                        <div class="stats">
+                                            <h4>235</h4>
+                                            <p>
+                                                Followers
+                                            </p>
+                                        </div>
+                                        <div class="stats">
+                                            <h4>114</h4>
+                                            <p>
+                                                Following
+                                            </p>
+                                        </div>
+                                        <div class="stats">
+                                            <h4>35</h4>
+                                            <p>
+                                                Projects
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="footer">
+                                <button class="btn btn-simple" rel="tooltip" title="Flip Card"
+                                        onclick="rotateCard(this)">
+                                    <i class="fa fa-reply"></i> Back
+                                </button>
+                                <div class="social-links text-center">
+                                    <a href="http://deepak646.blogspot.in/" class="facebook"><i
+                                            class="fa fa-facebook fa-fw"></i></a>
+                                    <a href="http://deepak646.blogspot.in/" class="google"><i
+                                            class="fa fa-google-plus fa-fw"></i></a>
+                                    <a href="http://deepak646.blogspot.in/" class="twitter"><i
+                                            class="fa fa-twitter fa-fw"></i></a>
+                                </div>
+                            </div>
+                        </div> <!-- end back panel -->
+                    </div> <!-- end card -->
+                </div> <!-- end card-container -->
+            </div> <!-- end col sm 3 -->
+            <!--         <div class="col-sm-1"></div> -->
+            <div class="col-md-4 col-sm-6">
+                <div class="card-container">
+                    <div class="card">
+                        <div class="front">
+                            <div class="cover">
+                                <img src="http://www.hdimageson.com/wp-content/uploads/2016/05/beach-images-tumblr-300x188.jpg"/>
+                            </div>
+                            <div class="user">
+                                <img class="img-circle"
+                                     src="https://1.bp.blogspot.com/-aruLLVlXyJM/V_t-TxTncZI/AAAAAAAAJ3k/hnQKKVmKuOY_awf1nHGTsukGfw4qrde-gCLcB/s400/2.jpg"/>
+                            </div>
+                            <div class="content">
+                                <div class="main">
+                                    <h3 class="name">Inna Corman</h3>
+                                    <p class="profession">Product Manager</p>
+
+                                    <p class="text-center">"I'm the new Sinatra, and since I made it here I can make it
+                                        anywhere, yeah, they love me everywhere"</p>
+                                </div>
+                                <div class="footer">
+                                    <div class="rating">
+                                        <i class="fa fa-mail-forward"></i> Auto Rotation
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- end front panel -->
+                        <div class="back">
+                            <div class="header">
+                                <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>
+                            </div>
+                            <div class="content">
+                                <div class="main">
+                                    <h4 class="text-center">Job Description</h4>
+                                    <p class="text-center">Web design, Adobe Photoshop, HTML5, CSS3, Corel and many
+                                        others...</p>
+
+                                    <div class="stats-container">
+                                        <div class="stats">
+                                            <h4>235</h4>
+                                            <p>
+                                                Followers
+                                            </p>
+                                        </div>
+                                        <div class="stats">
+                                            <h4>114</h4>
+                                            <p>
+                                                Following
+                                            </p>
+                                        </div>
+                                        <div class="stats">
+                                            <h4>35</h4>
+                                            <p>
+                                                Projects
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="footer">
+                                <div class="social-links text-center">
+                                    <a href="http://deepak646.blogspot.in/" class="facebook"><i
+                                            class="fa fa-facebook fa-fw"></i></a>
+                                    <a href="http://deepak646.blogspot.in/" class="google"><i
+                                            class="fa fa-google-plus fa-fw"></i></a>
+                                    <a href="http://deepak646.blogspot.in/" class="twitter"><i
+                                            class="fa fa-twitter fa-fw"></i></a>
+                                </div>
+                            </div>
+                        </div> <!-- end back panel -->
+                    </div> <!-- end card -->
+                </div> <!-- end card-container -->
+            </div> <!-- end col-sm-3 -->
+        </div> <!-- end col-sm-10 -->
+    </div> <!-- end row -->
+    <div class="space-200"></div>
+</div>
+
 {% endblock %}
 {% block js %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $('#demo').daterangepicker({
-                "startDate": "{{ min }}",
-                "endDate": "{{ max }}",
-                "minDate": "{{ min }}",
-                "maxDate": "{{ max }}"
-            }, function (start, end, label) {
-                $.ajax({
-                    type: "POST",
-                    url: '/plot_range',
-                    data: {
-                        "start": start.format('YYYY-MM-DD'), "end": end.format('YYYY-MM-DD')
-                    },
-                    success: function (data) {
-                        var sel = $('#chart2');
-                        var par = sel.parent();
-                        par.empty();
-                        par.append('<canvas id="chart2"></canvas>');
-                        drawPlot(data);
-                    }
-                });
-            });
-        })
-    </script>
-    <script>
-        function drawPlot(response) {
-            var values = JSON.parse(response);
-            var chartjsData2 = [];
-            var chartjsData3 = [];
-            var chartjsData4 = [];
-            var labels = Object.keys(values);
-            for (var i = 0; i < labels.length; i++) {
-                chartjsData2.push(values[labels[i]]['2']);
-                chartjsData3.push(values[labels[i]]['3']);
-                chartjsData4.push(values[labels[i]]['4']);
-            }
-            var data = {
-                labels: labels,
-                datasets: [
 
-                    {
-                        label: "Общежитие 2",
-                        fill: false,
-                        lineTension: 0.1,
-                        backgroundColor: "rgba(192,192,75,1)",
-                        borderColor: "rgba(192,192,75,1)",
-                        borderCapStyle: 'butt',
-                        borderDash: [],
-                        borderDashOffset: 0.0,
-                        borderJoinStyle: 'miter',
-                        pointBorderColor: "rgba(192,192,75,1)",
-                        pointBackgroundColor: "#fff",
-                        pointBorderWidth: 1,
-                        pointHoverRadius: 5,
-                        pointHoverBackgroundColor: "rgba(192,192,75,1)",
-                        pointHoverBorderColor: "rgba(220,220,220,1)",
-                        pointHoverBorderWidth: 2,
-                        pointHitRadius: 10,
-                        spanGaps: false,
-                        data: chartjsData2
+<script>   $().ready(function () {
+    $('[rel="tooltip"]').tooltip();
 
-                    },
-                    {
-                        label: "Общежитие 4",
-                        fill: false,
-                        lineTension: 0.1,
-                        backgroundColor: "rgba(195,72,192,1)",
-                        borderColor: "rgba(195,72,192,1)",
-                        borderCapStyle: 'butt',
-                        borderDash: [],
-                        borderDashOffset: 0.0,
-                        borderJoinStyle: 'miter',
-                        pointBorderColor: "rgba(195,72,192,1)",
-                        pointBackgroundColor: "#fff",
-                        pointBorderWidth: 1,
-                        pointHoverRadius: 5,
-                        pointHoverBackgroundColor: "rgba(195,72,192,1)",
-                        pointHoverBorderColor: "rgba(220,220,220,1)",
-                        pointHoverBorderWidth: 2,
-                        pointHitRadius: 10,
-                        spanGaps: false,
-                        data: chartjsData3
+});
 
-                    },
-                    {
-                        label: "Общежитие 4",
-                        fill: false,
-                        lineTension: 0.1,
-                        backgroundColor: "rgba(75,192,192,1)",
-                        borderColor: "rgba(75,192,192,1)",
-                        borderCapStyle: 'butt',
-                        borderDash: [],
-                        borderDashOffset: 0.0,
-                        borderJoinStyle: 'miter',
-                        pointBorderColor: "rgba(75,192,192,1)",
-                        pointBackgroundColor: "#fff",
-                        pointBorderWidth: 1,
-                        pointHoverRadius: 5,
-                        pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                        pointHoverBorderColor: "rgba(220,220,220,1)",
-                        pointHoverBorderWidth: 2,
-                        pointHitRadius: 10,
-                        spanGaps: false,
-                        data: chartjsData4
+function rotateCard(btn) {
+    var $card = $(btn).closest('.card-container');
+    console.log($card);
+    if ($card.hasClass('hover')) {
+        $card.removeClass('hover');
+    } else {
+        $card.addClass('hover');
+    }
+}</script>
 
-                    }
-
-                ]
-            };
-            var ctx = $('#chart2');
-            var baseController = Chart.controllers.line;
-            Chart.defaults.mytype = Chart.defaults.line;
-            Chart.controllers.mytype = Chart.controllers.line.extend({
-                draw: function (ease) {
-                    baseController.prototype.draw.apply(this, arguments);
-                    var chart = this.chart.chart;
-                    var ctx = chart.ctx;
-                    if (this.calculatePointY(24) > 0) {
-                        ctx.fillStyle = "rgba(255, 52, 21, 0.2)";
-                        ctx.beginPath();
-                        ctx.rect(this.chart['scales']['x-axis-0']['left'], this.chart['legend']['height'], this.chart['scales']['x-axis-0']['width'], this.calculatePointY(24) - this.chart['legend']['height']);
-                        ctx.fill();
-                    }
-                    if (this.chart['scales']['x-axis-0']['top'] > this.calculatePointY(14)) {
-                        ctx.fillStyle = "rgba(52, 21, 255, 0.2)";
-                        ctx.beginPath();
-                        ctx.rect(this.chart['scales']['x-axis-0']['left'], this.calculatePointY(14), this.chart['scales']['x-axis-0']['width'], this.chart['scales']['x-axis-0']['top'] - this.calculatePointY(14));
-                        ctx.fill();
-                        ctx.restore();
-                    }
-                }
-            });
-            new Chart(ctx, {
-                type: 'mytype',
-                data: data,
-                options: {
-                    responsive: true
-                }
-            });
-        }</script>
 
 {% endblock %}

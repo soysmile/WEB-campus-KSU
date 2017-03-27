@@ -1,159 +1,177 @@
 {% extends 'base.html' %}
+{% block head %}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.css"/>
+
+    <link href="../static/css/rotating-card.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
+    <link href="http://www.bootstrap-year-calendar.com/download/v1.1.0/bootstrap-year-calendar.min.css"
+          rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" />
+
+    <script src="{{ url_for('static', filename='js/jquery-2.2.1.min.js') }}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script src="http://www.bootstrap-year-calendar.com/download/v1.1.0/bootstrap-year-calendar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+
+    <script src="../static/js/view-stat.js"></script>
+
+
+{% endblock %}
 {% block content %}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <h1 class="page-header">Статистика</h1>
-             <div class="stat-menu-view">
-                 
-                <div class="panel panel-default">
-                    <h1 class="page-header">Общая статистика</h1>
-                    <button type="button" class="stat-button">Подробнее</button>
-                
-               
-                <div class="panel-body" id="complete-stat">
-                    <h4>Всего комнат: {{ stats.places_all }}</h4>
-                    <h4>Всего комнат в 2 общежитии: {{ stats.places2 }}</h4>
-                    <h4>Всего комнат в 3 общежитии: {{ stats.places3 }}</h4>
-                    <h4>Всего комнат в 4 общежитии: {{ stats.places4 }}</h4>
-                    <h4>Одна свободное место: {{ stats.free_1 }}</h4>
-                    <h4>Два свободны мест: {{ stats.free_2 }}</h4>
-                    <h4>Три свободных мест: {{ stats.free_3 }}</h4>
-                    <h4>Четыре свободных мест: {{ stats.free_4 }}</h4>
-                    <h4>Дата обновления данных: {{ stats.date }}</h4>
-                    <form role="form" method="POST">
-                        <button type="submit" id="stat-update" class="btn btn-default" value="secondS" name="button">Обновить</button>
-                    </form>
-                </div>
-            </div>
-            <div class="panel panel-default" id="faculty-stat">
+            <div class="panel panel-default" id="user-panel-in" >
                 <div class="panel-body">
-                    <h1 class="page-header">Факультеты</h1>
-                    <canvas id="departments"></canvas>
+                <div data-role="page" id="start-all">
+                    <div data-role="navbar">
+                        <ul>
+                            <li><a href="#" id="aStat"><div id="a">Общая</div> </a></li>
+                            <li><a href="#" id="bStat"><div id="b">Общежитие №2</div> </a></li>
+                            <li><a href="#" id="cStat"><div id="c">Общежитие №3</div> </a></li>
+                            <li><a href="#" id="dStat"><div id="d">Общежитие №4</div> </a></li>
+                            <li><a href="#" id="eStat"><div id="e">Экстра №2</div> </a></li>
+                            <li><a href="#" id="fStat"><div id="f">Экстра №3</div> </a></li>
+                            <li><a href="#" id="gStat"><div id="g">Экстра №4</div> </a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="panel panel-default" id="room-campus-stat">
-                <div class="panel-body">
-                    <h1 class="page-header">Комнаты в общежитиях</h1>
-                <canvas id="rooms"></canvas>
-                </div>
-            </div>
-            <div class="panel panel-default" id="grade-campus-stat">
-                <div class="panel-body">
-                    <h1 class="page-header">Курсы</h1>
-                    <canvas id="courses"></canvas>
-                </div>
-            </div>
-            <div class="panel panel-default" id="campus-building2-stat">
-                <div class="panel-body">
-                    <h1 class="page-header">Факультеты в общежитии 2</h1>
-                    <canvas id="departments_2"></canvas>
-                </div>
-            </div>
-                        <div class="panel panel-default" id="campus-building3-stat">
-                <div class="panel-body">
-                    <h1 class="page-header">Факультеты в общежитии 3</h1>
-                    <canvas id="departments_3"></canvas>
-                </div>
-            </div>
-            <div class="panel panel-default" id="campus-building4-stat">
-                <div class="panel-body">
-                    <h1 class="page-header">Факультеты в общежитии 4</h1>
-                    <canvas id="departments_4"></canvas>
-                </div>
-            </div>
-                        <div class="panel panel-default" id="campus-places2-stat">
-                <div class="panel-body">
-                    <h1 class="page-header">Места в общежитии 2</h1>
-                    <canvas id="places_2"></canvas>
-                </div>
-            </div>
-                        <div class="panel panel-default" id="campus-places3-stat">
-                <div class="panel-body">
-                    <h1 class="page-header">Места в общежитии 3</h1>
-                    <canvas id="places_3"></canvas>
-                </div>
-            </div>
-                        <div class="panel panel-default" id="campus-places4-stat">
-                <div class="panel-body">
-                    <h1 class="page-header">Места в общежитии 4</h1>
-                    <canvas id="places_4"></canvas>
-                </div>
-            </div>
-            <div class="panel panel-default" id="form-study-stat">
-                <div class="panel-body">
-                    <h1 class="page-header">Форма обучения</h1>
-                    <canvas id="foe"></canvas>
-                </div>
-            </div>
+                <div class="tabbable">
+                    <div class="tab-content">
+                        <div class="tab-pane" id="stat1">
+                          <!--faculty-->
+                          <div class="panel-body" id="departments-block">
+                            <h1 class="page-header">Факультеты</h1>
+                            <canvas id="departments"></canvas>
+                          </div>
 
-            <div class="panel panel-default" id="windows-campus2-stat">
-                <div class="panel-body">
-                    <h1 class="page-header">Пластиковые окна в общежитии 2</h1>
-                    <canvas id="windows_2"></canvas>
+                          <div class="panel-body" id="campus-rooms">
+                            <h1 class="page-header">Комнаты в общежитиях</h1>
+                            <canvas id="rooms"></canvas>
+                          </div>
+
+                          <div class="panel-body" id="grade-campus">
+                            <h1 class="page-header">Курсы</h1>
+                            <canvas id="departments_2"></canvas>
+                          </div>
+
+                        </div>
+                        <!--2-->
+                        <div class="tab-pane" id="stat2">
+
+                          <div class="panel-body" id="campus2-grade">
+                            <h1 class="page-header">Факультеты</h1>
+                            <canvas id="departments_2"></canvas>
+                          </div>
+
+                          <div class="panel-body" id="campus-places">
+                            <h1 class="page-header">Места</h1>
+                            <canvas id="places_2"></canvas>
+                          </div>
+
+                          <div class="panel-body" id="campus-windows">
+                            <h1 class="page-header">Пластиковые окна</h1>
+                            <canvas id="windows_2"></canvas>
+                          </div>
+
+                        </div>
+                        <!--3-->
+                        <div class="tab-pane" id="stat3">
+
+                          <div class="panel-body" id="campus2-grade">
+                            <h1 class="page-header">Факультеты</h1>
+                            <canvas id="departments_3"></canvas>
+                          </div>
+
+                          <div class="panel-body" id="campus-places">
+                            <h1 class="page-header">Места</h1>
+                            <canvas id="places_3"></canvas>
+                          </div>
+
+                          <div class="panel-body" id="campus-windows">
+                            <h1 class="page-header">Пластиковые окна</h1>
+                            <canvas id="windows_3"></canvas>
+                          </div>
+
+                        </div>
+                        <!--4-->
+                        <div class="tab-pane" id="stat4">
+                          <div class="panel-body" id="campus2-grade">
+                            <h1 class="page-header">Факультеты</h1>
+                            <canvas id="departments_4"></canvas>
+                          </div>
+
+                          <div class="panel-body" id="campus-places">
+                            <h1 class="page-header">Места</h1>
+                            <canvas id="places_4"></canvas>
+                          </div>
+
+                          <div class="panel-body" id="campus-windows">
+                            <h1 class="page-header">Пластиковые окна</h1>
+                            <canvas id="windows_4"></canvas>
+                          </div>
+
+                        </div>
+                        <!--e2-->
+                        <div class="tab-pane" id="stat5">
+                          <div class="panel-body" id="econom">
+                            <h1 class="page-header">Лампочки эконом</h1>
+                            <canvas id="econom_2"></canvas>
+                          </div>
+
+                        </div>
+                        <!--e3-->
+                        <div class="tab-pane" id="stat6">
+                          <div class="panel-body" id="econom">
+                            <h1 class="page-header">Лампочки эконом</h1>
+                            <canvas id="econom_3"></canvas>
+                          </div>
+
+                          <div class="panel-body" id="hot-water">
+                            <h1 class="page-header">Блок с гор. водой</h1>
+                            <canvas id="hot_watter_4"></canvas>
+                          </div>
+
+                        </div>
+                        <!--e4-->
+                        <div class="tab-pane" id="stat7">
+                          <div class="panel-body" id="econom">
+                            <h1 class="page-header">Лампочки эконом</h1>
+                            <canvas id="econom_4"></canvas>
+                          </div>
+
+                          <div class="panel-body" id="hot-water">
+                            <h1 class="page-header">Блок с гор. водой</h1>
+                            <canvas id="hot_watter_4"></canvas>
+                          </div>
+
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-                        <div class="panel panel-default" id="windows-campus3-stat">
-                <div class="panel-body">
-                    <h1 class="page-header">Пластиковые окна в общежитии 3</h1>
-                    <canvas id="windows_3"></canvas>
                 </div>
-            </div>
-
-                        <div class="panel panel-default" id="windows-campus4-stat">
-                <div class="panel-body">
-                    <h1 class="page-header">Пластиковые окна в общежитии 4</h1>
-                    <canvas id="windows_4"></canvas>
-                </div>
-            </div>
-            <div class="panel panel-default" id="hot-water-campus3">
-                <div class="panel-body">
-                    <h1 class="page-header">Блоки с горячей водой в общ. 3</h1>
-                    <canvas id="hot_watter_3"></canvas>
-                </div>
-            </div>
-
-
-
-            <div class="panel panel-default" id="hot-water-campus4">
-                <div class="panel-body">
-                    <h1 class="page-header">Блоки с горячей водой в общ. 4</h1>
-                    <canvas id="hot_watter_4"></canvas>
-                </div>
-            </div>
-
-
-
-
-
-            <div class="panel panel-default" id="economy-block2">
-                <div class="panel-body">
-                    <h1 class="page-header">Эконом 2</h1>
-                    <canvas id="econom_2"></canvas>
-                </div>
-            </div>
-            <div class="panel panel-default" id="economy-block3">
-                <div class="panel-body">
-                    <h1 class="page-header">Эконом 3</h1>
-                    <canvas id="econom_3"></canvas>
-                </div>
-            </div>
-            <div class="panel panel-default" id="economy-block4">
-                <div class="panel-body">
-                    <h1 class="page-header">Эконом 4</h1>
-                    <canvas id="econom_4"></canvas>
-                </div>
-            </div>
 
 
 
 
-            
-            </div>
+        </div>
+
         </div>
     </div>
 </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script>
         var ctx = document.getElementById("departments");
@@ -996,5 +1014,154 @@
 </script>
 
 
+
+{% endblock %}
+{% block js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#demo').daterangepicker({
+                "startDate": "{{ min }}",
+                "endDate": "{{ max }}",
+                "minDate": "{{ min }}",
+                "maxDate": "{{ max }}"
+            }, function (start, end, label) {
+                $.ajax({
+                    type: "POST",
+                    url: '/plot_range',
+                    data: {
+                        "start": start.format('YYYY-MM-DD'), "end": end.format('YYYY-MM-DD')
+                    },
+                    success: function (data) {
+                        var sel = $('#chart2');
+                        var par = sel.parent();
+                        par.empty();
+                        par.append('<canvas id="chart2"></canvas>');
+                        drawPlot(data);
+                    }
+                });
+            });
+        })
+    </script>
+    <script>
+        function drawPlot(response) {
+            var values = JSON.parse(response);
+            var chartjsData2 = [];
+            var chartjsData3 = [];
+            var chartjsData4 = [];
+            var labels = Object.keys(values);
+            for (var i = 0; i < labels.length; i++) {
+                chartjsData2.push(values[labels[i]]['2']);
+                chartjsData3.push(values[labels[i]]['3']);
+                chartjsData4.push(values[labels[i]]['4']);
+            }
+            var data = {
+                labels: labels,
+                datasets: [
+
+                    {
+                        label: "Общежитие 2",
+                        fill: false,
+                        lineTension: 0.1,
+                        backgroundColor: "rgba(192,192,75,1)",
+                        borderColor: "rgba(192,192,75,1)",
+                        borderCapStyle: 'butt',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        borderJoinStyle: 'miter',
+                        pointBorderColor: "rgba(192,192,75,1)",
+                        pointBackgroundColor: "#fff",
+                        pointBorderWidth: 1,
+                        pointHoverRadius: 5,
+                        pointHoverBackgroundColor: "rgba(192,192,75,1)",
+                        pointHoverBorderColor: "rgba(220,220,220,1)",
+                        pointHoverBorderWidth: 2,
+                        pointHitRadius: 10,
+                        spanGaps: false,
+                        data: chartjsData2
+
+                    },
+                    {
+                        label: "Общежитие 4",
+                        fill: false,
+                        lineTension: 0.1,
+                        backgroundColor: "rgba(195,72,192,1)",
+                        borderColor: "rgba(195,72,192,1)",
+                        borderCapStyle: 'butt',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        borderJoinStyle: 'miter',
+                        pointBorderColor: "rgba(195,72,192,1)",
+                        pointBackgroundColor: "#fff",
+                        pointBorderWidth: 1,
+                        pointHoverRadius: 5,
+                        pointHoverBackgroundColor: "rgba(195,72,192,1)",
+                        pointHoverBorderColor: "rgba(220,220,220,1)",
+                        pointHoverBorderWidth: 2,
+                        pointHitRadius: 10,
+                        spanGaps: false,
+                        data: chartjsData3
+
+                    },
+                    {
+                        label: "Общежитие 4",
+                        fill: false,
+                        lineTension: 0.1,
+                        backgroundColor: "rgba(75,192,192,1)",
+                        borderColor: "rgba(75,192,192,1)",
+                        borderCapStyle: 'butt',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        borderJoinStyle: 'miter',
+                        pointBorderColor: "rgba(75,192,192,1)",
+                        pointBackgroundColor: "#fff",
+                        pointBorderWidth: 1,
+                        pointHoverRadius: 5,
+                        pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                        pointHoverBorderColor: "rgba(220,220,220,1)",
+                        pointHoverBorderWidth: 2,
+                        pointHitRadius: 10,
+                        spanGaps: false,
+                        data: chartjsData4
+
+                    }
+
+                ]
+            };
+            var ctx = $('#chart2');
+            var baseController = Chart.controllers.line;
+            Chart.defaults.mytype = Chart.defaults.line;
+            Chart.controllers.mytype = Chart.controllers.line.extend({
+                draw: function (ease) {
+                    baseController.prototype.draw.apply(this, arguments);
+                    var chart = this.chart.chart;
+                    var ctx = chart.ctx;
+                    if (this.calculatePointY(24) > 0) {
+                        ctx.fillStyle = "rgba(255, 52, 21, 0.2)";
+                        ctx.beginPath();
+                        ctx.rect(this.chart['scales']['x-axis-0']['left'], this.chart['legend']['height'], this.chart['scales']['x-axis-0']['width'], this.calculatePointY(24) - this.chart['legend']['height']);
+                        ctx.fill();
+                    }
+                    if (this.chart['scales']['x-axis-0']['top'] > this.calculatePointY(14)) {
+                        ctx.fillStyle = "rgba(52, 21, 255, 0.2)";
+                        ctx.beginPath();
+                        ctx.rect(this.chart['scales']['x-axis-0']['left'], this.calculatePointY(14), this.chart['scales']['x-axis-0']['width'], this.chart['scales']['x-axis-0']['top'] - this.calculatePointY(14));
+                        ctx.fill();
+                        ctx.restore();
+                    }
+                }
+            });
+            new Chart(ctx, {
+                type: 'mytype',
+                data: data,
+                options: {
+                    responsive: true
+                }
+            });
+        }</script>
 
 {% endblock %}

@@ -1,5 +1,7 @@
-var map;
+$( document ).ready( KSU );
 
+
+var map;
 function initMap() {
     var centerMap = {lat:46.641136, lng: 32.627992};
   map = new google.maps.Map(document.getElementById('map1'), {
@@ -64,3 +66,6 @@ function KSU() {
     title: 'Херсонский Государственный Университет'
   });
 }
+
+
+

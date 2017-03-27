@@ -1,43 +1,83 @@
 {% extends 'base.html' %}
-{% block content %}
-<div class="menu">
-       
-        <!-- Иконка меню -->
-        <div class="icon-close">
-            <img src="../static/images/close-btn.png">
-        </div>
- 
-        <!-- Меню -->
-        <ul>
-            <li><a data-toggle="tab" href="#tab1">Личные данные</a></li>
-            <li><a data-toggle="tab" href="#tab2">Оплата</a></li>
-            <li><a data-toggle="tab" href="#tab3">Отработки</a></li>
-            <li><a data-toggle="tab" href="##tab4">Нарушения</a></li>
-            <li><a href="/washing">Стирка</a></li>
-            <li><a href="/repair">Ремонт</a></li>
-            <li><a href="/logout">Выход</a></li>
-        </ul>
-    </div>
- 
-    <!-- Main body -->
-    <div class="background">
- 
-        <div class="icon-menu">
-            <img src="../static/images/menu-ham-icon11.png">
-            <span>Меню</span>
-        </div>
-    </div>
+{% block head %}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.css"/>
+
+    <link href="../static/css/rotating-card.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
+    <link href="http://www.bootstrap-year-calendar.com/download/v1.1.0/bootstrap-year-calendar.min.css"
+          rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"/>
+
+    <script src="{{ url_for('static', filename='js/jquery-2.2.1.min.js') }}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script src="http://www.bootstrap-year-calendar.com/download/v1.1.0/bootstrap-year-calendar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
+
+
     <script src="../static/js/view-Blocks.js"></script>
+
+{% endblock %}
+{% block content %}
 
     <div class="container">
         <div class="row">
-            <h1 class="page-header">Добро Пожаловать, {{ current_user.login }}</h1>
+            <h1 class="page-header">Добро Пожаловать {{ current_user.login }}</h1>
             <div class="col-md-12">
                 <div class="panel panel-default" id="user-panel-in">
                     <div class="panel-body">
+                        <div data-role="page" id="start-all">
+                            <div data-role="navbar">
+                                <ul>
+                                    <li><a href="#" id="abtn">
+                                        <div id="a">Личные данные</div>
+                                    </a></li>
+                                    <li><a href="#" id="bbtn">
+                                        <div id="b">Оплата</div>
+                                    </a></li>
+                                    <li><a href="#" id="cbtn">
+                                        <div id="c">Отработки</div>
+                                    </a></li>
+                                    <li><a href="#" id="dbtn">
+                                        <div id="d">Нарушения</div>
+                                    </a></li>
+                                    <li><a href="#" id="wbtn">
+                                        <div id="d">Стирка</div>
+                                    </a></li>
+                                    <li><a href="/repair" id="dbtn">
+                                        <div id="d">Ремонт</div>
+                                    </a></li>
+                                    <li><a href="/logout" id="dbtn">
+                                        <div id="d">Выход</div>
+                                    </a></li>
+                                </ul>
+                            </div>
+                        </div>
                         <div class="tabbable"> <!-- Only required for left/right tabs -->
-                            
                             <div class="tab-content">
+                                <div class="tab-pane " id="tab5">
+                                    <div class="calendar-panel">
+                                        <div id="calendar" style="overflow:visible!important;"></div>
+                                    </div>
+                                </div>
                                 <div class="tab-pane active" id="tab1">
                                     <p><a>Комната: </a>{{ person.id }}</p>
                                     <p><a>Фамилия: </a>{{ person.first_name }}</p>
@@ -200,15 +240,15 @@
                                             </tr>
                                             </tbody>
                                         </table>
-                                        <span class="glyphicon glyphicon-piggy-bank"></span> {{ price }} грн. /полная
+                                        <span class="glyphicon glyphicon-piggy-bank"></span> {{ price }} грн. / полная
                                         сумма
-                                       &nbsp; &nbsp; &nbsp;<span class="glyphicon glyphicon-piggy-bank"></span> 0 грн. /задолжность
+                                        &nbsp; &nbsp; &nbsp;<span class="glyphicon glyphicon-piggy-bank"></span> 0 грн.
+                                        / задолженность
                                     </div>
                                 {% endif %}
 
                                 {% if work %}
                                     <div class="tab-pane" id="tab3">
-                                        <br>
                                         <table class="table table-reflow">
                                             <thead>
                                             <tr>
@@ -261,6 +301,227 @@
             </div>
         </div>
     </div>
+    <div class="modal modal-fade" id="event-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                            class="sr-only">Close</span></button>
+                    <h4 class="modal-title">
+                        Резервирование
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="event-index">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="min-date" class="col-sm-4 control-label">Имя</label>
+                            <div class="col-sm-8">
+                                <input name="event-name" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="min-date" class="col-sm-4 control-label">Фамилия</label>
+                            <div class="col-sm-8">
+                                <input name="event-location" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="min-date" class="col-sm-4 control-label">Дата</label>
+                            <div class="col-sm-7">
+                                <div class="input-group input-daterange" data-provide="daterangepicker">
+                                    <input name="event-start-date" type="text" class="form-control" value="2012-04-05">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="close-event" data-dismiss="modal"><a>Отменить</a>
+                    </button>
+                    <button type="button" class="btn btn-primary" id="save-event">
+                        <a>Сохранить</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script>
+        $('.close').click(function () {
+            $('.alert.alert-danger').fadeOut()
+        });
+
+
+        var person = {% if wperson %}{{ wperson.id }}{% else %}null{% endif %};
+        var hostel = {% if hostel %}{{ hostel }}{% else %}null{% endif %};
+        var data = {{ data|tojson }};
+        for (var i = 0; i < data.length; i++) {
+            data[i]['startDate'] = new Date(Date.parse(data[i]['startDate']));
+            data[i]['endDate'] = new Date(Date.parse(data[i]['endDate']));
+        }
+
+        function editEvent(event) {
+            $('#event-modal input[name="event-index"]').val(event ? event.id : '');
+            $('#event-modal input[name="event-name"]').val(event ? event.name : '');
+            $('#event-modal input[name="event-location"]').val(event ? event.location : '');
+            $('#event-modal input[name="event-start-date"]').daterangepicker({
+                "locale": {
+                    "format": "YYYY-MM-DD HH:mm",
+                    "firstDay": 1
+                },
+                'update': event ? event.startDate : '',
+                "singleDatePicker": true,
+                "timePicker": true,
+                "timePicker24Hour": true,
+                "startDate": event ? event.startDate : ''
+            });
+            $('#event-modal').modal();
+        }
+
+        function deleteEvent(event) {
+            var dataSource = $('#calendar').data('calendar').getDataSource();
+
+            for (var i in dataSource) {
+                if (dataSource[i].id == event.id) {
+                    dataSource.splice(i, 1);
+                    break;
+                }
+            }
+
+            $('#calendar').data('calendar').setDataSource(dataSource);
+        }
+
+        function saveEvent() {
+
+            console.log(new Date(Date.parse($('#event-modal input[name="event-start-date"]').val())));
+            console.log($('#event-modal input[name="event-start-date"]').val());
+
+            var enddate = new Date(Date.parse($('#event-modal input[name="event-start-date"]').val()));
+            enddate.setUTCHours(enddate.getUTCHours() + 1);
+
+
+            var event = {
+                id: $('#event-modal input[name="event-index"]').val(),
+                name: person,
+                location: hostel,
+                startDate: new Date(Date.parse($('#event-modal input[name="event-start-date"]').val())),
+                endDate: enddate
+            };
+
+            var dataSource = $('#calendar').data('calendar').getDataSource();
+            if (event.id) {
+                for (var i in dataSource) {
+                    if (dataSource[i].id == event.id) {
+                        dataSource[i].name = event.name;
+                        dataSource[i].location = event.location;
+                        dataSource[i].startDate = event.startDate;
+                        dataSource[i].endDate = event.endDate;
+                    }
+                }
+                ;
+            }
+            else {
+                var newId = 0;
+                for (var i in dataSource) {
+                    if (dataSource[i].id > newId) {
+                        newId = dataSource[i].id;
+                    }
+                }
+                newId++;
+                event.id = newId;
+                $.ajax({
+                            type: "POST",
+                            url: "/new_wash",
+                            data: {
+                                'name': event.name,
+                                'location': event.location,
+                                'startDate': event.startDate.toDateString(),
+                                'endDate': event.endDate.toDateString()
+                            },
+                            success: function () {
+                                dataSource.push(event);
+                                $('#calendar').data('calendar').setDataSource(dataSource);
+                            },
+                            error: function () {
+                                $(".alert.alert-danger").fadeIn();
+
+                            }
+                        }
+                )
+
+            }
+            $('#event-modal').modal('hide');
+
+        }
+        $(function () {
+            var currentYear = new Date().getFullYear();
+
+            $('#calendar').calendar({
+                enableContextMenu: true,
+                enableRangeSelection: true,
+                {% if current_user.has_role('admin') %}
+                    contextMenuItems: [
+                        {
+                            text: 'Update',
+                            click: editEvent
+                        },
+                        {
+                            text: 'Delete',
+                            click: deleteEvent
+                        }
+                    ],
+                {% endif %}
+                selectRange: function (e) {
+                    editEvent({startDate: e.startDate, endDate: e.endDate});
+                },
+                mouseOnDay: function (e) {
+                    if (e.events.length > 0) {
+                        var content = '';
+                        for (var i in e.events) {
+                            {#                        $.ajax({#}
+                            {#                            type: "POST",#}
+                            {#                            url: "/new_get_person",#}
+                            {#                            data: {'id': e.events[i].name, 'location': e.events[i].location},#}
+                            {#                            success: function (data) {#}
+                            {#                                data = JSON.parse(data);#}
+                            {#                            }#}
+                            {#                        });#}
+
+                            content += '<div class="event-tooltip-content">'
+                                    + '<div class="event-name" style="color:' + e.events[i].color + '">' + e.events[i].name + '</div>'
+                                    + '<div class="event-location">' + e.events[i].location + '</div>'
+                                    + '</div>';
+                        }
+
+                        $(e.element).popover({
+                            trigger: 'manual',
+                            container: 'body',
+                            html: true,
+                            content: content
+                        });
+
+                        $(e.element).popover('show');
+                    }
+                },
+                mouseOutDay: function (e) {
+                    if (e.events.length > 0) {
+                        $(e.element).popover('hide');
+                    }
+                },
+                dayContextMenu: function (e) {
+                    $(e.element).popover('hide');
+                },
+                dataSource: data
+            })
+            ;
+
+            $('#save-event').click(function () {
+                saveEvent();
+            });
+        })
+        ;
+    </script>
 
 {% endblock %}
-

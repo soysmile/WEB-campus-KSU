@@ -159,7 +159,25 @@ def profile():
         hours += w.end - w.start
 
     violations = models.Violation.query.filter_by(person=person.id).all()
-    return render_template('profile.html', person=person, payment=paypay, hours=hours, work=work, violations=violations)
+
+    wperson = models.Person.query.filter_by(id=current_user.person_id).first()
+    if wperson:
+        hostel = db.session.query(models.Hostel).filter(models.Room.id == wperson.room).filter(
+            models.Hostel.id == models.Room.hostel_id).first().id
+        washing = models.Washing.query.filter_by(hostel=hostel).all()
+    else:
+        hostel = None
+        washing = models.Washing.query.all()
+
+    data = []
+
+    if washing:
+        for wash in washing:
+            data.append({'id': wash.id, 'name': wash.person, 'location': wash.hostel,
+                         'startDate': wash.start.strftime('%m/%d/%Y'), 'endDate': wash.end.strftime('%m/%d/%Y')})
+
+    return render_template('profile.html', person=person, payment=paypay, hours=hours, work=work, violations=violations,
+                           data=data, wperson=wperson, hostel=hostel)
 
 
 @login_required
@@ -779,23 +797,7 @@ def posts(page=1):
 @login_required
 @webLog
 def calendar_washing():
-    wperson = models.Person.query.filter_by(id=current_user.person_id).first()
-    if wperson:
-        hostel = db.session.query(models.Hostel).filter(models.Room.id == wperson.room).filter(
-            models.Hostel.id == models.Room.hostel_id).first().id
-        washing = models.Washing.query.filter_by(hostel=hostel).all()
-    else:
-        hostel = None
-        washing = models.Washing.query.all()
-
-    data = []
-
-    if washing:
-        for wash in washing:
-            data.append({'id': wash.id, 'name': wash.person, 'location': wash.hostel,
-                         'startDate': wash.start.strftime('%m/%d/%Y'), 'endDate': wash.end.strftime('%m/%d/%Y')})
-
-    return render_template('calendar_washing.html', data=data, wperson=wperson, hostel=hostel)
+    pass
 
 
 @app.route('/new_wash', methods=['POST'])
