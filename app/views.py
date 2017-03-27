@@ -180,8 +180,8 @@ def profile():
                            data=data, wperson=wperson, hostel=hostel)
 
 
-@login_required
 @app.route('/washing', methods=['GET', 'POST'])
+@login_required
 @webLog
 def washing():
     hostel_id = models.Room.query.filter_by(
@@ -847,3 +847,9 @@ def api_news_single(id):
         {'id': x.id, 'title': x.title, 'previewtext': sub("<[^>]*>", '', x.previewtext),
          'body': sub("<[^>]*>", '', x.body).replace('\r\n', ''),
          'timestamp': x.timestamp, 'path': url_for('static', filename='files/' + x.path)}})
+
+
+@app.route('/map')
+@webLog
+def mainstuff():
+    return render_template('map.html')
