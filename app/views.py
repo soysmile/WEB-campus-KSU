@@ -766,9 +766,10 @@ def free():
 @webLog
 def init():
     for room in models.Room.query.all():
-        places = room.numbers_of_person - len(models.Person.query.filter_by(room=room.id).all())
-        db.session.add(models.Room_free(places=places, room_id=room.id))
-        db.session.commit()
+        if not models.Room_free.query.filter_by(room_id=room.id).first():
+            places = room.numbers_of_person - len(models.Person.query.filter_by(room=room.id).all())
+            db.session.add(models.Room_free(places=places, room_id=room.id))
+            db.session.commit()
 
 
 @app.route('/employees')
@@ -853,3 +854,14 @@ def api_news_single(id):
 @webLog
 def mainstuff():
     return render_template('map.html')
+
+@app.route('/get_free_rooms', methods=['POST'])
+def get_free_rooms():
+    hostel_id = request.form['hostel_id']
+    return jsonify(dict(
+        room=[(x[1].id, x[1].room_number) for x in db.session.query(models.Room_free, models.Room) \
+                .filter(models.Room_free.places > 0) \
+                .filter(models.Room.id == models.Room_free.room_id) \
+                .filter(models.Room.hostel_id == hostel_id).all()]
+        ))
+

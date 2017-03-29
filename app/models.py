@@ -127,6 +127,7 @@ class Room(db.Model):
 
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    start_date = db.Column(db.Date)
     last_name = db.Column(db.String(255))
     first_name = db.Column(db.String(255))
     middle_name = db.Column(db.String(255))
@@ -156,14 +157,89 @@ class Person(db.Model):
     violation = db.relationship('Violation', backref='person_violation', lazy='dynamic')
     repair = db.relationship('Repair', backref='person_repair', lazy='dynamic')
 
+    def __init__(self, person=None, room=None):
+        if person and room:
+            self.start_date = datetime.datetime.now().date()
+            self.last_name = person.last_name
+            self.first_name = person.first_name
+            self.middle_name = person.middle_name
+            self.department = person.department
+            self.group = person.group
+            self.form_of_education = person.form_of_education
+            self.hostel_id = person.hostel_id
+            self.room_id = person.room_id
+            self.birthday = person.birthday
+            self.passport = person.passport
+            self.parents = person.parents
+            self.index = person.index
+            self.region = person.region
+            self.district = person.district
+            self.settlement = person.settlement
+            self.street = person.street
+            self.phone_number_parent = person.phone_number_parent
+            self.phone_number = person.phone_number
+            self.note = person.note
+            self.email = person.email
+            self.room = room
+
     def __str__(self):
         return str(self.first_name) + ' ' + str(self.last_name)
 
     def set_invite(self):
         self.invite = str(uuid4())
 
-        # def __init__(self):
-        #     self.set_invite()
+
+class Person_old(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    start_date = db.Column(db.Date)
+    end_date = db.Column(db.Date, default=None)
+    last_name = db.Column(db.String(255))
+    first_name = db.Column(db.String(255))
+    middle_name = db.Column(db.String(255))
+    department = db.Column(db.String(50))
+    group = db.Column(db.Integer)
+    form_of_education = db.Column(db.String(255))
+    hostel_id = db.Column(db.Integer)
+    room_id = db.Column(db.Integer)
+    birthday = db.Column(db.String(255))
+    passport = db.Column(db.String(255))
+    parents = db.Column(db.String(255))
+    index = db.Column(db.Integer)
+    region = db.Column(db.String(255))
+    district = db.Column(db.String(255))
+    settlement = db.Column(db.String(255))
+    street = db.Column(db.String(255))
+    phone_number_parent = db.Column(db.String(255))
+    phone_number = db.Column(db.String(255))
+    note = db.Column(db.String(255))
+    email = db.Column(db.String(255))
+
+    def __str__(self):
+        return str(self.first_name) + ' ' + str(self.last_name)
+
+    def __init__(self, person=None):
+        self.start_date = person.start_date
+        self.end_date = datetime.datetime.now().date()
+        self.last_name = person.last_name
+        self.first_name = person.first_name
+        self.middle_name = person.middle_name
+        self.department = person.department
+        self.group = person.group
+        self.form_of_education = person.form_of_education
+        self.hostel_id = person.hostel_id
+        self.room_id = person.room_id
+        self.birthday = person.birthday
+        self.passport = person.passport
+        self.parents = person.parents
+        self.index = person.index
+        self.region = person.region
+        self.district = person.district
+        self.settlement = person.settlement
+        self.street = person.street
+        self.phone_number_parent = person.phone_number_parent
+        self.phone_number = person.phone_number
+        self.note = person.note
+        self.email = person.email
 
 
 class Register_main(db.Model):

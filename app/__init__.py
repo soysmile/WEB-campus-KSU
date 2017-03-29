@@ -2,6 +2,7 @@
 
 
 from flask import Flask
+from flask import g
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_security import Security, SQLAlchemyUserDatastore
@@ -29,6 +30,7 @@ def init_login():
     # Create user loader function
     @login_manager.user_loader
     def load_user(user_id):
+        g.user = db.session.query(models.User).get(user_id)
         return db.session.query(models.User).get(user_id)
 
 

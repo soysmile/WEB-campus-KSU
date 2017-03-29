@@ -5,7 +5,9 @@ import flask_admin as admin
 import flask_login as login
 from flask import flash
 from flask import url_for, redirect, request
+from flask.ext.admin.contrib.sqla.fields import QuerySelectField
 from flask.ext.admin.contrib.sqla.view import func
+from flask.ext.admin.form import Select2Widget
 from flask.ext.security import url_for_security
 from flask_admin import form
 from flask_admin import helpers, expose
@@ -48,7 +50,6 @@ class MyAdminIndexView(admin.AdminIndexView):
 
     @expose('/login/', methods=('GET', 'POST'))
     def login_view(self):
-        # handle user login
         form = LoginForm(request.form)
         if helpers.validate_form_on_submit(form):
             user = form.get_user()
@@ -105,19 +106,15 @@ class MyModelView(Roled, sqla.ModelView):
         self.roles_accepted = kwargs.pop('roles_accepted', list())
         super(MyModelView, self).__init__(*args, **kwargs)
 
-        # def is_accessible(self):
-        #     if login.current_user.is_authenticated:
-        #         return login.current_user.has_role('admin')
 
-
-class MyPersonView(MyModelView):
+class MyPersonOldView(MyModelView):
     def get_query(self):
         if login.current_user.has_role('posel2'):
             return self.session.query(self.model).filter(self.model.hostel_id == 1)
         elif login.current_user.has_role('posel3'):
             return self.session.query(self.model).filter(self.model.hostel_id == 2)
-        elif login.current_user.has_role('posel3'):
-            return self.session.query(self.model).filter(self.model.hostel_id == 2)
+        elif login.current_user.has_role('posel4'):
+            return self.session.query(self.model).filter(self.model.hostel_id == 3)
         else:
             return self.session.query(self.model)
 
@@ -126,23 +123,82 @@ class MyPersonView(MyModelView):
             return self.session.query(func.count('*')).select_from(self.model).filter(self.model.hostel_id == 1)
         elif login.current_user.has_role('posel3'):
             return self.session.query(func.count('*')).select_from(self.model).filter(self.model.hostel_id == 2)
-        elif login.current_user.has_role('posel3'):
-            return self.session.query(func.count('*')).select_from(self.model).filter(self.model.hostel_id == 2)
+        elif login.current_user.has_role('posel4'):
+            return self.session.query(func.count('*')).select_from(self.model).filter(self.model.hostel_id == 3)
         else:
             return self.session.query(func.count('*')).select_from(self.model)
 
-    """Just for test"""
+    @expose('/posel/', methods=['POST'])
+    def posel(self):
+        try:
+            query = models.Person_old.query.filter(models.Person_old.id == request.form['id'])
+            user = query.first()
+            if request.form.get('sel'):
+                db.session.add(models.Person(user, room=request.form.get('sel')))
+                db.session.commit()
+                models.Room_free.query.filter_by(room_id=request.form.get('sel')).first().places -= 1
+                db.session.commit()
+                db.session.delete(user)
+                db.session.commit()
+
+            flash('Выселено',
+                  '%s users were successfully approved.')
+        except Exception as ex:
+            if not self.handle_view_exception(ex):
+                raise
+        return redirect('/admin/person_old')
+
+    list_template = 'admin/list_posel.html'
+    column_exclude_list = (
+        'id', 'parents', 'index', 'note', 'invite', 'phone_number_parent', 'street', 'passport', 'department', 'group',
+        'form_of_education', 'hostel_id', 'room_id', 'birthday', 'district', 'email', 'start_date', 'end_date')
+    column_searchable_list = ('first_name', 'last_name')
+    edit_modal = True
+    create_modal = True
+    can_export = True
+    export_types = ['xlsx']
+    column_export_exclude_list = ['person_room']
+    column_editable_list = ['first_name', 'last_name']
+    column_labels = {'first_name': 'Фамилия', 'last_name': 'Имя', 'middle_name': 'Отчество'}
+
+
+class MyPersonView(MyModelView):
+    def get_query(self):
+        if login.current_user.has_role('posel2'):
+            return self.session.query(self.model).filter(self.model.hostel_id == 1)
+        elif login.current_user.has_role('posel3'):
+            return self.session.query(self.model).filter(self.model.hostel_id == 2)
+        elif login.current_user.has_role('posel4'):
+            return self.session.query(self.model).filter(self.model.hostel_id == 3)
+        else:
+            return self.session.query(self.model)
+
+    def get_count_query(self):
+        if login.current_user.has_role('posel2'):
+            return self.session.query(func.count('*')).select_from(self.model).filter(self.model.hostel_id == 1)
+        elif login.current_user.has_role('posel3'):
+            return self.session.query(func.count('*')).select_from(self.model).filter(self.model.hostel_id == 2)
+        elif login.current_user.has_role('posel4'):
+            return self.session.query(func.count('*')).select_from(self.model).filter(self.model.hostel_id == 3)
+        else:
+            return self.session.query(func.count('*')).select_from(self.model)
 
     @action('approve', 'Выселить', 'Вы уверены, что хотите выселить?')
     def action_approve(self, ids):
         try:
             query = models.Person.query.filter(models.Person.id.in_(ids))
-
             count = 0
             for user in query.all():
-                print(user)
+                try:
+                    db.session.add(models.Person_old(user))
+                    models.Room_free.query.filter_by(room_id=user.room).first().places += 1
+                    db.session.commit()
+                except Exception:
+                    print('error')
+                finally:
+                    db.session.delete(user)
+                    db.session.commit()
                 count += 1
-
             flash('Выселено',
                   '%s users were successfully approved.' % count)
         except Exception as ex:
@@ -151,15 +207,27 @@ class MyPersonView(MyModelView):
 
     column_exclude_list = (
         'id', 'parents', 'index', 'note', 'invite', 'phone_number_parent', 'street', 'passport', 'department', 'group',
-        'form_of_education', 'hostel_id', 'room_id', 'birthday', 'district', 'email  ')
+        'form_of_education', 'hostel_id', 'room_id', 'birthday', 'district', 'email', 'start_date', 'end_date')
     column_searchable_list = ('first_name', 'last_name')
     edit_modal = True
     create_modal = True
     can_export = True
     export_types = ['xlsx']
-    column_export_exclude_list = ['Person Room', 'person_room', 'person room']
+    column_export_exclude_list = ['person_room']
     column_editable_list = ['first_name', 'last_name']
     column_labels = {'first_name': 'Фамилия', 'last_name': 'Имя', 'middle_name': 'Отчество'}
+    column_auto_select_related = True
+
+    form_extra_fields = {
+        'person_room': QuerySelectField(
+            label='Комната',
+            query_factory=lambda: models.Room.query.filter_by(hostel_id=1).all() if login.current_user.has_role(
+                'posel2') else models.Room.query.filter_by(hostel_id=2).all() if login.current_user.has_role(
+                'posel3') else models.Room.query.filter_by(hostel_id=4).all() if login.current_user.has_role(
+                'posel4')else models.Room.query.all(),
+            widget=Select2Widget()
+        )
+    }
 
 
 class MyPostView(MyModelView):
@@ -168,7 +236,6 @@ class MyPostView(MyModelView):
     def _list_thumbnail(view, context, model, name):
         if not model.path:
             return ''
-
         return Markup(
             '<img src="%s" height="180px">' % url_for('static', filename='files/' + form.thumbgen_filename(model.path)))
 
@@ -256,6 +323,8 @@ admin_panel.add_view(MyRepairView(models.Repair, db.session, name='Ремонт'
 admin_panel.add_view(MyModelView(models.Room_free, db.session, name='Свободные комнаты', roles_accepted=['admin']))
 admin_panel.add_view(MyModelView(models.Logger, db.session, name='Логи', roles_accepted=['admin']))
 admin_panel.add_view(MyPostView(models.Post, db.session, name='Новости', roles_accepted=['admin', 'editor']))
+admin_panel.add_view(MyPersonOldView(models.Person_old, db.session, name='Прошлые жильцы',
+                                     roles_accepted=['admin', 'posel2', 'posel3', 'posel4']))
 admin_panel.add_view(
     MyModelView(models.Video_slider, db.session, name='Сладер видео', roles_accepted=['admin', 'editor']))
 admin_panel.add_view(
