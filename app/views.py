@@ -4,6 +4,10 @@ from flask import render_template, flash, redirect, url_for, request, abort, jso
 from sqlalchemy import desc, asc, or_
 from flask_login import login_user, logout_user, current_user, login_required
 from datetime import datetime, timedelta
+
+from sqlalchemy import func
+from sqlalchemy import literal_column
+
 from app import app, models, db, forms
 from flask_mobility.decorators import mobile_template
 import os
@@ -488,100 +492,38 @@ def stat():
             return redirect('stat')
     elif request.method == 'GET':
         stats = models.Statistics.query.order_by(desc(models.Statistics.date)).first()
+        departments = json.dumps(dict(
+            db.session.query(models.Person.department, func.count(models.Person.department)).group_by(
+                models.Person.department).filter(models.Person.department.isnot(None)).all()))
+        departments2 = json.dumps(dict(
+            db.session.query(models.Person.department, func.count(models.Person.department)).group_by(
+                models.Person.department).filter(models.Person.department.isnot(None)).filter(
+                models.Person.hostel_id == 1).all()))
+        departments3 = json.dumps(dict(
+            db.session.query(models.Person.department, func.count(models.Person.department)).group_by(
+                models.Person.department).filter(models.Person.department.isnot(None)).filter(
+                models.Person.hostel_id == 2).all()))
+        departments4 = json.dumps(dict(
+            db.session.query(models.Person.department, func.count(models.Person.department)).group_by(
+                models.Person.department).filter(models.Person.department.isnot(None)).filter(
+                models.Person.hostel_id == 3).all()))
+        rooms = json.dumps(
+            dict(db.session.query(models.Room.hostel_id, func.count(models.Room.id)).group_by(models.Room.hostel_id)))
 
-        departments = [
-            {'department': 'ФІФ', 'len': len(models.Person.query.filter_by(department='ФІФ').all())},
-            {'department': 'ФБГЕ', 'len': len(models.Person.query.filter_by(department='ФБГЕ').all())},
-            {'department': 'ФДПО', 'len': len(models.Person.query.filter_by(department='ФДПО').all())},
-            {'department': 'ФЕМ', 'len': len(models.Person.query.filter_by(department='ФЕМ').all())},
-            {'department': 'ФКМ', 'len': len(models.Person.query.filter_by(department='ФКМ').all())},
-            {'department': 'ФПІС', 'len': len(models.Person.query.filter_by(department='ФПІС').all())},
-            {'department': 'ФПЗЛТ', 'len': len(models.Person.query.filter_by(department='ФПЗЛТ').all())},
-            {'department': 'ФТСО', 'len': len(models.Person.query.filter_by(department='ФТСО').all())},
-            {'department': 'ФФВС', 'len': len(models.Person.query.filter_by(department='ФФВС').all())},
-            {'department': 'ФФЖ', 'len': len(models.Person.query.filter_by(department='ФФЖ').all())},
-            {'department': 'ФФМІ', 'len': len(models.Person.query.filter_by(department='ФФМІ').all())},
-            {'department': 'ЮФ', 'len': len(models.Person.query.filter_by(department='ЮФ').all())},
-            {'department': 'переклад', 'len': len(models.Person.query.filter_by(department='переклад').all())},
-        ]
+        foe = json.dumps(dict(
+            db.session.query(models.Person.form_of_education, func.count(models.Person.form_of_education)).group_by(
+                models.Person.form_of_education).filter(models.Person.form_of_education.isnot(None)).all()))
 
-        departments_2 = [
-            {'department': 'ФІФ', 'len': len(models.Person.query.filter_by(department='ФІФ', hostel_id=1).all())},
-            {'department': 'ФБГЕ', 'len': len(models.Person.query.filter_by(department='ФБГЕ', hostel_id=1).all())},
-            {'department': 'ФДПО', 'len': len(models.Person.query.filter_by(department='ФДПО', hostel_id=1).all())},
-            {'department': 'ФЕМ', 'len': len(models.Person.query.filter_by(department='ФЕМ', hostel_id=1).all())},
-            {'department': 'ФКМ', 'len': len(models.Person.query.filter_by(department='ФКМ', hostel_id=1).all())},
-            {'department': 'ФПІС', 'len': len(models.Person.query.filter_by(department='ФПІС', hostel_id=1).all())},
-            {'department': 'ФПЗЛТ', 'len': len(models.Person.query.filter_by(department='ФПЗЛТ', hostel_id=1).all())},
-            {'department': 'ФТСО', 'len': len(models.Person.query.filter_by(department='ФТСО', hostel_id=1).all())},
-            {'department': 'ФФВС', 'len': len(models.Person.query.filter_by(department='ФФВС', hostel_id=1).all())},
-            {'department': 'ФФЖ', 'len': len(models.Person.query.filter_by(department='ФФЖ', hostel_id=1).all())},
-            {'department': 'ФФМІ', 'len': len(models.Person.query.filter_by(department='ФФМІ', hostel_id=1).all())},
-            {'department': 'ЮФ', 'len': len(models.Person.query.filter_by(department='ЮФ', hostel_id=1).all())},
-            {'department': 'переклад',
-             'len': len(models.Person.query.filter_by(department='переклад', hostel_id=1).all())},
-        ]
-
-        departments_3 = [
-            {'department': 'ФІФ', 'len': len(models.Person.query.filter_by(department='ФІФ', hostel_id=2).all())},
-            {'department': 'ФБГЕ', 'len': len(models.Person.query.filter_by(department='ФБГЕ', hostel_id=2).all())},
-            {'department': 'ФДПО', 'len': len(models.Person.query.filter_by(department='ФДПО', hostel_id=2).all())},
-            {'department': 'ФЕМ', 'len': len(models.Person.query.filter_by(department='ФЕМ', hostel_id=2).all())},
-            {'department': 'ФКМ', 'len': len(models.Person.query.filter_by(department='ФКМ', hostel_id=2).all())},
-            {'department': 'ФПІС', 'len': len(models.Person.query.filter_by(department='ФПІС', hostel_id=2).all())},
-            {'department': 'ФПЗЛТ', 'len': len(models.Person.query.filter_by(department='ФПЗЛТ', hostel_id=2).all())},
-            {'department': 'ФТСО', 'len': len(models.Person.query.filter_by(department='ФТСО', hostel_id=2).all())},
-            {'department': 'ФФВС', 'len': len(models.Person.query.filter_by(department='ФФВС', hostel_id=2).all())},
-            {'department': 'ФФЖ', 'len': len(models.Person.query.filter_by(department='ФФЖ', hostel_id=2).all())},
-            {'department': 'ФФМІ', 'len': len(models.Person.query.filter_by(department='ФФМІ', hostel_id=2).all())},
-            {'department': 'ЮФ', 'len': len(models.Person.query.filter_by(department='ЮФ', hostel_id=2).all())},
-            {'department': 'переклад',
-             'len': len(models.Person.query.filter_by(department='переклад', hostel_id=2).all())},
-        ]
-
-        departments_4 = [
-            {'department': 'ФІФ', 'len': len(models.Person.query.filter_by(department='ФІФ', hostel_id=3).all())},
-            {'department': 'ФБГЕ', 'len': len(models.Person.query.filter_by(department='ФБГЕ', hostel_id=3).all())},
-            {'department': 'ФДПО', 'len': len(models.Person.query.filter_by(department='ФДПО', hostel_id=3).all())},
-            {'department': 'ФЕМ', 'len': len(models.Person.query.filter_by(department='ФЕМ', hostel_id=3).all())},
-            {'department': 'ФКМ', 'len': len(models.Person.query.filter_by(department='ФКМ', hostel_id=3).all())},
-            {'department': 'ФПІС', 'len': len(models.Person.query.filter_by(department='ФПІС', hostel_id=3).all())},
-            {'department': 'ФПЗЛТ', 'len': len(models.Person.query.filter_by(department='ФПЗЛТ', hostel_id=3).all())},
-            {'department': 'ФТСО', 'len': len(models.Person.query.filter_by(department='ФТСО', hostel_id=3).all())},
-            {'department': 'ФФВС', 'len': len(models.Person.query.filter_by(department='ФФВС', hostel_id=3).all())},
-            {'department': 'ФФЖ', 'len': len(models.Person.query.filter_by(department='ФФЖ', hostel_id=3).all())},
-            {'department': 'ФФМІ', 'len': len(models.Person.query.filter_by(department='ФФМІ', hostel_id=3).all())},
-            {'department': 'ЮФ', 'len': len(models.Person.query.filter_by(department='ЮФ', hostel_id=3).all())},
-            {'department': 'переклад',
-             'len': len(models.Person.query.filter_by(department='переклад', hostel_id=3).all())},
-        ]
-
-        rooms = [{'hostel': 2, 'len': len(models.Room.query.filter_by(hostel_id=1).all())},
-                 {'hostel': 3, 'len': len(models.Room.query.filter_by(hostel_id=2).all())},
-                 {'hostel': 4, 'len': len(models.Room.query.filter_by(hostel_id=3).all())}]
-
-        courses = [{'course': '1 курс', 'len': 0},
-                   {'course': '2 курс', 'len': 0},
-                   {'course': '3 курс', 'len': 0},
-                   {'course': '4 курс', 'len': 0},
-                   {'course': '5 курс', 'len': 0},
-                   {'course': '6 курс', 'len': 0}]
-
-        query = models.Person.query.all()
-        for c in query:
-            if c.group:
-                if str(c.group)[:1] == '1':
-                    courses[0]['len'] += 1
-                elif str(c.group)[:1] == '2':
-                    courses[1]['len'] += 1
-                elif str(c.group)[:1] == '3':
-                    courses[2]['len'] += 1
-                elif str(c.group)[:1] == '4':
-                    courses[3]['len'] += 1
-                elif str(c.group)[:1] == '5':
-                    courses[4]['len'] += 1
-                elif str(c.group)[:1] == '6':
-                    courses[5]['len'] += 1
+        courses = [(str(x[0])[:1], x[1]) for x in
+                   db.session.query(models.Person.group, func.count(models.Person.id)).group_by(
+                       models.Person.group).filter(models.Person.group.isnot(None)).all()]
+        courses_dict = {}
+        for i in courses:
+            if courses_dict.get(i[0]):
+                courses_dict[i[0]] += i[1]
+            else:
+                courses_dict.update({i[0]: i[1]})
+        courses_dict = json.dumps(courses_dict)
 
         hostel2 = [{'places': 0, 'persons': len(models.Person.query.filter_by(hostel_id=1).all())}]
         for room in models.Room.query.filter_by(hostel_id=1).all():
@@ -594,9 +536,6 @@ def stat():
         hostel4 = [{'places': 0, 'persons': len(models.Person.query.filter_by(hostel_id=3).all())}]
         for room in models.Room.query.filter_by(hostel_id=3).all():
             hostel4[0]['places'] += int(room.numbers_of_person)
-
-        foe = [{'foe': 'бюджет', 'len': len(models.Person.query.filter_by(form_of_education='б').all())},
-               {'foe': 'контракт', 'len': len(models.Person.query.filter_by(form_of_education='к').all())}]
 
         windows_2 = [{'windows': len(models.Room.query.filter_by(windows=1, hostel_id=1).all()),
                       'rooms': len(models.Room.query.filter_by(hostel_id=1).all())}]
@@ -617,11 +556,21 @@ def stat():
         econom_4 = [{'econom': len(models.Room.query.filter_by(econom=True, hostel_id=3).all()),
                      'rooms': len(models.Room.query.filter_by(hostel_id=3).all())}]
 
-        return render_template('stat.html', stats=stats, departments=departments, rooms=rooms, courses=courses,
-                               departments_2=departments_2, departments_3=departments_3, departments_4=departments_4,
+        temp = db.session.query(models.Temperature).order_by(asc(models.Temperature.date)).all()
+        buffer = {}
+        min = temp[0].date.strftime('%m/%d/%Y')
+        max = temp[-1].date.strftime('%m/%d/%Y')
+        for t in temp:
+            if buffer.get(str(t.date)):
+                buffer.get(str(t.date)).update({t.hostel_id: t.temperature})
+            else:
+                buffer.update({str(t.date): {t.hostel_id: t.temperature}})
+
+        return render_template('stat.html', stats=stats, departments=departments, rooms=rooms, courses=courses_dict,
+                               departments_2=departments2, departments_3=departments3, departments_4=departments4,
                                hostel2=hostel2, hostel3=hostel3, hostel4=hostel4, foe=foe, windows_2=windows_2,
                                windows_3=windows_3, windows_4=windows_4, hot_water_3=hot_water_3,
-                               hot_water_4=hot_water_4, econom_2=econom_2, econom_3=econom_3, econom_4=econom_4)
+                               hot_water_4=hot_water_4, econom_2=econom_2, econom_3=econom_3, econom_4=econom_4, min=min, max=max)
 
 
 @app.route('/load')
@@ -855,13 +804,13 @@ def api_news_single(id):
 def mainstuff():
     return render_template('map.html')
 
+
 @app.route('/get_free_rooms', methods=['POST'])
 def get_free_rooms():
     hostel_id = request.form['hostel_id']
     return jsonify(dict(
         room=[(x[1].id, x[1].room_number) for x in db.session.query(models.Room_free, models.Room) \
-                .filter(models.Room_free.places > 0) \
-                .filter(models.Room.id == models.Room_free.room_id) \
-                .filter(models.Room.hostel_id == hostel_id).all()]
-        ))
-
+            .filter(models.Room_free.places > 0) \
+            .filter(models.Room.id == models.Room_free.room_id) \
+            .filter(models.Room.hostel_id == hostel_id).all()]
+    ))

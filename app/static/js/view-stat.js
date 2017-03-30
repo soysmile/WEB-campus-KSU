@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     $('#stat1').show('slow');
     $('#stat2').hide('slow');
@@ -7,6 +7,7 @@ $(document).ready(function() {
     $('#stat5').hide('slow');
     $('#stat6').hide('slow');
     $('#stat7').hide('slow');
+    $('#stat8').hide('slow');
 
     $("#aStat").css({"color": "green"});
     $("#bStat").css({"color": "black"});
@@ -15,8 +16,9 @@ $(document).ready(function() {
     $("#eStat").css({"color": "black"});
     $("#fStat").css({"color": "black"});
     $("#gStat").css({"color": "black"});
+    $("#hStat").css({"color": "black"});
 
-    $('#aStat').click(function() {
+    $('#aStat').click(function () {
 
         //$('#a').hide();
         $('#stat1').animate({
@@ -30,6 +32,7 @@ $(document).ready(function() {
         $("#eStat").css({"color": "black"});
         $("#fStat").css({"color": "black"});
         $("#gStat").css({"color": "black"});
+        $("#hStat").css({"color": "black"});
 
         $('#stat2').hide('slow');
         $('#stat3').hide('slow');
@@ -37,10 +40,11 @@ $(document).ready(function() {
         $('#stat5').hide('slow');
         $('#stat6').hide('slow');
         $('#stat7').hide('slow');
+        $('#stat8').hide('slow');
 
     });
 
-    $('#bStat').click(function() {
+    $('#bStat').click(function () {
 
         //$('#a').hide();
         $('#stat2').animate({
@@ -54,6 +58,7 @@ $(document).ready(function() {
         $("#eStat").css({"color": "black"});
         $("#fStat").css({"color": "black"});
         $("#gStat").css({"color": "black"});
+        $("#hStat").css({"color": "black"});
 
         $('#stat1').hide('slow');
         $('#stat3').hide('slow');
@@ -61,10 +66,11 @@ $(document).ready(function() {
         $('#stat5').hide('slow');
         $('#stat6').hide('slow');
         $('#stat7').hide('slow');
+        $('#stat8').hide('slow');
 
     });
 
-    $('#cStat').click(function() {
+    $('#cStat').click(function () {
 
         //$('#a').hide();
         $('#stat3').animate({
@@ -79,6 +85,7 @@ $(document).ready(function() {
         $("#eStat").css({"color": "black"});
         $("#fStat").css({"color": "black"});
         $("#gStat").css({"color": "black"});
+        $("#hStat").css({"color": "black"});
 
         $('#stat1').hide('slow');
         $('#stat2').hide('slow');
@@ -86,10 +93,11 @@ $(document).ready(function() {
         $('#stat5').hide('slow');
         $('#stat6').hide('slow');
         $('#stat7').hide('slow');
+        $('#stat8').hide('slow');
 
     });
 
-    $('#dStat').click(function() {
+    $('#dStat').click(function () {
 
         //$('#a').hide();
         $('#stat4').animate({
@@ -104,6 +112,7 @@ $(document).ready(function() {
         $("#eStat").css({"color": "black"});
         $("#fStat").css({"color": "black"});
         $("#gStat").css({"color": "black"});
+        $("#hStat").css({"color": "black"});
 
         $('#stat1').hide('slow');
         $('#stat2').hide('slow');
@@ -111,10 +120,11 @@ $(document).ready(function() {
         $('#stat5').hide('slow');
         $('#stat6').hide('slow');
         $('#stat7').hide('slow');
+        $('#stat8').hide('slow');
 
     });
 
-    $('#eStat').click(function() {
+    $('#eStat').click(function () {
 
         //$('#a').hide();
         $('#stat5').animate({
@@ -129,6 +139,7 @@ $(document).ready(function() {
         $("#eStat").css({"color": "green"});
         $("#fStat").css({"color": "black"});
         $("#gStat").css({"color": "black"});
+        $("#hStat").css({"color": "black"});
 
         $('#stat1').hide('slow');
         $('#stat2').hide('slow');
@@ -136,10 +147,11 @@ $(document).ready(function() {
         $('#stat4').hide('slow');
         $('#stat6').hide('slow');
         $('#stat7').hide('slow');
+        $('#stat8').hide('slow');
 
     });
 
-    $('#fStat').click(function() {
+    $('#fStat').click(function () {
 
         //$('#a').hide();
         $('#stat6').animate({
@@ -154,6 +166,7 @@ $(document).ready(function() {
         $("#eStat").css({"color": "black"});
         $("#fStat").css({"color": "green"});
         $("#gStat").css({"color": "black"});
+        $("#hStat").css({"color": "black"});
 
         $('#stat1').hide('slow');
         $('#stat2').hide('slow');
@@ -161,10 +174,11 @@ $(document).ready(function() {
         $('#stat4').hide('slow');
         $('#stat5').hide('slow');
         $('#stat7').hide('slow');
+        $('#stat8').hide('slow');
 
     });
 
-    $('#gStat').click(function() {
+    $('#gStat').click(function () {
 
         //$('#a').hide();
         $('#stat7').animate({
@@ -179,6 +193,7 @@ $(document).ready(function() {
         $("#eStat").css({"color": "black"});
         $("#fStat").css({"color": "black"});
         $("#gStat").css({"color": "green"});
+        $("#hStat").css({"color": "green"});
 
         $('#stat1').hide('slow');
         $('#stat2').hide('slow');
@@ -186,7 +201,35 @@ $(document).ready(function() {
         $('#stat4').hide('slow');
         $('#stat5').hide('slow');
         $('#stat6').hide('slow');
+        $('#stat8').hide('slow');
 
     });
+    $('#hStat').click(function () {
+
+        //$('#a').hide();
+        $('#stat8').animate({
+            height: 'show'
+
+        });
+
+        $("#aStat").css({"color": "black"});
+        $("#bStat").css({"color": "black"});
+        $("#cStat").css({"color": "black"});
+        $("#dStat").css({"color": "black"});
+        $("#eStat").css({"color": "black"});
+        $("#fStat").css({"color": "black"});
+        $("#gStat").css({"color": "black"});
+        $("#hStat").css({"color": "green"});
+
+        $('#stat1').hide('slow');
+        $('#stat2').hide('slow');
+        $('#stat3').hide('slow');
+        $('#stat4').hide('slow');
+        $('#stat5').hide('slow');
+        $('#stat6').hide('slow');
+        $('#stat7').hide('slow');
+
+    });
+
 
 });
