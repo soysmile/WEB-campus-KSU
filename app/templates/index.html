@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
+{% block title %}Главная страница{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
 {% block content %}
-
     <div class="mainHeader homeHeader">
         <div class="container">
-
             <div style="min-height: 50px;">
                 <!-- Jssor Slider Begin -->
                 <!-- To move inline styles to css file/block, please specify a class name for each element. -->
@@ -251,9 +253,7 @@
                                         <a data-slide="prev" href="#myCarousel1" class="carousel-control left">‹</a>
                                         <a data-slide="next" href="#myCarousel1" class="carousel-control right">›</a>
                                     </div><!-- /.control-box -->
-
                                 </div><!-- /#myCarousel -->
-
                             </div><!-- /.span12 -->
                         </div><!-- /.row -->
                     </div><!-- /.container -->
@@ -261,4 +261,7 @@
             </div>
         </div>
     </div>
+    {% block js %}
+        {{ super() }}
+    {% endblock %}
 {% endblock %}

@@ -570,7 +570,8 @@ def stat():
                                departments_2=departments2, departments_3=departments3, departments_4=departments4,
                                hostel2=hostel2, hostel3=hostel3, hostel4=hostel4, foe=foe, windows_2=windows_2,
                                windows_3=windows_3, windows_4=windows_4, hot_water_3=hot_water_3,
-                               hot_water_4=hot_water_4, econom_2=econom_2, econom_3=econom_3, econom_4=econom_4, min=min, max=max)
+                               hot_water_4=hot_water_4, econom_2=econom_2, econom_3=econom_3, econom_4=econom_4,
+                               min=min, max=max)
 
 
 @app.route('/load')
@@ -653,24 +654,6 @@ def upload_file():
         photo = models.Photo.query.order_by(desc(models.Photo.timestamp)).limit(100).all()
 
         return render_template('photo.html', photos=photo, uf=app.config['UPLOAD_FOLDER'])
-
-
-@app.route('/get_all_register', methods=['GET'])
-@webLog
-def get_all_register():
-    family = models.Register_family.query.all()
-    family_main = []
-    student = models.Register_student.query.all()
-    student_main = []
-    if student:
-        for stu in student:
-            student_main.append([stu, models.Register_main.query.filter_by(id=stu.register_id).first()])
-
-    if family:
-        for fam in family:
-            family_main.append([fam, models.Register_main.query.filter_by(id=fam.register_id).first()])
-
-    return render_template('all_register.html', family=family_main, student=student_main)
 
 
 @app.route('/profile/repair', methods=['GET', 'POST'])

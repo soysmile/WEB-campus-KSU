@@ -13,6 +13,7 @@ app.config.from_object('config')
 db = SQLAlchemy(app)
 mail = Mail(app)
 
+
 from app import views, models
 from app.forms import LoginForm
 from .admin import admin_panel

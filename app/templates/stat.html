@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
+{% block title %}Статистика{% endblock %}
 {% block head %}
+    {{ super() }}
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -178,7 +180,6 @@
         </div>
     </div>
     {% block js %}
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
@@ -190,6 +191,8 @@
 
         <script>
             var colors = ["#FF6384", "#36A2EB", "#FFCE56", "#07bc73", "#7086f3", "#cf335a", "#2c2625", "#fddd18", "#8b288b", "#47d702", "#6052e9", "#dac842", "#cc3e46"];
+        </script>
+        <script>
             function plot(ctx, values, type) {
                 var json = JSON.parse(values);
                 var data = [];
@@ -219,7 +222,6 @@
             plot(document.getElementById("foe"), {{ foe | tojson }}, 'doughnut');
         </script>
         <script>
-            var colors = ["#FF6384", "#36A2EB", "#FFCE56", "#07bc73", "#7086f3", "#cf335a", "#2c2625", "#fddd18", "#8b288b", "#47d702", "#6052e9", "#dac842", "#cc3e46"];
             function plot(ctx, values, type) {
                 var json = values;
                 var data = [json[0].places - json[0].persons, json[0].persons];
@@ -241,8 +243,6 @@
             plot(document.getElementById("places_4"), {{ hostel4| tojson}}, 'doughnut');
         </script>
         <script>
-            var colors = ["#FF6384", "#36A2EB", "#FFCE56", "#07bc73", "#7086f3", "#cf335a", "#2c2625", "#fddd18", "#8b288b", "#47d702", "#6052e9", "#dac842", "#cc3e46"];
-
             function plot(ctx, values, type) {
                 var json = values;
                 var data = [json[0].rooms - json[0].windows, json[0].windows];
@@ -265,7 +265,6 @@
             plot(document.getElementById("windows_4"), {{ windows_4| tojson}}, 'doughnut');
         </script>
         <script>
-            var colors = ["#FF6384", "#36A2EB", "#FFCE56", "#07bc73", "#7086f3", "#cf335a", "#2c2625", "#fddd18", "#8b288b", "#47d702", "#6052e9", "#dac842", "#cc3e46"];
             function plot(ctx, values, type) {
                 var json = values;
                 var data = [json[0].blocks - json[0].hot, json[0].hot];
@@ -286,7 +285,6 @@
             plot(document.getElementById("hot_watter_4"), {{ hot_water_4| tojson}}, 'doughnut');
         </script>
         <script>
-            var colors = ["#FF6384", "#36A2EB", "#FFCE56", "#07bc73", "#7086f3", "#cf335a", "#2c2625", "#fddd18", "#8b288b", "#47d702", "#6052e9", "#dac842", "#cc3e46"];
             function plot(ctx, values, type) {
                 var json = values;
                 var data = [json[0].rooms - json[0].econom, json[0].econom];
