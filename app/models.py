@@ -118,11 +118,21 @@ class Room(db.Model):
 
     def __str__(self):
         hostel_number = Hostel.query.filter_by(id=self.hostel.id).first().number
-        return str(hostel_number) + '_' + str(self.room_number)
+        persons = Person.query.filter_by(room=self.id).all()
+        if persons:
+            nonfree = len(persons)
+        else:
+            nonfree = 0
+        return str(hostel_number) + '_' + str(self.room_number) + '(' + str(nonfree) + '/' + str(self.numbers_of_person) + ')'
 
     def __repr__(self):
         hostel_number = Hostel.query.filter_by(id=self.hostel.id).first().number
-        return str(hostel_number) + '_' + str(self.room_number)
+        persons = Person.query.filter_by(room=self.id).all()
+        if persons:
+            nonfree = len(persons)
+        else:
+            nonfree = 0
+        return str(hostel_number) + '_' + str(self.room_number) + '(' + str(nonfree) + '/' + str(self.numbers_of_person) + ')'
 
 
 class Person(db.Model):
@@ -385,8 +395,8 @@ class Register(db.Model):
     email = db.Column(db.String(255))
     note = db.Column(db.String(255))
 
-    def __str__(self):
-        return self.first_name + ' ' + self.last_name + ' ' + self.birthday
+    # def __str__(self):
+    #     return self.first_name + ' ' + self.last_name + ' ' + self.birthday
 
     def __init__(self, first_name=None, last_name=None, middle_name=None, department=None, group=None,
                  form_of_education=None, birthday=None, passport=None, parents=None, index=None, region=None,
@@ -500,59 +510,59 @@ class Photo(db.Model):
     path = db.Column(db.String(255), unique=True)
 
 
-@event.listens_for(Person, 'before_insert')
-def before_insert(*args):
-    if args[2].room:
-        room = Room.query.filter_by(id=args[2].room).first()
-        if room.numbers_of_person < len(Person.query.filter_by(room=args[2].room).all()) + 1:
-            flash('В этой комнате уже проживает %s жильцов. Комната не установлена' % room.numbers_of_person)
-            args[2].room = None
-            raise BufferError
+# @event.listens_for(Person, 'before_insert')
+# def before_insert(*args):
+#     if args[2].room:
+#         room = Room.query.filter_by(id=args[2].room).first()
+#         if room.numbers_of_person < len(Person.query.filter_by(room=args[2].room).all()) + 1:
+#             flash('В этой комнате уже проживает %s жильцов. Комната не установлена' % room.numbers_of_person)
+#             args[2].room = None
+#             raise BufferError
 
 
-@event.listens_for(Person, 'after_insert')
-def after_insert(*args):
-    if args[2].email and args[2].room:
-        from app import mail
-        from flask_mail import Message
-        from config import MAIL_DEFAULT_SENDER
-        print(args[2].first_name, args[2].room, args[2].invite)
-        msg = Message('Поселення', sender=MAIL_DEFAULT_SENDER, recipients=[args[2].email])
-        msg.html = """<b>Привіт, {0}!</b><br/>
-        Вітаємо, твоя кімната для проживання <b>{1}</b><br/>
-        Для активації особистого кабінету на сайті перейди за <a href='ksu-hostel.herokuapp.com/{2}'>посиланням</a>""".format(
-            args[2].first_name, args[2].room, args[2].invite)
-        mail.send(msg)
-
-
-@event.listens_for(Register, 'before_update')
-def before_update(*args):
-    if args[2].room_id:
-        session = db.create_scoped_session()
-        p = Person(last_name=args[2].last_name,
-                   first_name=args[2].first_name,
-                   middle_name=args[2].middle_name,
-                   department=args[2].department,
-                   group=args[2].group,
-                   form_of_education=args[2].form_of_education,
-                   birthday=args[2].birthday,
-                   passport=args[2].passport,
-                   parents=args[2].parents,
-                   index=args[2].index,
-                   region=args[2].region,
-                   district=args[2].district,
-                   settlement=args[2].settlement,
-                   street=args[2].street,
-                   phone_number_parent=args[2].phone_number_parent,
-                   phone_number=args[2].phone_number,
-                   note=args[2].note,
-                   email=args[2].email,
-                   room=args[2].room_id)
-        try:
-            session.add(p)
-            session.commit()
-        except BufferError:
-            args[2].room_id = None
+# @event.listens_for(Person, 'after_insert')
+# def after_insert(*args):
+#     if args[2].email and args[2].room:
+#         from app import mail
+#         from flask_mail import Message
+#         from config import MAIL_DEFAULT_SENDER
+#         print(args[2].first_name, args[2].room, args[2].invite)
+#         msg = Message('Поселення', sender=MAIL_DEFAULT_SENDER, recipients=[args[2].email])
+#         msg.html = """<b>Привіт, {0}!</b><br/>
+#         Вітаємо, твоя кімната для проживання <b>{1}</b><br/>
+#         Для активації особистого кабінету на сайті перейди за <a href='ksu-hostel.herokuapp.com/{2}'>посиланням</a>""".format(
+#             args[2].first_name, args[2].room, args[2].invite)
+#         mail.send(msg)
+#
+#
+# @event.listens_for(Register, 'before_update')
+# def before_update(*args):
+#     if args[2].room_id:
+#         session = db.create_scoped_session()
+#         p = Person(last_name=args[2].last_name,
+#                    first_name=args[2].first_name,
+#                    middle_name=args[2].middle_name,
+#                    department=args[2].department,
+#                    group=args[2].group,
+#                    form_of_education=args[2].form_of_education,
+#                    birthday=args[2].birthday,
+#                    passport=args[2].passport,
+#                    parents=args[2].parents,
+#                    index=args[2].index,
+#                    region=args[2].region,
+#                    district=args[2].district,
+#                    settlement=args[2].settlement,
+#                    street=args[2].street,
+#                    phone_number_parent=args[2].phone_number_parent,
+#                    phone_number=args[2].phone_number,
+#                    note=args[2].note,
+#                    email=args[2].email,
+#                    room=args[2].room_id)
+#         try:
+#             session.add(p)
+#             session.commit()
+#         except BufferError:
+#             args[2].room_id = None
 
 
 @event.listens_for(Register, 'after_update')

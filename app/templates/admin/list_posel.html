@@ -65,7 +65,7 @@
 {% block tail %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
-        {% set hostel_id = None %}
+        {% set hostel_id = 322 %}
         {% if current_user.has_role('posel2') %}
             {% set hostel_id = 1 %}
         {% elif current_user.has_role('posel3') %}

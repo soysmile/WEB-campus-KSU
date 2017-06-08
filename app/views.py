@@ -791,9 +791,21 @@ def mainstuff():
 @app.route('/get_free_rooms', methods=['POST'])
 def get_free_rooms():
     hostel_id = request.form['hostel_id']
-    return jsonify(dict(
-        room=[(x[1].id, x[1].room_number) for x in db.session.query(models.Room_free, models.Room) \
-            .filter(models.Room_free.places > 0) \
-            .filter(models.Room.id == models.Room_free.room_id) \
-            .filter(models.Room.hostel_id == hostel_id).all()]
-    ))
+    print(type(hostel_id))
+    if hostel_id != '322':
+        return jsonify(dict(
+            room=[(x[1].id, x[1].room_number) for x in db.session.query(models.Room_free, models.Room) \
+                .filter(models.Room_free.places > 0) \
+                .filter(models.Room.id == models.Room_free.room_id) \
+                .filter(models.Room.hostel_id == hostel_id).all()]
+        ))
+    elif hostel_id == '322':
+        return jsonify(dict(room=[(x.id, str(x)) for x in
+                                  db.session.query(models.Room)]))
+
+
+@app.route('/fix')
+def fix():
+    rooms = models.Room.query.filter_by(hostel_id=3).all()
+    for x in rooms:
+        print(x.numbers_of_person)
