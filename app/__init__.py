@@ -13,7 +13,6 @@ app.config.from_object('config')
 db = SQLAlchemy(app)
 mail = Mail(app)
 
-
 from app import views, models
 from app.forms import LoginForm
 from .admin import admin_panel
@@ -38,5 +37,4 @@ def init_login():
 init_login()
 
 if __name__ == "__main__":
-	app.run(debug=True)
-
+    app.run(debug=True)

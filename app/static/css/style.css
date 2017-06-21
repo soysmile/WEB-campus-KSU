@@ -712,21 +712,21 @@ footer {
     background-color: green;
 }
 .upload-btn{
-	padding-bottom: 40px;
-	text-align: none !important;
-	
+	width: 100%;
 }
 .upload-btn .btn.btn-primary{
+	margin: auto;
+	height: 50px ;
 	width: 200px;
-	border-radius: 25px;
 	color: white;
 	font-size: 16px;
 	font-weight: 600;
+    float: center;
     background-color: green;
     border-color: transparent;
 }
-.upload-btn .btn.btn-primary:hover{
-    background-color: #811515 !important;
+.btn.btn-primary:hover{
+    background-color: #811515;
     color: white;
     border-color: transparent;
     transition-duration: 0.5s;
@@ -1099,7 +1099,7 @@ input.form-control {
 .btn.btn-primary{
     width: 170px;
     margin-top: 10px;
-    /* margin-bottom: 5px; */
+    margin-bottom: 5px;
     background-color:lightgray;
     color: gray;
     font-weight: 200;
@@ -2057,7 +2057,8 @@ h1.page-header{
 }
 .modal-footer .btn-primary, .btn.btn-primary{
 	/* Style for "Rounded Rectan" */
-	border-radius:25px;
+	float: right;
+	border-radius:10px;
 	width: 149px;
 	height: 50px;
 	background-color: rgba(84, 193, 118, 1);
@@ -2734,4 +2735,40 @@ h1.page-header{
 	#cont-fluid-slider .carousel-inner{
 		left: 20%;
 	}
+}
+.table-condensed td{
+	color: grey;
+}
+.active.start-date.active.end-date.available{
+	background-color: green;
+}
+.ranges{
+	width: 95% !important;
+	margin:0 !important;
+	height: 50px;
+	position:relative;
+}
+.applyBtn.btn.btn-sm.btn-success{
+	opacity: 1;
+	width: 150px;
+	height: 50px;
+	border-radius: 10px;
+	float: left;
+}
+.cancelBtn.btn.btn-sm.btn-default{
+	opacity: 1;
+	width: 150px;
+	height: 50px;
+	border-radius: 10px;
+	float: left;
+	margin-bottom:0px;
+	
+}
+.ranges button{
+	color: white !important;
+	font-size: 16px !important;
+	font-weight: 700;
+}
+.daterangepicker.dropdown-menu.ltr.single.opensright.show-calendar{
+	width: 400px;
 }
