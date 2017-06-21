@@ -693,13 +693,40 @@ footer {
     background-size: 100%;
     z-index: 999999;
 }
-.btn.btn-primary{
-    float: center;
-    background-color: darkgray;
+#send-btn{
+    margin: auto !important;
+    color:white;
+    font-weight: 600;
+    font-size: 18px;
+    width: 250px;
+    
+}
+.send-btn-block{
+    margin: auto !important;
+    width: 250px;
+}
+#send-btn:hover{
+    color:darkgray;
+    font-weight: 600;
+    font-size: 18px;
+    background-color: green;
+}
+.upload-btn{
+	padding-bottom: 40px;
+	text-align: none !important;
+	
+}
+.upload-btn .btn.btn-primary{
+	width: 200px;
+	border-radius: 25px;
+	color: white;
+	font-size: 16px;
+	font-weight: 600;
+    background-color: green;
     border-color: transparent;
 }
-.btn.btn-primary:hover{
-    background-color: #811515;
+.upload-btn .btn.btn-primary:hover{
+    background-color: #811515 !important;
     color: white;
     border-color: transparent;
     transition-duration: 0.5s;
@@ -1072,7 +1099,7 @@ input.form-control {
 .btn.btn-primary{
     width: 170px;
     margin-top: 10px;
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
     background-color:lightgray;
     color: gray;
     font-weight: 200;
@@ -1348,36 +1375,36 @@ a {
     background: transparent;
     border-radius: 50px;
     display: inline-block;
-    font-size: 14px;
+    font-size: 64px;
     font-weight: 200;
-    line-height: 20px;
+    line-height: 10px;
     opacity: 1;
-    padding: 4px 10px 0px;
+    padding: 3px;
     position: static;
     height: 30px;
-    width: 100px;
+    width: 30px;
     background-color: transparent !important;
 }
 .carousel-control.left{
 	margin-right:10%;
     background-color: lightgray !important;
-    color : dodgerblue;
+    color : rgba(128,23,25,1);
     text-shadow: none;
 }
 .carousel-control.left:hover{
     background-color: lightgray !important;
-    color : dodgerblue;
+    color : green;
     text-shadow: none;
     opacity: 1;
 }
 .carousel-control.right{
     background-color: lightgray !important;
-    color : dodgerblue;
+    color : rgba(128,23,25,1);
     text-shadow: none;
 }
 .carousel-control.right:hover{
     background-color: lightgray !important;
-    color : dodgerblue;
+    color : green;
     text-shadow: none;
     opacity: 1;
 }
@@ -1972,6 +1999,31 @@ h1.page-header{
 	border-top-right-radius: 5px;
 	color: white
 }
+#a:hover{
+	text-decoration:none;
+	color:white;
+}
+#b:hover{
+	color:white;
+}
+#c:hover{
+	text-decoration:none;
+	color:white;
+}
+#d:hover{
+	color:white;
+}
+#e:hover{
+	text-decoration:none;
+	color:white;
+}
+#f:hover{
+	color:white;
+}
+#g:hover{
+	text-decoration:none;
+	color:white;
+}
 .modal-footer .btn-secondary, .btn.btn-default{
 	float: left;
 	border-radius:10px;
@@ -2005,8 +2057,7 @@ h1.page-header{
 }
 .modal-footer .btn-primary, .btn.btn-primary{
 	/* Style for "Rounded Rectan" */
-	float: right;
-	border-radius:10px;
+	border-radius:25px;
 	width: 149px;
 	height: 50px;
 	background-color: rgba(84, 193, 118, 1);
@@ -2106,8 +2157,9 @@ h1.page-header{
 	background-color: rgba(173, 216, 230, 0.2);
 }
 #start-all li:hover{
-	background-color: lightblue;
-	color: gray;
+    text-decoration: none !important;
+	background-color: rgba(128, 23, 25, 1);
+	color: white !important;
 	border-radius: 50px;
 }
 #start-all ul{
@@ -2633,4 +2685,53 @@ h1.page-header{
   height:74px;
   background-color: rgba(0, 255, 30, 0.247059);
   margin-left: 1.9px;
+}
+.counter{
+    position: absolute;
+    top:55px;
+    right: 0px;
+    height: 50px;
+    width: 200px;
+    margin: auto;
+    z-index:9;
+}
+#myCarousel a{
+	color: white;
+	-webkit-text-stroke: 1px black;
+
+}
+@media screen and (min-width: 1550px) and (max-width:1920px){
+	#video-slider .item.active, #video-slider .item {
+	left: 9% !important;
+	}
+}
+@media screen and (min-width: 1400px) and (max-width:1550px){
+	#video-slider .item.active, #video-slider .item {
+	left: 6% !important;
+	}
+}
+@media screen and (min-width: 1300px) and (max-width:1400px){
+	#video-slider .item.active, #video-slider .item {
+	left: 2% !important;
+	}
+}
+@media screen and (min-width: 768px) and (max-width:1300px){
+	#video-slider .item.active, #video-slider .item {
+	left: 15% !important;
+	}
+}
+@media screen and (min-width: 642px) and (max-width:768px){
+	#video-slider .item.active, #video-slider .item {
+	left: 5% !important;
+	}
+}
+@media screen and (min-width: 320px) and (max-width:642px){
+	#video-slider .item.active, #video-slider .item {
+	left: 25% !important;
+	}
+}
+@media screen and (min-width: 320px) and (max-width:992px){
+	#cont-fluid-slider .carousel-inner{
+		left: 20%;
+	}
 }

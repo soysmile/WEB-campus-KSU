@@ -1,7 +1,6 @@
 $(document).ready(function() {
     //2
-    $('#flor-1').show('slow');
-    $('#flor-2').hide('slow');
+    $('#flor-2').show('slow');
     $('#flor-3').hide('slow');
     $('#flor-4').hide('slow');
     $('#flor-5').hide('slow');

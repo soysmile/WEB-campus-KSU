@@ -618,11 +618,20 @@ def stat():
         econom_4 = [{'econom': len(models.Room.query.filter_by(econom=True, hostel_id=3).all()),
                      'rooms': len(models.Room.query.filter_by(hostel_id=3).all())}]
 
+        temp = db.session.query(models.Temperature).order_by(asc(models.Temperature.date)).all()
+        buffer = {}
+        min = temp[0].date.strftime('%m/%d/%Y')
+        max = temp[-1].date.strftime('%m/%d/%Y')
+        for t in temp:
+            if buffer.get(str(t.date)):
+                buffer.get(str(t.date)).update({t.hostel_id: t.temperature})
+            else:
+                buffer.update({str(t.date): {t.hostel_id: t.temperature}})
         return render_template('stat.html', stats=stats, departments=departments, rooms=rooms, courses=courses,
                                departments_2=departments_2, departments_3=departments_3, departments_4=departments_4,
                                hostel2=hostel2, hostel3=hostel3, hostel4=hostel4, foe=foe, windows_2=windows_2,
                                windows_3=windows_3, windows_4=windows_4, hot_water_3=hot_water_3,
-                               hot_water_4=hot_water_4, econom_2=econom_2, econom_3=econom_3, econom_4=econom_4)
+                               hot_water_4=hot_water_4, econom_2=econom_2, econom_3=econom_3, econom_4=econom_4, min=min, max=max)
 
 
 @app.route('/load')

@@ -16,7 +16,8 @@
           rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"/>
 
     <script src="{{ url_for('static', filename='js/jquery-2.2.1.min.js') }}"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
@@ -30,149 +31,173 @@
 
 {% endblock %}
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h1 class="page-header">Статистика</h1>
-            <div class="panel panel-default" id="user-panel-in" >
-                <div class="panel-body">
-                <div data-role="page" id="start-all">
-                    <div data-role="navbar">
-                        <ul>
-                            <li><a href="#" id="aStat"><div id="a">Общая</div> </a></li>
-                            <li><a href="#" id="bStat"><div id="b">Общежитие №2</div> </a></li>
-                            <li><a href="#" id="cStat"><div id="c">Общежитие №3</div> </a></li>
-                            <li><a href="#" id="dStat"><div id="d">Общежитие №4</div> </a></li>
-                            <li><a href="#" id="eStat"><div id="e">Экстра №2</div> </a></li>
-                            <li><a href="#" id="fStat"><div id="f">Экстра №3</div> </a></li>
-                            <li><a href="#" id="gStat"><div id="g">Экстра №4</div> </a></li>
-                        </ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">Статистика</h1>
+                <div class="panel panel-default" id="user-panel-in">
+                    <div class="panel-body">
+                        <div data-role="page" id="start-all">
+                            <div data-role="navbar">
+                                <ul>
+                                    <li><a href="#" id="aStat">
+                                        <div id="a">Общая</div>
+                                    </a></li>
+                                    <li><a href="#" id="bStat">
+                                        <div id="b">Общежитие №2</div>
+                                    </a></li>
+                                    <li><a href="#" id="cStat">
+                                        <div id="c">Общежитие №3</div>
+                                    </a></li>
+                                    <li><a href="#" id="dStat">
+                                        <div id="d">Общежитие №4</div>
+                                    </a></li>
+                                    <li><a href="#" id="eStat">
+                                        <div id="e">Экстра №2</div>
+                                    </a></li>
+                                    <li><a href="#" id="fStat">
+                                        <div id="f">Экстра №3</div>
+                                    </a></li>
+                                    <li><a href="#" id="gStat">
+                                        <div id="g">Экстра №4</div>
+                                    </a></li>
+                                    <li><a href="#" id="hStat">
+                                        <div id="h">Температура</div>
+                                    </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tabbable">
+                            <div class="tab-content">
+                                <div class="tab-pane" id="stat1">
+                                    <!--faculty-->
+                                    <div class="panel-body" id="departments-block">
+                                        <h1 class="page-header">Факультеты</h1>
+                                        <canvas id="departments"></canvas>
+                                    </div>
+
+                                    <div class="panel-body" id="campus-rooms">
+                                        <h1 class="page-header">Комнаты в общежитиях</h1>
+                                        <canvas id="rooms"></canvas>
+                                    </div>
+
+                                    <div class="panel-body" id="grade-campus">
+                                        <h1 class="page-header">Курсы</h1>
+                                        <canvas id="departments_2"></canvas>
+                                    </div>
+
+                                </div>
+                                <!--2-->
+                                <div class="tab-pane" id="stat2">
+
+                                    <div class="panel-body" id="campus2-grade">
+                                        <h1 class="page-header">Факультеты</h1>
+                                        <canvas id="departments_2"></canvas>
+                                    </div>
+
+                                    <div class="panel-body" id="campus-places">
+                                        <h1 class="page-header">Места</h1>
+                                        <canvas id="places_2"></canvas>
+                                    </div>
+
+                                    <div class="panel-body" id="campus-windows">
+                                        <h1 class="page-header">Пластиковые окна</h1>
+                                        <canvas id="windows_2"></canvas>
+                                    </div>
+
+                                </div>
+                                <!--3-->
+                                <div class="tab-pane" id="stat3">
+
+                                    <div class="panel-body" id="campus2-grade">
+                                        <h1 class="page-header">Факультеты</h1>
+                                        <canvas id="departments_3"></canvas>
+                                    </div>
+
+                                    <div class="panel-body" id="campus-places">
+                                        <h1 class="page-header">Места</h1>
+                                        <canvas id="places_3"></canvas>
+                                    </div>
+
+                                    <div class="panel-body" id="campus-windows">
+                                        <h1 class="page-header">Пластиковые окна</h1>
+                                        <canvas id="windows_3"></canvas>
+                                    </div>
+
+                                </div>
+                                <!--4-->
+                                <div class="tab-pane" id="stat4">
+                                    <div class="panel-body" id="campus2-grade">
+                                        <h1 class="page-header">Факультеты</h1>
+                                        <canvas id="departments_4"></canvas>
+                                    </div>
+
+                                    <div class="panel-body" id="campus-places">
+                                        <h1 class="page-header">Места</h1>
+                                        <canvas id="places_4"></canvas>
+                                    </div>
+
+                                    <div class="panel-body" id="campus-windows">
+                                        <h1 class="page-header">Пластиковые окна</h1>
+                                        <canvas id="windows_4"></canvas>
+                                    </div>
+
+                                </div>
+                                <!--e2-->
+                                <div class="tab-pane" id="stat5">
+                                    <div class="panel-body" id="econom">
+                                        <h1 class="page-header">Лампочки эконом</h1>
+                                        <canvas id="econom_2"></canvas>
+                                    </div>
+
+                                </div>
+                                <!--e3-->
+                                <div class="tab-pane" id="stat6">
+                                    <div class="panel-body" id="econom">
+                                        <h1 class="page-header">Лампочки эконом</h1>
+                                        <canvas id="econom_3"></canvas>
+                                    </div>
+
+                                    <div class="panel-body" id="hot-water">
+                                        <h1 class="page-header">Блок с гор. водой</h1>
+                                        <canvas id="hot_watter_4"></canvas>
+                                    </div>
+
+                                </div>
+                                <!--e4-->
+                                <div class="tab-pane" id="stat7">
+                                    <div class="panel-body" id="econom">
+                                        <h1 class="page-header">Лампочки эконом</h1>
+                                        <canvas id="econom_4"></canvas>
+                                    </div>
+
+                                    <div class="panel-body" id="hot-water">
+                                        <h1 class="page-header">Блок с гор. водой</h1>
+                                        <canvas id="hot_watter_4"></canvas>
+                                    </div>
+
+                                </div>
+                                <div class="tab-pane" id="stat8">
+                                    <div class="panel-body">
+                                        <input type="text" id="demo" class="form-control">
+                                        <br>
+                                        <div style="text-align: center;">
+                                            <canvas id="chart2" width="740" height="400"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="tabbable">
-                    <div class="tab-content">
-                        <div class="tab-pane" id="stat1">
-                          <!--faculty-->
-                          <div class="panel-body" id="departments-block">
-                            <h1 class="page-header">Факультеты</h1>
-                            <canvas id="departments"></canvas>
-                          </div>
 
-                          <div class="panel-body" id="campus-rooms">
-                            <h1 class="page-header">Комнаты в общежитиях</h1>
-                            <canvas id="rooms"></canvas>
-                          </div>
 
-                          <div class="panel-body" id="grade-campus">
-                            <h1 class="page-header">Курсы</h1>
-                            <canvas id="departments_2"></canvas>
-                          </div>
-
-                        </div>
-                        <!--2-->
-                        <div class="tab-pane" id="stat2">
-
-                          <div class="panel-body" id="campus2-grade">
-                            <h1 class="page-header">Факультеты</h1>
-                            <canvas id="departments_2"></canvas>
-                          </div>
-
-                          <div class="panel-body" id="campus-places">
-                            <h1 class="page-header">Места</h1>
-                            <canvas id="places_2"></canvas>
-                          </div>
-
-                          <div class="panel-body" id="campus-windows">
-                            <h1 class="page-header">Пластиковые окна</h1>
-                            <canvas id="windows_2"></canvas>
-                          </div>
-
-                        </div>
-                        <!--3-->
-                        <div class="tab-pane" id="stat3">
-
-                          <div class="panel-body" id="campus2-grade">
-                            <h1 class="page-header">Факультеты</h1>
-                            <canvas id="departments_3"></canvas>
-                          </div>
-
-                          <div class="panel-body" id="campus-places">
-                            <h1 class="page-header">Места</h1>
-                            <canvas id="places_3"></canvas>
-                          </div>
-
-                          <div class="panel-body" id="campus-windows">
-                            <h1 class="page-header">Пластиковые окна</h1>
-                            <canvas id="windows_3"></canvas>
-                          </div>
-
-                        </div>
-                        <!--4-->
-                        <div class="tab-pane" id="stat4">
-                          <div class="panel-body" id="campus2-grade">
-                            <h1 class="page-header">Факультеты</h1>
-                            <canvas id="departments_4"></canvas>
-                          </div>
-
-                          <div class="panel-body" id="campus-places">
-                            <h1 class="page-header">Места</h1>
-                            <canvas id="places_4"></canvas>
-                          </div>
-
-                          <div class="panel-body" id="campus-windows">
-                            <h1 class="page-header">Пластиковые окна</h1>
-                            <canvas id="windows_4"></canvas>
-                          </div>
-
-                        </div>
-                        <!--e2-->
-                        <div class="tab-pane" id="stat5">
-                          <div class="panel-body" id="econom">
-                            <h1 class="page-header">Лампочки эконом</h1>
-                            <canvas id="econom_2"></canvas>
-                          </div>
-
-                        </div>
-                        <!--e3-->
-                        <div class="tab-pane" id="stat6">
-                          <div class="panel-body" id="econom">
-                            <h1 class="page-header">Лампочки эконом</h1>
-                            <canvas id="econom_3"></canvas>
-                          </div>
-
-                          <div class="panel-body" id="hot-water">
-                            <h1 class="page-header">Блок с гор. водой</h1>
-                            <canvas id="hot_watter_4"></canvas>
-                          </div>
-
-                        </div>
-                        <!--e4-->
-                        <div class="tab-pane" id="stat7">
-                          <div class="panel-body" id="econom">
-                            <h1 class="page-header">Лампочки эконом</h1>
-                            <canvas id="econom_4"></canvas>
-                          </div>
-
-                          <div class="panel-body" id="hot-water">
-                            <h1 class="page-header">Блок с гор. водой</h1>
-                            <canvas id="hot_watter_4"></canvas>
-                          </div>
-
-                        </div>
-                    </div>
-                </div>
                 </div>
 
-
-
-
-        </div>
-
+            </div>
         </div>
     </div>
-</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script>
         var ctx = document.getElementById("departments");
         var json = {{ departments | tojson }};
@@ -190,39 +215,39 @@
                     label: '# of Votes',
                     data: data,
                     backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ]
-        }]
-    }
-});
-</script>
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ]
+                }]
+            }
+        });
+    </script>
     <script>
         var ctx = document.getElementById("rooms");
         var json = {{ rooms | tojson }};
@@ -240,19 +265,19 @@
                     label: '# of Votes',
                     data: data,
                     backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
-            ]
-        }]
-    }
-});
-</script>
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56"
+                    ]
+                }]
+            }
+        });
+    </script>
     <script>
         var ctx = document.getElementById("courses");
         var json = {{ courses | tojson }};
@@ -270,39 +295,39 @@
                     label: '# of Votes',
                     data: data,
                     backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ]
-        }]
-    }
-});
-</script>
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ]
+                }]
+            }
+        });
+    </script>
     <script>
         var ctx = document.getElementById("departments_2");
         var json = {{ departments_2 | tojson }};
@@ -320,39 +345,39 @@
                     label: '# of Votes',
                     data: data,
                     backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ]
-        }]
-    }
-});
-</script>
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ]
+                }]
+            }
+        });
+    </script>
     <script>
         var ctx = document.getElementById("departments_3");
         var json = {{ departments_3 | tojson }};
@@ -370,40 +395,40 @@
                     label: '# of Votes',
                     data: data,
                     backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ]
-        }]
-    }
-});
-</script>
-     <script>
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ]
+                }]
+            }
+        });
+    </script>
+    <script>
         var ctx = document.getElementById("departments_4");
         var json = {{ departments_4 | tojson }};
         var data = [];
@@ -420,43 +445,43 @@
                     label: '# of Votes',
                     data: data,
                     backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ]
-        }]
-    }
-});
-</script>
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ]
+                }]
+            }
+        });
+    </script>
     <script>
         var ctx = document.getElementById("places_2");
         var json = {{ hostel2 | tojson }};
-        var data = [json[0].places-json[0].persons, json[0].persons];
+        var data = [json[0].places - json[0].persons, json[0].persons];
         var labels = ['Свободно', 'Занято'];
         var myChart = new Chart(ctx, {
             type: 'doughnut',
@@ -466,43 +491,43 @@
                     label: '# of Votes',
                     data: data,
                     backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ]
-        }]
-    }
-});
-</script>
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ]
+                }]
+            }
+        });
+    </script>
     <script>
         var ctx = document.getElementById("places_3");
         var json = {{ hostel3 | tojson }};
-        var data = [json[0].places-json[0].persons, json[0].persons];
+        var data = [json[0].places - json[0].persons, json[0].persons];
         var labels = ['Свободно', 'Занято'];
         var myChart = new Chart(ctx, {
             type: 'doughnut',
@@ -512,43 +537,43 @@
                     label: '# of Votes',
                     data: data,
                     backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ]
-        }]
-    }
-});
-</script>
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ]
+                }]
+            }
+        });
+    </script>
     <script>
         var ctx = document.getElementById("places_4");
         var json = {{ hostel4 | tojson }};
-        var data = [json[0].places-json[0].persons, json[0].persons];
+        var data = [json[0].places - json[0].persons, json[0].persons];
         var labels = ['Свободно', 'Занято'];
         var myChart = new Chart(ctx, {
             type: 'doughnut',
@@ -558,40 +583,40 @@
                     label: '# of Votes',
                     data: data,
                     backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ]
-        }]
-    }
-});
-</script>
-        <script>
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ]
+                }]
+            }
+        });
+    </script>
+    <script>
         var ctx = document.getElementById("foe");
         var json = {{ foe | tojson }};
         var data = [];
@@ -608,43 +633,43 @@
                     label: '# of Votes',
                     data: data,
                     backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ]
-        }]
-    }
-});
-</script>
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ]
+                }]
+            }
+        });
+    </script>
     <script>
         var ctx = document.getElementById("windows_2");
         var json = {{ windows_2 | tojson }};
-        var data = [json[0].rooms-json[0].windows, json[0].windows];
+        var data = [json[0].rooms - json[0].windows, json[0].windows];
         var labels = ['Деревяные', 'Пластиковые'];
         var myChart = new Chart(ctx, {
             type: 'doughnut',
@@ -654,43 +679,43 @@
                     label: '# of Votes',
                     data: data,
                     backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ]
-        }]
-    }
-});
-</script>
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ]
+                }]
+            }
+        });
+    </script>
     <script>
         var ctx = document.getElementById("windows_3");
         var json = {{ windows_3 | tojson }};
-        var data = [json[0].rooms-json[0].windows, json[0].windows];
+        var data = [json[0].rooms - json[0].windows, json[0].windows];
         var labels = ['Деревяные', 'Пластиковые'];
 
         var myChart = new Chart(ctx, {
@@ -701,43 +726,43 @@
                     label: '# of Votes',
                     data: data,
                     backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ]
-        }]
-    }
-});
-</script>
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ]
+                }]
+            }
+        });
+    </script>
     <script>
         var ctx = document.getElementById("windows_4");
         var json = {{ windows_4 | tojson }};
-        var data = [json[0].rooms-json[0].windows, json[0].windows];
+        var data = [json[0].rooms - json[0].windows, json[0].windows];
         var labels = ['Деревяные', 'Пластиковые'];
         var myChart = new Chart(ctx, {
             type: 'doughnut',
@@ -747,43 +772,43 @@
                     label: '# of Votes',
                     data: data,
                     backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ]
-        }]
-    }
-});
-</script>
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ]
+                }]
+            }
+        });
+    </script>
     <script>
         var ctx = document.getElementById("hot_watter_3");
         var json = {{ hot_water_3 | tojson }};
-        var data = [json[0].blocks-json[0].hot, json[0].hot];
+        var data = [json[0].blocks - json[0].hot, json[0].hot];
         var labels = ['', 'Бойлер'];
         var myChart = new Chart(ctx, {
             type: 'doughnut',
@@ -793,43 +818,43 @@
                     label: '# of Votes',
                     data: data,
                     backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ]
-        }]
-    }
-});
-</script>
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ]
+                }]
+            }
+        });
+    </script>
     <script>
         var ctx = document.getElementById("hot_watter_4");
         var json = {{ hot_water_4 | tojson }};
-        var data = [json[0].blocks-json[0].hot, json[0].hot];
+        var data = [json[0].blocks - json[0].hot, json[0].hot];
         var labels = ['', 'Бойлер'];
         var myChart = new Chart(ctx, {
             type: 'doughnut',
@@ -839,45 +864,45 @@
                     label: '# of Votes',
                     data: data,
                     backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ]
-        }]
-    }
-});
-</script>
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ]
+                }]
+            }
+        });
+    </script>
 
 
-        <script>
+    <script>
         var ctx = document.getElementById("econom_2");
         var json = {{ econom_2 | tojson }};
-        var data = [json[0].rooms-json[0].econom, json[0].econom];
+        var data = [json[0].rooms - json[0].econom, json[0].econom];
         var labels = ['Обычные', 'Эконом'];
         var myChart = new Chart(ctx, {
             type: 'doughnut',
@@ -887,43 +912,43 @@
                     label: '# of Votes',
                     data: data,
                     backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ]
-        }]
-    }
-});
-</script>
-            <script>
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ]
+                }]
+            }
+        });
+    </script>
+    <script>
         var ctx = document.getElementById("econom_3");
         var json = {{ econom_3 | tojson }};
-        var data = [json[0].rooms-json[0].econom, json[0].econom];
+        var data = [json[0].rooms - json[0].econom, json[0].econom];
         var labels = ['Обычные', 'Эконом'];
         var myChart = new Chart(ctx, {
             type: 'doughnut',
@@ -933,43 +958,43 @@
                     label: '# of Votes',
                     data: data,
                     backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ]
-        }]
-    }
-});
-</script>
-            <script>
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ]
+                }]
+            }
+        });
+    </script>
+    <script>
         var ctx = document.getElementById("econom_4");
         var json = {{ econom_4 | tojson }};
-        var data = [json[0].rooms-json[0].econom, json[0].econom];
+        var data = [json[0].rooms - json[0].econom, json[0].econom];
         var labels = ['Обычные', 'Эконом'];
         var myChart = new Chart(ctx, {
             type: 'doughnut',
@@ -979,39 +1004,39 @@
                     label: '# of Votes',
                     data: data,
                     backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#07bc73",
-                "#7086f3",
-                "#cf335a",
-                "#2c2625",
-                "#fddd18",
-                "#8b288b",
-                "#47d702",
-                "#6052e9",
-                "#dac842",
-                "#cc3e46"
-            ]
-        }]
-    }
-});
-</script>
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#07bc73",
+                        "#7086f3",
+                        "#cf335a",
+                        "#2c2625",
+                        "#fddd18",
+                        "#8b288b",
+                        "#47d702",
+                        "#6052e9",
+                        "#dac842",
+                        "#cc3e46"
+                    ]
+                }]
+            }
+        });
+    </script>
 
 
 

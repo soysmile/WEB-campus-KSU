@@ -4,7 +4,7 @@
     <div class="container" xmlns:display="http://www.w3.org/1999/xhtml">
         <div class="row">
             <div class="col-md-12">
-                <button type="button" class="btn btn-primary">Посмотреть все заявки</button>
+                
                 {% for item in student %}
                 {{ item[0] }}
                 {{ item[1] }}
@@ -424,8 +424,8 @@
                                     $("#family").hide();
                                     $("#husband_wife").hide();
                                 </script>
-                                <div class="col-md-12">
-                                    <button class="btn btn-primary" type="submit">Отправить</button>
+                                <div class="send-btn-block" class="col-md-4">
+                                    <button id="send-btn" class="btn btn-primary" type="submit">Отправить</button>
                                 </div>
 
                             </div>
