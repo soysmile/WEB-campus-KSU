@@ -1,0 +1,42 @@
+{% extends 'mobile/base.html' %}
+{% block content %}
+{#<div class="mainHeader homeHeader">#}
+{#    <div class="container">#}
+{#        <div id="featured"> #}
+{#			<a href="#" target="_blank"><img src="../static/mobile/img/test1.jpg" alt="Ezio" rel="ezioCaption"  /></a>#}
+{#		</div> #}
+{#		<span class="orbit-caption" id="ezioCaption">This is an <em>awesome caption</em> Note. <strong>Note:</strong> This whole image is linked</span>#}
+{#		<span class="orbit-caption" id="marcusCaption">This is an <em>awesome caption</em> for Marcus with a <a href="#" target="_blank" style="color: #fff">link</a></span>#}
+{#    </div>    #}
+{#</div>#}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">ТОП Новости</h1>
+            {% for post in posts %}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h2><a href="{{ url_for('detail_view_post', id=post.id) }}">{{ post.title }}</a></h2>
+                    <p><span class="glyphicon glyphicon-time"></span> {{ post.timestamp }}</p>
+                    <p>{{ post.body }}</p>
+                </div>
+                <div class="panel-footer">
+                    <a class="btn btn-primary" href="{{ url_for('detail_view_post', id=post.id) }}">Подробнее <span
+                            class="glyphicon glyphicon-chevron-right"></span></a>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- Pager -->
+            <ul class="pager">
+                <li class="previous">
+                    <a href="#">&larr; Назад</a>
+                </li>
+                <li class="next">
+                    <a href="#">Вперед &rarr;</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

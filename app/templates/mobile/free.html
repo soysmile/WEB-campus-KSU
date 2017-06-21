@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <h1 class="page-header">Rooms</h1>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                {% for floor in floors %}
+                    <div class="col-md-12 panel panel-body-default">
+                        <h5>Floor {{ floor.floor }}</h5>
+                        <div class="panel panel-body">
+                            {% for room in places_free %}
+                                {% if floor.floor == room.floor  %}
+                                    <div class="col-md-2">
+                                        <h4><a href="{{ url_for('room_detail', hostel=room.hostel_id, room=room.room_number) }}">{{ room.room_number }} </a></h4>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

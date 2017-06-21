@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">Person</h1>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {% if current_user.is_authenticated %}
+                    <p><h4>Имя: {{ person.last_name }}</h4></p>
+                    <p><h4>Фамилия: {{ person.first_name }}</h4></p>
+                    <p><h4>Отчество: {{ person.middle_name }}</h4></p>
+                    <p><h4>Факультет: {{ person.department }}</h4></p>
+                    <p><h4>Группа: {{ person.group }}</h4></p>
+                    <p><h4>Форма обучения: {{ person.form_of_education }}</h4></p>
+                    <p><h4>Дата рождения: {{ person.birthday }}</h4></p>
+                    <p><h4>Паспортные данные: {{ person.passport }}</h4></p>
+                    <p><h4>Родители: {{ person.parents }}</h4></p>
+                    <p><h4>Индекс: {{ person.index }}</h4></p>
+                    <p><h4>Область: {{ person.region }}</h4></p>
+                    <p><h4>Район: {{ person.district }}</h4></p>
+                    <p><h4>Населённый пункт: {{ person.settlement }}</h4></p>
+                    <p><h4>Улица: {{ person.street }}</h4></p>
+                    <p><h4>Номера телефонов родителей: {{ person.phone_number_parent }}</h4></p>
+                    <p><h4>Номер телефона: {{ person.phone_number }}</h4></p>
+                    {% else %}
+                    <p><h4>Факультет: {{ person.department }}</h4></p>
+                    <p><h4>Группа: {{ person.group }}</h4></p>
+                    {% endif %}
+
+
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

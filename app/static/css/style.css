@@ -1050,7 +1050,9 @@ input.form-control {
     border: 1px ridge lime;
     outline: 0;
    }
-
+.pr1{
+    display: none;
+}
 #reg-panel label{
     color: white;
 }
@@ -1578,6 +1580,7 @@ a {
 	width: 100%;
 	position:relative;
 	overflow: hidden;
+	margin-bottom: 100px;
 }
 #user-panel-in p{
 	text-align: left;
@@ -1790,13 +1793,21 @@ a {
     #map1{
     	margin-bottom: 10px;
     	float: left;
-    	width: 90%
+    	width: 100%
     }
     #dir-panel{
     	float: left;
-    	width: 90%;
+    	width: 100%;
     	margin:0;
     }
+    #room1{
+    	margin-left: -2px;;
+    }
+    .campus-room-cell{
+    	width: 35.6px !important;
+    	height: 94px !important;
+    }
+
 }
 #graph{
 	width: 100%;
@@ -1814,43 +1825,50 @@ a {
 }
 
 .campus-dir-map{
-    float: right;
-    width: 77%;
-
-	height: 360px;
-	background-color: rgba(255, 255, 255, 0.1);
-	border: 1px solid rgba(255, 255, 255, 0.3);
-	padding-right:0;
-	overflow: hidden;
-
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    transform: all 0.5s ease;
 }
 #campus-dir-panel{
     box-shadow: none;
     float: left;
     margin-bottom: 100px;
-    height: 500px;
+    height: 555px;
     width: 200px;
 	background-color: rgba(255, 255, 255, 0.1);
 	border: 1px solid rgba(255, 255, 255, 0.3);
 	padding-right:0;
-	overflow: scroll;
+	overflow-y: scroll;
 }
 .campus-map{
     background-image: url(../img/campus2-2.png);
     background-repeat: no-repeat;
     width: 100%;
-    height: 300px !important;
+    height: 500px !important;
     background-size: 100%;
 }
+#left-side-row{
+	margin-left: 12px;
+}
 .campus-room-cell{
-
     float: left;
-    margin-top: 57px;
-    width: 35px;
-    height: 94px;
+    margin-top: 74px;
+    width: 43.6px;
+    height: 115px;
+    background-color: rgba(0, 255, 30, 0.247059);
+    margin-left: 0.4px;
+}
+#right-side-row .campus-room-cell{
+	float: left;
+    margin-top: 78px;
+    width: 43.6px;
+    height: 106px;
+    background-color: rgba(0, 255, 30, 0.247059);
+    margin-left: 0.4px;
 }
 .campus-room-row{
-    margin-left: 10px;
+    margin-left: 11px;
 }
 .campus-select-panel{
     text-align: center;
@@ -2192,9 +2210,10 @@ h1.page-header{
 	.campus-dir-map{
 		float: left;
 		width: 100%;
-		height: 400px;
+		height: 900px;
 		margin-bottom:20px;
 		padding:0;
+
 	}
 	#campus-dir-panel{
 		width: 100% !important;
@@ -2203,23 +2222,415 @@ h1.page-header{
 		padding:0;
 	}
 	.campus-map{
+		margin-top: 250px;
+		margin-left: -300px;
 		height: 400px !important;
+		transform: all 0.5s ease;
+		transform: rotate(90deg);
 	}
 	.campus-room-cell{
 		margin-top: 62px;
 		width: 38px;
 		height: 99px;
 	}
+	.map-info-panel{
+		margin-left: 350px;
+	}
 }
 .carousel-inner ul{
 	list-style-type: none;
 }
 #myCarousel1 .carousel-inner{
-	left:7%;
 }
 @media screen and (max-width: 1500px){
 	#myCarousel1 .carousel-inner{
 	left:2%;
 	block: inline-block;
 }
+}
+
+#left-side-row a{
+	text-align: center;
+	position:relative;
+	top: 10px;
+	color: black;
+	font-weight:600;
+}
+#.campus-room-water{
+  position: relative;
+
+}
+
+.campus-room-water:before {
+  content: "\f043";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  position: relative;
+/*--adjust as necessary--*/
+  color: black;
+  font-size: 22px;
+  top: 10px;
+}
+
+#.campus-room-light{
+  position: relative;
+
+}
+
+.campus-room-light:before {
+  content: "\f0eb";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  position: relative;
+/*--adjust as necessary--*/
+  color: black;
+  font-size: 22px;
+  top: 10px;
+}
+.campus-dir-map .map-info-panel ul{
+	list-style-type: none;
+	margin-top: 30px;
+
+}
+.map-info-panel li{
+	width: 100%;
+	height: 40px;
+	text-align:left;
+}
+.campus-dir-map .map-info-panel i{
+	display: inline-block;
+	height: 30px;
+	width: 20px;
+
+}
+.campus-dir-map .map-info-panel span{
+	font-weight: 400;
+	margin-left: 10px;
+}
+.map-info-panel .campus-room-kitchen{
+	left: 248px;
+	top: -185px;
+	width: 35px !important;
+	height: 35px !important;
+	position: relative;
+
+}
+.liner-ico{
+	left: 250px;
+	top: -190px;
+	position: relative;
+}
+.map-info-panel .campus-room-shower{
+	left: 250px;
+	top: -185px;
+	width: 35px !important;
+	height: 35px !important;
+	position: relative;
+
+}
+.map-info-panel .campus-room-admin{
+	left: 250px;
+	top: -185px;
+	width: 35px !important;
+	height: 35px !important;
+	position: relative;
+
+}
+.map-info-panel .campus-room-storage{
+	left: 250px;
+	top: -185px;
+	width: 35px !important;
+	height: 35px !important;
+	position: relative;
+
+}
+.campus-dir-map .campus-room-free{
+	background-color: rgba(0, 255, 30, 0.247059);
+	width: 20px;
+	height: 20px;
+}
+
+.campus-dir-map .campus-room-full{
+	background-color: rgba(255, 0, 0, 0.247059);
+	width: 20px;
+	height: 20px;
+}
+.campus-map a{
+	position:relative;
+	font-weight: 400;
+	top: 10px;
+	left: 1px;
+}
+#room1{
+  background-color: rgba(255, 0, 0, 0.247059) !important;
+}
+#service-room{
+  background-color: transparent !important;
+}
+.campus-room-wash{
+  background-image: url(../img/ico/washing-hands.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 40px;
+  height: 40px;
+  margin-top: 30px;
+  margin-left: 2px;
+  position: relative;
+  display: inline-block;
+}
+.campus-room-wash:hover::after {
+    content: attr(data-title); /* Выводим текст */
+    position: absolute; /* Абсолютное позиционирование */
+    left: 70%; top: 70%; /* Положение подсказки */
+    z-index: 1; /* Отображаем подсказку поверх других элементов */
+    background: rgba(255,255,255,0.9); /* Полупрозрачный цвет фона */
+    font-family: Arial, sans-serif; /* Гарнитура шрифта */
+    font-size: 11px; /* Размер текста подсказки */
+    padding: 5px 10px; /* Поля */
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+}
+.campus-room-storage:hover::after {
+    content: attr(data-title); /* Выводим текст */
+    position: absolute; /* Абсолютное позиционирование */
+    left: 70%; top: 70%; /* Положение подсказки */
+    z-index: 1; /* Отображаем подсказку поверх других элементов */
+    background: rgba(255,255,255,0.9); /* Полупрозрачный цвет фона */
+    font-family: Arial, sans-serif; /* Гарнитура шрифта */
+    font-size: 11px; /* Размер текста подсказки */
+    padding: 5px 10px; /* Поля */
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+}
+.campus-room-kitchen:hover::after {
+    content: attr(data-title); /* Выводим текст */
+    position: absolute; /* Абсолютное позиционирование */
+    left: 70%; top: 70%; /* Положение подсказки */
+    z-index: 1; /* Отображаем подсказку поверх других элементов */
+    background: rgba(255,255,255,0.9); /* Полупрозрачный цвет фона */
+    font-family: Arial, sans-serif; /* Гарнитура шрифта */
+    font-size: 11px; /* Размер текста подсказки */
+    padding: 5px 10px; /* Поля */
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+}
+.campus-room-admin:hover::after {
+    content: attr(data-title); /* Выводим текст */
+    position: absolute; /* Абсолютное позиционирование */
+    left: 70%; top: 70%; /* Положение подсказки */
+    z-index: 1; /* Отображаем подсказку поверх других элементов */
+    background: rgba(255,255,255,0.9); /* Полупрозрачный цвет фона */
+    font-family: Arial, sans-serif; /* Гарнитура шрифта */
+    font-size: 11px; /* Размер текста подсказки */
+    padding: 5px 10px; /* Поля */
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+}
+.campus-room-shower:hover::after {
+    content: attr(data-title); /* Выводим текст */
+    position: absolute; /* Абсолютное позиционирование */
+    left: 70%; top: 70%; /* Положение подсказки */
+    z-index: 1; /* Отображаем подсказку поверх других элементов */
+    background: rgba(255,255,255,0.9); /* Полупрозрачный цвет фона */
+    font-family: Arial, sans-serif; /* Гарнитура шрифта */
+    font-size: 11px; /* Размер текста подсказки */
+    padding: 5px 10px; /* Поля */
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+}
+.campus-room-storage{
+  background-image: url(../img/ico/storage.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 40px;
+  height: 40px;
+  margin-top: 30px;
+  margin-left: 2px;
+  position: relative;
+  display: inline-block;
+}
+.campus-room-admin{
+  background-image: url(../img/ico/desktop.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 40px;
+  height: 40px;
+  margin-top: 30px;
+  margin-left: 2px;
+  position: relative;
+  display: inline-block;
+}
+.campus-room-shower{
+  background-image: url(../img/ico/wc.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 40px;
+  height: 40px;
+  margin-top: 30px;
+  margin-left: 2px;
+  position: relative;
+  display: inline-block;
+}
+.campus-room-kitchen{
+  background-image: url(../img/ico/kitchen.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 30px;
+  height: 30px;
+  margin-top: 30px;
+  margin-left: 2px;
+  position: relative;
+  display: inline-block;
+}
+.campus-map4 a{
+	position:relative;
+	font-weight: 400;
+	top: 10px;
+	left: 1px;
+}
+.campus-map4{
+    background-image: url(../img/campus4-2.png);
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 400px !important;
+    background-size: 100%;
+}
+#right-top-side-row-4-2 .campus-room-cell{
+  float: left;
+  margin-top: 40px;
+  width: 53px;
+  height: 73px;
+  background-color: rgba(0, 255, 30, 0.247059);
+  margin-left: 1.9px;
+}
+#right-top-side-row-4-2, #right-bot-side-row-4-2, #left-top-side-row-4-2, #left-bot-side-row-4-2{
+	margin-left: 561px;
+	width: 100% !important;
+	height: 40px;
+	position:relative;
+	display:inline-block;
+}
+#right-side-row .campus-room-cell{
+	float: left;
+    margin-top: 78px;
+    width: 43.6px;
+    height: 106px;
+    background-color: rgba(0, 255, 30, 0.247059);
+    margin-left: 0.4px;
+}
+.campus-map4 .campus-room-row .campus-room-cell a{
+	top: 0px;
+	position:relative;
+}
+.campus-map4 #right-top-side-row-4-2 .campus-room-cell .campus-room-water{
+	top: 5px;
+	left: -12px;
+	line-height:0;
+	position:relative;
+}
+.campus-map4 #right-top-side-row-4-2 .campus-room-cell .campus-room-light{
+	top: 0;
+	left: 27px;
+	width: 20px;
+	height: 20px;
+	line-height:0;
+	position:relative;
+}
+.campus-map4 #right-bot-side-row-4-2 .campus-room-cell .campus-room-water{
+	top: 15px;
+	left: -12px;
+	line-height:0;
+	position:relative;
+}
+.campus-map4 #right-bot-side-row-4-2 .campus-room-cell .campus-room-light{
+	top: 10px;
+	left: 27px;
+	width: 20px;
+	height: 20px;
+	line-height:0;
+	position:relative;
+}
+#right-bot-side-row-4-2 .campus-room-cell{
+  float: left;
+  margin-top: 50px;
+  width: 53px;
+  height:83px;
+  background-color: rgba(0, 255, 30, 0.247059);
+  margin-left: 1.9px;
+}
+#right-bot-side-row-4-2{
+	margin-top: 72px;
+	margin-left: 717px;
+}
+
+.campus-map4 #left-bot-side-row-4-2 .campus-room-cell .campus-room-water{
+	top: 15px;
+	left: -12px;
+	line-height:0;
+	position:relative;
+}
+.campus-map4 #left-bot-side-row-4-2 .campus-room-cell .campus-room-light{
+	top: 10px;
+	left: 27px;
+	width: 20px;
+	height: 20px;
+	line-height:0;
+	position:relative;
+}
+#left-bot-side-row-4-2 .campus-room-cell{
+  float: left;
+  margin-top: 50px;
+  width: 53px;
+  height:83px;
+  background-color: rgba(0, 255, 30, 0.247059);
+  margin-left: 1.9px;
+}
+#left-bot-side-row-4-2{
+	margin-top: 72px;
+	margin-left: 717px;
+}
+
+.campus-map4 #left-top-side-row-4-2 .campus-room-cell .campus-room-water{
+	top: 15px;
+	left: -12px;
+	line-height:0;
+	position:relative;
+}
+.campus-map4 #left-top-side-row-4-2 .campus-room-cell .campus-room-light{
+	top: 10px;
+	left: 27px;
+	width: 20px;
+	height: 20px;
+	line-height:0;
+	position:relative;
+}
+#left-top-side-row-4-2 .campus-room-cell{
+  float: left;
+  margin-top: 50px;
+  width: 53px;
+  height:83px;
+  background-color: rgba(0, 255, 30, 0.247059);
+  margin-left: 1.9px;
+}
+#left-top-side-row-4-2{
+	top: -26px;
+	margin-left:145px;
+	position:relative;
+}
+#left-bot-side-row-4-2{
+	top: -69px;
+	margin-left:-44.5px;
+	position:relative;
+}
+#left-bot-side-row-4-2 .campus-room-cell{
+  float: left;
+  margin-top: 50px;
+  width: 53px;
+  height:74px;
+  background-color: rgba(0, 255, 30, 0.247059);
+  margin-left: 1.9px;
 }

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container" id="repairBg">
+        <div class="row">
+            <h1 class="page-header">Заявки на ремонт</h1>
+            <div class="col-md-12">
+                <div class="panel-body" id="repair">
+                    {% if repairs %}
+                        <div class="table-responsive"></div>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Дата</th>
+                                <th>Категория</th>
+                                <th>Описание</th>
+                                <th>Комната</th>
+                                <th>Общежитие</th>
+                                <th>Подтвердить</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for column in repairs %}
+                                <tr id="{{ column[0].id }}">
+                                    <td>{{ column[0].open_date }}</td>
+                                    <td>{{ column[0].tag }}</td>
+                                    <td>{{ column[0].description }}</td>
+                                    <td>{{ column[2].room_number }}</td>
+                                    <td>{{ column[3].number }}</td>
+                                    <td>
+                                        <button type="button" id="button_{{ column[0].id }}" class="btn btn-primary">Выполнить</button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <h1>Заявок нет</h1>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $(".btn.btn-primary").click(function (e) {
+                e.preventDefault();
+                var selector = this.id.replace("button_", "");
+                $.ajax({
+                    type: "POST",
+                    url: "/repair",
+                    data: {id: selector},
+                    success: function () {
+                        $("#" + selector).remove();
+                    }
+                })
+            })
+        })
+    </script>
+
+{% endblock %}
+

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">Persons</h1>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <ul class=flashes>
+                                {% for message in messages %}
+                                    <li>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endwith %}
+
+                    <h4>Всего комнат: {{ stats.places_all }}</h4>
+                    <h4>Всего комнат в 2 общежитии: {{ stats.places2 }}</h4>
+                    <h4>Всего комнат в 3 общежитии: {{ stats.places3 }}</h4>
+                    <h4>Всего комнат в 4 общежитии: {{ stats.places4 }}</h4>
+                    <h4>Одна свободное место: {{ stats.free_1 }}</h4>
+                    <h4>Два свободны мест: {{ stats.free_2 }}</h4>
+                    <h4>Три свободных мест: {{ stats.free_3 }}</h4>
+                    <h4>Четыре свободных мест: {{ stats.free_4 }}</h4>
+                    <h4>Дата обновления данных: {{ stats.date }}</h4>
+                    <form role="form" method="POST">
+                        <button type="submit" class="btn btn-default" value="secondS" name="button">Обновить!</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
