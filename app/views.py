@@ -45,7 +45,8 @@ def webLog(func):
 def index(template):
     from urllib.parse import urlparse
     newsslider = models.News_Slider.query.order_by(desc(models.News_Slider.timestamp)).limit(3).all()
-    video = models.Video_slider.query.order_by(desc(models.Video_slider.date_added)).filter_by(active=True).limit(12).all()
+    video = models.Video_slider.query.order_by(desc(models.Video_slider.date_added)).filter_by(active=True).limit(
+        12).all()
     params = []
     for url in video:
         parsedlink = urlparse(url.url)
@@ -159,7 +160,25 @@ def profile():
         hours += w.end - w.start
 
     violations = models.Violation.query.filter_by(person=person.id).all()
-    return render_template('profile.html', person=person, payment=paypay, hours=hours, work=work, violations=violations)
+
+    wperson = models.Person.query.filter_by(id=current_user.person_id).first()
+    if wperson:
+        hostel = db.session.query(models.Hostel).filter(models.Room.id == wperson.room).filter(
+            models.Hostel.id == models.Room.hostel_id).first().id
+        washing = models.Washing.query.filter_by(hostel=hostel).all()
+    else:
+        hostel = None
+        washing = models.Washing.query.all()
+
+    data = []
+
+    if washing:
+        for wash in washing:
+            data.append({'id': wash.id, 'name': wash.person, 'location': wash.hostel,
+                         'startDate': wash.start.strftime('%m/%d/%Y'), 'endDate': wash.end.strftime('%m/%d/%Y')})
+
+    return render_template('profile.html', person=person, payment=paypay, hours=hours, work=work, violations=violations,
+                           data=data, wperson=wperson, hostel=hostel)
 
 
 @login_required
@@ -760,9 +779,55 @@ def employees():
 
 
 @app.route('/calendar_washing')
+@login_required
 @webLog
 def calendar_washing():
-    return render_template('calendar_washing.html')
+    wperson = models.Person.query.filter_by(id=current_user.person_id).first()
+    if wperson:
+        hostel = db.session.query(models.Hostel).filter(models.Room.id == wperson.room).filter(
+            models.Hostel.id == models.Room.hostel_id).first().id
+        washing = models.Washing.query.filter_by(hostel=hostel).all()
+    else:
+        hostel = None
+        washing = models.Washing.query.all()
+
+    data = []
+
+    if washing:
+        for wash in washing:
+            data.append({'id': wash.id, 'name': wash.person, 'location': wash.hostel,
+                         'startDate': wash.start.strftime('%m/%d/%Y'), 'endDate': wash.end.strftime('%m/%d/%Y')})
+
+    return render_template('calendar_washing.html', data=data, wperson=wperson, hostel=hostel)
+
+
+@app.route('/new_wash', methods=['POST'])
+def new_wash():
+    from dateutil.parser import parse
+    WASH_PER_DAY = 3
+    print(len(models.Washing.query.filter_by(start=parse(request.form['startDate'])).all()))
+
+    if len(models.Washing.query.filter_by(start=parse(request.form['startDate'])).all()) < WASH_PER_DAY:
+        db.session.add(models.Washing(start=parse(request.form['startDate']), end=parse(request.form['endDate']),
+                                      person=request.form['name'], hostel=request.form['location'])
+                       )
+        db.session.commit()
+        return json.dumps({'status': 'ok'})
+    else:
+        return abort(500)
+
+
+@app.route('/new_get_person', methods=['POST'])
+def new_get_person():
+    query = db.session.query(models.Hostel, models.Person, models.Room).filter(
+        models.Hostel.id == request.form['location']).filter(models.Person.id == request.form['id']).filter(
+        models.Room.id == models.Person.room).first()
+
+    return json.dumps({'status': 'ok',
+                       'person': query[1].first_name + ' ' + query[1].last_name,
+                       'room': query[2].room_number,
+                       'hostel': query[0].number
+                       })
 
 
 @app.route('/sliderpost/<id>')
@@ -771,6 +836,7 @@ def sliderpost(id):
     post = models.News_Slider.query.filter_by(id=id).first()
     return render_template('post.html', post=post)
 
+
 @app.route('/posts')
 @app.route('/posts/page-<int:page>')
 @webLog
@@ -778,6 +844,7 @@ def posts(page=1):
     PER_PAGE = 10
     posts = models.Post.query.order_by(desc(models.Post.timestamp)).paginate(page, PER_PAGE, False)
     return render_template('posts.html', posts=posts, page=page)
+
 
 @app.route('/map')
 @webLog
