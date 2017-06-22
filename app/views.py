@@ -307,7 +307,7 @@ def register():
                      form.middle_name.data, form.birthday.data, form.department.data, form.specialty.data,
                      form.group.data, form.work.data, form.s_passport.data, form.n_passport.data, form.d_passport.data,
                      form.k_passport.data, form.phone_number.data, form.lived_hostel.data, form.lived_room.data,
-                     form.form_of_education.data]
+                     form.form_of_education.data, form.email.data]
         main_info = [None if x == '' else x for x in main_info]
         main_info = models.Register_main(*main_info)
         db.session.add(main_info)
@@ -896,3 +896,11 @@ def test():
         except AttributeError:
             pass
     print(soup)
+
+
+@app.route('/gen')
+def gen():
+    import uuid
+    for i in models.Person.query.all():
+        i.invite = str(uuid.uuid4())
+    db.session.commit()

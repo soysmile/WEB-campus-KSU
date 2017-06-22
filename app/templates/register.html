@@ -1,19 +1,23 @@
 {% extends 'base.html' %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css" />
+{% endblock %}
 {% block content %}
 
     <div class="container" xmlns:display="http://www.w3.org/1999/xhtml">
         <div class="row">
             <div class="col-md-12">
-                
+
                 {% for item in student %}
-                {{ item[0] }}
-                {{ item[1] }}
+                    {{ item[0] }}
+                    {{ item[1] }}
                 {% endfor %}
 
-            {% for item in family %}
-            {{ item[0] }}
-            {{ item[1] }}
-            {% endfor %}
+                {% for item in family %}
+                    {{ item[0] }}
+                    {{ item[1] }}
+                {% endfor %}
 
 
                 <h1 class="page-header">Регистрация</h1>
@@ -114,13 +118,19 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         <fieldset class="form-group">
                                             {{ form.phone_number.label }}
                                             {{ form.phone_number(class="form-control") }}
                                         </fieldset>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
+                                        <fieldset class="form-group">
+                                            {{ form.email.label }}
+                                            {{ form.email(class="form-control") }}
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-3">
                                         <fieldset class="form-group">
                                             {{ form.lived_radio.label }}
                                             {{ form.lived_radio(class="form-control", style="height:100%") }}
@@ -190,7 +200,7 @@
                                                 $("#husband_wife").hide();
                                                 $("#family").show();
                                             }
-                                            else if (this.value == 'o'){
+                                            else if (this.value == 'o') {
                                                 $("#husband_wife").hide();
                                                 $("#family").hide();
 
@@ -437,17 +447,23 @@
         </div>
     </div>
     <script type="text/javascript">
-        $(document).ready(function() {
-            setTimeout ("$('.pr1').show('slow');", 100);
+        $(document).ready(function () {
+            setTimeout("$('.pr1').show('slow');", 100);
         });
-</script>
+    </script>
     <script>
         $(document).ready(function () {
             var errors = Object.keys({{ form.errors | tojson }});
             $.each(errors, function (index, value) {
                 console.log(index, value);
-                $("#"+value).parent().addClass("has-error")
+                $("#" + value).parent().addClass("has-error")
             });
         });
     </script>
+    {% block js %}
+        {{ super() }}
+        <script src="/admin/static/vendor/moment.min.js?v=2.9.0" type="text/javascript"></script>
+        <script src="/admin/static/vendor/select2/select2.min.js?v=3.5.2" type="text/javascript"></script>
+        <script src="/admin/static/vendor/bootstrap-daterangepicker/daterangepicker.js?v=1.3.22"></script>
+    {% endblock %}
 {% endblock %}

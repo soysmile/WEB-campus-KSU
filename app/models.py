@@ -272,12 +272,13 @@ class Register_main(db.Model):
     lived_hostel = db.Column(db.String(50))
     lived_room = db.Column(db.String(50))
     form_of_education = db.Column(db.String(50))
+    email = db.Column(db.String(50))
     register_family = db.relationship('Register_family', backref='register_family', lazy='dynamic')
     register_student = db.relationship('Register_student', backref='register_student', lazy='dynamic')
 
     def __init__(self, room_type, reason, first_name, last_name, middle_name, birthday, department, specialty, group,
                  work, s_passport, n_passport, d_passport, k_passport, phone_number, lived_hostel, lived_room,
-                 form_of_education):
+                 form_of_education, email):
         self.room_type = room_type
         self.reason = reason
         self.first_name = first_name
@@ -296,7 +297,7 @@ class Register_main(db.Model):
         self.lived_hostel = lived_hostel
         self.lived_room = lived_room
         self.form_of_education = form_of_education
-
+        self.email = email
 
 class Register_student(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -520,20 +521,20 @@ class Photo(db.Model):
 #             raise BufferError
 
 
-# @event.listens_for(Person, 'after_insert')
-# def after_insert(*args):
-#     if args[2].email and args[2].room:
-#         from app import mail
-#         from flask_mail import Message
-#         from config import MAIL_DEFAULT_SENDER
-#         print(args[2].first_name, args[2].room, args[2].invite)
-#         msg = Message('Поселення', sender=MAIL_DEFAULT_SENDER, recipients=[args[2].email])
-#         msg.html = """<b>Привіт, {0}!</b><br/>
-#         Вітаємо, твоя кімната для проживання <b>{1}</b><br/>
-#         Для активації особистого кабінету на сайті перейди за <a href='ksu-hostel.herokuapp.com/{2}'>посиланням</a>""".format(
-#             args[2].first_name, args[2].room, args[2].invite)
-#         mail.send(msg)
-#
+@event.listens_for(Person, 'after_insert')
+def after_insert(*args):
+    if args[2].email and args[2].room:
+        from app import mail
+        from flask_mail import Message
+        from config import MAIL_DEFAULT_SENDER
+        print(args[2].first_name, args[2].room, args[2].invite)
+        msg = Message('Поселення', sender=MAIL_DEFAULT_SENDER, recipients=[args[2].email])
+        msg.html = """<b>Привіт, {0}!</b><br/>
+        Вітаємо, твоя кімната для проживання <b>{1}</b><br/>
+        Інвайт-код - {2}""".format(
+            args[2].first_name, args[2].room, args[2].invite)
+        mail.send(msg)
+
 #
 # @event.listens_for(Register, 'before_update')
 # def before_update(*args):

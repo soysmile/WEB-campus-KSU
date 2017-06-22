@@ -40,6 +40,7 @@ class RegistrationForm(form.Form):
     d_passport = fields.DateField('Дата выдачи', validators=[validators.required()])
     k_passport = fields.StringField('Кем выдан', validators=[validators.required()])
     phone_number = fields.StringField('Контактные номера телефонов', validators=[validators.required()])
+    email = fields.StringField('Электронная почта')
 
     lived_radio = fields.RadioField('Жил ли раньше в общежитиии',
                                     choices=[('lived', 'Раньше жил'), ('nolived', 'Не жил')],
