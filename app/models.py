@@ -2,9 +2,14 @@
 from app import db
 from sqlalchemy import event
 import datetime
-from uuid import uuid4
+import uuid
 from flask_security import UserMixin, RoleMixin
-from flask import flash
+
+
+def invite():
+    print(uuid.uuid4())
+    return str(uuid.uuid4())
+
 
 roles_users = db.Table(
     'roles_users',
@@ -123,7 +128,8 @@ class Room(db.Model):
             nonfree = len(persons)
         else:
             nonfree = 0
-        return str(hostel_number) + '_' + str(self.room_number) + '(' + str(nonfree) + '/' + str(self.numbers_of_person) + ')'
+        return str(hostel_number) + '_' + str(self.room_number) + '(' + str(nonfree) + '/' + str(
+            self.numbers_of_person) + ')'
 
     def __repr__(self):
         hostel_number = Hostel.query.filter_by(id=self.hostel.id).first().number
@@ -132,7 +138,8 @@ class Room(db.Model):
             nonfree = len(persons)
         else:
             nonfree = 0
-        return str(hostel_number) + '_' + str(self.room_number) + '(' + str(nonfree) + '/' + str(self.numbers_of_person) + ')'
+        return str(hostel_number) + '_' + str(self.room_number) + '(' + str(nonfree) + '/' + str(
+            self.numbers_of_person) + ')'
 
 
 class Person(db.Model):
@@ -158,7 +165,7 @@ class Person(db.Model):
     phone_number = db.Column(db.String(255))
     note = db.Column(db.String(255))
     email = db.Column(db.String(255))
-    invite = db.Column(db.String(255), index=True, default=str(uuid4()))
+    invite = db.Column(db.String(255), index=True)
     room = db.Column(db.Integer, db.ForeignKey('room.id'))
     user = db.relationship('User', backref='person_user', lazy='dynamic')
     payment = db.relationship('Payment', backref='person_payment', lazy='dynamic')
@@ -194,9 +201,6 @@ class Person(db.Model):
 
     def __str__(self):
         return str(self.first_name) + ' ' + str(self.last_name)
-
-    def set_invite(self):
-        self.invite = str(uuid4())
 
 
 class Person_old(db.Model):
@@ -298,6 +302,7 @@ class Register_main(db.Model):
         self.lived_room = lived_room
         self.form_of_education = form_of_education
         self.email = email
+
 
 class Register_student(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -511,14 +516,9 @@ class Photo(db.Model):
     path = db.Column(db.String(255), unique=True)
 
 
-# @event.listens_for(Person, 'before_insert')
-# def before_insert(*args):
-#     if args[2].room:
-#         room = Room.query.filter_by(id=args[2].room).first()
-#         if room.numbers_of_person < len(Person.query.filter_by(room=args[2].room).all()) + 1:
-#             flash('В этой комнате уже проживает %s жильцов. Комната не установлена' % room.numbers_of_person)
-#             args[2].room = None
-#             raise BufferError
+@event.listens_for(Person, 'before_insert')
+def before_insert(*args):
+    args[2].invite = invite()
 
 
 @event.listens_for(Person, 'after_insert')
@@ -534,6 +534,7 @@ def after_insert(*args):
         Інвайт-код - {2}""".format(
             args[2].first_name, args[2].room, args[2].invite)
         mail.send(msg)
+
 
 #
 # @event.listens_for(Register, 'before_update')
