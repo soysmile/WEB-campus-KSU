@@ -411,5 +411,230 @@ $(document).ready(function() {
         $("#nineth-flor-4").css({"color": "green"});
 
     });
+    $('#second-flor-3').click(function() {
+
+
+      $('#flor-3-1').hide('slow');
+      $('#flor-3-4').hide('slow');
+      $('#flor-3-5').hide('slow');
+      $('#flor-3-6').hide('slow');
+      $('#flor-3-7').hide('slow');
+      $('#flor-3-8').hide('slow');
+      $('#flor-3-9').hide('slow');
+
+        $('#flor-3-3').hide('slow',  function(){
+          $('#flor-3-2').animate({"height":"show"})
+        });
+
+
+        $("#first-flor-3").css({"color": "darkgrey"});
+        $("#second-flor-3").css({"color": "green"});
+        $("#third-flor-3").css({"color": "darkgrey"});
+        $("#fourth-flor-3").css({"color": "darkgrey"});
+        $("#fifth-flor-3").css({"color": "darkgrey"});
+        $("#sixth-flor-3").css({"color": "darkgrey"});
+        $("#seventh-flor-3").css({"color": "darkgrey"});
+        $("#eighth-flor-3").css({"color": "darkgrey"});
+        $("#nineth-flor-3").css({"color": "darkgrey"});
+
+
+
+
+
+    });
+
+    $('#third-flor-3').click(function() {
+
+
+
+      $('#flor-3-1').hide('slow');
+      $('#flor-3-4').hide('slow');
+      $('#flor-3-5').hide('slow');
+      $('#flor-3-6').hide('slow');
+      $('#flor-3-7').hide('slow');
+      $('#flor-3-8').hide('slow');
+      $('#flor-3-9').hide('slow');
+
+        $('#flor-3-2').hide('slow',  function(){
+          $('#flor-3-3').animate({"height":"show"})
+        });
+
+        $("#first-flor-3").css({"color": "darkgrey"});
+        $("#second-flor-3").css({"color": "darkgrey"});
+        $("#third-flor-3").css({"color": "green"});
+        $("#fourth-flor-3").css({"color": "darkgrey"});
+        $("#fifth-flor-3").css({"color": "darkgrey"});
+        $("#sixth-flor-3").css({"color": "darkgrey"});
+        $("#seventh-flor-3").css({"color": "darkgrey"});
+        $("#eighth-flor-3").css({"color": "darkgrey"});
+        $("#nineth-flor-3").css({"color": "darkgrey"});
+
+    });
+
+    $('#fourth-flor-3').click(function() {
+
+      $('#flor-3-1').hide('slow');
+      $('#flor-3-3').hide('slow');
+      $('#flor-3-5').hide('slow');
+      $('#flor-3-6').hide('slow');
+      $('#flor-3-7').hide('slow');
+      $('#flor-3-8').hide('slow');
+      $('#flor-3-9').hide('slow');
+
+        $('#flor-3-2').hide('slow',  function(){
+          $('#flor-3-4').animate({"height":"show"})
+        });
+
+        $("#first-flor-3").css({"color": "darkgrey"});
+        $("#second-flor-3").css({"color": "darkgrey"});
+        $("#third-flor-3").css({"color": "darkgrey"});
+        $("#fourth-flor-3").css({"color": "green"});
+        $("#fifth-flor-3").css({"color": "darkgrey"});
+        $("#sixth-flor-3").css({"color": "darkgrey"});
+        $("#seventh-flor-3").css({"color": "darkgrey"});
+        $("#eighth-flor-3").css({"color": "darkgrey"});
+        $("#nineth-flor-3").css({"color": "darkgrey"});
+
+    });
+
+    $('#fifth-flor-3').click(function() {
+
+
+
+      $('#flor-3-1').hide('slow');
+      $('#flor-3-4').hide('slow');
+      $('#flor-3-3').hide('slow');
+      $('#flor-3-6').hide('slow');
+      $('#flor-3-7').hide('slow');
+      $('#flor-3-8').hide('slow');
+      $('#flor-3-9').hide('slow');
+
+        $('#flor-3-2').hide('slow',  function(){
+          $('#flor-3-5').animate({"height":"show"})
+        });
+
+        $("#first-flor-3").css({"color": "darkgrey"});
+        $("#second-flor-3").css({"color": "darkgrey"});
+        $("#third-flor-3").css({"color": "darkgrey"});
+        $("#fourth-flor-3").css({"color": "darkgrey"});
+        $("#fifth-flor-3").css({"color": "green"});
+        $("#sixth-flor-3").css({"color": "darkgrey"});
+        $("#seventh-flor-3").css({"color": "darkgrey"});
+        $("#eighth-flor-3").css({"color": "darkgrey"});
+        $("#nineth-flor-3").css({"color": "darkgrey"});
+
+    });
+
+    $('#sixth-flor-3').click(function() {
+
+
+
+      $('#flor-3-1').hide('slow');
+      $('#flor-3-4').hide('slow');
+      $('#flor-3-5').hide('slow');
+      $('#flor-3-3').hide('slow');
+      $('#flor-3-7').hide('slow');
+      $('#flor-3-8').hide('slow');
+      $('#flor-3-9').hide('slow');
+
+        $('#flor-3-2').hide('slow',  function(){
+          $('#flor-3-6').animate({"height":"show"})
+        });
+
+        $("#first-flor-3").css({"color": "darkgrey"});
+        $("#second-flor-3").css({"color": "darkgrey"});
+        $("#third-flor-3").css({"color": "darkgrey"});
+        $("#fourth-flor-3").css({"color": "darkgrey"});
+        $("#fifth-flor-3").css({"color": "darkgrey"});
+        $("#sixth-flor-3").css({"color": "green"});
+        $("#seventh-flor-3").css({"color": "darkgrey"});
+        $("#eighth-flor-3").css({"color": "darkgrey"});
+        $("#nineth-flor-3").css({"color": "darkgrey"});
+
+    });
+
+    $('#seventh-flor-3').click(function() {
+
+
+
+      $('#flor-3-1').hide('slow');
+      $('#flor-3-4').hide('slow');
+      $('#flor-3-5').hide('slow');
+      $('#flor-3-6').hide('slow');
+      $('#flor-3-3').hide('slow');
+      $('#flor-3-8').hide('slow');
+      $('#flor-3-9').hide('slow');
+
+        $('#flor-3-2').hide('slow',  function(){
+          $('#flor-3-7').animate({"height":"show"})
+        });
+
+        $("#first-flor-3").css({"color": "darkgrey"});
+        $("#second-flor-3").css({"color": "darkgrey"});
+        $("#third-flor-3").css({"color": "darkgrey"});
+        $("#fourth-flor-3").css({"color": "darkgrey"});
+        $("#fifth-flor-3").css({"color": "darkgrey"});
+        $("#sixth-flor-3").css({"color": "darkgrey"});
+        $("#seventh-flor-3").css({"color": "green"});
+        $("#eighth-flor-3").css({"color": "darkgrey"});
+        $("#nineth-flor-3").css({"color": "darkgrey"});
+
+    });
+
+    $('#eighth-flor-3').click(function() {
+
+
+
+      $('#flor-3-1').hide('slow');
+      $('#flor-3-4').hide('slow');
+      $('#flor-3-5').hide('slow');
+      $('#flor-3-6').hide('slow');
+      $('#flor-3-7').hide('slow');
+      $('#flor-3-3').hide('slow');
+      $('#flor-3-9').hide('slow');
+
+        $('#flor-3-2').hide('slow',  function(){
+          $('#flor-3-8').animate({"height":"show"})
+        });
+
+        $("#first-flor-3").css({"color": "darkgrey"});
+        $("#second-flor-3").css({"color": "darkgrey"});
+        $("#third-flor-3").css({"color": "darkgrey"});
+        $("#fourth-flor-3").css({"color": "darkgrey"});
+        $("#fifth-flor-3").css({"color": "darkgrey"});
+        $("#sixth-flor-3").css({"color": "darkgrey"});
+        $("#seventh-flor-3").css({"color": "darkgrey"});
+        $("#eighth-flor-3").css({"color": "green"});
+        $("#nineth-flor-3").css({"color": "darkgrey"});
+
+    });
+
+    $('#nineth-flor-3').click(function() {
+
+
+
+      $('#flor-3-1').hide('slow');
+      $('#flor-3-4').hide('slow');
+      $('#flor-3-5').hide('slow');
+      $('#flor-3-6').hide('slow');
+      $('#flor-3-7').hide('slow');
+      $('#flor-3-8').hide('slow');
+      $('#flor-3-3').hide('slow');
+
+        $('#flor-3-2').hide('slow',  function(){
+          $('#flor-3-9').animate({"height":"show"})
+        });
+
+        $("#first-flor-3").css({"color": "darkgrey"});
+        $("#second-flor-3").css({"color": "darkgrey"});
+        $("#third-flor-3").css({"color": "darkgrey"});
+        $("#fourth-flor-3").css({"color": "darkgrey"});
+        $("#fifth-flor-3").css({"color": "darkgrey"});
+        $("#sixth-flor-3").css({"color": "darkgrey"});
+        $("#seventh-flor-3").css({"color": "darkgrey"});
+        $("#eighth-flor-3").css({"color": "darkgrey"});
+        $("#nineth-flor-3").css({"color": "green"});
+
+    });
 
 });

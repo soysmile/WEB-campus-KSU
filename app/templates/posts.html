@@ -3,9 +3,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="page-header">Новости</h1>
+                <h1 class="page-header">Новини</h1>
                 <div id="graph" class="panel panel-default">
-                    <div class="panel-body">
+                    <div class="panel-body" id="user-panel-in">
                         {% for item in posts.items %}
                             <div class="col-md-10 blogShort">
                                 <h1>{{ item.title }}</h1>
@@ -18,7 +18,7 @@
                                     {{ item.previewtext }}
                                 </p></article>
                                 <a class="btn btn-blog pull-right marginBottom10"
-                                   href="{{ url_for('detail_view_post', id=item.id) }}">READ MORE</a>
+                                   href="{{ url_for('detail_view_post', id=item.id) }}">Докладніше</a>
                             </div>
                         {% endfor %}
 

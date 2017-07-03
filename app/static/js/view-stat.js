@@ -9,14 +9,14 @@ $(document).ready(function () {
     $('#stat7').hide('slow');
     $('#stat8').hide('slow');
 
-    $("#aStat").css({"color": "green"});
-    $("#bStat").css({"color": "black"});
-    $("#cStat").css({"color": "black"});
-    $("#dStat").css({"color": "black"});
-    $("#eStat").css({"color": "black"});
-    $("#fStat").css({"color": "black"});
-    $("#gStat").css({"color": "black"});
-    $("#hStat").css({"color": "black"});
+    $("#aStat").css({"color": "greenyellow"});
+    $("#bStat").css({"color": "white"});
+    $("#cStat").css({"color": "white"});
+    $("#dStat").css({"color": "white"});
+    $("#eStat").css({"color": "white"});
+    $("#fStat").css({"color": "white"});
+    $("#gStat").css({"color": "white"});
+    $("#hStat").css({"color": "white"});
 
     $('#aStat').click(function () {
 
@@ -25,14 +25,14 @@ $(document).ready(function () {
             height: 'show'
 
         });
-        $("#aStat").css({"color": "green"});
-        $("#bStat").css({"color": "black"});
-        $("#cStat").css({"color": "black"});
-        $("#dStat").css({"color": "black"});
-        $("#eStat").css({"color": "black"});
-        $("#fStat").css({"color": "black"});
-        $("#gStat").css({"color": "black"});
-        $("#hStat").css({"color": "black"});
+        $("#aStat").css({"color": "greenyellow"});
+        $("#bStat").css({"color": "white"});
+        $("#cStat").css({"color": "white"});
+        $("#dStat").css({"color": "white"});
+        $("#eStat").css({"color": "white"});
+        $("#fStat").css({"color": "white"});
+        $("#gStat").css({"color": "white"});
+        $("#hStat").css({"color": "white"});
 
         $('#stat2').hide('slow');
         $('#stat3').hide('slow');
@@ -51,14 +51,14 @@ $(document).ready(function () {
             height: 'show'
 
         });
-        $("#aStat").css({"color": "black"});
-        $("#bStat").css({"color": "green"});
-        $("#cStat").css({"color": "black"});
-        $("#dStat").css({"color": "black"});
-        $("#eStat").css({"color": "black"});
-        $("#fStat").css({"color": "black"});
-        $("#gStat").css({"color": "black"});
-        $("#hStat").css({"color": "black"});
+        $("#aStat").css({"color": "white"});
+        $("#bStat").css({"color": "greenyellow"});
+        $("#cStat").css({"color": "white"});
+        $("#dStat").css({"color": "white"});
+        $("#eStat").css({"color": "white"});
+        $("#fStat").css({"color": "white"});
+        $("#gStat").css({"color": "white"});
+        $("#hStat").css({"color": "white"});
 
         $('#stat1').hide('slow');
         $('#stat3').hide('slow');
@@ -78,14 +78,14 @@ $(document).ready(function () {
 
         });
 
-        $("#aStat").css({"color": "black"});
-        $("#bStat").css({"color": "black"});
-        $("#cStat").css({"color": "green"});
-        $("#dStat").css({"color": "black"});
-        $("#eStat").css({"color": "black"});
-        $("#fStat").css({"color": "black"});
-        $("#gStat").css({"color": "black"});
-        $("#hStat").css({"color": "black"});
+        $("#aStat").css({"color": "white"});
+        $("#bStat").css({"color": "white"});
+        $("#cStat").css({"color": "greenyellow"});
+        $("#dStat").css({"color": "white"});
+        $("#eStat").css({"color": "white"});
+        $("#fStat").css({"color": "white"});
+        $("#gStat").css({"color": "white"});
+        $("#hStat").css({"color": "white"});
 
         $('#stat1').hide('slow');
         $('#stat2').hide('slow');
@@ -105,14 +105,14 @@ $(document).ready(function () {
 
         });
 
-        $("#aStat").css({"color": "black"});
-        $("#bStat").css({"color": "black"});
-        $("#cStat").css({"color": "black"});
-        $("#dStat").css({"color": "green"});
-        $("#eStat").css({"color": "black"});
-        $("#fStat").css({"color": "black"});
-        $("#gStat").css({"color": "black"});
-        $("#hStat").css({"color": "black"});
+        $("#aStat").css({"color": "white"});
+        $("#bStat").css({"color": "white"});
+        $("#cStat").css({"color": "white"});
+        $("#dStat").css({"color": "greenyellow"});
+        $("#eStat").css({"color": "white"});
+        $("#fStat").css({"color": "white"});
+        $("#gStat").css({"color": "white"});
+        $("#hStat").css({"color": "white"});
 
         $('#stat1').hide('slow');
         $('#stat2').hide('slow');
@@ -132,14 +132,14 @@ $(document).ready(function () {
 
         });
 
-        $("#aStat").css({"color": "black"});
-        $("#bStat").css({"color": "black"});
-        $("#cStat").css({"color": "black"});
-        $("#dStat").css({"color": "black"});
-        $("#eStat").css({"color": "green"});
-        $("#fStat").css({"color": "black"});
-        $("#gStat").css({"color": "black"});
-        $("#hStat").css({"color": "black"});
+        $("#aStat").css({"color": "white"});
+        $("#bStat").css({"color": "white"});
+        $("#cStat").css({"color": "white"});
+        $("#dStat").css({"color": "white"});
+        $("#eStat").css({"color": "greenyellow"});
+        $("#fStat").css({"color": "white"});
+        $("#gStat").css({"color": "white"});
+        $("#hStat").css({"color": "white"});
 
         $('#stat1').hide('slow');
         $('#stat2').hide('slow');
@@ -159,14 +159,14 @@ $(document).ready(function () {
 
         });
 
-        $("#aStat").css({"color": "black"});
-        $("#bStat").css({"color": "black"});
-        $("#cStat").css({"color": "black"});
-        $("#dStat").css({"color": "black"});
-        $("#eStat").css({"color": "black"});
-        $("#fStat").css({"color": "green"});
-        $("#gStat").css({"color": "black"});
-        $("#hStat").css({"color": "black"});
+        $("#aStat").css({"color": "white"});
+        $("#bStat").css({"color": "white"});
+        $("#cStat").css({"color": "white"});
+        $("#dStat").css({"color": "white"});
+        $("#eStat").css({"color": "white"});
+        $("#fStat").css({"color": "greenyellow"});
+        $("#gStat").css({"color": "white"});
+        $("#hStat").css({"color": "white"});
 
         $('#stat1').hide('slow');
         $('#stat2').hide('slow');
@@ -186,14 +186,14 @@ $(document).ready(function () {
 
         });
 
-        $("#aStat").css({"color": "black"});
-        $("#bStat").css({"color": "black"});
-        $("#cStat").css({"color": "black"});
-        $("#dStat").css({"color": "black"});
-        $("#eStat").css({"color": "black"});
-        $("#fStat").css({"color": "black"});
-        $("#gStat").css({"color": "green"});
-        $("#hStat").css({"color": "green"});
+        $("#aStat").css({"color": "white"});
+        $("#bStat").css({"color": "white"});
+        $("#cStat").css({"color": "white"});
+        $("#dStat").css({"color": "white"});
+        $("#eStat").css({"color": "white"});
+        $("#fStat").css({"color": "white"});
+        $("#gStat").css({"color": "greenyellow"});
+        $("#hStat").css({"color": "greenyellow"});
 
         $('#stat1').hide('slow');
         $('#stat2').hide('slow');
@@ -212,14 +212,14 @@ $(document).ready(function () {
 
         });
 
-        $("#aStat").css({"color": "black"});
-        $("#bStat").css({"color": "black"});
-        $("#cStat").css({"color": "black"});
-        $("#dStat").css({"color": "black"});
-        $("#eStat").css({"color": "black"});
-        $("#fStat").css({"color": "black"});
-        $("#gStat").css({"color": "black"});
-        $("#hStat").css({"color": "green"});
+        $("#aStat").css({"color": "white"});
+        $("#bStat").css({"color": "white"});
+        $("#cStat").css({"color": "white"});
+        $("#dStat").css({"color": "white"});
+        $("#eStat").css({"color": "white"});
+        $("#fStat").css({"color": "white"});
+        $("#gStat").css({"color": "white"});
+        $("#hStat").css({"color": "greenyellow"});
 
         $('#stat1').hide('slow');
         $('#stat2').hide('slow');

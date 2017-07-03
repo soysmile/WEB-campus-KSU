@@ -69,7 +69,7 @@
                                 <div class="span12">
 
                                     <div class="page-header">
-                                        <h1 class="page-header">ТОП Новости</h1>
+                                        <h1 class="page-header">Гарячі Новини</h1>
                                     </div>
 
                                     <div class="carousel slide" id="myCarousel">
@@ -99,8 +99,7 @@
                                                                 <p>{{ post.previewtext[:25] }}</p>
 
                                                                 <a class="btn btn-mini"
-                                                                   href="{{ url_for('detail_view_post', id=post.id) }}">&raquo;
-                                                                    Подробнее</a>
+                                                                   href="{{ url_for('detail_view_post', id=post.id) }}">Докладніше</a>
                                                             </div>
                                                         </li>
                                                     {% endfor %}
@@ -131,8 +130,7 @@
                                                                 <p>{{ post.previewtext[:25] }}</p>
 
                                                                 <a class="btn btn-mini"
-                                                                   href="{{ url_for('detail_view_post', id=post.id) }}">&raquo;
-                                                                    Подробнее</a>
+                                                                   href="{{ url_for('detail_view_post', id=post.id) }}">Докладніше</a>
                                                             </div>
                                                         </li>
                                                     {% endfor %}
@@ -164,8 +162,7 @@
                                                                 <p>{{ post.previewtext[:25] }}</p>
 
                                                                 <a class="btn btn-mini"
-                                                                   href="{{ url_for('detail_view_post', id=post.id) }}">&raquo;
-                                                                    Подробнее</a>
+                                                                   href="{{ url_for('detail_view_post', id=post.id) }}">Докладніше</a>
                                                             </div>
                                                         </li>
                                                     {% endfor %}
@@ -178,7 +175,7 @@
                                             <a data-slide="next" href="#myCarousel" class="carousel-control right">›</a>
                                         </div><!-- /.control-box -->
                                     </div><!-- /#myCarousel -->
-                                    <a class="btn btn-mini" href="{{ url_for('posts') }}">Все новости</a>
+                                    <a class="btn btn-mini" href="{{ url_for('posts') }}">Всі Новини</a>
                                 </div><!-- /.span12 -->
                             </div><!-- /.row -->
                         </div><!-- /.container -->
@@ -195,8 +192,8 @@
                             <div class="span12">
 
                                 <div class="page-header">
-                                    <h3>Интересное</h3>
-                                    <p>Интересные факты и новости</p>
+                                    <h3>Цікаве</h3>
+                                    <p>Факты та Новини студмістечка</p>
                                 </div>
 
                                 <div class="carousel slide" id="myCarousel1">
@@ -261,4 +258,5 @@
             </div>
         </div>
     </div>
+
 {% endblock %}

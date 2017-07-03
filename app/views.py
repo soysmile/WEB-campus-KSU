@@ -338,7 +338,6 @@ def register():
         return redirect(url_for('index'))
     return render_template('register.html', form=form)
 
-
 @app.route('/all_register')
 @webLog
 def all_register():
@@ -347,6 +346,24 @@ def all_register():
     student = db.session.query(models.Register_main, models.Register_student) \
         .filter(models.Register_student.register_id == models.Register_main.id).all()
     return render_template('all_register.html', family=family, student=student)
+
+@app.route('/stud_rada')
+@webLog
+def stud_rada():
+
+    return render_template('stud_rada.html')
+
+@app.route('/documents')
+@webLog
+def documents():
+
+    return render_template('documents.html')
+
+@app.route('/cameras')
+@webLog
+def cameras():
+
+    return render_template('cameras.html')
 
 
 @app.route('/plot')

@@ -4,9 +4,9 @@ $(document).ready(function() {
     $('#campus3').hide('slow');
     $('#campus4').hide('slow');
 
-    $("#aMap").css({"color": "green"});
-    $("#bMap").css({"color": "black"});
-    $("#cMap").css({"color": "black"});
+    $("#aMap").css({"color": "greenyellow"});
+    $("#bMap").css({"color": "white"});
+    $("#cMap").css({"color": "white"});
 
 
     $('#aMap').click(function() {
@@ -16,9 +16,9 @@ $(document).ready(function() {
             height: 'show'
 
         });
-        $("#aMap").css({"color": "green"});
-        $("#bMap").css({"color": "black"});
-        $("#cMap").css({"color": "black"});
+        $("#aMap").css({"color": "greenyellow"});
+        $("#bMap").css({"color": "white"});
+        $("#cMap").css({"color": "white"});
 
 
         $('#campus3').hide('slow');
@@ -34,9 +34,9 @@ $(document).ready(function() {
             height: 'show'
 
         });
-        $("#aMap").css({"color": "black"});
-        $("#bMap").css({"color": "green"});
-        $("#cMap").css({"color": "black"});
+        $("#aMap").css({"color": "white"});
+        $("#bMap").css({"color": "greenyellow"});
+        $("#cMap").css({"color": "white"});
 
 
         $('#campus2').hide('slow');
@@ -53,9 +53,9 @@ $(document).ready(function() {
 
         });
 
-        $("#aMap").css({"color": "black"});
-        $("#bMap").css({"color": "black"});
-        $("#cMap").css({"color": "green"});
+        $("#aMap").css({"color": "white"});
+        $("#bMap").css({"color": "white"});
+        $("#cMap").css({"color": "greenyellow"});
 
 
         $('#campus2').hide('slow');
