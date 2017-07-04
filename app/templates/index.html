@@ -24,7 +24,7 @@
                          style="position: absolute; left: 0px; top: 0px; width: 1300px; height: 500px; overflow: hidden;">
                         {% for news in newsslider %}
                             <div>
-                                <img u="image" src=../static/files/{{ news.path }}>
+                                <img u="image" src=../static/files/{{ news.path }}/>
                                 <div class="bottom-news">
                                     <a
                                             href="{{ url_for('sliderpost', id=news.id) }}">{{ news.title }}. {{ news.previewtext }}

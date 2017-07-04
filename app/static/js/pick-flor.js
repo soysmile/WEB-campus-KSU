@@ -5,7 +5,7 @@ $(document).ready(function() {
     $('#flor-4').hide('slow');
     $('#flor-5').hide('slow');
     //4
-    $('#flor-4-1').hide('slow');
+    $('#flor-4-1').show('slow');
     $('#flor-4-2').hide('slow');
     $('#flor-4-3').hide('slow');
     $('#flor-4-4').hide('slow');

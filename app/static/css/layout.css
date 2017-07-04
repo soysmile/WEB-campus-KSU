@@ -54,3 +54,175 @@ body {
 a.dropdown-toggle b.caret {
     margin-left: 5px;
 }
+#list-admin-menu{
+	background-color: ;
+}
+body{
+	background-color: rgba(0,31,72,1);
+}
+#list-admin-menu a{
+	color: white;
+	transition: all 0.25s ease;
+	border-radius: 5px;
+}
+#list-admin-menu a:hover{
+	color: black;
+	background-color: greenyellow;
+	border-radius: 25px;
+}
+#user-panel-in{
+	background-color: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	box-shadow: none;
+	color: white;
+	width:100%;
+}
+#user-panel-in{
+	width: 100%;
+	position:relative;
+	overflow: hidden;
+	margin-bottom: 100px;
+	border-radius: 5px;
+}
+#cmd12 #user-panel-in.panel.panel-default{
+	width: 100%;
+	position:relative;
+	overflow: hidden;
+	margin-bottom: 5px;
+	height: 613px;
+}
+#user-panel-in p{
+	text-align: left;
+
+}
+#user-panel-in h1{
+	text-align:center;
+
+}
+a.btn.btn-primary{
+	margin-left: 15px;
+	width: 100%;
+}
+#user-panel-in td{
+	background-color: rgba(0,31,72,0.9);
+}
+#user-panel-in span{
+	font-size: 16px;
+}
+#user-panel-in input{
+	font-size: 16px;
+}
+body {
+	background: #EEE;
+}
+
+#content {
+	background: white;
+	border: 1px solid #CCC;
+	padding: 15px 20px 30px 35px;
+}
+
+#content .row {
+    margin-left: 0px;
+}
+
+#brand {
+    display: inline;
+}
+
+.search-form {
+	margin: 0 5px;
+}
+
+.search-form form {
+	margin: 0;
+}
+
+.btn-menu {
+    margin: 4px 5px 0 0;
+    float: right;
+}
+
+.btn-menu a, .btn-menu input {
+	padding: 7px 16px !important;
+	border-radius: 1px !important;
+	border-color: #ccc;
+}
+
+.btn, textarea, input[type], button, .model-list {
+	border-radius: 0;
+}
+
+.model-list {
+	border-radius: 0;
+}
+
+.nav-pills li > a {
+	border-radius: 0;
+}
+
+.select2-container .select2-choice {
+	border-radius: 0;
+}
+
+a.dropdown-toggle b.caret {
+    margin-left: 5px;
+}
+#list-admin-menu{
+	background-color: ;
+}
+body{
+	background-color: rgba(0,31,72,1);
+}
+#list-admin-menu a{
+	color: white;
+	transition: all 0.25s ease;
+	border-radius: 5px;
+}
+#list-admin-menu a:hover{
+	color: black;
+	background-color: greenyellow;
+	border-radius: 25px;
+}
+#user-panel-in{
+	background-color: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	box-shadow: none;
+	color: white;
+	width:100%;
+}
+#user-panel-in{
+	width: 100%;
+	position:relative;
+	overflow: hidden;
+	margin-bottom: 100px;
+	border-radius: 5px;
+}
+#cmd12 #user-panel-in.panel.panel-default{
+	width: 100%;
+	position:relative;
+	overflow: hidden;
+	margin-bottom: 5px;
+	height: 613px;
+}
+#user-panel-in p{
+	text-align: left;
+
+}
+#user-panel-in h1{
+	text-align:center;
+
+}
+a.btn.btn-primary{
+	margin-left: 15px;
+	width: 100%;
+}
+#user-panel-in td{
+	background-color: rgba(0,31,72,0.9);
+}
+#user-panel-in span{
+	font-size: 16px;
+}
+#user-panel-in input{
+	font-size: 16px;
+}

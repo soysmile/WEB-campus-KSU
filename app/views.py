@@ -365,6 +365,12 @@ def cameras():
 
     return render_template('cameras.html')
 
+@app.route('/hotel')
+@webLog
+def hotel():
+
+    return render_template('hotel.html')
+
 
 @app.route('/plot')
 @webLog

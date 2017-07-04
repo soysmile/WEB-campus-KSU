@@ -4,6 +4,8 @@ $(document).ready(function() {
     $('#campus3').hide('slow');
     $('#campus4').hide('slow');
 
+    $('.campus-3-text-info').hide('slow');
+    $('.campus-4-text-info').hide('slow');
     $("#aMap").css({"color": "greenyellow"});
     $("#bMap").css({"color": "white"});
     $("#cMap").css({"color": "white"});
@@ -16,6 +18,12 @@ $(document).ready(function() {
             height: 'show'
 
         });
+        $('.campus-text-info').animate({
+            height: 'show'
+
+        });
+        $('.campus-3-text-info').hide('slow');
+        $('.campus-4-text-info').hide('slow');
         $("#aMap").css({"color": "greenyellow"});
         $("#bMap").css({"color": "white"});
         $("#cMap").css({"color": "white"});
@@ -34,6 +42,12 @@ $(document).ready(function() {
             height: 'show'
 
         });
+        $('.campus-3-text-info').animate({
+            height: 'show'
+
+        });
+        $('.campus-text-info').hide('slow');
+        $('.campus-4-text-info').hide('slow');
         $("#aMap").css({"color": "white"});
         $("#bMap").css({"color": "greenyellow"});
         $("#cMap").css({"color": "white"});
@@ -52,7 +66,12 @@ $(document).ready(function() {
             height: 'show'
 
         });
+        $('.campus-4-text-info').animate({
+            height: 'show'
 
+        });
+        $('.campus-text-info').hide('slow');
+        $('.campus-3-text-info').hide('slow');
         $("#aMap").css({"color": "white"});
         $("#bMap").css({"color": "white"});
         $("#cMap").css({"color": "greenyellow"});
