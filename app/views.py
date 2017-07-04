@@ -338,6 +338,7 @@ def register():
         return redirect(url_for('index'))
     return render_template('register.html', form=form)
 
+
 @app.route('/all_register')
 @webLog
 def all_register():
@@ -347,28 +348,28 @@ def all_register():
         .filter(models.Register_student.register_id == models.Register_main.id).all()
     return render_template('all_register.html', family=family, student=student)
 
+
 @app.route('/stud_rada')
 @webLog
 def stud_rada():
-
     return render_template('stud_rada.html')
+
 
 @app.route('/documents')
 @webLog
 def documents():
-
     return render_template('documents.html')
+
 
 @app.route('/cameras')
 @webLog
 def cameras():
-
     return render_template('cameras.html')
+
 
 @app.route('/hotel')
 @webLog
 def hotel():
-
     return render_template('hotel.html')
 
 
@@ -896,6 +897,8 @@ def get_rooms_info():
         if models.Block.query.filter_by(id=room.block_id).first():
             if models.Block.query.filter_by(id=room.block_id).first().hot_water:
                 hotwatter = True
+        if room.hostel_id == 1:
+            hotwatter = True
 
         rooms.update({room.id: {'places': places, 'free': free, 'service': room.service, 'windows': room.windows,
                                 'econom': room.econom, 'hotwatter': hotwatter}})
@@ -914,7 +917,7 @@ def test():
     for room in soup.find_all('a'):
         print(room.text)
         try:
-            id = models.Room.query.filter_by(hostel_id=3, room_number=room.text).first().id
+            id = models.Room.query.filter_by(hostel_id=2, room_number=room.text).first().id
             room['href'] = room['href'].split('-')[0] + '-' + room['href'].split('-')[1] + '-' + str(id)
         except AttributeError:
             pass
@@ -927,3 +930,11 @@ def gen():
     for i in models.Person.query.all():
         i.invite = str(uuid.uuid4())
     db.session.commit()
+
+
+@app.route('/get_room_info', methods=['POST'])
+def get_room_info():
+    room = models.Room.query.filter_by(id=request.form['id']).first()
+    free = room.numbers_of_person - len(models.Person.query.filter_by(room=room.id).all())
+    return json.dumps({'number': room.room_number, 'persons': room.numbers_of_person, 'free': free,
+                       'hostel': models.Hostel.query.filter_by(id=room.hostel_id).first().number})
