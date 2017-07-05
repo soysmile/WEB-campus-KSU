@@ -5,10 +5,10 @@ import flask_admin as admin
 import flask_login as login
 from flask import flash
 from flask import url_for, redirect, request
-from flask.ext.admin.contrib.sqla.fields import QuerySelectField
-from flask.ext.admin.contrib.sqla.view import func
-from flask.ext.admin.form import Select2Widget
-from flask.ext.security import url_for_security
+from flask_admin.contrib.sqla.fields import QuerySelectField
+from flask_admin.contrib.sqla.view import func
+from flask_admin.form import Select2Widget
+from flask_security import url_for_security
 from flask_admin import form
 from flask_admin import helpers, expose
 from flask_admin.actions import action

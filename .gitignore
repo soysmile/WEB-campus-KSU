@@ -139,4 +139,5 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+app.db
 /app.db
