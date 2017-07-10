@@ -21,6 +21,8 @@ from wtforms.widgets import TextArea
 from app import models, db, app
 from app.forms import LoginForm
 
+print(db.session)
+
 file_path = op.join(op.dirname(__file__), 'static/files')
 try:
     mkdir(file_path)
@@ -296,36 +298,71 @@ class MyNewsSliderView(MyModelView):
                                       thumbnail_size=(360, 240, True))
     }
 
+# 
+# admin_panel = admin.Admin(app, 'Студгородок ХДУ', index_view=MyAdminIndexView(), base_template='layout.html',
+#                           template_mode='bootstrap3')
+# admin_panel.add_view(MyModelView(models.User, db.session, name='Пользователи', menu_icon_type=ICON_TYPE_GLYPH,
+#                                  menu_icon_value='glyphicon-user', roles_accepted=['admin']))
+# admin_panel.add_view(MyModelView(models.Hostel, db.session, name='Общежития', menu_icon_type=ICON_TYPE_GLYPH,
+#                                  menu_icon_value='glyphicon-home', roles_accepted=['admin']))
+# admin_panel.add_view(MyRoomView(models.Room, db.session, name='Комнаты', roles_accepted=['admin']))
+# admin_panel.add_view(MyModelView(models.Block, db.session, name='Блоки', roles_accepted=['admin']))
+# admin_panel.add_view(
+#     MyPersonView(models.Person, db.session, name='Жильцы', roles_accepted=['admin', 'posel2', 'posel3', 'posel4']))
+# admin_panel.add_view(
+#     MyTemperatureView(models.Temperature, db.session, name='Температура', roles_accepted=['admin', 'temp']))
+# admin_panel.add_view(MyModelView(models.Statistics, db.session, name='Статистика', roles_accepted=['admin']))
+# admin_panel.add_view(MyModelView(models.Payment, db.session, name='Оплата', roles_accepted=['admin']))
+# admin_panel.add_view(MyModelView(models.Work, db.session, name='Отработки', roles_accepted=['admin']))
+# admin_panel.add_view(MyModelView(models.Washing, db.session, name='Стирка', roles_accepted=['admin']))
+# admin_panel.add_view(MyModelView(models.Violation, db.session, name='Нарушения', roles_accepted=['admin']))
+# admin_panel.add_view(MyModelView(models.Role, db.session, name='Роли', roles_accepted=['admin']))
+# admin_panel.add_view(MyModelView(models.Register_main, db.session, name='Заявки. Основное', roles_accepted=['admin']))
+# admin_panel.add_view(
+#     MyModelView(models.Register_student, db.session, name='Заявки. Студентны', roles_accepted=['admin']))
+# admin_panel.add_view(MyModelView(models.Register_family, db.session, name='Заявки. Семейные', roles_accepted=['admin']))
+# admin_panel.add_view(MyRepairView(models.Repair, db.session, name='Ремонт', roles_accepted=['admin']))
+# admin_panel.add_view(MyModelView(models.Room_free, db.session, name='Свободные комнаты', roles_accepted=['admin']))
+# admin_panel.add_view(MyModelView(models.Logger, db.session, name='Логи', roles_accepted=['admin']))
+# admin_panel.add_view(MyPostView(models.Post, db.session, name='Новости', roles_accepted=['admin', 'editor']))
+# admin_panel.add_view(MyPersonOldView(models.Person_old, db.session, name='Прошлые жильцы',
+#                                      roles_accepted=['admin', 'posel2', 'posel3', 'posel4']))
+# admin_panel.add_view(
+#     MyModelView(models.Video_slider, db.session, name='Сладер видео', roles_accepted=['admin', 'editor']))
+# admin_panel.add_view(
+#     MyNewsSliderView(models.News_Slider, db.session, name='Слайдер новостей', roles_accepted=['admin', 'editor']))
+
+
 
 admin_panel = admin.Admin(app, 'Студгородок ХДУ', index_view=MyAdminIndexView(), base_template='layout.html',
                           template_mode='bootstrap3')
 admin_panel.add_view(MyModelView(models.User, db.session, name='Пользователи', menu_icon_type=ICON_TYPE_GLYPH,
-                                 menu_icon_value='glyphicon-user', roles_accepted=['admin']))
+                                 menu_icon_value='glyphicon-user', ))
 admin_panel.add_view(MyModelView(models.Hostel, db.session, name='Общежития', menu_icon_type=ICON_TYPE_GLYPH,
-                                 menu_icon_value='glyphicon-home', roles_accepted=['admin']))
-admin_panel.add_view(MyRoomView(models.Room, db.session, name='Комнаты', roles_accepted=['admin']))
-admin_panel.add_view(MyModelView(models.Block, db.session, name='Блоки', roles_accepted=['admin']))
+                                 menu_icon_value='glyphicon-home', ))
+admin_panel.add_view(MyRoomView(models.Room, db.session, name='Комнаты', ))
+admin_panel.add_view(MyModelView(models.Block, db.session, name='Блоки', ))
 admin_panel.add_view(
-    MyPersonView(models.Person, db.session, name='Жильцы', roles_accepted=['admin', 'posel2', 'posel3', 'posel4']))
+    MyPersonView(models.Person, db.session, name='Жильцы', ))
 admin_panel.add_view(
-    MyTemperatureView(models.Temperature, db.session, name='Температура', roles_accepted=['admin', 'temp']))
-admin_panel.add_view(MyModelView(models.Statistics, db.session, name='Статистика', roles_accepted=['admin']))
-admin_panel.add_view(MyModelView(models.Payment, db.session, name='Оплата', roles_accepted=['admin']))
-admin_panel.add_view(MyModelView(models.Work, db.session, name='Отработки', roles_accepted=['admin']))
-admin_panel.add_view(MyModelView(models.Washing, db.session, name='Стирка', roles_accepted=['admin']))
-admin_panel.add_view(MyModelView(models.Violation, db.session, name='Нарушения', roles_accepted=['admin']))
-admin_panel.add_view(MyModelView(models.Role, db.session, name='Роли', roles_accepted=['admin']))
-admin_panel.add_view(MyModelView(models.Register_main, db.session, name='Заявки. Основное', roles_accepted=['admin']))
+    MyTemperatureView(models.Temperature, db.session, name='Температура', ))
+admin_panel.add_view(MyModelView(models.Statistics, db.session, name='Статистика', ))
+admin_panel.add_view(MyModelView(models.Payment, db.session, name='Оплата', ))
+admin_panel.add_view(MyModelView(models.Work, db.session, name='Отработки', ))
+admin_panel.add_view(MyModelView(models.Washing, db.session, name='Стирка', ))
+admin_panel.add_view(MyModelView(models.Violation, db.session, name='Нарушения', ))
+admin_panel.add_view(MyModelView(models.Role, db.session, name='Роли', ))
+admin_panel.add_view(MyModelView(models.Register_main, db.session, name='Заявки. Основное', ))
 admin_panel.add_view(
-    MyModelView(models.Register_student, db.session, name='Заявки. Студентны', roles_accepted=['admin']))
-admin_panel.add_view(MyModelView(models.Register_family, db.session, name='Заявки. Семейные', roles_accepted=['admin']))
-admin_panel.add_view(MyRepairView(models.Repair, db.session, name='Ремонт', roles_accepted=['admin']))
-admin_panel.add_view(MyModelView(models.Room_free, db.session, name='Свободные комнаты', roles_accepted=['admin']))
-admin_panel.add_view(MyModelView(models.Logger, db.session, name='Логи', roles_accepted=['admin']))
-admin_panel.add_view(MyPostView(models.Post, db.session, name='Новости', roles_accepted=['admin', 'editor']))
+    MyModelView(models.Register_student, db.session, name='Заявки. Студентны', ))
+admin_panel.add_view(MyModelView(models.Register_family, db.session, name='Заявки. Семейные', ))
+admin_panel.add_view(MyRepairView(models.Repair, db.session, name='Ремонт', ))
+admin_panel.add_view(MyModelView(models.Room_free, db.session, name='Свободные комнаты', ))
+admin_panel.add_view(MyModelView(models.Logger, db.session, name='Логи', ))
+admin_panel.add_view(MyPostView(models.Post, db.session, name='Новости', ))
 admin_panel.add_view(MyPersonOldView(models.Person_old, db.session, name='Прошлые жильцы',
-                                     roles_accepted=['admin', 'posel2', 'posel3', 'posel4']))
+                                     ))
 admin_panel.add_view(
-    MyModelView(models.Video_slider, db.session, name='Сладер видео', roles_accepted=['admin', 'editor']))
+    MyModelView(models.Video_slider, db.session, name='Сладер видео',))
 admin_panel.add_view(
-    MyNewsSliderView(models.News_Slider, db.session, name='Слайдер новостей', roles_accepted=['admin', 'editor']))
+    MyNewsSliderView(models.News_Slider, db.session, name='Слайдер новостей', ))

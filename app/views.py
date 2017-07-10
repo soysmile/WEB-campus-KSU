@@ -4,7 +4,7 @@ from flask import render_template, flash, redirect, url_for, request, abort
 from sqlalchemy import desc, asc, or_
 from flask_login import login_user, logout_user, current_user, login_required
 from datetime import datetime, timedelta
-from app import app, models, db, forms
+from app import app, models, db, forms, db_session
 from flask_mobility.decorators import mobile_template
 import os
 from werkzeug.utils import secure_filename
@@ -30,9 +30,11 @@ def webLog(func):
             ip = request.headers.getlist("X-Forwarded-For")[0]
         else:
             ip = request.remote_addr
-        db.session.add(models.Logger(url=request.url, remote_addr=ip, method=request.method,
-                                     user_agent=request.user_agent, datetime=datetime.now()))
-        db.session.commit()
+        l = models.Logger(url=request.url, remote_addr=ip, method=request.method,
+                          user_agent=request.user_agent, datetime=datetime.now())
+        db_session.add(l)
+        db_session.commit()
+        # db_session.commit()
         return func(*args, **kwargs)
 
     return newFunc
@@ -96,15 +98,15 @@ def add_user():
     login = request.form['login']
     email = request.form['email']
     password = request.form['password']
-    db.session.add(models.User(login=login, email=email, password=password, person_id=person.id))
-    db.session.commit()
+    db_session.add(models.User(login=login, email=email, password=password, person_id=person.id))
+    db_session.commit()
     registered_user = models.User.query.filter_by(login=login, password=password).first()
     if registered_user is None:
         flash('Username or Password is invalid', 'error')
         return redirect(url_for('invite_reg'))
     login_user(registered_user)
     person.invite = None
-    db.session.commit()
+    db_session.commit()
     flash('Logged in successfully')
     return redirect(url_for('profile'))
 
@@ -163,7 +165,7 @@ def profile():
 
     wperson = models.Person.query.filter_by(id=current_user.person_id).first()
     if wperson:
-        hostel = db.session.query(models.Hostel).filter(models.Room.id == wperson.room).filter(
+        hostel = db_session.query(models.Hostel).filter(models.Room.id == wperson.room).filter(
             models.Hostel.id == models.Room.hostel_id).first().id
         washing = models.Washing.query.filter_by(hostel=hostel).all()
     else:
@@ -261,7 +263,7 @@ def block_view(hostel, block):
     rooms = models.Room.query.filter_by(hostel_id=hostel_id, block_id=block_id).all()
     query = [x.id for x in rooms]
     places = {}
-    for free in db.session.query(models.Room_free).filter(models.Room_free.room_id.in_(query)).all():
+    for free in db_session.query(models.Room_free).filter(models.Room_free.room_id.in_(query)).all():
         places.update({str(free.room_id): free.places})
 
     return render_template('block_view.html', hostel_number=hostel_number, rooms=rooms, room_free=places)
@@ -310,8 +312,8 @@ def register():
                      form.form_of_education.data, form.email.data]
         main_info = [None if x == '' else x for x in main_info]
         main_info = models.Register_main(*main_info)
-        db.session.add(main_info)
-        db.session.commit()
+        db_session.add(main_info)
+        db_session.commit()
 
         if form.family_radio.data == 'y':
             main_family = [main_info.id, form.husband_wife.data, form.husband_wife_work.data,
@@ -322,8 +324,8 @@ def register():
                            form.husband_wife_lived_hostel.data, form.husband_wife_lived_room.data, form.childrens.data,
                            form.children_live.data]
             main_family = [None if x == '' else x for x in main_family]
-            db.session.add(models.Register_family(*main_family))
-            db.session.commit()
+            db_session.add(models.Register_family(*main_family))
+            db_session.commit()
 
         elif form.family_radio.data == 'n':
             main_student = [main_info.id, form.father.data, form.father_work.data, form.mother.data,
@@ -332,8 +334,8 @@ def register():
                             form.parents_district.data, form.parents_region.data, form.parents_index.data,
                             form.parents_landline_phone.data, form.parents_mobile_phone.data]
             main_student = [None if x == '' else x for x in main_student]
-            db.session.add(models.Register_student(*main_student))
-            db.session.commit()
+            db_session.add(models.Register_student(*main_student))
+            db_session.commit()
         flash('Thanks for registering')
         return redirect(url_for('index'))
     return render_template('register.html', form=form)
@@ -342,9 +344,9 @@ def register():
 @app.route('/all_register')
 @webLog
 def all_register():
-    family = db.session.query(models.Register_main, models.Register_family) \
+    family = db_session.query(models.Register_main, models.Register_family) \
         .filter(models.Register_family.register_id == models.Register_main.id).all()
-    student = db.session.query(models.Register_main, models.Register_student) \
+    student = db_session.query(models.Register_main, models.Register_student) \
         .filter(models.Register_student.register_id == models.Register_main.id).all()
     return render_template('all_register.html', family=family, student=student)
 
@@ -376,7 +378,7 @@ def hotel():
 @app.route('/plot')
 @webLog
 def plot():
-    temp = db.session.query(models.Temperature).order_by(asc(models.Temperature.date)).all()
+    temp = db_session.query(models.Temperature).order_by(asc(models.Temperature.date)).all()
     buffer = {}
     min = temp[0].date.strftime('%m/%d/%Y')
     max = temp[-1].date.strftime('%m/%d/%Y')
@@ -396,7 +398,7 @@ def temp_xlsx():
         from openpyxl import Workbook
         wb = Workbook()
         ws = wb.active
-        temp = db.session.query(models.Temperature).order_by(asc(models.Temperature.date)).all()
+        temp = db_session.query(models.Temperature).order_by(asc(models.Temperature.date)).all()
         buffer = {}
         for t in temp:
             if buffer.get(t.date):
@@ -429,19 +431,19 @@ def temp_xlsx():
                 if h2:
                     h2.temperature = ws['B%s' % i].value
                 else:
-                    db.session.add(
+                    db_session.add(
                         models.Temperature(date=ws['A%s' % i].value, temperature=ws['B%s' % i].value, hostel_id=2))
                 if h3:
                     h3.temperature = ws['C%s' % i].value
                 else:
-                    db.session.add(
+                    db_session.add(
                         models.Temperature(date=ws['A%s' % i].value, temperature=ws['C%s' % i].value, hostel_id=3))
                 if h4:
                     h4.temperature = ws['D%s' % i].value
                 else:
-                    db.session.add(
+                    db_session.add(
                         models.Temperature(date=ws['A%s' % i].value, temperature=ws['D%s' % i].value, hostel_id=4))
-                db.session.commit()
+                db_session.commit()
         else:
             print('Error file extension')
         return redirect(url_for('plot'))
@@ -508,8 +510,8 @@ def stat():
                     free_4 += 1
             stats = models.Statistics(datetime.date(datetime.now()), len(places_all), len(places2), len(places3),
                                       len(places3), free_1, free_2, free_3, free_4)
-            db.session.add(stats)
-            db.session.commit()
+            db_session.add(stats)
+            db_session.commit()
             return redirect('stat')
     elif request.method == 'GET':
         stats = models.Statistics.query.order_by(desc(models.Statistics.date)).first()
@@ -642,7 +644,7 @@ def stat():
         econom_4 = [{'econom': len(models.Room.query.filter_by(econom=True, hostel_id=3).all()),
                      'rooms': len(models.Room.query.filter_by(hostel_id=3).all())}]
 
-        temp = db.session.query(models.Temperature).order_by(asc(models.Temperature.date)).all()
+        temp = db_session.query(models.Temperature).order_by(asc(models.Temperature.date)).all()
         buffer = {}
         min = temp[0].date.strftime('%m/%d/%Y')
         max = temp[-1].date.strftime('%m/%d/%Y')
@@ -697,8 +699,8 @@ def load():
                           phone_number=ws['R%s' % row].value,
                           note=ws['S%s' % row].value,
                           room=room)
-        db.session.add(m)
-        db.session.commit()
+        db_session.add(m)
+        db_session.commit()
 
 
 @app.route('/update')
@@ -707,7 +709,7 @@ def update():
     m = models.Person.query.all()
     for item in m:
         item.hostel_id -= 1
-        db.session.commit()
+        db_session.commit()
 
 
 def allowed_file(filename):
@@ -732,8 +734,8 @@ def upload_file():
             filename = secure_filename(
                 str(datetime.utcnow()).replace(' ', '').replace('.', '_') + '.' + file.filename.rsplit('.', 1)[1])
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            db.session.add(models.Photo(path=filename, timestamp=datetime.utcnow()))
-            db.session.commit()
+            db_session.add(models.Photo(path=filename, timestamp=datetime.utcnow()))
+            db_session.commit()
             return redirect(url_for('upload_file'))
     else:
         photo = models.Photo.query.order_by(desc(models.Photo.timestamp)).limit(100).all()
@@ -766,8 +768,8 @@ def repair():
         repairs = models.Repair.query.filter_by(person=current_user.person_id)
         return render_template('repair.html', current_user=current_user, repairs=repairs)
     elif request.method == 'POST':
-        db.session.add(models.Repair(request.form['description'], request.form['tag'], current_user.person_id))
-        db.session.commit()
+        db_session.add(models.Repair(request.form['description'], request.form['tag'], current_user.person_id))
+        db_session.commit()
         return redirect(url_for('repair'))
 
 
@@ -775,7 +777,7 @@ def repair():
 @webLog
 def all_repair():
     if request.method == "GET":
-        repairs = db.session.query(models.Repair, models.Person, models.Room, models.Hostel).filter(
+        repairs = db_session.query(models.Repair, models.Person, models.Room, models.Hostel).filter(
             models.Repair.fix == False).filter(models.Repair.person == models.Person.id).filter(
             models.Person.room == models.Room.id).filter(models.Room.hostel_id == models.Hostel.id).order_by(
             desc(models.Repair.open_date)).all()
@@ -783,14 +785,14 @@ def all_repair():
     else:
         query = models.Repair.query.filter_by(id=request.form['id']).first()
         query.fix = True
-        db.session.commit()
+        db_session.commit()
         return json.dumps({'status': 'OK'})
 
 
 @app.route('/free', methods=['GET'])
 @webLog
 def free():
-    query = db.session.query(models.Person, models.Room, models.Hostel) \
+    query = db_session.query(models.Person, models.Room, models.Hostel) \
         .filter(models.Person.room_id == models.Room.id) \
         .filter(models.Hostel.id == models.Room.hostel_id) \
         .filter(models.Hostel.id == 3)
@@ -802,8 +804,8 @@ def free():
 def init():
     for room in models.Room.query.all():
         places = room.numbers_of_person - len(models.Person.query.filter_by(room=room.id).all())
-        db.session.add(models.Room_free(places=places, room_id=room.id))
-        db.session.commit()
+        db_session.add(models.Room_free(places=places, room_id=room.id))
+        db_session.commit()
 
 
 @app.route('/employees')
@@ -818,7 +820,7 @@ def employees():
 def calendar_washing():
     wperson = models.Person.query.filter_by(id=current_user.person_id).first()
     if wperson:
-        hostel = db.session.query(models.Hostel).filter(models.Room.id == wperson.room).filter(
+        hostel = db_session.query(models.Hostel).filter(models.Room.id == wperson.room).filter(
             models.Hostel.id == models.Room.hostel_id).first().id
         washing = models.Washing.query.filter_by(hostel=hostel).all()
     else:
@@ -840,10 +842,10 @@ def new_wash():
     from dateutil.parser import parse
     WASH_PER_DAY = 3
     if len(models.Washing.query.filter_by(start=parse(request.form['startDate'])).all()) < WASH_PER_DAY:
-        db.session.add(models.Washing(start=parse(request.form['startDate']), end=parse(request.form['endDate']),
+        db_session.add(models.Washing(start=parse(request.form['startDate']), end=parse(request.form['endDate']),
                                       person=request.form['name'], hostel=request.form['location'])
                        )
-        db.session.commit()
+        db_session.commit()
         return json.dumps({'status': 'ok'})
     else:
         return abort(500)
@@ -851,7 +853,7 @@ def new_wash():
 
 @app.route('/new_get_person', methods=['POST'])
 def new_get_person():
-    query = db.session.query(models.Hostel, models.Person, models.Room).filter(
+    query = db_session.query(models.Hostel, models.Person, models.Room).filter(
         models.Hostel.id == request.form['location']).filter(models.Person.id == request.form['id']).filter(
         models.Room.id == models.Person.room).first()
 
@@ -929,7 +931,7 @@ def gen():
     import uuid
     for i in models.Person.query.all():
         i.invite = str(uuid.uuid4())
-    db.session.commit()
+    db_session.commit()
 
 
 @app.route('/get_room_info', methods=['POST'])
@@ -938,3 +940,9 @@ def get_room_info():
     free = room.numbers_of_person - len(models.Person.query.filter_by(room=room.id).all())
     return json.dumps({'number': room.room_number, 'persons': room.numbers_of_person, 'free': free,
                        'hostel': models.Hostel.query.filter_by(id=room.hostel_id).first().number})
+
+
+@app.route('/db')
+def db():
+    db_session.add(models.User(login='admin', password='admin'))
+    db_session.commit()

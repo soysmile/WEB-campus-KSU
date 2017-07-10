@@ -23,6 +23,11 @@ class Role(db.Model, RoleMixin):
     name = db.Column(db.String(80), unique=True)
     description = db.Column(db.String(255))
 
+    def __init__(self, name=None, description=None):
+        self.name = name
+        self.description = description
+
+
     def __str__(self):
         return self.name
 
