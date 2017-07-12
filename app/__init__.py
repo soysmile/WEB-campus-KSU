@@ -23,9 +23,6 @@ from app import views, models
 from app.forms import LoginForm
 from .admin import admin_panel
 
-
-
-
 user_datastore = SQLAlchemyUserDatastore(db, models.User, models.User)
 security = Security(app, user_datastore)
 
@@ -44,8 +41,6 @@ def init_login():
 
 
 init_login()
-
-
 
 if __name__ == "__main__":
     app.run(debug=True)
