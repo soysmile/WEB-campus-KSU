@@ -9,13 +9,19 @@ from flask_security import Security, SQLAlchemyUserDatastore
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
+import platform
+
+
 
 app = Flask(__name__)
 app.config.from_object('config')
 db = SQLAlchemy(app)
 mail = Mail(app)
-engine = create_engine('postgresql://postgres:root@localhost/hostel')
-# engine = create_engine('postgresql://hostel:hostelsp@localhost/hostel')
+if platform.node() == 'DESKTOP-FANOEFQ':
+    engine = create_engine('postgresql://postgres:root@localhost/hostel')
+else:
+    engine = create_engine('postgresql://hostel:hostelsp@localhost/hostel')
+
 db_session = scoped_session(sessionmaker(bind=engine))
 db.create_all()
 
