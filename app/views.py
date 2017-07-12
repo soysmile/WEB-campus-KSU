@@ -944,6 +944,5 @@ def get_room_info():
 
 @app.route('/db')
 def db():
-    db_session.add(models.User(login='admin', password='admin'))
-    db_session.commit()
+    return "ok"
 
