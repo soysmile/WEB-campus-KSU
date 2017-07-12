@@ -34,3 +34,4 @@ Flask-mobility
 openpyxl
 Pillow
 tablib
+psycopg2

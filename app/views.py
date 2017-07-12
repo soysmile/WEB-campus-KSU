@@ -625,16 +625,16 @@ def stat():
         foe = [{'foe': 'бюджет', 'len': len(models.Person.query.filter_by(form_of_education='б').all())},
                {'foe': 'контракт', 'len': len(models.Person.query.filter_by(form_of_education='к').all())}]
 
-        windows_2 = [{'windows': len(models.Room.query.filter_by(windows=1, hostel_id=1).all()),
+        windows_2 = [{'windows': len(models.Room.query.filter_by(windows=True, hostel_id=1).all()),
                       'rooms': len(models.Room.query.filter_by(hostel_id=1).all())}]
-        windows_3 = [{'windows': len(models.Room.query.filter_by(windows=1, hostel_id=2).all()),
+        windows_3 = [{'windows': len(models.Room.query.filter_by(windows=True, hostel_id=2).all()),
                       'rooms': len(models.Room.query.filter_by(hostel_id=2).all())}]
-        windows_4 = [{'windows': len(models.Room.query.filter_by(windows=1, hostel_id=3).all()),
+        windows_4 = [{'windows': len(models.Room.query.filter_by(windows=True, hostel_id=3).all()),
                       'rooms': len(models.Room.query.filter_by(hostel_id=3).all())}]
 
-        hot_water_3 = [{'hot': len(models.Block.query.filter_by(hot_water=1, hostel_id=2).all()),
+        hot_water_3 = [{'hot': len(models.Block.query.filter_by(hot_water=True, hostel_id=2).all()),
                         'blocks': len(models.Block.query.filter_by(hostel_id=2).all())}]
-        hot_water_4 = [{'hot': len(models.Block.query.filter_by(hot_water=1, hostel_id=3).all()),
+        hot_water_4 = [{'hot': len(models.Block.query.filter_by(hot_water=True, hostel_id=3).all()),
                         'blocks': len(models.Block.query.filter_by(hostel_id=3).all())}]
 
         econom_2 = [{'econom': len(models.Room.query.filter_by(econom=True, hostel_id=1).all()),
@@ -946,3 +946,4 @@ def get_room_info():
 def db():
     db_session.add(models.User(login='admin', password='admin'))
     db_session.commit()
+
