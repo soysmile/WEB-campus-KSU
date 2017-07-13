@@ -9,13 +9,22 @@
                         <div class="pluso" data-background="transparent"
                              data-options="small,round,line,horizontal,nocounter,theme=01"
                              data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email,print"
-                             data-image="{% if post.path %}{{ url_for('static', filename='files/'+post.path, _external=True) }}{% else %}https://blog.miguelgrinberg.com/static/flask-book-cover-tiny.png{% endif%}"
-                             data-url="http://campus.kspu.edu/post/{{ post.id }}" data-title="{{ post.title }}" data-description="{{ post.previewtext }}"></div>
+                             data-image="
+                                     {% if post.path %}{{ url_for('static', filename='files/'+post.path, _external=True) }}{% else %}https://blog.miguelgrinberg.com/static/flask-book-cover-tiny.png{% endif %}"
+                             data-url="http://campus.kspu.edu/post/{{ post.id }}" data-title="{{ post.title }}"
+                             data-description="{{ post.previewtext }}"></div>
 
                         <p><span class="glyphicon glyphicon-time"></span>{{ post.timestamp }}</p>
                         <hr>
-                        <img src="../static/files/{{ post.path }}" alt="">
-                        <p>{{ post.body|safe }}</p>
+
+                        <div style="text-align: center;"><img src="../static/files/{{ post.path }}" alt=""></div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12" style="color: white">
+                                    <p>{{ post.body|safe }}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
