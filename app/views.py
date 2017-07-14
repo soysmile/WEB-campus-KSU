@@ -378,17 +378,7 @@ def hotel():
 @app.route('/plot')
 @webLog
 def plot():
-    temp = db_session.query(models.Temperature).order_by(asc(models.Temperature.date)).all()
-    buffer = {}
-    min = temp[0].date.strftime('%m/%d/%Y')
-    max = temp[-1].date.strftime('%m/%d/%Y')
-    for t in temp:
-        if buffer.get(str(t.date)):
-            buffer.get(str(t.date)).update({t.hostel_id: t.temperature})
-        else:
-            buffer.update({str(t.date): {t.hostel_id: t.temperature}})
-
-    return render_template('plot.html', min=min, max=max)
+    return render_template('plot.html')
 
 
 @app.route('/temp_xlsx', methods=['GET', 'POST'])
