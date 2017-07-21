@@ -10,6 +10,15 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 import platform
+# import flickrapi
+import os
+
+#
+# api_key = '76f793140021721fea373fb2a13d81a3'
+# api_secret = '6150ce1d267abc9d'
+#
+# flickr = flickrapi.FlickrAPI(api_key, api_secret, format='parsed-json')
+# flickr.authenticate_via_browser(perms='delete')
 
 
 
@@ -21,6 +30,8 @@ if platform.node() == 'DESKTOP-FANOEFQ':
     engine = create_engine('postgresql://postgres:root@localhost/hostel')
 else:
     engine = create_engine('postgresql://hostel:hostelsp@localhost/hostel')
+
+# engine = create_engine('sqlite:///' + os.path.join(basedir, 'app.db'))
 
 db_session = scoped_session(sessionmaker(bind=engine))
 db.create_all()
