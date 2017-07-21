@@ -1,6 +1,7 @@
-$(document).ready(function() {
+$(document).ready(function () {
     //2
-    $('#flor-2').show('slow');
+    $('#flor-1').show('slow');
+    $('#flor-2').hide('slow');
     $('#flor-3').hide('slow');
     $('#flor-4').hide('slow');
     $('#flor-5').hide('slow');
@@ -16,72 +17,142 @@ $(document).ready(function() {
     $('#flor-4-9').hide('slow');
 
     //2
-    $("#first-flor").css({"color": "green"});
-    $("#second-flor").css({"color": "darkgrey"});
-    $("#third-flor").css({"color": "darkgrey"});
-    $("#fourth-flor").css({"color": "darkgrey"});
-    $("#fifth-flor ").css({"color": "darkgrey"});
+    $("#first-flor").css({
+        "color": "greenyellow"
+    });
+    $("#second-flor").css({
+        "color": "white"
+    });
+    $("#third-flor").css({
+        "color": "white"
+    });
+    $("#fourth-flor").css({
+        "color": "white"
+    });
+    $("#fifth-flor ").css({
+        "color": "white"
+    });
     //3
-    $("#first-flor-3").css({"color": "green"});
-    $("#second-flor-3").css({"color": "darkgrey"});
-    $("#third-flor-3").css({"color": "darkgrey"});
-    $("#fourth-flor-3").css({"color": "darkgrey"});
-    $("#fifth-flor-3").css({"color": "darkgrey"});
-    $("#sixth-flor-3").css({"color": "darkgrey"});
-    $("#seventh-flor-3").css({"color": "darkgrey"});
-    $("#eighth-flor-3").css({"color": "darkgrey"});
-    $("#nineth-flor-3").css({"color": "darkgrey"});
+    $("#first-flor-3").css({
+        "color": "greenyellow"
+    });
+    $("#second-flor-3").css({
+        "color": "white"
+    });
+    $("#third-flor-3").css({
+        "color": "white"
+    });
+    $("#fourth-flor-3").css({
+        "color": "white"
+    });
+    $("#fifth-flor-3").css({
+        "color": "white"
+    });
+    $("#sixth-flor-3").css({
+        "color": "white"
+    });
+    $("#seventh-flor-3").css({
+        "color": "white"
+    });
+    $("#eighth-flor-3").css({
+        "color": "white"
+    });
+    $("#nineth-flor-3").css({
+        "color": "white"
+    });
     //4
-    $("#first-flor-4").css({"color": "green"});
-    $("#second-flor-4").css({"color": "darkgrey"});
-    $("#third-flor-4").css({"color": "darkgrey"});
-    $("#fourth-flor-4").css({"color": "darkgrey"});
-    $("#fifth-flor-4").css({"color": "darkgrey"});
-    $("#sixth-flor-4").css({"color": "darkgrey"});
-    $("#seventh-flor-4").css({"color": "darkgrey"});
-    $("#eighth-flor-4").css({"color": "darkgrey"});
-    $("#nineth-flor-4").css({"color": "darkgrey"});
+    $("#first-flor-4").css({
+        "color": "greenyellow"
+    });
+    $("#second-flor-4").css({
+        "color": "white"
+    });
+    $("#third-flor-4").css({
+        "color": "white"
+    });
+    $("#fourth-flor-4").css({
+        "color": "white"
+    });
+    $("#fifth-flor-4").css({
+        "color": "white"
+    });
+    $("#sixth-flor-4").css({
+        "color": "white"
+    });
+    $("#seventh-flor-4").css({
+        "color": "white"
+    });
+    $("#eighth-flor-4").css({
+        "color": "white"
+    });
+    $("#nineth-flor-4").css({
+        "color": "white"
+    });
 
 
 
 
-    $('#first-flor').click(function() {
+    $('#first-flor').click(function () {
 
         //$('#a').hide();
         $('#flor-2').hide('slow');
         $('#flor-5').hide('slow');
         $('#flor-4').hide('slow');
-        $('#flor-3').hide('slow',  function(){
-          $('#flor-1').animate({"height":"show"})
+        $('#flor-3').hide('slow', function () {
+            $('#flor-1').animate({
+                "height": "show"
+            })
         });
 
 
 
 
-        $("#first-flor").css({"color": "green"});
-        $("#second-flor").css({"color": "darkgrey"});
-        $("#third-flor").css({"color": "darkgrey"});
-        $("#fourth-flor").css({"color": "darkgrey"});
-        $("#fifth-flor").css({"color": "darkgrey"});
+        $("#first-flor").css({
+            "color": "greenyellow"
+        });
+        $("#second-flor").css({
+            "color": "white"
+        });
+        $("#third-flor").css({
+            "color": "white"
+        });
+        $("#fourth-flor").css({
+            "color": "white"
+        });
+        $("#fifth-flor").css({
+            "color": "white"
+        });
 
     });
 
-    $('#second-flor').click(function() {
+    $('#second-flor').click(function () {
 
 
         $('#flor-1').hide('slow');
         $('#flor-5').hide('slow');
         $('#flor-4').hide('slow');
-        $('#flor-3').hide('slow',  function(){
-          $('#flor-2').animate({"height":"show"})
+        $('#flor-3').hide('slow', function () {
+            $('#flor-2').animate({
+                "height": "show"
+            })
         });
 
 
-      $("#first-flor").css({"color": "darkgrey"});
-      $("#second-flor").css({"color": "green"});
-      $("#third-flor").css({"color": "darkgrey"});
-      $("#fourth-flor").css({"color": "darkgrey"});
-      $("#fifth-flor").css({"color": "darkgrey"});
+        $("#first-flor").css({
+            "color": "white"
+        });
+        $("#second-flor").css({
+            "color": "greenyellow"
+        });
+        $("#third-flor").css({
+            "color": "white"
+        });
+        $("#fourth-flor").css({
+            "color": "white"
+        });
+        $("#fifth-flor").css({
+            "color": "white"
+        });
 
 
 
@@ -89,76 +160,106 @@ $(document).ready(function() {
 
     });
 
-    $('#third-flor').click(function() {
+    $('#third-flor').click(function () {
 
 
 
-      $('#flor-3').animate({
-          height: 'show'
-      },
-      function(){
-        $('#flor-5').hide('slow');
-        $('#flor-4').hide('slow');
-        $('#flor-2').hide('slow');
-        $('#flor-1').hide('slow');
+        $('#flor-3').animate({
+                height: 'show'
+            },
+            function () {
+                $('#flor-5').hide('slow');
+                $('#flor-4').hide('slow');
+                $('#flor-2').hide('slow');
+                $('#flor-1').hide('slow');
 
-      });
+            });
 
-      $("#first-flor").css({"color": "darkgrey"});
-      $("#second-flor").css({"color": "darkgrey"});
-      $("#third-flor").css({"color": "green"});
-      $("#fourth-flor").css({"color": "darkgrey"});
-      $("#fifth-flor").css({"color": "darkgrey"});
-
-    });
-
-    $('#fourth-flor').click(function() {
-
-
-
-      $('#flor-4').animate({
-          height: 'show'
-
-      },
-      function(){
-        $('#flor-5').hide('slow');
-        $('#flor-3').hide('slow');
-        $('#flor-2').hide('slow');
-        $('#flor-1').hide('slow');
-
-      });
-      $("#first-flor").css({"color": "darkgrey"});
-      $("#second-flor").css({"color": "darkgrey"});
-      $("#third-flor").css({"color": "darkgrey"});
-      $("#fourth-flor").css({"color": "green"});
-      $("#fifth-flor").css({"color": "darkgrey"});
+        $("#first-flor").css({
+            "color": "white"
+        });
+        $("#second-flor").css({
+            "color": "white"
+        });
+        $("#third-flor").css({
+            "color": "greenyellow"
+        });
+        $("#fourth-flor").css({
+            "color": "white"
+        });
+        $("#fifth-flor").css({
+            "color": "white"
+        });
 
     });
 
-    $('#fifth-flor').click(function() {
+    $('#fourth-flor').click(function () {
 
 
 
-      $('#flor-5').animate({
-          height: 'show'
+        $('#flor-4').animate({
+                height: 'show'
 
-      },
-      function(){
-        $('#flor-3').hide('slow');
-        $('#flor-4').hide('slow');
-        $('#flor-2').hide('slow');
-        $('#flor-1').hide('slow');
-      });
+            },
+            function () {
+                $('#flor-5').hide('slow');
+                $('#flor-3').hide('slow');
+                $('#flor-2').hide('slow');
+                $('#flor-1').hide('slow');
 
-      $("#first-flor").css({"color": "darkgrey"});
-      $("#second-flor").css({"color": "darkgrey"});
-      $("#third-flor").css({"color": "darkgrey"});
-      $("#fourth-flor").css({"color": "darkgrey"});
-      $("#fifth-flor").css({"color": "green"});
+            });
+        $("#first-flor").css({
+            "color": "white"
+        });
+        $("#second-flor").css({
+            "color": "white"
+        });
+        $("#third-flor").css({
+            "color": "white"
+        });
+        $("#fourth-flor").css({
+            "color": "greenyellow"
+        });
+        $("#fifth-flor").css({
+            "color": "white"
+        });
 
     });
 
-    $('#first-flor-4').click(function() {
+    $('#fifth-flor').click(function () {
+
+
+
+        $('#flor-5').animate({
+                height: 'show'
+
+            },
+            function () {
+                $('#flor-3').hide('slow');
+                $('#flor-4').hide('slow');
+                $('#flor-2').hide('slow');
+                $('#flor-1').hide('slow');
+            });
+
+        $("#first-flor").css({
+            "color": "white"
+        });
+        $("#second-flor").css({
+            "color": "white"
+        });
+        $("#third-flor").css({
+            "color": "white"
+        });
+        $("#fourth-flor").css({
+            "color": "white"
+        });
+        $("#fifth-flor").css({
+            "color": "greenyellow"
+        });
+
+    });
+
+    $('#first-flor-4').click(function () {
 
         //$('#a').hide();
         $('#flor-4-2').hide('slow');
@@ -169,273 +270,88 @@ $(document).ready(function() {
         $('#flor-4-8').hide('slow');
         $('#flor-4-9').hide('slow');
 
-        $('#flor-4-3').hide('slow',  function(){
-          $('#flor-4-1').animate({"height":"show"})
+        $('#flor-4-3').hide('slow', function () {
+            $('#flor-4-1').animate({
+                "height": "show"
+            })
         });
 
-        $("#first-flor-4").css({"color": "green"});
-        $("#second-flor-4").css({"color": "darkgrey"});
-        $("#third-flor-4").css({"color": "darkgrey"});
-        $("#fourth-flor-4").css({"color": "darkgrey"});
-        $("#fifth-flor-4").css({"color": "darkgrey"});
-        $("#sixth-flor-4").css({"color": "darkgrey"});
-        $("#seventh-flor-4").css({"color": "darkgrey"});
-        $("#eighth-flor-4").css({"color": "darkgrey"});
-        $("#nineth-flor-4").css({"color": "darkgrey"});
+        $("#first-flor-4").css({
+            "color": "greenyellow"
+        });
+        $("#second-flor-4").css({
+            "color": "white"
+        });
+        $("#third-flor-4").css({
+            "color": "white"
+        });
+        $("#fourth-flor-4").css({
+            "color": "white"
+        });
+        $("#fifth-flor-4").css({
+            "color": "white"
+        });
+        $("#sixth-flor-4").css({
+            "color": "white"
+        });
+        $("#seventh-flor-4").css({
+            "color": "white"
+        });
+        $("#eighth-flor-4").css({
+            "color": "white"
+        });
+        $("#nineth-flor-4").css({
+            "color": "white"
+        });
 
 
     });
 
-    $('#second-flor-4').click(function() {
+    $('#second-flor-4').click(function () {
 
 
-      $('#flor-4-1').hide('slow');
-      $('#flor-4-4').hide('slow');
-      $('#flor-4-5').hide('slow');
-      $('#flor-4-6').hide('slow');
-      $('#flor-4-7').hide('slow');
-      $('#flor-4-8').hide('slow');
-      $('#flor-4-9').hide('slow');
+        $('#flor-4-1').hide('slow');
+        $('#flor-4-4').hide('slow');
+        $('#flor-4-5').hide('slow');
+        $('#flor-4-6').hide('slow');
+        $('#flor-4-7').hide('slow');
+        $('#flor-4-8').hide('slow');
+        $('#flor-4-9').hide('slow');
 
-        $('#flor-4-3').hide('slow',  function(){
-          $('#flor-4-2').animate({"height":"show"})
+        $('#flor-4-3').hide('slow', function () {
+            $('#flor-4-2').animate({
+                "height": "show"
+            })
         });
 
 
-        $("#first-flor-4").css({"color": "darkgrey"});
-        $("#second-flor-4").css({"color": "green"});
-        $("#third-flor-4").css({"color": "darkgrey"});
-        $("#fourth-flor-4").css({"color": "darkgrey"});
-        $("#fifth-flor-4").css({"color": "darkgrey"});
-        $("#sixth-flor-4").css({"color": "darkgrey"});
-        $("#seventh-flor-4").css({"color": "darkgrey"});
-        $("#eighth-flor-4").css({"color": "darkgrey"});
-        $("#nineth-flor-4").css({"color": "darkgrey"});
-
-
-
-
-
-    });
-
-    $('#third-flor-4').click(function() {
-
-
-
-      $('#flor-4-1').hide('slow');
-      $('#flor-4-4').hide('slow');
-      $('#flor-4-5').hide('slow');
-      $('#flor-4-6').hide('slow');
-      $('#flor-4-7').hide('slow');
-      $('#flor-4-8').hide('slow');
-      $('#flor-4-9').hide('slow');
-
-        $('#flor-4-2').hide('slow',  function(){
-          $('#flor-4-3').animate({"height":"show"})
+        $("#first-flor-4").css({
+            "color": "white"
         });
-
-        $("#first-flor-4").css({"color": "darkgrey"});
-        $("#second-flor-4").css({"color": "darkgrey"});
-        $("#third-flor-4").css({"color": "green"});
-        $("#fourth-flor-4").css({"color": "darkgrey"});
-        $("#fifth-flor-4").css({"color": "darkgrey"});
-        $("#sixth-flor-4").css({"color": "darkgrey"});
-        $("#seventh-flor-4").css({"color": "darkgrey"});
-        $("#eighth-flor-4").css({"color": "darkgrey"});
-        $("#nineth-flor-4").css({"color": "darkgrey"});
-
-    });
-
-    $('#fourth-flor-4').click(function() {
-
-      $('#flor-4-1').hide('slow');
-      $('#flor-4-3').hide('slow');
-      $('#flor-4-5').hide('slow');
-      $('#flor-4-6').hide('slow');
-      $('#flor-4-7').hide('slow');
-      $('#flor-4-8').hide('slow');
-      $('#flor-4-9').hide('slow');
-
-        $('#flor-4-2').hide('slow',  function(){
-          $('#flor-4-4').animate({"height":"show"})
+        $("#second-flor-4").css({
+            "color": "greenyellow"
         });
-
-        $("#first-flor-4").css({"color": "darkgrey"});
-        $("#second-flor-4").css({"color": "darkgrey"});
-        $("#third-flor-4").css({"color": "darkgrey"});
-        $("#fourth-flor-4").css({"color": "green"});
-        $("#fifth-flor-4").css({"color": "darkgrey"});
-        $("#sixth-flor-4").css({"color": "darkgrey"});
-        $("#seventh-flor-4").css({"color": "darkgrey"});
-        $("#eighth-flor-4").css({"color": "darkgrey"});
-        $("#nineth-flor-4").css({"color": "darkgrey"});
-
-    });
-
-    $('#fifth-flor-4').click(function() {
-
-
-
-      $('#flor-4-1').hide('slow');
-      $('#flor-4-4').hide('slow');
-      $('#flor-4-3').hide('slow');
-      $('#flor-4-6').hide('slow');
-      $('#flor-4-7').hide('slow');
-      $('#flor-4-8').hide('slow');
-      $('#flor-4-9').hide('slow');
-
-        $('#flor-4-2').hide('slow',  function(){
-          $('#flor-4-5').animate({"height":"show"})
+        $("#third-flor-4").css({
+            "color": "white"
         });
-
-        $("#first-flor-4").css({"color": "darkgrey"});
-        $("#second-flor-4").css({"color": "darkgrey"});
-        $("#third-flor-4").css({"color": "darkgrey"});
-        $("#fourth-flor-4").css({"color": "darkgrey"});
-        $("#fifth-flor-4").css({"color": "green"});
-        $("#sixth-flor-4").css({"color": "darkgrey"});
-        $("#seventh-flor-4").css({"color": "darkgrey"});
-        $("#eighth-flor-4").css({"color": "darkgrey"});
-        $("#nineth-flor-4").css({"color": "darkgrey"});
-
-    });
-
-    $('#sixth-flor-4').click(function() {
-
-
-
-      $('#flor-4-1').hide('slow');
-      $('#flor-4-4').hide('slow');
-      $('#flor-4-5').hide('slow');
-      $('#flor-4-3').hide('slow');
-      $('#flor-4-7').hide('slow');
-      $('#flor-4-8').hide('slow');
-      $('#flor-4-9').hide('slow');
-
-        $('#flor-4-2').hide('slow',  function(){
-          $('#flor-4-6').animate({"height":"show"})
+        $("#fourth-flor-4").css({
+            "color": "white"
         });
-
-        $("#first-flor-4").css({"color": "darkgrey"});
-        $("#second-flor-4").css({"color": "darkgrey"});
-        $("#third-flor-4").css({"color": "darkgrey"});
-        $("#fourth-flor-4").css({"color": "darkgrey"});
-        $("#fifth-flor-4").css({"color": "darkgrey"});
-        $("#sixth-flor-4").css({"color": "green"});
-        $("#seventh-flor-4").css({"color": "darkgrey"});
-        $("#eighth-flor-4").css({"color": "darkgrey"});
-        $("#nineth-flor-4").css({"color": "darkgrey"});
-
-    });
-
-    $('#seventh-flor-4').click(function() {
-
-
-
-      $('#flor-4-1').hide('slow');
-      $('#flor-4-4').hide('slow');
-      $('#flor-4-5').hide('slow');
-      $('#flor-4-6').hide('slow');
-      $('#flor-4-3').hide('slow');
-      $('#flor-4-8').hide('slow');
-      $('#flor-4-9').hide('slow');
-
-        $('#flor-4-2').hide('slow',  function(){
-          $('#flor-4-7').animate({"height":"show"})
+        $("#fifth-flor-4").css({
+            "color": "white"
         });
-
-        $("#first-flor-4").css({"color": "darkgrey"});
-        $("#second-flor-4").css({"color": "darkgrey"});
-        $("#third-flor-4").css({"color": "darkgrey"});
-        $("#fourth-flor-4").css({"color": "darkgrey"});
-        $("#fifth-flor-4").css({"color": "darkgrey"});
-        $("#sixth-flor-4").css({"color": "darkgrey"});
-        $("#seventh-flor-4").css({"color": "green"});
-        $("#eighth-flor-4").css({"color": "darkgrey"});
-        $("#nineth-flor-4").css({"color": "darkgrey"});
-
-    });
-
-    $('#eighth-flor-4').click(function() {
-
-
-
-      $('#flor-4-1').hide('slow');
-      $('#flor-4-4').hide('slow');
-      $('#flor-4-5').hide('slow');
-      $('#flor-4-6').hide('slow');
-      $('#flor-4-7').hide('slow');
-      $('#flor-4-3').hide('slow');
-      $('#flor-4-9').hide('slow');
-
-        $('#flor-4-2').hide('slow',  function(){
-          $('#flor-4-8').animate({"height":"show"})
+        $("#sixth-flor-4").css({
+            "color": "white"
         });
-
-        $("#first-flor-4").css({"color": "darkgrey"});
-        $("#second-flor-4").css({"color": "darkgrey"});
-        $("#third-flor-4").css({"color": "darkgrey"});
-        $("#fourth-flor-4").css({"color": "darkgrey"});
-        $("#fifth-flor-4").css({"color": "darkgrey"});
-        $("#sixth-flor-4").css({"color": "darkgrey"});
-        $("#seventh-flor-4").css({"color": "darkgrey"});
-        $("#eighth-flor-4").css({"color": "green"});
-        $("#nineth-flor-4").css({"color": "darkgrey"});
-
-    });
-
-    $('#nineth-flor-4').click(function() {
-
-
-
-      $('#flor-4-1').hide('slow');
-      $('#flor-4-4').hide('slow');
-      $('#flor-4-5').hide('slow');
-      $('#flor-4-6').hide('slow');
-      $('#flor-4-7').hide('slow');
-      $('#flor-4-8').hide('slow');
-      $('#flor-4-3').hide('slow');
-
-        $('#flor-4-2').hide('slow',  function(){
-          $('#flor-4-9').animate({"height":"show"})
+        $("#seventh-flor-4").css({
+            "color": "white"
         });
-
-        $("#first-flor-4").css({"color": "darkgrey"});
-        $("#second-flor-4").css({"color": "darkgrey"});
-        $("#third-flor-4").css({"color": "darkgrey"});
-        $("#fourth-flor-4").css({"color": "darkgrey"});
-        $("#fifth-flor-4").css({"color": "darkgrey"});
-        $("#sixth-flor-4").css({"color": "darkgrey"});
-        $("#seventh-flor-4").css({"color": "darkgrey"});
-        $("#eighth-flor-4").css({"color": "darkgrey"});
-        $("#nineth-flor-4").css({"color": "green"});
-
-    });
-    $('#second-flor-3').click(function() {
-
-
-      $('#flor-3-1').hide('slow');
-      $('#flor-3-4').hide('slow');
-      $('#flor-3-5').hide('slow');
-      $('#flor-3-6').hide('slow');
-      $('#flor-3-7').hide('slow');
-      $('#flor-3-8').hide('slow');
-      $('#flor-3-9').hide('slow');
-
-        $('#flor-3-3').hide('slow',  function(){
-          $('#flor-3-2').animate({"height":"show"})
+        $("#eighth-flor-4").css({
+            "color": "white"
         });
-
-
-        $("#first-flor-3").css({"color": "darkgrey"});
-        $("#second-flor-3").css({"color": "green"});
-        $("#third-flor-3").css({"color": "darkgrey"});
-        $("#fourth-flor-3").css({"color": "darkgrey"});
-        $("#fifth-flor-3").css({"color": "darkgrey"});
-        $("#sixth-flor-3").css({"color": "darkgrey"});
-        $("#seventh-flor-3").css({"color": "darkgrey"});
-        $("#eighth-flor-3").css({"color": "darkgrey"});
-        $("#nineth-flor-3").css({"color": "darkgrey"});
+        $("#nineth-flor-4").css({
+            "color": "white"
+        });
 
 
 
@@ -443,197 +359,722 @@ $(document).ready(function() {
 
     });
 
-    $('#third-flor-3').click(function() {
+    $('#third-flor-4').click(function () {
 
 
 
-      $('#flor-3-1').hide('slow');
-      $('#flor-3-4').hide('slow');
-      $('#flor-3-5').hide('slow');
-      $('#flor-3-6').hide('slow');
-      $('#flor-3-7').hide('slow');
-      $('#flor-3-8').hide('slow');
-      $('#flor-3-9').hide('slow');
+        $('#flor-4-1').hide('slow');
+        $('#flor-4-4').hide('slow');
+        $('#flor-4-5').hide('slow');
+        $('#flor-4-6').hide('slow');
+        $('#flor-4-7').hide('slow');
+        $('#flor-4-8').hide('slow');
+        $('#flor-4-9').hide('slow');
 
-        $('#flor-3-2').hide('slow',  function(){
-          $('#flor-3-3').animate({"height":"show"})
+        $('#flor-4-2').hide('slow', function () {
+            $('#flor-4-3').animate({
+                "height": "show"
+            })
         });
 
-        $("#first-flor-3").css({"color": "darkgrey"});
-        $("#second-flor-3").css({"color": "darkgrey"});
-        $("#third-flor-3").css({"color": "green"});
-        $("#fourth-flor-3").css({"color": "darkgrey"});
-        $("#fifth-flor-3").css({"color": "darkgrey"});
-        $("#sixth-flor-3").css({"color": "darkgrey"});
-        $("#seventh-flor-3").css({"color": "darkgrey"});
-        $("#eighth-flor-3").css({"color": "darkgrey"});
-        $("#nineth-flor-3").css({"color": "darkgrey"});
+        $("#first-flor-4").css({
+            "color": "white"
+        });
+        $("#second-flor-4").css({
+            "color": "white"
+        });
+        $("#third-flor-4").css({
+            "color": "greenyellow"
+        });
+        $("#fourth-flor-4").css({
+            "color": "white"
+        });
+        $("#fifth-flor-4").css({
+            "color": "white"
+        });
+        $("#sixth-flor-4").css({
+            "color": "white"
+        });
+        $("#seventh-flor-4").css({
+            "color": "white"
+        });
+        $("#eighth-flor-4").css({
+            "color": "white"
+        });
+        $("#nineth-flor-4").css({
+            "color": "white"
+        });
 
     });
 
-    $('#fourth-flor-3').click(function() {
+    $('#fourth-flor-4').click(function () {
 
-      $('#flor-3-1').hide('slow');
-      $('#flor-3-3').hide('slow');
-      $('#flor-3-5').hide('slow');
-      $('#flor-3-6').hide('slow');
-      $('#flor-3-7').hide('slow');
-      $('#flor-3-8').hide('slow');
-      $('#flor-3-9').hide('slow');
+        $('#flor-4-1').hide('slow');
+        $('#flor-4-3').hide('slow');
+        $('#flor-4-5').hide('slow');
+        $('#flor-4-6').hide('slow');
+        $('#flor-4-7').hide('slow');
+        $('#flor-4-8').hide('slow');
+        $('#flor-4-9').hide('slow');
 
-        $('#flor-3-2').hide('slow',  function(){
-          $('#flor-3-4').animate({"height":"show"})
+        $('#flor-4-2').hide('slow', function () {
+            $('#flor-4-4').animate({
+                "height": "show"
+            })
         });
 
-        $("#first-flor-3").css({"color": "darkgrey"});
-        $("#second-flor-3").css({"color": "darkgrey"});
-        $("#third-flor-3").css({"color": "darkgrey"});
-        $("#fourth-flor-3").css({"color": "green"});
-        $("#fifth-flor-3").css({"color": "darkgrey"});
-        $("#sixth-flor-3").css({"color": "darkgrey"});
-        $("#seventh-flor-3").css({"color": "darkgrey"});
-        $("#eighth-flor-3").css({"color": "darkgrey"});
-        $("#nineth-flor-3").css({"color": "darkgrey"});
+        $("#first-flor-4").css({
+            "color": "white"
+        });
+        $("#second-flor-4").css({
+            "color": "white"
+        });
+        $("#third-flor-4").css({
+            "color": "white"
+        });
+        $("#fourth-flor-4").css({
+            "color": "greenyellow"
+        });
+        $("#fifth-flor-4").css({
+            "color": "white"
+        });
+        $("#sixth-flor-4").css({
+            "color": "white"
+        });
+        $("#seventh-flor-4").css({
+            "color": "white"
+        });
+        $("#eighth-flor-4").css({
+            "color": "white"
+        });
+        $("#nineth-flor-4").css({
+            "color": "white"
+        });
 
     });
 
-    $('#fifth-flor-3').click(function() {
+    $('#fifth-flor-4').click(function () {
 
 
 
-      $('#flor-3-1').hide('slow');
-      $('#flor-3-4').hide('slow');
-      $('#flor-3-3').hide('slow');
-      $('#flor-3-6').hide('slow');
-      $('#flor-3-7').hide('slow');
-      $('#flor-3-8').hide('slow');
-      $('#flor-3-9').hide('slow');
+        $('#flor-4-1').hide('slow');
+        $('#flor-4-4').hide('slow');
+        $('#flor-4-3').hide('slow');
+        $('#flor-4-6').hide('slow');
+        $('#flor-4-7').hide('slow');
+        $('#flor-4-8').hide('slow');
+        $('#flor-4-9').hide('slow');
 
-        $('#flor-3-2').hide('slow',  function(){
-          $('#flor-3-5').animate({"height":"show"})
+        $('#flor-4-2').hide('slow', function () {
+            $('#flor-4-5').animate({
+                "height": "show"
+            })
         });
 
-        $("#first-flor-3").css({"color": "darkgrey"});
-        $("#second-flor-3").css({"color": "darkgrey"});
-        $("#third-flor-3").css({"color": "darkgrey"});
-        $("#fourth-flor-3").css({"color": "darkgrey"});
-        $("#fifth-flor-3").css({"color": "green"});
-        $("#sixth-flor-3").css({"color": "darkgrey"});
-        $("#seventh-flor-3").css({"color": "darkgrey"});
-        $("#eighth-flor-3").css({"color": "darkgrey"});
-        $("#nineth-flor-3").css({"color": "darkgrey"});
+        $("#first-flor-4").css({
+            "color": "white"
+        });
+        $("#second-flor-4").css({
+            "color": "white"
+        });
+        $("#third-flor-4").css({
+            "color": "white"
+        });
+        $("#fourth-flor-4").css({
+            "color": "white"
+        });
+        $("#fifth-flor-4").css({
+            "color": "greenyellow"
+        });
+        $("#sixth-flor-4").css({
+            "color": "white"
+        });
+        $("#seventh-flor-4").css({
+            "color": "white"
+        });
+        $("#eighth-flor-4").css({
+            "color": "white"
+        });
+        $("#nineth-flor-4").css({
+            "color": "white"
+        });
 
     });
 
-    $('#sixth-flor-3').click(function() {
+    $('#sixth-flor-4').click(function () {
 
 
 
-      $('#flor-3-1').hide('slow');
-      $('#flor-3-4').hide('slow');
-      $('#flor-3-5').hide('slow');
-      $('#flor-3-3').hide('slow');
-      $('#flor-3-7').hide('slow');
-      $('#flor-3-8').hide('slow');
-      $('#flor-3-9').hide('slow');
+        $('#flor-4-1').hide('slow');
+        $('#flor-4-4').hide('slow');
+        $('#flor-4-5').hide('slow');
+        $('#flor-4-3').hide('slow');
+        $('#flor-4-7').hide('slow');
+        $('#flor-4-8').hide('slow');
+        $('#flor-4-9').hide('slow');
 
-        $('#flor-3-2').hide('slow',  function(){
-          $('#flor-3-6').animate({"height":"show"})
+        $('#flor-4-2').hide('slow', function () {
+            $('#flor-4-6').animate({
+                "height": "show"
+            })
         });
 
-        $("#first-flor-3").css({"color": "darkgrey"});
-        $("#second-flor-3").css({"color": "darkgrey"});
-        $("#third-flor-3").css({"color": "darkgrey"});
-        $("#fourth-flor-3").css({"color": "darkgrey"});
-        $("#fifth-flor-3").css({"color": "darkgrey"});
-        $("#sixth-flor-3").css({"color": "green"});
-        $("#seventh-flor-3").css({"color": "darkgrey"});
-        $("#eighth-flor-3").css({"color": "darkgrey"});
-        $("#nineth-flor-3").css({"color": "darkgrey"});
+        $("#first-flor-4").css({
+            "color": "white"
+        });
+        $("#second-flor-4").css({
+            "color": "white"
+        });
+        $("#third-flor-4").css({
+            "color": "white"
+        });
+        $("#fourth-flor-4").css({
+            "color": "white"
+        });
+        $("#fifth-flor-4").css({
+            "color": "white"
+        });
+        $("#sixth-flor-4").css({
+            "color": "greenyellow"
+        });
+        $("#seventh-flor-4").css({
+            "color": "white"
+        });
+        $("#eighth-flor-4").css({
+            "color": "white"
+        });
+        $("#nineth-flor-4").css({
+            "color": "white"
+        });
 
     });
 
-    $('#seventh-flor-3').click(function() {
+    $('#seventh-flor-4').click(function () {
 
 
 
-      $('#flor-3-1').hide('slow');
-      $('#flor-3-4').hide('slow');
-      $('#flor-3-5').hide('slow');
-      $('#flor-3-6').hide('slow');
-      $('#flor-3-3').hide('slow');
-      $('#flor-3-8').hide('slow');
-      $('#flor-3-9').hide('slow');
+        $('#flor-4-1').hide('slow');
+        $('#flor-4-4').hide('slow');
+        $('#flor-4-5').hide('slow');
+        $('#flor-4-6').hide('slow');
+        $('#flor-4-3').hide('slow');
+        $('#flor-4-8').hide('slow');
+        $('#flor-4-9').hide('slow');
 
-        $('#flor-3-2').hide('slow',  function(){
-          $('#flor-3-7').animate({"height":"show"})
+        $('#flor-4-2').hide('slow', function () {
+            $('#flor-4-7').animate({
+                "height": "show"
+            })
         });
 
-        $("#first-flor-3").css({"color": "darkgrey"});
-        $("#second-flor-3").css({"color": "darkgrey"});
-        $("#third-flor-3").css({"color": "darkgrey"});
-        $("#fourth-flor-3").css({"color": "darkgrey"});
-        $("#fifth-flor-3").css({"color": "darkgrey"});
-        $("#sixth-flor-3").css({"color": "darkgrey"});
-        $("#seventh-flor-3").css({"color": "green"});
-        $("#eighth-flor-3").css({"color": "darkgrey"});
-        $("#nineth-flor-3").css({"color": "darkgrey"});
+        $("#first-flor-4").css({
+            "color": "white"
+        });
+        $("#second-flor-4").css({
+            "color": "white"
+        });
+        $("#third-flor-4").css({
+            "color": "white"
+        });
+        $("#fourth-flor-4").css({
+            "color": "white"
+        });
+        $("#fifth-flor-4").css({
+            "color": "white"
+        });
+        $("#sixth-flor-4").css({
+            "color": "white"
+        });
+        $("#seventh-flor-4").css({
+            "color": "greenyellow"
+        });
+        $("#eighth-flor-4").css({
+            "color": "white"
+        });
+        $("#nineth-flor-4").css({
+            "color": "white"
+        });
 
     });
 
-    $('#eighth-flor-3').click(function() {
+    $('#eighth-flor-4').click(function () {
 
 
 
-      $('#flor-3-1').hide('slow');
-      $('#flor-3-4').hide('slow');
-      $('#flor-3-5').hide('slow');
-      $('#flor-3-6').hide('slow');
-      $('#flor-3-7').hide('slow');
-      $('#flor-3-3').hide('slow');
-      $('#flor-3-9').hide('slow');
+        $('#flor-4-1').hide('slow');
+        $('#flor-4-4').hide('slow');
+        $('#flor-4-5').hide('slow');
+        $('#flor-4-6').hide('slow');
+        $('#flor-4-7').hide('slow');
+        $('#flor-4-3').hide('slow');
+        $('#flor-4-9').hide('slow');
 
-        $('#flor-3-2').hide('slow',  function(){
-          $('#flor-3-8').animate({"height":"show"})
+        $('#flor-4-2').hide('slow', function () {
+            $('#flor-4-8').animate({
+                "height": "show"
+            })
         });
 
-        $("#first-flor-3").css({"color": "darkgrey"});
-        $("#second-flor-3").css({"color": "darkgrey"});
-        $("#third-flor-3").css({"color": "darkgrey"});
-        $("#fourth-flor-3").css({"color": "darkgrey"});
-        $("#fifth-flor-3").css({"color": "darkgrey"});
-        $("#sixth-flor-3").css({"color": "darkgrey"});
-        $("#seventh-flor-3").css({"color": "darkgrey"});
-        $("#eighth-flor-3").css({"color": "green"});
-        $("#nineth-flor-3").css({"color": "darkgrey"});
+        $("#first-flor-4").css({
+            "color": "white"
+        });
+        $("#second-flor-4").css({
+            "color": "white"
+        });
+        $("#third-flor-4").css({
+            "color": "white"
+        });
+        $("#fourth-flor-4").css({
+            "color": "white"
+        });
+        $("#fifth-flor-4").css({
+            "color": "white"
+        });
+        $("#sixth-flor-4").css({
+            "color": "white"
+        });
+        $("#seventh-flor-4").css({
+            "color": "white"
+        });
+        $("#eighth-flor-4").css({
+            "color": "greenyellow"
+        });
+        $("#nineth-flor-4").css({
+            "color": "white"
+        });
 
     });
 
-    $('#nineth-flor-3').click(function() {
+    $('#nineth-flor-4').click(function () {
 
 
 
-      $('#flor-3-1').hide('slow');
-      $('#flor-3-4').hide('slow');
-      $('#flor-3-5').hide('slow');
-      $('#flor-3-6').hide('slow');
-      $('#flor-3-7').hide('slow');
-      $('#flor-3-8').hide('slow');
-      $('#flor-3-3').hide('slow');
+        $('#flor-4-1').hide('slow');
+        $('#flor-4-4').hide('slow');
+        $('#flor-4-5').hide('slow');
+        $('#flor-4-6').hide('slow');
+        $('#flor-4-7').hide('slow');
+        $('#flor-4-8').hide('slow');
+        $('#flor-4-3').hide('slow');
 
-        $('#flor-3-2').hide('slow',  function(){
-          $('#flor-3-9').animate({"height":"show"})
+        $('#flor-4-2').hide('slow', function () {
+            $('#flor-4-9').animate({
+                "height": "show"
+            })
         });
 
-        $("#first-flor-3").css({"color": "darkgrey"});
-        $("#second-flor-3").css({"color": "darkgrey"});
-        $("#third-flor-3").css({"color": "darkgrey"});
-        $("#fourth-flor-3").css({"color": "darkgrey"});
-        $("#fifth-flor-3").css({"color": "darkgrey"});
-        $("#sixth-flor-3").css({"color": "darkgrey"});
-        $("#seventh-flor-3").css({"color": "darkgrey"});
-        $("#eighth-flor-3").css({"color": "darkgrey"});
-        $("#nineth-flor-3").css({"color": "green"});
+        $("#first-flor-4").css({
+            "color": "white"
+        });
+        $("#second-flor-4").css({
+            "color": "white"
+        });
+        $("#third-flor-4").css({
+            "color": "white"
+        });
+        $("#fourth-flor-4").css({
+            "color": "white"
+        });
+        $("#fifth-flor-4").css({
+            "color": "white"
+        });
+        $("#sixth-flor-4").css({
+            "color": "white"
+        });
+        $("#seventh-flor-4").css({
+            "color": "white"
+        });
+        $("#eighth-flor-4").css({
+            "color": "white"
+        });
+        $("#nineth-flor-4").css({
+            "color": "greenyellow"
+        });
+
+    });
+    $('#second-flor-3').click(function () {
+
+
+        $('#flor-3-1').hide('slow');
+        $('#flor-3-4').hide('slow');
+        $('#flor-3-5').hide('slow');
+        $('#flor-3-6').hide('slow');
+        $('#flor-3-7').hide('slow');
+        $('#flor-3-8').hide('slow');
+        $('#flor-3-9').hide('slow');
+
+        $('#flor-3-3').hide('slow', function () {
+            $('#flor-3-2').animate({
+                "height": "show"
+            })
+        });
+
+
+        $("#first-flor-3").css({
+            "color": "white"
+        });
+        $("#second-flor-3").css({
+            "color": "greenyellow"
+        });
+        $("#third-flor-3").css({
+            "color": "white"
+        });
+        $("#fourth-flor-3").css({
+            "color": "white"
+        });
+        $("#fifth-flor-3").css({
+            "color": "white"
+        });
+        $("#sixth-flor-3").css({
+            "color": "white"
+        });
+        $("#seventh-flor-3").css({
+            "color": "white"
+        });
+        $("#eighth-flor-3").css({
+            "color": "white"
+        });
+        $("#nineth-flor-3").css({
+            "color": "white"
+        });
+
+
+
+
+
+    });
+
+    $('#third-flor-3').click(function () {
+
+
+
+        $('#flor-3-1').hide('slow');
+        $('#flor-3-4').hide('slow');
+        $('#flor-3-5').hide('slow');
+        $('#flor-3-6').hide('slow');
+        $('#flor-3-7').hide('slow');
+        $('#flor-3-8').hide('slow');
+        $('#flor-3-9').hide('slow');
+
+        $('#flor-3-2').hide('slow', function () {
+            $('#flor-3-3').animate({
+                "height": "show"
+            })
+        });
+
+        $("#first-flor-3").css({
+            "color": "white"
+        });
+        $("#second-flor-3").css({
+            "color": "white"
+        });
+        $("#third-flor-3").css({
+            "color": "greenyellow"
+        });
+        $("#fourth-flor-3").css({
+            "color": "white"
+        });
+        $("#fifth-flor-3").css({
+            "color": "white"
+        });
+        $("#sixth-flor-3").css({
+            "color": "white"
+        });
+        $("#seventh-flor-3").css({
+            "color": "white"
+        });
+        $("#eighth-flor-3").css({
+            "color": "white"
+        });
+        $("#nineth-flor-3").css({
+            "color": "white"
+        });
+
+    });
+
+    $('#fourth-flor-3').click(function () {
+
+        $('#flor-3-1').hide('slow');
+        $('#flor-3-3').hide('slow');
+        $('#flor-3-5').hide('slow');
+        $('#flor-3-6').hide('slow');
+        $('#flor-3-7').hide('slow');
+        $('#flor-3-8').hide('slow');
+        $('#flor-3-9').hide('slow');
+
+        $('#flor-3-2').hide('slow', function () {
+            $('#flor-3-4').animate({
+                "height": "show"
+            })
+        });
+
+        $("#first-flor-3").css({
+            "color": "white"
+        });
+        $("#second-flor-3").css({
+            "color": "white"
+        });
+        $("#third-flor-3").css({
+            "color": "white"
+        });
+        $("#fourth-flor-3").css({
+            "color": "greenyellow"
+        });
+        $("#fifth-flor-3").css({
+            "color": "white"
+        });
+        $("#sixth-flor-3").css({
+            "color": "white"
+        });
+        $("#seventh-flor-3").css({
+            "color": "white"
+        });
+        $("#eighth-flor-3").css({
+            "color": "white"
+        });
+        $("#nineth-flor-3").css({
+            "color": "white"
+        });
+
+    });
+
+    $('#fifth-flor-3').click(function () {
+
+
+
+        $('#flor-3-1').hide('slow');
+        $('#flor-3-4').hide('slow');
+        $('#flor-3-3').hide('slow');
+        $('#flor-3-6').hide('slow');
+        $('#flor-3-7').hide('slow');
+        $('#flor-3-8').hide('slow');
+        $('#flor-3-9').hide('slow');
+
+        $('#flor-3-2').hide('slow', function () {
+            $('#flor-3-5').animate({
+                "height": "show"
+            })
+        });
+
+        $("#first-flor-3").css({
+            "color": "white"
+        });
+        $("#second-flor-3").css({
+            "color": "white"
+        });
+        $("#third-flor-3").css({
+            "color": "white"
+        });
+        $("#fourth-flor-3").css({
+            "color": "white"
+        });
+        $("#fifth-flor-3").css({
+            "color": "greenyellow"
+        });
+        $("#sixth-flor-3").css({
+            "color": "white"
+        });
+        $("#seventh-flor-3").css({
+            "color": "white"
+        });
+        $("#eighth-flor-3").css({
+            "color": "white"
+        });
+        $("#nineth-flor-3").css({
+            "color": "white"
+        });
+
+    });
+
+    $('#sixth-flor-3').click(function () {
+
+
+
+        $('#flor-3-1').hide('slow');
+        $('#flor-3-4').hide('slow');
+        $('#flor-3-5').hide('slow');
+        $('#flor-3-3').hide('slow');
+        $('#flor-3-7').hide('slow');
+        $('#flor-3-8').hide('slow');
+        $('#flor-3-9').hide('slow');
+
+        $('#flor-3-2').hide('slow', function () {
+            $('#flor-3-6').animate({
+                "height": "show"
+            })
+        });
+
+        $("#first-flor-3").css({
+            "color": "white"
+        });
+        $("#second-flor-3").css({
+            "color": "white"
+        });
+        $("#third-flor-3").css({
+            "color": "white"
+        });
+        $("#fourth-flor-3").css({
+            "color": "white"
+        });
+        $("#fifth-flor-3").css({
+            "color": "white"
+        });
+        $("#sixth-flor-3").css({
+            "color": "greenyellow"
+        });
+        $("#seventh-flor-3").css({
+            "color": "white"
+        });
+        $("#eighth-flor-3").css({
+            "color": "white"
+        });
+        $("#nineth-flor-3").css({
+            "color": "white"
+        });
+
+    });
+
+    $('#seventh-flor-3').click(function () {
+
+
+
+        $('#flor-3-1').hide('slow');
+        $('#flor-3-4').hide('slow');
+        $('#flor-3-5').hide('slow');
+        $('#flor-3-6').hide('slow');
+        $('#flor-3-3').hide('slow');
+        $('#flor-3-8').hide('slow');
+        $('#flor-3-9').hide('slow');
+
+        $('#flor-3-2').hide('slow', function () {
+            $('#flor-3-7').animate({
+                "height": "show"
+            })
+        });
+
+        $("#first-flor-3").css({
+            "color": "white"
+        });
+        $("#second-flor-3").css({
+            "color": "white"
+        });
+        $("#third-flor-3").css({
+            "color": "white"
+        });
+        $("#fourth-flor-3").css({
+            "color": "white"
+        });
+        $("#fifth-flor-3").css({
+            "color": "white"
+        });
+        $("#sixth-flor-3").css({
+            "color": "white"
+        });
+        $("#seventh-flor-3").css({
+            "color": "greenyellow"
+        });
+        $("#eighth-flor-3").css({
+            "color": "white"
+        });
+        $("#nineth-flor-3").css({
+            "color": "white"
+        });
+
+    });
+
+    $('#eighth-flor-3').click(function () {
+
+
+
+        $('#flor-3-1').hide('slow');
+        $('#flor-3-4').hide('slow');
+        $('#flor-3-5').hide('slow');
+        $('#flor-3-6').hide('slow');
+        $('#flor-3-7').hide('slow');
+        $('#flor-3-3').hide('slow');
+        $('#flor-3-9').hide('slow');
+
+        $('#flor-3-2').hide('slow', function () {
+            $('#flor-3-8').animate({
+                "height": "show"
+            })
+        });
+
+        $("#first-flor-3").css({
+            "color": "white"
+        });
+        $("#second-flor-3").css({
+            "color": "white"
+        });
+        $("#third-flor-3").css({
+            "color": "white"
+        });
+        $("#fourth-flor-3").css({
+            "color": "white"
+        });
+        $("#fifth-flor-3").css({
+            "color": "white"
+        });
+        $("#sixth-flor-3").css({
+            "color": "white"
+        });
+        $("#seventh-flor-3").css({
+            "color": "white"
+        });
+        $("#eighth-flor-3").css({
+            "color": "greenyellow"
+        });
+        $("#nineth-flor-3").css({
+            "color": "white"
+        });
+
+    });
+
+    $('#nineth-flor-3').click(function () {
+
+
+
+        $('#flor-3-1').hide('slow');
+        $('#flor-3-4').hide('slow');
+        $('#flor-3-5').hide('slow');
+        $('#flor-3-6').hide('slow');
+        $('#flor-3-7').hide('slow');
+        $('#flor-3-8').hide('slow');
+        $('#flor-3-3').hide('slow');
+
+        $('#flor-3-2').hide('slow', function () {
+            $('#flor-3-9').animate({
+                "height": "show"
+            })
+        });
+
+        $("#first-flor-3").css({
+            "color": "white"
+        });
+        $("#second-flor-3").css({
+            "color": "white"
+        });
+        $("#third-flor-3").css({
+            "color": "white"
+        });
+        $("#fourth-flor-3").css({
+            "color": "white"
+        });
+        $("#fifth-flor-3").css({
+            "color": "white"
+        });
+        $("#sixth-flor-3").css({
+            "color": "white"
+        });
+        $("#seventh-flor-3").css({
+            "color": "white"
+        });
+        $("#eighth-flor-3").css({
+            "color": "white"
+        });
+        $("#nineth-flor-3").css({
+            "color": "greenyellow"
+        });
 
     });
 

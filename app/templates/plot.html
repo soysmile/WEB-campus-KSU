@@ -1,282 +1,1170 @@
 {% extends 'base.html' %} {% block head %}
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.css"/>
 
 
-<link href="../static/css/rotating-card.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css" />
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-<script src="{{ url_for('static', filename='js/jquery-2.2.1.min.js') }}"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.min.js"></script>
+    <link href="../static/css/rotating-card.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/jquery-2.2.1.min.js') }}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.min.js"></script>
 
 
 {% endblock %} {% block content %}
-<div class="container">
-    <div class="row">
-        <h1 class="page-header">Дирекція</h1>
-        <div class="col-sm-10 col-sm-offset-1">
-            <!-- end col sm 3 -->
-            <div class="col-md-4 col-sm-6">
-                <div class="card-container manual-flip" >
-                    <div class="card">
-                        <div class="front">
-                            <div class="cover">
-                                {# <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg" />#}
-                            </div>
-                            <div class="user">
-                                <img class="img-circle" src="http://via.placeholder.com/400x400" />
-                            </div>
-                            <div class="content">
-                                <div class="main">
-                                    <h3 class="name">Винник Максим Александрович</h3>
-                                    <p class="profession">Директор</p>
-                                    <p class="text-center">"Описание"</p>
-                                </div>
-                                <div class="footer">
-                                    <button class="btn btn-simple" onclick="rotateCard(this)">
-                                            <i class="fa fa-mail-forward"></i> Подробнее
-                                        </button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end front panel -->
-                        <div class="back">
-                            <div class="header">
-                                <h5 class="motto">"Верхнее описание"</h5>
-                            </div>
-                            <div class="content">
-                                <div class="main">
-                                    <h4 class="text-center">Должность</h4>
-                                    <p class="text-center">Описаие должности</p>
-
-                                    <div class="stats-container">
-                                        <div class="stats">
-                                            <h4>0</h4>
-                                            <p>
-                                                Подписчиков
-                                            </p>
+    <div class="container">
+        <div class="row">
+            <h1 class="page-header">Дирекція</h1>
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="col-md-12">
+                    <div style="text-align: center;"><h1>СМ ХДУ</h1></div>
+                    <hr>
+                    <br>
+                    <!-- end col sm 3 -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card-container manual-flip">
+                            <div class="card">
+                                <div class="front">
+                                    <div class="cover">
+                                        {# <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg" />#}
+                                    </div>
+                                    <div class="user">
+                                        <img class="img-circle" src="http://via.placeholder.com/400x400"/>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h3 class="name">Вінник Максим Олександрович</h3>
+                                            <p class="profession">Директор</p>
+                                            <p class="text-center">"Описание"</p>
                                         </div>
-                                        <div class="stats">
-                                            <h4>0</h4>
-                                            <p>
-                                                Подписок
-                                            </p>
-                                        </div>
-                                        <div class="stats">
-                                            <h4>0</h4>
-                                            <p>
-                                                Проектов
-                                            </p>
+                                        <div class="footer">
+                                            <button class="btn btn-simple" onclick="rotateCard(this)">
+                                                <i class="fa fa-mail-forward"></i> Подробнее
+                                            </button>
                                         </div>
                                     </div>
+                                </div>
+                                <!-- end front panel -->
+                                <div class="back">
+                                    <div class="header">
+                                        <h5 class="motto">"Верхнее описание"</h5>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h4 class="text-center">Должность</h4>
+                                            <p class="text-center">Описаие должности</p>
 
-                                </div>
-                            </div>
-                            <div class="footer">
-                                <button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
-                                        <i class="fa fa-reply"></i> Назад
-                                    </button>
-                                <div class="social-links text-center">
-                                    <a href="http://deepak646.blogspot.in/" class="facebook"><i
-                                                class="fa fa-facebook fa-fw"></i></a>
-                                    <a href="http://deepak646.blogspot.in/" class="google"><i
-                                                class="fa fa-google-plus fa-fw"></i></a>
-                                    <a href="http://deepak646.blogspot.in/" class="twitter"><i
-                                                class="fa fa-twitter fa-fw"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end back panel -->
-                    </div>
-                    <!-- end card -->
-                </div>
-                <!-- end card-container -->
-            </div>
-            <!--         <div class="col-sm-1"></div> -->
-            <div class="col-md-4 col-sm-6">
-                <div class="card-container manual-flip">
-                    <div class="card">
-                        <div class="front">
-                            <div class="cover">
-                                {# <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg" />#}
-                            </div>
-                            <div class="user">
-                                <img class="img-circle" src="http://via.placeholder.com/400x400" />
-                            </div>
-                            <div class="content">
-                                <div class="main">
-                                    <h3 class="name">Гаевская Светлана Владимировна</h3>
-                                    <p class="profession">Специальность</p>
-                                    <p class="text-center">"Описание"</p>
-                                </div>
-                                <div class="footer">
-                                    <button class="btn btn-simple" onclick="rotateCard(this)">
-                                            <i class="fa fa-mail-forward"></i> Подробнее
-                                        </button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end front panel -->
-                        <div class="back">
-                            <div class="header">
-                                <h5 class="motto">"Верхнее описание"</h5>
-                            </div>
-                            <div class="content">
-                                <div class="main">
-                                    <h4 class="text-center">Должность</h4>
-                                    <p class="text-center">Описаие должности</p>
+                                            <div class="stats-container">
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписчиков
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписок
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Проектов
+                                                    </p>
+                                                </div>
+                                            </div>
 
-                                    <div class="stats-container">
-                                        <div class="stats">
-                                            <h4>0</h4>
-                                            <p>
-                                                Подписчиков
-                                            </p>
-                                        </div>
-                                        <div class="stats">
-                                            <h4>0</h4>
-                                            <p>
-                                                Подписок
-                                            </p>
-                                        </div>
-                                        <div class="stats">
-                                            <h4>0</h4>
-                                            <p>
-                                                Проектов
-                                            </p>
                                         </div>
                                     </div>
-
-                                </div>
-                            </div>
-                            <div class="footer">
-                                <button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
-                                        <i class="fa fa-reply"></i> Назад
-                                    </button>
-                                <div class="social-links text-center">
-                                    <a href="http://deepak646.blogspot.in/" class="facebook"><i
-                                                class="fa fa-facebook fa-fw"></i></a>
-                                    <a href="http://deepak646.blogspot.in/" class="google"><i
-                                                class="fa fa-google-plus fa-fw"></i></a>
-                                    <a href="http://deepak646.blogspot.in/" class="twitter"><i
-                                                class="fa fa-twitter fa-fw"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end back panel -->
-                    </div>
-                    <!-- end card -->
-                </div>
-                <!-- end card-container -->
-            </div>
-            <!-- end col sm 3 -->
-            <div class="col-md-4 col-sm-6">
-                <div class="card-container manual-flip">
-                    <div class="card">
-                        <div class="front">
-                            <div class="cover">
-                                {# <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg" />#}
-                            </div>
-                            <div class="user">
-                                <img class="img-circle" src="http://via.placeholder.com/400x400" />
-                            </div>
-                            <div class="content">
-                                <div class="main">
-                                    <h3 class="name">ФИО</h3>
-                                    <p class="profession">Специальность</p>
-                                    <p class="text-center">"Описание"</p>
-                                </div>
-                                <div class="footer">
-                                    <button class="btn btn-simple" onclick="rotateCard(this)">
-                                            <i class="fa fa-mail-forward"></i> Подробнее
+                                    <div class="footer">
+                                        <button class="btn btn-simple" rel="tooltip" title="Flip Card"
+                                                onclick="rotateCard(this)">
+                                            <i class="fa fa-reply"></i> Назад
                                         </button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end front panel -->
-                        <div class="back">
-                            <div class="header">
-                                <h5 class="motto">"Верхнее описание"</h5>
-                            </div>
-                            <div class="content">
-                                <div class="main">
-                                    <h4 class="text-center">Должность</h4>
-                                    <p class="text-center">Описаие должности</p>
-
-                                    <div class="stats-container">
-                                        <div class="stats">
-                                            <h4>0</h4>
-                                            <p>
-                                                Подписчиков
-                                            </p>
-                                        </div>
-                                        <div class="stats">
-                                            <h4>0</h4>
-                                            <p>
-                                                Подписок
-                                            </p>
-                                        </div>
-                                        <div class="stats">
-                                            <h4>0</h4>
-                                            <p>
-                                                Проектов
-                                            </p>
+                                        <div class="social-links text-center">
+                                            <a href="http://deepak646.blogspot.in/" class="facebook"><i
+                                                    class="fa fa-facebook fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="google"><i
+                                                    class="fa fa-google-plus fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="twitter"><i
+                                                    class="fa fa-twitter fa-fw"></i></a>
                                         </div>
                                     </div>
-
                                 </div>
+                                <!-- end back panel -->
                             </div>
-                            <div class="footer">
-                                <button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
-                                        <i class="fa fa-reply"></i> Назад
-                                    </button>
-                                <div class="social-links text-center">
-                                    <a href="http://deepak646.blogspot.in/" class="facebook"><i
-                                                class="fa fa-facebook fa-fw"></i></a>
-                                    <a href="http://deepak646.blogspot.in/" class="google"><i
-                                                class="fa fa-google-plus fa-fw"></i></a>
-                                    <a href="http://deepak646.blogspot.in/" class="twitter"><i
-                                                class="fa fa-twitter fa-fw"></i></a>
-                                </div>
-                            </div>
+                            <!-- end card -->
                         </div>
-                        <!-- end back panel -->
+                        <!-- end card-container -->
                     </div>
-                    <!-- end card -->
-                </div>
-                <!-- end card-container -->
-            </div>
+                    <!--         <div class="col-sm-1"></div> -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card-container manual-flip">
+                            <div class="card">
+                                <div class="front">
+                                    <div class="cover">
+                                        {# <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg" />#}
+                                    </div>
+                                    <div class="user">
+                                        <img class="img-circle" src="http://via.placeholder.com/400x400"/>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h3 class="name">Немикіна Лілія Василівна</h3>
+                                            <p class="profession">Провідний фіхівець</p>
+                                            <p class="text-center">"Описание"</p>
+                                        </div>
+                                        <div class="footer">
+                                            <button class="btn btn-simple" onclick="rotateCard(this)">
+                                                <i class="fa fa-mail-forward"></i> Подробнее
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end front panel -->
+                                <div class="back">
+                                    <div class="header">
+                                        <h5 class="motto">"Верхнее описание"</h5>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h4 class="text-center">Должность</h4>
+                                            <p class="text-center">Описаие должности</p>
 
+                                            <div class="stats-container">
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписчиков
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписок
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Проектов
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <button class="btn btn-simple" rel="tooltip" title="Flip Card"
+                                                onclick="rotateCard(this)">
+                                            <i class="fa fa-reply"></i> Назад
+                                        </button>
+                                        <div class="social-links text-center">
+                                            <a href="http://deepak646.blogspot.in/" class="facebook"><i
+                                                    class="fa fa-facebook fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="google"><i
+                                                    class="fa fa-google-plus fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="twitter"><i
+                                                    class="fa fa-twitter fa-fw"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end back panel -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end card-container -->
+                    </div>
+                    <!-- end col sm 3 -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card-container manual-flip">
+                            <div class="card">
+                                <div class="front">
+                                    <div class="cover">
+                                        {# <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg" />#}
+                                    </div>
+                                    <div class="user">
+                                        <img class="img-circle" src="http://via.placeholder.com/400x400"/>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h3 class="name">Малишева Дар'я Олександрівна</h3>
+                                            <p class="profession">Провідний фахівець</p>
+                                            <p class="text-center">Описание</p>
+                                        </div>
+                                        <div class="footer">
+                                            <button class="btn btn-simple" onclick="rotateCard(this)">
+                                                <i class="fa fa-mail-forward"></i> Подробнее
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end front panel -->
+                                <div class="back">
+                                    <div class="header">
+                                        <h5 class="motto">"Верхнее описание"</h5>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h4 class="text-center">Должность</h4>
+                                            <p class="text-center">Описаие должности</p>
+
+                                            <div class="stats-container">
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписчиков
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписок
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Проектов
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <button class="btn btn-simple" rel="tooltip" title="Flip Card"
+                                                onclick="rotateCard(this)">
+                                            <i class="fa fa-reply"></i> Назад
+                                        </button>
+                                        <div class="social-links text-center">
+                                            <a href="http://deepak646.blogspot.in/" class="facebook"><i
+                                                    class="fa fa-facebook fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="google"><i
+                                                    class="fa fa-google-plus fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="twitter"><i
+                                                    class="fa fa-twitter fa-fw"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end back panel -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end card-container -->
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card-container manual-flip">
+                            <div class="card">
+                                <div class="front">
+                                    <div class="cover">
+                                        {# <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg" />#}
+                                    </div>
+                                    <div class="user">
+                                        <img class="img-circle" src="http://via.placeholder.com/400x400"/>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h3 class="name">Йокіч Ганна Олександрівна</h3>
+                                            <p class="profession">Провідний фахівець</p>
+                                            <p class="text-center">Описание</p>
+                                        </div>
+                                        <div class="footer">
+                                            <button class="btn btn-simple" onclick="rotateCard(this)">
+                                                <i class="fa fa-mail-forward"></i> Подробнее
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end front panel -->
+                                <div class="back">
+                                    <div class="header">
+                                        <h5 class="motto">"Верхнее описание"</h5>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h4 class="text-center">Должность</h4>
+                                            <p class="text-center">Описаие должности</p>
+
+                                            <div class="stats-container">
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписчиков
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписок
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Проектов
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <button class="btn btn-simple" rel="tooltip" title="Flip Card"
+                                                onclick="rotateCard(this)">
+                                            <i class="fa fa-reply"></i> Назад
+                                        </button>
+                                        <div class="social-links text-center">
+                                            <a href="http://deepak646.blogspot.in/" class="facebook"><i
+                                                    class="fa fa-facebook fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="google"><i
+                                                    class="fa fa-google-plus fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="twitter"><i
+                                                    class="fa fa-twitter fa-fw"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end back panel -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end card-container -->
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card-container manual-flip">
+                            <div class="card">
+                                <div class="front">
+                                    <div class="cover">
+                                        {# <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg" />#}
+                                    </div>
+                                    <div class="user">
+                                        <img class="img-circle" src="http://via.placeholder.com/400x400"/>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h3 class="name">Чала Ірина Михайлівна</h3>
+                                            <p class="profession">Провідний фахівець з режимно-паспортної роботи</p>
+                                            <p class="text-center">Описание</p>
+                                        </div>
+                                        <div class="footer">
+                                            <button class="btn btn-simple" onclick="rotateCard(this)">
+                                                <i class="fa fa-mail-forward"></i> Подробнее
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end front panel -->
+                                <div class="back">
+                                    <div class="header">
+                                        <h5 class="motto">"Верхнее описание"</h5>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h4 class="text-center">Должность</h4>
+                                            <p class="text-center">Описаие должности</p>
+
+                                            <div class="stats-container">
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписчиков
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписок
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Проектов
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <button class="btn btn-simple" rel="tooltip" title="Flip Card"
+                                                onclick="rotateCard(this)">
+                                            <i class="fa fa-reply"></i> Назад
+                                        </button>
+                                        <div class="social-links text-center">
+                                            <a href="http://deepak646.blogspot.in/" class="facebook"><i
+                                                    class="fa fa-facebook fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="google"><i
+                                                    class="fa fa-google-plus fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="twitter"><i
+                                                    class="fa fa-twitter fa-fw"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end back panel -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end card-container -->
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card-container manual-flip">
+                            <div class="card">
+                                <div class="front">
+                                    <div class="cover">
+                                        {# <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg" />#}
+                                    </div>
+                                    <div class="user">
+                                        <img class="img-circle" src="http://via.placeholder.com/400x400"/>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h3 class="name">Кравченко Анастасія Сергіївна</h3>
+                                            <p class="profession">Фахівець з організації виховної роботи</p>
+                                            <p class="text-center">Описание</p>
+                                        </div>
+                                        <div class="footer">
+                                            <button class="btn btn-simple" onclick="rotateCard(this)">
+                                                <i class="fa fa-mail-forward"></i> Подробнее
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end front panel -->
+                                <div class="back">
+                                    <div class="header">
+                                        <h5 class="motto">"Верхнее описание"</h5>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h4 class="text-center">Должность</h4>
+                                            <p class="text-center">Описаие должности</p>
+
+                                            <div class="stats-container">
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписчиков
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписок
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Проектов
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <button class="btn btn-simple" rel="tooltip" title="Flip Card"
+                                                onclick="rotateCard(this)">
+                                            <i class="fa fa-reply"></i> Назад
+                                        </button>
+                                        <div class="social-links text-center">
+                                            <a href="http://deepak646.blogspot.in/" class="facebook"><i
+                                                    class="fa fa-facebook fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="google"><i
+                                                    class="fa fa-google-plus fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="twitter"><i
+                                                    class="fa fa-twitter fa-fw"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end back panel -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end card-container -->
+                    </div>
+                    <hr>
+                    <br>
+                </div>
+                <div class="col-md-12">
+                    <div style="text-align: center;"><h1>Гуртожиток 2</h1></div>
+                    <hr>
+                    <br>
+                    <!-- end col sm 3 -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card-container manual-flip">
+                            <div class="card">
+                                <div class="front">
+                                    <div class="cover">
+                                        {# <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg" />#}
+                                    </div>
+                                    <div class="user">
+                                        <img class="img-circle" src="http://via.placeholder.com/400x400"/>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h3 class="name">Романович Тетяна Іванівна</h3>
+                                            <p class="profession">Завідувач</p>
+                                            <p class="text-center">"Описание"</p>
+                                        </div>
+                                        <div class="footer">
+                                            <button class="btn btn-simple" onclick="rotateCard(this)">
+                                                <i class="fa fa-mail-forward"></i> Подробнее
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end front panel -->
+                                <div class="back">
+                                    <div class="header">
+                                        <h5 class="motto">"Верхнее описание"</h5>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h4 class="text-center">Должность</h4>
+                                            <p class="text-center">Описаие должности</p>
+
+                                            <div class="stats-container">
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписчиков
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписок
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Проектов
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <button class="btn btn-simple" rel="tooltip" title="Flip Card"
+                                                onclick="rotateCard(this)">
+                                            <i class="fa fa-reply"></i> Назад
+                                        </button>
+                                        <div class="social-links text-center">
+                                            <a href="http://deepak646.blogspot.in/" class="facebook"><i
+                                                    class="fa fa-facebook fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="google"><i
+                                                    class="fa fa-google-plus fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="twitter"><i
+                                                    class="fa fa-twitter fa-fw"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end back panel -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end card-container -->
+                    </div>
+                    <!--         <div class="col-sm-1"></div> -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card-container manual-flip">
+                            <div class="card">
+                                <div class="front">
+                                    <div class="cover">
+                                        {# <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg" />#}
+                                    </div>
+                                    <div class="user">
+                                        <img class="img-circle" src="http://via.placeholder.com/400x400"/>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h3 class="name">Куц Інеса Михайлівна</h3>
+                                            <p class="profession">Вихователь</p>
+                                            <p class="text-center">"Описание"</p>
+                                        </div>
+                                        <div class="footer">
+                                            <button class="btn btn-simple" onclick="rotateCard(this)">
+                                                <i class="fa fa-mail-forward"></i> Подробнее
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end front panel -->
+                                <div class="back">
+                                    <div class="header">
+                                        <h5 class="motto">"Верхнее описание"</h5>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h4 class="text-center">Должность</h4>
+                                            <p class="text-center">Описаие должности</p>
+
+                                            <div class="stats-container">
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписчиков
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписок
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Проектов
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <button class="btn btn-simple" rel="tooltip" title="Flip Card"
+                                                onclick="rotateCard(this)">
+                                            <i class="fa fa-reply"></i> Назад
+                                        </button>
+                                        <div class="social-links text-center">
+                                            <a href="http://deepak646.blogspot.in/" class="facebook"><i
+                                                    class="fa fa-facebook fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="google"><i
+                                                    class="fa fa-google-plus fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="twitter"><i
+                                                    class="fa fa-twitter fa-fw"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end back panel -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end card-container -->
+                    </div>
+                    <!-- end col sm 3 -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card-container manual-flip">
+                            <div class="card">
+                                <div class="front">
+                                    <div class="cover">
+                                        {# <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg" />#}
+                                    </div>
+                                    <div class="user">
+                                        <img class="img-circle" src="http://via.placeholder.com/400x400"/>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h3 class="name">Лазарєва Валентина Василівна</h3>
+                                            <p class="profession">Паспортист</p>
+                                            <p class="text-center">"Описание"</p>
+                                        </div>
+                                        <div class="footer">
+                                            <button class="btn btn-simple" onclick="rotateCard(this)">
+                                                <i class="fa fa-mail-forward"></i> Подробнее
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end front panel -->
+                                <div class="back">
+                                    <div class="header">
+                                        <h5 class="motto">"Верхнее описание"</h5>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h4 class="text-center">Должность</h4>
+                                            <p class="text-center">Описаие должности</p>
+
+                                            <div class="stats-container">
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписчиков
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписок
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Проектов
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <button class="btn btn-simple" rel="tooltip" title="Flip Card"
+                                                onclick="rotateCard(this)">
+                                            <i class="fa fa-reply"></i> Назад
+                                        </button>
+                                        <div class="social-links text-center">
+                                            <a href="http://deepak646.blogspot.in/" class="facebook"><i
+                                                    class="fa fa-facebook fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="google"><i
+                                                    class="fa fa-google-plus fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="twitter"><i
+                                                    class="fa fa-twitter fa-fw"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end back panel -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end card-container -->
+                    </div>
+                    <hr>
+                </div>
+                <div class="col-md-12">
+                    <div style="text-align: center;"><h1>Гуртожиток 3</h1></div>
+                    <hr>
+                    <br>
+                    <!-- end col sm 3 -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card-container manual-flip">
+                            <div class="card">
+                                <div class="front">
+                                    <div class="cover">
+                                        {# <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg" />#}
+                                    </div>
+                                    <div class="user">
+                                        <img class="img-circle" src="http://via.placeholder.com/400x400"/>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h3 class="name">Кравченко Тетяна Федорівна</h3>
+                                            <p class="profession">Завідувач</p>
+                                            <p class="text-center">"Описание"</p>
+                                        </div>
+                                        <div class="footer">
+                                            <button class="btn btn-simple" onclick="rotateCard(this)">
+                                                <i class="fa fa-mail-forward"></i> Подробнее
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end front panel -->
+                                <div class="back">
+                                    <div class="header">
+                                        <h5 class="motto">"Верхнее описание"</h5>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h4 class="text-center">Должность</h4>
+                                            <p class="text-center">Описаие должности</p>
+
+                                            <div class="stats-container">
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписчиков
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписок
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Проектов
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <button class="btn btn-simple" rel="tooltip" title="Flip Card"
+                                                onclick="rotateCard(this)">
+                                            <i class="fa fa-reply"></i> Назад
+                                        </button>
+                                        <div class="social-links text-center">
+                                            <a href="http://deepak646.blogspot.in/" class="facebook"><i
+                                                    class="fa fa-facebook fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="google"><i
+                                                    class="fa fa-google-plus fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="twitter"><i
+                                                    class="fa fa-twitter fa-fw"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end back panel -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end card-container -->
+                    </div>
+                    <!--         <div class="col-sm-1"></div> -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card-container manual-flip">
+                            <div class="card">
+                                <div class="front">
+                                    <div class="cover">
+                                        {# <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg" />#}
+                                    </div>
+                                    <div class="user">
+                                        <img class="img-circle" src="http://via.placeholder.com/400x400"/>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h3 class="name">Блищик Надія Олегівна</h3>
+                                            <p class="profession">Вихователь</p>
+                                            <p class="text-center">"Описание"</p>
+                                        </div>
+                                        <div class="footer">
+                                            <button class="btn btn-simple" onclick="rotateCard(this)">
+                                                <i class="fa fa-mail-forward"></i> Подробнее
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end front panel -->
+                                <div class="back">
+                                    <div class="header">
+                                        <h5 class="motto">"Верхнее описание"</h5>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h4 class="text-center">Должность</h4>
+                                            <p class="text-center">Описаие должности</p>
+
+                                            <div class="stats-container">
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписчиков
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписок
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Проектов
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <button class="btn btn-simple" rel="tooltip" title="Flip Card"
+                                                onclick="rotateCard(this)">
+                                            <i class="fa fa-reply"></i> Назад
+                                        </button>
+                                        <div class="social-links text-center">
+                                            <a href="http://deepak646.blogspot.in/" class="facebook"><i
+                                                    class="fa fa-facebook fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="google"><i
+                                                    class="fa fa-google-plus fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="twitter"><i
+                                                    class="fa fa-twitter fa-fw"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end back panel -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end card-container -->
+                    </div>
+                    <!-- end col sm 3 -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card-container manual-flip">
+                            <div class="card">
+                                <div class="front">
+                                    <div class="cover">
+                                        {# <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg" />#}
+                                    </div>
+                                    <div class="user">
+                                        <img class="img-circle" src="http://via.placeholder.com/400x400"/>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h3 class="name">Григор'єва Катерина Валеріївна</h3>
+                                            <p class="profession">Фахівець з організації виховної роботи</p>
+                                            <p class="text-center">"Описание"</p>
+                                        </div>
+                                        <div class="footer">
+                                            <button class="btn btn-simple" onclick="rotateCard(this)">
+                                                <i class="fa fa-mail-forward"></i> Подробнее
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end front panel -->
+                                <div class="back">
+                                    <div class="header">
+                                        <h5 class="motto">"Верхнее описание"</h5>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h4 class="text-center">Должность</h4>
+                                            <p class="text-center">Описаие должности</p>
+
+                                            <div class="stats-container">
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписчиков
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписок
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Проектов
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <button class="btn btn-simple" rel="tooltip" title="Flip Card"
+                                                onclick="rotateCard(this)">
+                                            <i class="fa fa-reply"></i> Назад
+                                        </button>
+                                        <div class="social-links text-center">
+                                            <a href="http://deepak646.blogspot.in/" class="facebook"><i
+                                                    class="fa fa-facebook fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="google"><i
+                                                    class="fa fa-google-plus fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="twitter"><i
+                                                    class="fa fa-twitter fa-fw"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end back panel -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end card-container -->
+                    </div>
+                    <br></div>
+                <div class="col-md-12">
+                    <div style="text-align: center;"><h1>Гуртожиток 4</h1></div>
+                    <hr>
+                    <br>
+                    <!-- end col sm 3 -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card-container manual-flip">
+                            <div class="card">
+                                <div class="front">
+                                    <div class="cover">
+                                        {# <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg" />#}
+                                    </div>
+                                    <div class="user">
+                                        <img class="img-circle" src="http://via.placeholder.com/400x400"/>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h3 class="name">Шатковська Валентина Володимирівна</h3>
+                                            <p class="profession">Завідувач</p>
+                                            <p class="text-center">"Описание"</p>
+                                        </div>
+                                        <div class="footer">
+                                            <button class="btn btn-simple" onclick="rotateCard(this)">
+                                                <i class="fa fa-mail-forward"></i> Подробнее
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end front panel -->
+                                <div class="back">
+                                    <div class="header">
+                                        <h5 class="motto">"Верхнее описание"</h5>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h4 class="text-center">Должность</h4>
+                                            <p class="text-center">Описаие должности</p>
+
+                                            <div class="stats-container">
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписчиков
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписок
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Проектов
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <button class="btn btn-simple" rel="tooltip" title="Flip Card"
+                                                onclick="rotateCard(this)">
+                                            <i class="fa fa-reply"></i> Назад
+                                        </button>
+                                        <div class="social-links text-center">
+                                            <a href="http://deepak646.blogspot.in/" class="facebook"><i
+                                                    class="fa fa-facebook fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="google"><i
+                                                    class="fa fa-google-plus fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="twitter"><i
+                                                    class="fa fa-twitter fa-fw"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end back panel -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end card-container -->
+                    </div>
+                    <!--         <div class="col-sm-1"></div> -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card-container manual-flip">
+                            <div class="card">
+                                <div class="front">
+                                    <div class="cover">
+                                        {# <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg" />#}
+                                    </div>
+                                    <div class="user">
+                                        <img class="img-circle" src="http://via.placeholder.com/400x400"/>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h3 class="name">Шеховцова Вікторія Миколаївна</h3>
+                                            <p class="profession">Специальность</p>
+                                            <p class="text-center">"Описание"</p>
+                                        </div>
+                                        <div class="footer">
+                                            <button class="btn btn-simple" onclick="rotateCard(this)">
+                                                <i class="fa fa-mail-forward"></i> Подробнее
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end front panel -->
+                                <div class="back">
+                                    <div class="header">
+                                        <h5 class="motto">"Верхнее описание"</h5>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h4 class="text-center">Должность</h4>
+                                            <p class="text-center">Описаие должности</p>
+
+                                            <div class="stats-container">
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписчиков
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Подписок
+                                                    </p>
+                                                </div>
+                                                <div class="stats">
+                                                    <h4>0</h4>
+                                                    <p>
+                                                        Проектов
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <button class="btn btn-simple" rel="tooltip" title="Flip Card"
+                                                onclick="rotateCard(this)">
+                                            <i class="fa fa-reply"></i> Назад
+                                        </button>
+                                        <div class="social-links text-center">
+                                            <a href="http://deepak646.blogspot.in/" class="facebook"><i
+                                                    class="fa fa-facebook fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="google"><i
+                                                    class="fa fa-google-plus fa-fw"></i></a>
+                                            <a href="http://deepak646.blogspot.in/" class="twitter"><i
+                                                    class="fa fa-twitter fa-fw"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end back panel -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end card-container -->
+                    </div>
+                    <!-- end col sm 3 -->
+                    <br>
+                </div>
+
+
+            </div>
+            <!-- end col-sm-10 -->
         </div>
-        <!-- end col-sm-10 -->
+        <!-- end row -->
+        <div class="space-200"></div>
     </div>
-    <!-- end row -->
-    <div class="space-200"></div>
-</div>
 
 {% endblock %} {% block js %}
 
-<script>
-    $().ready(function() {
-        $('[rel="tooltip"]').tooltip();
+    <script>
+        $().ready(function () {
+            $('[rel="tooltip"]').tooltip();
 
-    });
+        });
 
-    function rotateCard(btn) {
-        var $card = $(btn).closest('.card-container');
-        console.log($card);
-        if ($card.hasClass('hover')) {
-            $card.removeClass('hover');
-        } else {
-            $card.addClass('hover');
+        function rotateCard(btn) {
+            var $card = $(btn).closest('.card-container');
+            console.log($card);
+            if ($card.hasClass('hover')) {
+                $card.removeClass('hover');
+            } else {
+                $card.addClass('hover');
+            }
         }
-    }
 
-</script>
+    </script>
 
 
 {% endblock %}
