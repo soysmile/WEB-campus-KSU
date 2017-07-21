@@ -1171,10 +1171,10 @@
                         ctx.rect(this.chart['scales']['x-axis-0']['left'], this.chart['legend']['height'], this.chart['scales']['x-axis-0']['width'], this.calculatePointY(24) - this.chart['legend']['height']);
                         ctx.fill();
                     }
-                    if (this.chart['scales']['x-axis-0']['top'] > this.calculatePointY(14)) {
+                    if (this.chart['scales']['x-axis-0']['top'] > this.calculatePointY(17)) {
                         ctx.fillStyle = "rgba(52, 21, 255, 0.2)";
                         ctx.beginPath();
-                        ctx.rect(this.chart['scales']['x-axis-0']['left'], this.calculatePointY(14), this.chart['scales']['x-axis-0']['width'], this.chart['scales']['x-axis-0']['top'] - this.calculatePointY(14));
+                        ctx.rect(this.chart['scales']['x-axis-0']['left'], this.calculatePointY(17), this.chart['scales']['x-axis-0']['width'], this.chart['scales']['x-axis-0']['top'] - this.calculatePointY(17));
                         ctx.fill();
                         ctx.restore();
                     }

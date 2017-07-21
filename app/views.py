@@ -716,7 +716,7 @@ def upload_file():
             flash('No selected file')
             return redirect(request.url)
         if file and allowed_file(file.filename):
-            flickr.upload(filename=file.filename, fileobj=file)
+            # flickr.upload(filename=file.filename, fileobj=file)
             return redirect(url_for('upload_file'))
     else:
         # links = []
