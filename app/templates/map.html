@@ -2360,11 +2360,7 @@
 
 {% endblock %} {% block js %}
 <script>
-    var rooms_info = {
-        {
-            rooms | tojson
-        }
-    };
+    var rooms_info = {{rooms|tojson}};
     console.log(rooms_info);
     var links = $('a.a_room');
     for (var i = 0; i < links.length; i++) {
