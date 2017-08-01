@@ -217,18 +217,9 @@ def detail_view_post(id):
 
 @app.route('/hostels', methods=['GET', 'POST'])
 @webLog
-def rooms():
-    form = forms.SearchForm(request.form)
-    form2 = forms.SearchForm2(request.form)
-    if request.method == 'GET':
-        hostels = models.Hostel.query.all()
-        return render_template('hostels.html', hostels=hostels, form=form, form2=form2)
-    elif request.method == 'POST':
-        if request.form['button'] == 'secondS':
-            return redirect(url_for('room_detail', hostel=form2.hostel_id.data, room=form2.room_id.data))
-        elif request.form['button'] == 'firstS':
-            kwargs = {form.radio.data: form.value.data}
-            search_result = models.Person.query.filter_by(**kwargs).all()
+def mainstuff():
+    rooms = get_rooms_info()
+    return render_template('map.html', rooms=rooms)
             return render_template('search_person.html', result=search_result)
 
 
@@ -864,9 +855,19 @@ def posts(page=1):
 
 @app.route('/map')
 @webLog
-def mainstuff():
-    rooms = get_rooms_info()
-    return render_template('map.html', rooms=rooms)
+def rooms():
+    form = forms.SearchForm(request.form)
+    form2 = forms.SearchForm2(request.form)
+    if request.method == 'GET':
+        hostels = models.Hostel.query.all()
+        return render_template('hostels.html', hostels=hostels, form=form, form2=form2)
+    elif request.method == 'POST':
+        if request.form['button'] == 'secondS':
+            return redirect(url_for('room_detail', hostel=form2.hostel_id.data, room=form2.room_id.data))
+        elif request.form['button'] == 'firstS':
+            kwargs = {form.radio.data: form.value.data}
+            search_result = models.Person.query.filter_by(**kwargs).all()
+
 
 
 def get_rooms_info():
