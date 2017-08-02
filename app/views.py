@@ -933,6 +933,5 @@ def db():
         room_num = ws['F%s' % row].value
         room = models.Room.query.filter_by(hostel_id=3, room_number=room_num).first()
         if room:
-            ws['U%s'%row ] = room.id
+            ws['U%s' % row] = room.id
     wb.save('--.xlsx')
-
