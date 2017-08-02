@@ -10,8 +10,7 @@ migrate = Migrate(app, db)
 
 
 def make_shell_context():
-    return dict(app=app, db=db, Post=Post, User=User, Person=Person, Temperature=Temperature,
-                Block=Block, Hostel=Hostel, Room=Room)
+    return dict(app=app, db=db)
 
 
 manager.add_command('alchemydumps', AlchemyDumpsCommand)

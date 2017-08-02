@@ -220,7 +220,6 @@ def detail_view_post(id):
 def mainstuff():
     rooms = get_rooms_info()
     return render_template('map.html', rooms=rooms)
-            return render_template('search_person.html', result=search_result)
 
 
 @app.route('/hostels/<hostel>')
@@ -867,7 +866,7 @@ def rooms():
         elif request.form['button'] == 'firstS':
             kwargs = {form.radio.data: form.value.data}
             search_result = models.Person.query.filter_by(**kwargs).all()
-
+            return render_template('search_person.html', result=search_result)
 
 
 def get_rooms_info():
@@ -927,4 +926,13 @@ def get_room_info():
 
 @app.route('/db')
 def db():
-    pass
+    from openpyxl import load_workbook
+    wb = load_workbook('--.xlsx')
+    ws = wb['4']
+    for row in range(1, ws.max_row + 1):
+        room_num = ws['F%s' % row].value
+        room = models.Room.query.filter_by(hostel_id=3, room_number=room_num).first()
+        if room:
+            ws['U%s'%row ] = room.id
+    wb.save('--.xlsx')
+

@@ -298,7 +298,7 @@ class MyNewsSliderView(MyModelView):
                                       thumbnail_size=(360, 240, True))
     }
 
-# 
+#
 # admin_panel = admin.Admin(app, 'Студгородок ХДУ', index_view=MyAdminIndexView(), base_template='layout.html',
 #                           template_mode='bootstrap3')
 # admin_panel.add_view(MyModelView(models.User, db.session, name='Пользователи', menu_icon_type=ICON_TYPE_GLYPH,

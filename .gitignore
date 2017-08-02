@@ -140,3 +140,5 @@ crashlytics-build.properties
 fabric.properties
 /app.db
 app.db
+/app/static/files/
+--.xlsx
