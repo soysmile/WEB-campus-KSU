@@ -2202,7 +2202,7 @@
                                 <h4>Три свободных мест: 0</h4>
                                 <h4>Четыре свободных мест: 0</h4>
                                 <h4>Дата обновления данных: 0</h4>
-                                
+
                             </div>
                             <form role="form" method="POST">
                                     <button type="submit" id="stat-update" class="btn btn-default" value="secondS" name="button">Обновить</button>
@@ -2227,7 +2227,7 @@
                         <img src="../static/img/ico/desktop.png">
                         <p>Комендант</p>
                         <img src="../static/img/ico/light.png">
-                        <p>Світло</p>
+                        <p>Економні лампочки</p>
                         <img src="../static/img/ico/water.png">
                         <p>Горяча вода</p>
                         <img src="../static/img/ico/window.png">
@@ -2360,7 +2360,11 @@
 
 {% endblock %} {% block js %}
 <script>
-    var rooms_info = {{rooms|tojson}};
+    var rooms_info = {
+        {
+            rooms | tojson
+        }
+    };
     console.log(rooms_info);
     var links = $('a.a_room');
     for (var i = 0; i < links.length; i++) {
@@ -2370,20 +2374,20 @@
             if (info['hotwatter'] === true) {
                 var hotwatter_element = document.createElement('div');
                 hotwatter_element.className = 'campus-room-water';
-                $(links[i]).parent().append(hotwatter_element);
+                links[i].parentElement.append(hotwatter_element);
             }
             if (info['econom'] === true) {
                 var econom_element = document.createElement('div');
                 econom_element.className = 'campus-room-light';
-                $(links[i]).parent().append(econom_element);
+                links[i].parentElement.append(econom_element);
             }
             if (info['windows'] === true) {
                 var windows_element = document.createElement('div');
                 windows_element.className = 'campus-room-window';
-                $(links[i]).parent().append(windows_element);
+                links[i].parentElement.append(windows_element);
             }
             if (info['free'] <= 0) {
-                $(links[i]).parent().attr("id", "room1")
+                links[i].parentElement.setAttribute("id", "room1")
             }
         }
     }

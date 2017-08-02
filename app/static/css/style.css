@@ -1327,12 +1327,14 @@ input.form-control {
     border: 0;
     opacity: 0.7;
 }
-#vStat button{
+
+#vStat button {
     width: 100%;
-    left:0;
+    left: 0;
     border-radius: 50px;
     top: 172px;
 }
+
 .mainHeader {
     padding: 34px 0;
     -webkit-background-size: cover;
@@ -2683,13 +2685,20 @@ h1.page-header {
         top: 65%;
         transition: all 0.5s ease;
     }
+    #flag-counter{
+        position:relative;
+        -ms-transform: scale(2, 3); /* IE 9 */
+        -webkit-transform: scale(2, 3); /* Safari */
+        transform: scale(3, 3);
+        right: 50px;
+        top: 240px;
+    }
 }
 
 @media screen and (max-width: 768px) {
     #user-panel-in {
         margin-bottom: 100px;
     }
-   
     #loginm .btn.btn-primary {
         width: 300px;
         margin-bottom: 10px;
@@ -3706,4 +3715,17 @@ h1.page-header {
     width: auto;
     right: 10px;
     z-index: 999;
+}
+.modal.fade.room.in a{
+    color: greenyellow;
+    top:70px;
+    position:relative;
+}
+.modal.fade.room.in h2,h3{
+    color: white;
+}
+.modal.fade.room.in h4{
+    width: 100%;
+    text-align:center;
+
 }
