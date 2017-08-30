@@ -1,4 +1,14 @@
-$( document ).ready( KSU );
+$( document ).ready(function() {
+    
+    function initMap() {
+    var map;
+    var centerMap = {lat:46.641136, lng: 32.627992};
+    map = new google.maps.Map(document.getElementById('map1'), {
+    center: centerMap,
+    zoom: 10
+  });
+}
+});
 
 
 var map;
@@ -8,7 +18,6 @@ function initMap() {
     center: centerMap,
     zoom: 10
   });
-    
 }
 function campus_two() {
     var centerMap = {lat:46.636141, lng: 32.629317};
@@ -63,9 +72,44 @@ function KSU() {
     var marker = new google.maps.Marker({
     position: myLatLng4,
     map: map,
-    title: 'Херсонский Государственный Университет'
+    title: 'Херсонский Государственный Университет',
+    
   });
 }
 
-
-
+function stops() {
+    var centerMap = {lat:46.642498, lng: 32.626802};
+    var myLatLng4 = {lat:  46.645689, lng: 32.630279}; 
+  map = new google.maps.Map(document.getElementById('map1'), {
+    center: centerMap,
+    zoom: 15
+  });
+    var marker = new google.maps.Marker({
+    map: map,
+    title: 'Зупинка ХДУ - 5/38/47/49'
+  });
+}
+function trail() {
+    var centerMap = {lat:46.655030, lng: 32.605877};
+    var myLatLng4 = {lat:  46.645689, lng: 32.630279}; 
+  map = new google.maps.Map(document.getElementById('map1'), {
+    center: centerMap,
+    zoom: 17
+  });
+    var marker = new google.maps.Marker({
+    map: map,
+    title: ''
+  });
+}
+function bus() {
+    var centerMap = {lat:46.660417, lng: 32.594089};
+    var myLatLng4 = {lat:  46.645689, lng: 32.630279}; 
+  map = new google.maps.Map(document.getElementById('map1'), {
+    center: centerMap,
+    zoom: 17
+  });
+    var marker = new google.maps.Marker({
+    map: map,
+    title: ''
+  });
+}

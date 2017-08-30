@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Title -->
+    <title>Кабінет</title>
+
+    <!-- Meta -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Cache-control" content="public">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="George Heints">
+
+
+    <link href="http://www.bootstrap-year-calendar.com/download/v1.1.0/bootstrap-year-calendar.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" />
+
+    <script src="http://www.bootstrap-year-calendar.com/download/v1.1.0/bootstrap-year-calendar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+    <!-- Retina Images -->
+    <script>
+        if ((window.devicePixelRatio === undefined ? 1 : window.devicePixelRatio) > 1)
+            document.cookie = 'HTTP_IS_RETINA=1;path=/';
+
+    </script>
+    <!-- End Retina Images -->
+
+    <!-- Google Web Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,600,700,500' rel='stylesheet' type='text/css'>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/animations.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/flaticon.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/owl.theme.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.min.css" />
+
+</head>
+
+<body>
+
+    <!-- Facebook Source -->
+    <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+    </script>
+
+    <!-- Loader -->
+    <div id="page-loader"> </div>
+    <!-- Loader / End -->
+
+    <!-- Header  -->
+    <header id="nav-content" class="vertical-nav nav-white">
+
+        <!-- Logo -->
+        <div class="my-logo">
+            <a href="#profile"><img src="/static/images/my-photo.jpg" /></a>
+        </div>
+
+        <!-- Navigation -->
+        <ul class="menu nav me-nav">
+            <li class="menu-item"><a href="/index"><span>Головна</span><i class="fa fa-pencil"></i></a></li>
+            <li class="menu-item active"><a href="#profile"><span>Мій профіль</span><i class="fa fa-user"></i></a></li>
+            <li class="menu-item"><a href="#resume"><span>Про мене</span><i class="fa fa-pencil"></i></a></li>
+            <li class="menu-item"><a href="#portfolio"><span>Фотоальбом</span><i class="fa fa-desktop"></i></a></li>
+            <li class="menu-item"><a href="#blog"><span>Останні новини</span><i class="fa fa-comment"></i></a></li>
+            <li class="menu-item"><a href="#contact"><span>Контакти</span><i class="fa fa-phone"></i></a></li>
+            <li class="menu-item"><a href="components.html"><span>Інше</span><i class="fa fa-bolt"></i></a></li>
+            <li class="menu-item"><a href="/logout"><span>Вихід</span><i class="fa fa-bolt"></i></a></li>
+        </ul>
+
+        <!-- Copyright -->
+        <span class="copyright hidden-md">© 2017 <b>George Heints</b>.</span>
+
+    </header>
+    <!-- Header / End -->
+
+    <!-- Page Content -->
+    <div id="page-content">
+
+        <!-- Profile -->
+        <section id="profile" class="black">
+
+            <!-- Background photo -->
+            <div id="profile-bg" class="editable-alpha" data-alpha="40"><img src="/static/images/students.png" alt="" /></div>
+
+            <div class="content padded dark">
+
+                <!-- Top Bar -->
+                <div class="top-bar">
+
+                    <!-- Social media -->
+                    <div class="pull-left">
+                        <span class="hiddend-sm hidden-xs">Перевір соціальні мережі! &nbsp; &nbsp; </span>
+                        <ul class="social-icons si-pull-up">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+
+                    <!-- URL -->
+                    <div class="pull-right">
+                        <a href="#" class="hidden-xs">campus.ksu.edu</a>
+                    </div>
+
+                </div>
+
+                <!-- Profile Content -->
+                <div class="profile-content">
+                    <h1 class="short">{{ current_user.login }}</h1>
+                    <h5>{{ person.first_name }}&emsp;{{ person.last_name }}&emsp;{{ person.middle_name }}</h5>
+                    <a href="/index" class="btn btn-primary" target="_blank">Гуртожиток</a> <a href="#contact" class="btn btn-default">Карта</a>
+                </div>
+
+                <!-- Bottom Bar -->
+                <div class="bottom-bar profile-bottom-bar hidden-xs">
+
+                    <!-- Contact List -->
+                    <ul class="list-inline">
+                        <li><i class="inline-icon icon-before-and-after text-primary fa fa-map-marker"></i>м.Херсон, вул.Литейна, 1. </li>
+                        <li><i class="inline-icon icon-before-and-after text-primary fa fa-comment"></i><a href="#">example@example.com</a></li>
+                        <li><i class="inline-icon icon-before-and-after text-primary fa fa-phone"></i>(0552)32-67-19 </li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </section>
+        <!-- Profile / End -->
+
+        <!-- Resume -->
+        <section id="resume">
+
+            <div class="content dimmed-effect padded-short">
+
+                <div class="row">
+
+                    <div class="col-lg-4">
+
+                        <!-- Box - About Me -->
+                        <div class="resume-box animated slide-in-top">
+                            <i class="title-icon text-blue flaticon-speech43"></i>
+                            <h3>Про мене</h3>
+                            <p class="lead">Факультет: {{ person.department }}</p>
+                            <p>Група: {{ person.group }}</p>
+                            <a href="#portfolio" class="btn btn-black">Переглянути фото</a> <a href="#contact" class="btn btn-default">Гуртожиток</a>
+                        </div>
+
+                        <!-- Box - Skills & Attributes -->
+                        <div class="resume-box animated slide-in-left appear-second">
+                            <i class="title-icon text-green flaticon-open79"></i>
+                            <h3>Оплата гуртожитку</h3>
+                            <!-- Sinlge skill -->
+                            <div class="skill">
+                                <span class="skill-name">Ціна за місяць: 0</span> {% if payment %}
+                                <div class="tab-pane" id="tab2">
+                                    <br> {% set price = 0 %}
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Сен</th>
+                                                <th>Окт</th>
+                                                <th>Ноя</th>
+                                                <th>Дек</th>
+                                                <th>Янв</th>
+                                                <th>Февр</th>
+                                                <th>Март</th>
+                                                <th>Apr</th>
+                                                <th>Май</th>
+                                                <th>Июнь</th>
+                                                <th>Июль</th>
+                                                <th>Август</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {% if payment['Sep'] %}
+                                                <td>
+                                                    <span class="glyphicon glyphicon-ok"></span> {% if payment.get('Sep_price') %}
+                                                    <br> {{ payment.get('Sep_price') }} {% set price = price + payment.get('Sep_price') %} {% endif %}
+                                                </td>
+                                                {% else %}
+                                                <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% endif %} {% if payment['Oct'] %}
+                                                <td><span class="glyphicon glyphicon-ok"></span> {% if payment.get('Oct_price') %}
+                                                    <br>{{ payment.get('Oct_price') }} {% set price = price + payment.get('Oct_price') %} {% endif %}
+                                                </td>
+                                                {% else %}
+
+                                                <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% endif %} {% if payment['Nov'] %}
+                                                <td><span class="glyphicon glyphicon-ok"></span> {% if payment.get('Nov_price') %}
+                                                    <br>{{ payment.get('Nov_price') }} {% set price = price + payment.get('Nov_price') %} {% endif %}
+                                                </td>
+                                                {% else %}
+                                                <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% endif %} {% if payment['Dec'] %}
+                                                <td><span class="glyphicon glyphicon-ok"></span> {% if payment.get('Dec_price') %}
+                                                    <br>{{ payment.get('Dec_price') }} {% set price = price + payment.get('Dec_price') %} {% endif %}
+                                                </td>
+                                                {% else %}
+                                                <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% endif %} {% if payment['Jan'] %}
+                                                <td><span class="glyphicon glyphicon-ok"></span> {% if payment.get('Jan_price') %}
+                                                    <br>{{ payment.get('Jan_price') }} {% set price = price + payment.get('Jan_price') %} {% endif %}
+                                                </td>
+                                                {% else %}
+                                                <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% endif %} {% if payment['Feb'] %}
+                                                <td><span class="glyphicon glyphicon-ok"></span> {% if payment.get('Feb_price') %}
+                                                    <br>{{ payment.get('Feb_price') }} {% set price = price + payment.get('Feb_price') %} {% endif %}
+                                                </td>
+                                                {% else %}
+                                                <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% endif %} {% if payment['Mar'] %}
+                                                <td><span class="glyphicon glyphicon-ok"></span> {% if payment.get('Mar_price') %}
+                                                    <br>{{ payment.get('Mar_price') }} {% set price = price + payment.get('Mar_price') %} {% endif %}
+                                                </td>
+                                                {% else %}
+                                                <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% endif %} {% if payment['Apr'] %}
+                                                <td><span class="glyphicon glyphicon-ok"></span> {% if payment.get('Apr_price') %}
+                                                    <br>{{ payment.get('Apr_price') }} {% set price = price + payment.get('Apr_price') %} {% endif %}
+                                                </td>
+                                                {% else %}
+                                                <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% endif %} {% if payment['May'] %}
+                                                <td><span class="glyphicon glyphicon-ok"></span> {% if payment.get('May_price') %}
+                                                    <br>{{ payment.get('May_price') }} {% set price = price + payment.get('May_price') %} {% endif %}
+                                                </td>
+                                                {% else %}
+                                                <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% endif %} {% if payment['Jun'] %}
+                                                <td><span class="glyphicon glyphicon-ok"></span> {% if payment.get('Jun_price') %}
+                                                    <br>{{ payment.get('Jun_price') }} {% set price = price + payment.get('Jun_price') %} {% endif %}
+                                                </td>
+                                                {% else %}
+                                                <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% endif %} {% if payment['Jul'] %}
+                                                <td>
+                                                    <span class="glyphicon glyphicon-ok"></span> {% if payment.get('Jul_price') %}
+                                                    <br> {{ payment.get('Jul_price') }} {% set price = price + payment.get('Jul_price') %} {% endif %}
+                                                </td>
+                                                {% else %}
+                                                <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% endif %} {% if payment['Aug'] %}
+                                                <td>
+                                                    <span class="glyphicon glyphicon-ok"></span> {% if payment.get('Aug_price') %}
+                                                    <br> {{ payment.get('Aug_price') }} {% set price = price + payment.get('Aug_price') %} {% endif %}
+                                                </td>
+                                                {% else %}
+                                                <td><span class="glyphicon glyphicon-remove"></span></td>
+                                                {% endif %}
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <span class="glyphicon glyphicon-piggy-bank"></span> {{ price }} грн. / полная сумма &nbsp; &nbsp; &nbsp;<span class="glyphicon glyphicon-piggy-bank"></span> 0 грн. / задолженность
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+
+                        <!-- Box - Specialities -->
+                        <div class="resume-box animated slide-in-right">
+                            <i class="title-icon text-red flaticon-mouse19"></i>
+                            <h3>Відпрацювання</h3>
+                            <!-- Speciality -->
+                            <div class="speciality">
+                                <div class="speciality-content">
+                                    <h5 class="short">Залишок</h5>
+                                    {% if work %}
+                                    <div class="tab-pane" id="tab3">
+                                        <table class="table table-reflow">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Время начала</th>
+                                                    <th>Время окончания</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for w in work %}
+                                                <tr>
+                                                    <th scope="row">{{ w.id }}</th>
+                                                    <td>{{ w.start }}</td>
+                                                    <td>{{ w.end }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                        <span class="glyphicon glyphicon-time"></span> Отработано {{ hours }}/30:00:00
+
+
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Box - Education & Jobs -->
+                        <div class="resume-box animated slide-in-left">
+                            <i class="title-icon text-yellow flaticon-document56"></i>
+                            <h3>Догана</h3>
+                            {% if violations %}
+                            <div class="tab-pane" id="tab4">
+                                <br>
+                                <table class="table table-reflow">
+                                    <thead>
+                                        <tr>
+                                            <th>Дата</th>
+                                            <th>Описание</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for violation in violations %}
+                                        <tr>
+                                            <td>{{ violation.date }}</td>
+                                            <td>{{ violation.description }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                {% endif %}
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+
+                            <!-- Box - Languages -->
+                            <div class="resume-box animated slide-in-right appear-second">
+                                <i class="title-icon text-orange flaticon-chat25"></i>
+                                <h3>Ремонт</h3>
+                                <!-- Single skill -->
+                                <div class="skill">
+                                    <span class="skill-name">Заявка</span>
+                                    <div class="panel-body">
+                                        <form action="/profile/repair" method="post">
+                                            <div class="col-md-6">
+                                                <div class="form-group"><label for="comment">Описание:</label>
+                                                    <textarea class="form-control" name="description" rows="5" id="description"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="sel1">Категория:</label>
+                                                    <select class="form-control" name="tag" id="tag">
+                                        <option>Сантехника</option>
+                                        <option>Электрика</option>
+                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <input type="submit" class="btn btn-info" value="Submit Button">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    {% if repairs %}
+                                    <div class="col-md-12">Мои заявки</div>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Описание</th>
+                                                <th>Дата открытия заявки</th>
+                                                <th>Категория</th>
+                                                <th>Статус</th>
+                                                <th>Дата закрытия</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for repair in repairs %} {% if repair.fix %}
+                                            <tr class="success">
+                                                {% else %}
+                                                <tr class="danger">
+                                                    {% endif %}
+                                                    <td>{{ repair.description }}</td>
+                                                    <td>{{ repair.open_date }}</td>
+                                                    <td>{{ repair.tag }}</td>
+                                                    <td>{{ repair.fix }}</td>
+                                                    <td>{{ repair.close_date }}</td>
+                                                </tr>
+                                                {% endfor %}
+
+
+                                        </tbody>
+                                    </table>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <!-- Box - Hobbies -->
+                            <div class="resume-box animated slide-in-bottom">
+                                <i class="title-icon text-violet flaticon-joystick4"></i>
+                                <h3>Стирка</h3>
+                                <div class="calendar-block">
+                                    <div id="calendar" style="overflow:visible!important;"></div>
+                                </div>
+                                <div class="modal modal-fade" id="event-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">
+                    Event
+                </h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="event-index">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="min-date" class="col-sm-4 control-label">Name</label>
+                        <div class="col-sm-7">
+                            <input name="event-name" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="min-date" class="col-sm-4 control-label">Location</label>
+                        <div class="col-sm-7">
+                            <input name="event-location" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="min-date" class="col-sm-4 control-label">Dates</label>
+                        <div class="col-sm-7">
+                            <div class="input-group input-daterange" data-provide="datepicker">
+                                <input name="event-start-date" type="text" class="form-control" value="2012-04-05">
+                                <span class="input-group-addon">to</span>
+                                <input name="event-end-date" type="text" class="form-control" value="2012-04-19">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="save-event">
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+        <!-- Resume / End -->
+
+        <!-- Portfolio -->
+        <section id="portfolio">
+
+            <!-- Projects Holder -->
+            <div class="projects-holder black dark clearfix">
+                <!-- Single Project -->
+                <div class="single-project animated fade-in">
+                    <div class="project-image">
+                        <img src="/static/images/portfolio/project_01.jpg" alt="" />
+                    </div>
+                    <div class="project-mask">
+                        <div class="project-info">
+                            <div class="project-title">Swimming Pool</div>
+                            <div class="project-caption text-blue">Webdesgin</div>
+                            <div class="project-buttons"><a href="projects/ajax-project-details.html" class="ajax-portfolio-link btn btn-blue btn-sm">View it</a> <a href="#" target="_blank" class="btn btn-default btn-sm">Online version</a></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Project -->
+                <div class="single-project animated fade-in appear-third">
+                    <div class="project-image">
+                        <img src="/static/images/portfolio/project_02.jpg" alt="" />
+                    </div>
+                    <div class="project-mask">
+                        <div class="project-info">
+                            <div class="project-title">Shopping Mall</div>
+                            <div class="project-caption text-yellow">Webdesgin / Webdevelopment</div>
+                            <div class="project-buttons"><a href="projects/ajax-project-details.html" class="ajax-portfolio-link btn btn-yellow btn-sm">View it</a> <a href="#" target="_blank" class="btn btn-default btn-sm">Online version</a></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Project -->
+                <div class="single-project animated fade-in appear-second">
+                    <div class="project-image">
+                        <img src="/static/images/portfolio/project_03.jpg" alt="" />
+                    </div>
+                    <div class="project-mask">
+                        <div class="project-info">
+                            <div class="project-title">Animal Charity</div>
+                            <div class="project-caption text-green">Corporate Identity</div>
+                            <div class="project-buttons"><a href="projects/ajax-project-details.html" class="ajax-portfolio-link btn btn-green btn-sm">View it</a> <a href="#" target="_blank" class="btn btn-default btn-sm">Online version</a></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Project -->
+                <div class="single-project animated fade-in appear-fourth">
+                    <div class="project-image">
+                        <img src="/static/images/portfolio/project_04.jpg" alt="" />
+                    </div>
+                    <div class="project-mask">
+                        <div class="project-info">
+                            <div class="project-title">Be Pregnant</div>
+                            <div class="project-caption text-red">Webdesgin / Corporate Identity</div>
+                            <div class="project-buttons"><a href="projects/ajax-project-details.html" class="ajax-portfolio-link btn btn-red btn-sm">View it</a> <a href="#" target="_blank" class="btn btn-default btn-sm">Online version</a></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Project -->
+                <div class="single-project animated fade-in">
+                    <div class="project-image">
+                        <img src="/static/images/portfolio/project_05.jpg" alt="" />
+                    </div>
+                    <div class="project-mask">
+                        <div class="project-info">
+                            <div class="project-title">Booking Store</div>
+                            <div class="project-caption text-green">Webdesgin / Webdevelopment</div>
+                            <div class="project-buttons"><a href="projects/ajax-project-details.html" class="ajax-portfolio-link btn btn-green btn-sm">View it</a> <a href="#" target="_blank" class="btn btn-default btn-sm">Online version</a></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Project -->
+                <div class="single-project animated fade-in appear-second">
+                    <div class="project-image">
+                        <img src="/static/images/portfolio/project_06.jpg" alt="" />
+                    </div>
+                    <div class="project-mask">
+                        <div class="project-info">
+                            <div class="project-title">Social Media App</div>
+                            <div class="project-caption text-orange">App Design</div>
+                            <div class="project-buttons"><a href="projects/ajax-project-details.html" class="ajax-portfolio-link btn btn-orange btn-sm">View it</a> <a href="#" target="_blank" class="btn btn-default btn-sm">Online version</a></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Project -->
+                <div class="single-project animated fade-in appear-fourth">
+                    <div class="project-image">
+                        <img src="/static/images/portfolio/project_07.jpg" alt="" />
+                    </div>
+                    <div class="project-mask">
+                        <div class="project-info">
+                            <div class="project-title">Medical Business</div>
+                            <div class="project-caption text-blue">Webdesgin / Corporate Identity</div>
+                            <div class="project-buttons"><a href="projects/ajax-project-details.html" class="ajax-portfolio-link btn btn-blue btn-sm">View it</a> <a href="#" target="_blank" class="btn btn-default btn-sm">Online version</a></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Project -->
+                <div class="single-project animated fade-in appear-third">
+                    <div class="project-image">
+                        <img src="/static/images/portfolio/project_08.jpg" alt="" />
+                    </div>
+                    <div class="project-mask">
+                        <div class="project-info">
+                            <div class="project-title">Pice of cake!</div>
+                            <div class="project-caption text-orange">Webdesgin / Webdevelopment</div>
+                            <div class="project-buttons"><a href="projects/ajax-project-details.html" class="ajax-portfolio-link btn btn-orange btn-sm">View it</a> <a href="#" target="_blank" class="btn btn-default btn-sm">Online version</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ajax Project Details -->
+            <div class="project-content"></div>
+
+        </section>
+        <!-- Portfjolo / End -->
+
+        <!-- Blog -->
+        <section id="blog">
+
+            <div class="content padded">
+
+                <div class="row">
+
+                    <div class="col-lg-12">
+
+                        <!-- Post Carousel -->
+                        <div class="post-carousel animated slide-in-top">
+                            <!-- Single Post -->
+                            <article class="post post-carousel-item">
+                                <div class="post-image"><img src="/static/images/blog/post_01.jpg" alt="" /></div>
+                                <div class="post-content-holder">
+                                    <div class="post-content">
+                                        <div class="post-info clearfix">
+                                            <span class="post-date">22 May, 2014</span>
+                                            <div class="post-meta">
+                                                <span><i class="fa fa-comment"></i><a href="#">4 comments</a></span>
+                                                <span><i class="fa fa-tag"></i><a href="#">Webdesign</a></span>
+                                            </div>
+                                        </div>
+                                        <div class="post-text">
+                                            <h3><a href="single-post.html">Awesome Seattle Cycle Trip</a></h3>
+                                            <p class="lead">Per sint eirmod expetenda te. Pro ne essent.</p>
+                                            <p>Per ea tibique fabellas electram. Ea aliquam corpora vis. Ne quot civibus atomorum quo. </p>
+                                            <a href="single-post.html" class="btn btn-primary btn-sm">Read more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <!-- Single Post -->
+                            <article class="post post-carousel-item">
+                                <div class="post-image"><img src="/static/images/blog/post_02.jpg" alt="" /></div>
+                                <div class="post-content-holder">
+                                    <div class="post-content">
+                                        <div class="post-info clearfix">
+                                            <span class="post-date">22 May, 2014</span>
+                                            <div class="post-meta">
+                                                <span><i class="fa fa-comment"></i><a href="#">4 comments</a></span>
+                                                <span><i class="fa fa-tag"></i><a href="#">Webdesign</a></span>
+                                            </div>
+                                        </div>
+                                        <div class="post-text">
+                                            <h3><a href="single-post.html">Brand New PC</a></h3>
+                                            <p class="lead">Per sint eirmod expetenda te. Pro ne essent.</p>
+                                            <p>Per ea tibique fabellas electram. Ea aliquam corpora vis. Ne quot civibus atomorum quo. </p>
+                                            <a href="single-post.html" class="btn btn-primary btn-sm">Read more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <!-- Single Post -->
+                            <article class="post post-carousel-item">
+                                <div class="post-image"><img src="/static/images/blog/post_03.jpg" alt="" /></div>
+                                <div class="post-content-holder">
+                                    <div class="post-content">
+                                        <div class="post-info clearfix">
+                                            <span class="post-date">22 May, 2014</span>
+                                            <div class="post-meta">
+                                                <span><i class="fa fa-comment"></i><a href="#">4 comments</a></span>
+                                                <span><i class="fa fa-tag"></i><a href="#">Webdesign</a></span>
+                                            </div>
+                                        </div>
+                                        <div class="post-text">
+                                            <h3><a href="single-post.html">To be or not to be?</a></h3>
+                                            <p class="lead">Per sint eirmod expetenda te. Pro ne essent.</p>
+                                            <p>Per ea tibique fabellas electram. Ea aliquam corpora vis. Ne quot civibus atomorum quo. </p>
+                                            <a href="single-post.html" class="btn btn-primary btn-sm">Read more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <!-- Single Post -->
+                            <article class="post post-carousel-item">
+                                <div class="post-image"><img src="/static/images/blog/post_04.jpg" alt="" /></div>
+                                <div class="post-content-holder">
+                                    <div class="post-content">
+                                        <div class="post-info clearfix">
+                                            <span class="post-date">22 May, 2014</span>
+                                            <div class="post-meta">
+                                                <span><i class="fa fa-comment"></i><a href="#">4 comments</a></span>
+                                                <span><i class="fa fa-tag"></i><a href="#">Webdesign</a></span>
+                                            </div>
+                                        </div>
+                                        <div class="post-text">
+                                            <h3><a href="single-post.html">New Software for my company</a></h3>
+                                            <p class="lead">Per sint eirmod expetenda te. Pro ne essent.</p>
+                                            <p>Per ea tibique fabellas electram. Ea aliquam corpora vis. Ne quot civibus atomorum quo. </p>
+                                            <a href="single-post.html" class="btn btn-primary btn-sm">Read more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <!-- Single Post -->
+                            <article class="post post-carousel-item">
+                                <div class="post-image"><img src="/static/images/blog/post_05.jpg" alt="" /></div>
+                                <div class="post-content-holder">
+                                    <div class="post-content">
+                                        <div class="post-info clearfix">
+                                            <span class="post-date">22 May, 2014</span>
+                                            <div class="post-meta">
+                                                <span><i class="fa fa-comment"></i><a href="#">4 comments</a></span>
+                                                <span><i class="fa fa-tag"></i><a href="#">Webdesign</a></span>
+                                            </div>
+                                        </div>
+                                        <div class="post-text">
+                                            <h3><a href="single-post.html">Awesome Seattle Cycle Trip</a></h3>
+                                            <p class="lead">Per sint eirmod expetenda te. Pro ne essent.</p>
+                                            <p>Per ea tibique fabellas electram. Ea aliquam corpora vis. Ne quot civibus atomorum quo. </p>
+                                            <a href="single-post.html" class="btn btn-primary btn-sm">Read more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <!-- Single Post -->
+                            <article class="post post-carousel-item">
+                                <div class="post-image"><img src="/static/images/blog/post_06.jpg" alt="" /></div>
+                                <div class="post-content-holder">
+                                    <div class="post-content">
+                                        <div class="post-info clearfix">
+                                            <span class="post-date">22 May, 2014</span>
+                                            <div class="post-meta">
+                                                <span><i class="fa fa-comment"></i><a href="#">4 comments</a></span>
+                                                <span><i class="fa fa-tag"></i><a href="#">Webdesign</a></span>
+                                            </div>
+                                        </div>
+                                        <div class="post-text">
+                                            <h3><a href="single-post.html">Brand new PC</a></h3>
+                                            <p class="lead">Per sint eirmod expetenda te. Pro ne essent.</p>
+                                            <p>Per ea tibique fabellas electram. Ea aliquam corpora vis. Ne quot civibus atomorum quo. </p>
+                                            <a href="single-post.html" class="btn btn-primary btn-sm">Read more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <!-- Single Post -->
+                            <article class="post post-carousel-item">
+                                <div class="post-image"><img src="/static/images/blog/post_07.jpg" alt="" /></div>
+                                <div class="post-content-holder">
+                                    <div class="post-content">
+                                        <div class="post-info clearfix">
+                                            <span class="post-date">22 May, 2014</span>
+                                            <div class="post-meta">
+                                                <span><i class="fa fa-comment"></i><a href="#">4 comments</a></span>
+                                                <span><i class="fa fa-tag"></i><a href="#">Webdesign</a></span>
+                                            </div>
+                                        </div>
+                                        <div class="post-text">
+                                            <h3><a href="single-post.html">To be or not to be?</a></h3>
+                                            <p class="lead">Per sint eirmod expetenda te. Pro ne essent.</p>
+                                            <p>Per ea tibique fabellas electram. Ea aliquam corpora vis. Ne quot civibus atomorum quo. </p>
+                                            <a href="single-post.html" class="btn btn-primary btn-sm">Read more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+
+                        <!-- End Of Section -->
+                        <div class="end-of-section">
+
+                            <!-- Left Caption -->
+                            <div class="pull-left">
+                                <span class="hiddend-sm hidden-xs">Would you like to check all of my posts? &nbsp; &nbsp;</span><a href="blog-page.html" class="btn btn-black btn-sm">Check my Blog Page!</a>
+                            </div>
+
+                            <!-- Post Carousel Navigation -->
+                            <div class="post-carousel-control">
+                                <a class="post-carousel-prev" href="#">Previous</a>
+                                <a class="post-carousel-next" href="#">Next</a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+        <!-- Blog / End -->
+
+        <!-- Contact -->
+        <section id="contact" class="black">
+
+            <!-- Google Map -->
+            <div id="google-map" class="animated zoom-out"></div>
+
+            <!-- Contact Content -->
+            <div class="content contact-content padded dark animated slide-in-left">
+                <i class="title-icon text-primary flaticon-speech43"></i>
+                <h2>Do you want to hire me?</h2>
+                <!-- Contact List -->
+                <ul class="list-unstyled list-unstyled-icons">
+                    <li><i class="inline-icon icon-before-and-after text-primary fa fa-map-marker"></i>1111-A Nowhere Lane,<br />Outta Sight,<br />State 90378, USA</li>
+                    <li><i class="inline-icon icon-before-and-after text-primary fa fa-comment"></i><a href="#">johnathandoe@suelo.pl</a></li>
+                    <li><i class="inline-icon icon-before-and-after text-primary fa fa-phone"></i>+0(31)6 89764536</li>
+                </ul>
+                <br/><br/>
+                <p><a href="#" class="btn btn-primary">Download my CV</a></p>
+                <!-- Bottom Bar -->
+                <div class="bottom-bar contact-bottom-bar">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6">
+                            <h5>Check my social media!</h5>
+                            <!-- Social Icons -->
+                            <ul class="social-icons medium">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-12 col-lg-6">
+                            <h5>Like Me on Facebook!</h5>
+                            <!-- Like Button -->
+                            <div class="fb-like" data-href="https://www.facebook.com/suelopl" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div id="contact-form-holder" class="dark">
+                <div class="contact-form-trigger animated slide-in-right appear-second"><i class="flaticon-mail21"></i></div>
+                <form role="form" id="contact-form" method="post">
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message:</label>
+                        <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit <i class="icon-after fa fa-chevron-right"></i></button>
+                </form>
+            </div>
+
+        </section>
+        <!-- Contact / End -->
+
+    </div>
+    <!-- Page Content / End -->
+
+    <!-- Scripts -->
+    
+    <script type="text/javascript" src="../static/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../static/js/page-loader.min.js"></script>
+    <script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.localscroll-1.2.7-min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.appear.js"></script>
+    <script type="text/javascript" src="../static/js/waypoints.min.js"></script>
+    <script type="text/javascript" src="../static/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
+    <!-- Custom Script -->
+    <script type="text/javascript" src="../static/js/custom.js"></script>
+    <script type="text/javascript" src="../static/js/GoogleMap-dark.js"></script>
+    
+    <script>
+    function editEvent(event) {
+        $('#event-modal input[name="event-index"]').val(event ? event.id : '');
+        $('#event-modal input[name="event-name"]').val(event ? event.name : '');
+        $('#event-modal input[name="event-location"]').val(event ? event.location : '');
+        $('#event-modal input[name="event-start-date"]').datepicker('update', event ? event.startDate : '');
+        $('#event-modal input[name="event-end-date"]').datepicker('update', event ? event.endDate : '');
+        $('#event-modal').modal();
+    }
+
+    function deleteEvent(event) {
+        var dataSource = $('#calendar').data('calendar').getDataSource();
+
+        for (var i in dataSource) {
+            if (dataSource[i].id == event.id) {
+                dataSource.splice(i, 1);
+                break;
+            }
+        }
+
+        $('#calendar').data('calendar').setDataSource(dataSource);
+    }
+
+    function saveEvent() {
+        var event = {
+            id: $('#event-modal input[name="event-index"]').val(),
+            name: $('#event-modal input[name="event-name"]').val(),
+            location: $('#event-modal input[name="event-location"]').val(),
+            startDate: $('#event-modal input[name="event-start-date"]').datepicker('getDate'),
+            endDate: $('#event-modal input[name="event-end-date"]').datepicker('getDate')
+        }
+
+        var dataSource = $('#calendar').data('calendar').getDataSource();
+
+        if (event.id) {
+            for (var i in dataSource) {
+                if (dataSource[i].id == event.id) {
+                    dataSource[i].name = event.name;
+                    dataSource[i].location = event.location;
+                    dataSource[i].startDate = event.startDate;
+                    dataSource[i].endDate = event.endDate;
+                }
+            }
+        } else {
+            var newId = 0;
+            for (var i in dataSource) {
+                if (dataSource[i].id > newId) {
+                    newId = dataSource[i].id;
+                }
+            }
+
+            newId++;
+            event.id = newId;
+
+            dataSource.push(event);
+        }
+
+        $('#calendar').data('calendar').setDataSource(dataSource);
+        $('#event-modal').modal('hide');
+    }
+
+    $(function() {
+        var currentYear = new Date().getFullYear();
+
+        $('#calendar').calendar({
+            enableContextMenu: true,
+            enableRangeSelection: true,
+            contextMenuItems: [{
+                    text: 'Update',
+                    click: editEvent
+                },
+                {
+                    text: 'Delete',
+                    click: deleteEvent
+                }
+            ],
+            selectRange: function(e) {
+                editEvent({
+                    startDate: e.startDate,
+                    endDate: e.endDate
+                });
+            },
+            mouseOnDay: function(e) {
+                if (e.events.length > 0) {
+                    var content = '';
+
+                    for (var i in e.events) {
+                        content += '<div class="event-tooltip-content">' +
+                            '<div class="event-name" style="color:' + e.events[i].color + '">' + e.events[i].name + '</div>' +
+                            '<div class="event-location">' + e.events[i].location + '</div>' +
+                            '</div>';
+                    }
+
+                    $(e.element).popover({
+                        trigger: 'manual',
+                        container: 'body',
+                        html: true,
+                        content: content
+                    });
+
+                    $(e.element).popover('show');
+                }
+            },
+            mouseOutDay: function(e) {
+                if (e.events.length > 0) {
+                    $(e.element).popover('hide');
+                }
+            },
+            dayContextMenu: function(e) {
+                $(e.element).popover('hide');
+            },
+            dataSource: [{
+                    id: 0,
+                    name: 'Google I/O',
+                    location: 'San Francisco, CA',
+                    startDate: new Date(currentYear, 4, 28),
+                    endDate: new Date(currentYear, 4, 29)
+                },
+                {
+                    id: 1,
+                    name: 'Microsoft Convergence',
+                    location: 'New Orleans, LA',
+                    startDate: new Date(currentYear, 2, 16),
+                    endDate: new Date(currentYear, 2, 19)
+                },
+                {
+                    id: 2,
+                    name: 'Microsoft Build Developer Conference',
+                    location: 'San Francisco, CA',
+                    startDate: new Date(currentYear, 3, 29),
+                    endDate: new Date(currentYear, 4, 1)
+                },
+                {
+                    id: 3,
+                    name: 'Apple Special Event',
+                    location: 'San Francisco, CA',
+                    startDate: new Date(currentYear, 8, 1),
+                    endDate: new Date(currentYear, 8, 1)
+                },
+                {
+                    id: 4,
+                    name: 'Apple Keynote',
+                    location: 'San Francisco, CA',
+                    startDate: new Date(currentYear, 8, 9),
+                    endDate: new Date(currentYear, 8, 9)
+                },
+                {
+                    id: 5,
+                    name: 'Chrome Developer Summit',
+                    location: 'Mountain View, CA',
+                    startDate: new Date(currentYear, 10, 17),
+                    endDate: new Date(currentYear, 10, 18)
+                },
+                {
+                    id: 6,
+                    name: 'F8 2015',
+                    location: 'San Francisco, CA',
+                    startDate: new Date(currentYear, 2, 25),
+                    endDate: new Date(currentYear, 2, 26)
+                },
+                {
+                    id: 7,
+                    name: 'Yahoo Mobile Developer Conference',
+                    location: 'New York',
+                    startDate: new Date(currentYear, 7, 25),
+                    endDate: new Date(currentYear, 7, 26)
+                },
+                {
+                    id: 8,
+                    name: 'Android Developer Conference',
+                    location: 'Santa Clara, CA',
+                    startDate: new Date(currentYear, 11, 1),
+                    endDate: new Date(currentYear, 11, 4)
+                },
+                {
+                    id: 9,
+                    name: 'LA Tech Summit',
+                    location: 'Los Angeles, CA',
+                    startDate: new Date(currentYear, 10, 17),
+                    endDate: new Date(currentYear, 10, 17)
+                }
+            ]
+        });
+
+        $('#save-event').click(function() {
+            saveEvent();
+        });
+    });
+
+</script>
+
+</body>
+
+</html>

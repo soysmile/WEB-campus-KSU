@@ -1,26 +1,24 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <div class="container">
     <div class="row">
         <h1 class="page-header">Блоки в гуртожитку # {{ hostel_number }}</h1>
         <div class="col-md-8">
             <div class="panel panel-default">
                 {% for floor in floors %}
-                    <div class="col-md-12 panel panel-body-default">
-                        <h5>Floor {{ floor.floor }}</h5>
-                        <div class="panel panel-body">
-                            {% for block in blocks %}
-                                {% if floor.floor == block.floor  %}
-                                    <div class="col-md-4" style="float:left;">
-                                        <h4><a href="{{ url_for('block_view', hostel=hostel_number, block=block.number) }}" style="display:inline;">{{ block.number }}
+                <div class="col-md-12 panel panel-body-default">
+                    <h5>Floor {{ floor.floor }}</h5>
+                    <div class="panel panel-body">
+                        {% for block in blocks %} {% if floor.floor == block.floor %}
+                        <div class="col-md-4" style="float:left;">
+                            <h4><a href="{{ url_for('block_view', hostel=hostel_number, block=block.number) }}" style="display:inline;">{{ block.number }}
                                         {% if block.hot_water %}<span class="glyphicon glyphicon-fire" title="Гарячая вода"></span>{% endif %}
                                         {% if block.windows %}<span class="glyphicon glyphicon-modal-window" title="Металопластиковые окна"></span>{% endif %}
 
-                                    </a></h4></div>
-                                {% endif %}
-                            {% endfor %}
+                                    </a></h4>
                         </div>
+                        {% endif %} {% endfor %}
                     </div>
+                </div>
                 {% endfor %}
             </div>
         </div>
@@ -37,21 +35,20 @@
     </div>
 </div>
 
-    <script>
-
+<script>
     $(document).ready(function() {
         var hot = $('.glyphicon.glyphicon-fire').parent().parent().parent();
         $("#checkbox").change(function() {
-            if(this.checked) {
+            if (this.checked) {
                 all = $('.col-md-8').clone();
                 $('.panel.panel-default').empty();
-                for (var i=0;i<hot.length;i++)
+                for (var i = 0; i < hot.length; i++)
                     $('.panel.panel-default').append(hot[i]);
-            }
-            else if(!this.checked) {
+            } else if (!this.checked) {
                 $('.col-md-8').empty().append(all[0].children);
             }
         });
     });
-    </script>
+
+</script>
 {% endblock %}

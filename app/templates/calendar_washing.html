@@ -1,74 +1,74 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link href="http://www.bootstrap-year-calendar.com/download/v1.1.0/bootstrap-year-calendar.min.css"
-          rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" />
+{% extends 'base.html' %} {% block content %}
 
-    <script src="{{ url_for('static', filename='js/jquery-2.2.1.min.js') }}"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
-    <script src="http://www.bootstrap-year-calendar.com/download/v1.1.0/bootstrap-year-calendar.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+<link href="http://www.bootstrap-year-calendar.com/download/v1.1.0/bootstrap-year-calendar.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" />
 
+<script src="{{ url_for('static', filename='js/jquery-2.2.1.min.js') }}"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="http://www.bootstrap-year-calendar.com/download/v1.1.0/bootstrap-year-calendar.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+<div class="mainHeader homeHeader">
 
-</head>
-<body>
-<div class="container">
-    <div class="row">
-        <div id="calendar" style="overflow:visible!important;"></div>
+    <div class="page-header" id="top-news">
+        <h1 class="page-header">Календар</h1>
+        <hr>
+        <p>To develop a deeper and more meaningful connection with consumers, we believe design must invite them to <br>take part in the conversation.</p>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="calendar-block">
+                <div id="calendar" style="overflow:visible!important;"></div>
+            </div>
+           
         </div>
     </div>
 </div>
 <div class="modal modal-fade" id="event-modal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-				<h4 class="modal-title">
-					Event
-				</h4>
-			</div>
-			<div class="modal-body">
-				<input type="hidden" name="event-index">
-				<form class="form-horizontal">
-					<div class="form-group">
-						<label for="min-date" class="col-sm-4 control-label">Name</label>
-						<div class="col-sm-7">
-							<input name="event-name" type="text" class="form-control">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="min-date" class="col-sm-4 control-label">Location</label>
-						<div class="col-sm-7">
-							<input name="event-location" type="text" class="form-control">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="min-date" class="col-sm-4 control-label">Dates</label>
-						<div class="col-sm-7">
-							<div class="input-group input-daterange" data-provide="datepicker">
-								<input name="event-start-date" type="text" class="form-control" value="2012-04-05">
-								<span class="input-group-addon">to</span>
-								<input name="event-end-date" type="text" class="form-control" value="2012-04-19">
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-primary" id="save-event">
-					Save
-				</button>
-			</div>
-		</div>
-	</div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">
+                    Event
+                </h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="event-index">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="min-date" class="col-sm-4 control-label">Name</label>
+                        <div class="col-sm-7">
+                            <input name="event-name" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="min-date" class="col-sm-4 control-label">Location</label>
+                        <div class="col-sm-7">
+                            <input name="event-location" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="min-date" class="col-sm-4 control-label">Dates</label>
+                        <div class="col-sm-7">
+                            <div class="input-group input-daterange" data-provide="datepicker">
+                                <input name="event-start-date" type="text" class="form-control" value="2012-04-05">
+                                <span class="input-group-addon">to</span>
+                                <input name="event-end-date" type="text" class="form-control" value="2012-04-19">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="save-event">
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -114,8 +114,7 @@
                     dataSource[i].endDate = event.endDate;
                 }
             }
-        }
-        else {
+        } else {
             var newId = 0;
             for (var i in dataSource) {
                 if (dataSource[i].id > newId) {
@@ -133,14 +132,13 @@
         $('#event-modal').modal('hide');
     }
 
-    $(function () {
+    $(function() {
         var currentYear = new Date().getFullYear();
 
         $('#calendar').calendar({
             enableContextMenu: true,
             enableRangeSelection: true,
-            contextMenuItems: [
-                {
+            contextMenuItems: [{
                     text: 'Update',
                     click: editEvent
                 },
@@ -149,18 +147,21 @@
                     click: deleteEvent
                 }
             ],
-            selectRange: function (e) {
-                editEvent({startDate: e.startDate, endDate: e.endDate});
+            selectRange: function(e) {
+                editEvent({
+                    startDate: e.startDate,
+                    endDate: e.endDate
+                });
             },
-            mouseOnDay: function (e) {
+            mouseOnDay: function(e) {
                 if (e.events.length > 0) {
                     var content = '';
 
                     for (var i in e.events) {
-                        content += '<div class="event-tooltip-content">'
-                                + '<div class="event-name" style="color:' + e.events[i].color + '">' + e.events[i].name + '</div>'
-                                + '<div class="event-location">' + e.events[i].location + '</div>'
-                                + '</div>';
+                        content += '<div class="event-tooltip-content">' +
+                            '<div class="event-name" style="color:' + e.events[i].color + '">' + e.events[i].name + '</div>' +
+                            '<div class="event-location">' + e.events[i].location + '</div>' +
+                            '</div>';
                     }
 
                     $(e.element).popover({
@@ -173,16 +174,15 @@
                     $(e.element).popover('show');
                 }
             },
-            mouseOutDay: function (e) {
+            mouseOutDay: function(e) {
                 if (e.events.length > 0) {
                     $(e.element).popover('hide');
                 }
             },
-            dayContextMenu: function (e) {
+            dayContextMenu: function(e) {
                 $(e.element).popover('hide');
             },
-            dataSource: [
-                {
+            dataSource: [{
                     id: 0,
                     name: 'Google I/O',
                     location: 'San Francisco, CA',
@@ -255,12 +255,15 @@
             ]
         });
 
-        $('#save-event').click(function () {
+        $('#save-event').click(function() {
             saveEvent();
         });
     });
+
 </script>
 
 
-</body>
-</html>
+
+</div>
+
+{% endblock %}
