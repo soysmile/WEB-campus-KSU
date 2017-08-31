@@ -2360,7 +2360,7 @@
 
 {% endblock %} {% block js %}
 <script>
-    var rooms_info = {{rooms | tojson}};
+    var rooms_info = {{rooms|tojson}};
     console.log(rooms_info);
     var links = $('a.a_room');
     for (var i = 0; i < links.length; i++) {
@@ -2370,20 +2370,20 @@
             if (info['hotwatter'] === true) {
                 var hotwatter_element = document.createElement('div');
                 hotwatter_element.className = 'campus-room-water';
-                links[i].parentElement.append(hotwatter_element);
+                $(links[i]).parent().append(hotwatter_element);
             }
             if (info['econom'] === true) {
                 var econom_element = document.createElement('div');
                 econom_element.className = 'campus-room-light';
-                links[i].parentElement.append(econom_element);
+                $(links[i]).parent().append(econom_element);
             }
             if (info['windows'] === true) {
                 var windows_element = document.createElement('div');
                 windows_element.className = 'campus-room-window';
-                links[i].parentElement.append(windows_element);
+                $(links[i]).parent().append(windows_element);
             }
             if (info['free'] <= 0) {
-                links[i].parentElement.setAttribute("id", "room1")
+                $(links[i]).parent().attr("id", "room1")
             }
         }
     }
