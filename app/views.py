@@ -218,8 +218,12 @@ def detail_view_post(id):
 @app.route('/hostels', methods=['GET', 'POST'])
 @webLog
 def mainstuff():
+    info = {'rooms_all': len(models.Room.query.all()),
+            'rooms2': len(models.Room.query.filter_by(hostel_id=1).all()),
+            'rooms3': len(models.Room.query.filter_by(hostel_id=2).all()),
+            'rooms4': len(models.Room.query.filter_by(hostel_id=3).all())}
     rooms = get_rooms_info()
-    return render_template('map.html', rooms=rooms)
+    return render_template('map.html', rooms=rooms, info=info)
 
 
 @app.route('/hostels/<hostel>')
@@ -885,7 +889,7 @@ def get_rooms_info():
             hotwatter = True
 
         rooms.update({room.id: {'places': places, 'free': free, 'service': room.service, 'windows': room.windows,
-                                'econom': room.econom, 'hotwatter': hotwatter}})
+                                'econom': room.econom, 'hotwatter': hotwatter, 'note': room.note}})
     return rooms
 
 
@@ -927,11 +931,10 @@ def get_room_info():
 @app.route('/db')
 def db():
     from openpyxl import load_workbook
-    wb = load_workbook('--.xlsx')
+    wb = load_workbook('krp.xlsx')
     ws = wb['4']
     for row in range(1, ws.max_row + 1):
-        room_num = ws['F%s' % row].value
-        room = models.Room.query.filter_by(hostel_id=3, room_number=room_num).first()
-        if room:
-            ws['U%s' % row] = room.id
-    wb.save('--.xlsx')
+        room = db_session.query(models.Room).filter(models.Room.hostel_id == 3,
+                                                    models.Room.room_number == ws['A%s' % row].value).update(
+            {'note': 'ktp'})
+        db_session.commit()

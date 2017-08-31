@@ -3797,3 +3797,7 @@ hr {
     width: 60%;
     padding: 0;
 }
+
+#ktp {
+    background-color: rgba(42, 0, 255, 0.62) !important;
+}

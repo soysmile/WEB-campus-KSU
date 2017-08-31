@@ -2193,20 +2193,17 @@
                         </div>
                         <div class="tab-pane" id="vStat">
                             <div class="panel-body">
-                                <h4>Всего комнат: 0</h4>
-                                <h4>Всего комнат в 2 общежитии: 0</h4>
-                                <h4>Всего комнат в 3 общежитии: 0</h4>
-                                <h4>Всего комнат в 4 общежитии: 0</h4>
-                                <h4>Одна свободное место: 0</h4>
-                                <h4>Два свободны мест: 0</h4>
-                                <h4>Три свободных мест: 0</h4>
-                                <h4>Четыре свободных мест: 0</h4>
-                                <h4>Дата обновления данных: 0</h4>
+                                <h4>Всього кімнат: {{ info['rooms_all'] }}</h4>
+                                <h4>Всього кімнат в гуртожитку 2: {{ info['rooms2'] }}</h4>
+                                <h4>Всього кімнат в гуртожитку 3: {{ info['rooms3'] }}</h4>
+                                <h4>Всього кімнат в гуртожитку 4: {{ info['rooms4'] }}</h4>
+{#                                <h4>Одна свободное место: 0</h4>#}
+{#                                <h4>Два свободны мест: 0</h4>#}
+{#                                <h4>Три свободных мест: 0</h4>#}
+{#                                <h4>Четыре свободных мест: 0</h4>#}
+{#                                <h4>Дата обновления данных: 0</h4>#}
 
                             </div>
-                            <form role="form" method="POST">
-                                    <button type="submit" id="stat-update" class="btn btn-default" value="secondS" name="button">Обновить</button>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -2383,7 +2380,10 @@
                 $(links[i]).parent().append(windows_element);
             }
             if (info['free'] <= 0) {
-                $(links[i]).parent().attr("id", "room1")
+                $(links[i]).parent().attr("id", "room1");
+            }
+            if (info['note'] === 'ktp') {
+                $(links[i]).parent().attr("id", "ktp");
             }
         }
     }
