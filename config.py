@@ -9,6 +9,8 @@ SECRET_KEY = 'you-will-never-guess'
 basedir = os.path.abspath(os.path.dirname(__file__))
 if platform.node() == 'DESKTOP-FANOEFQ':
     SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:root@localhost/hostel'
+elif platform.node() == 'MacBook-Pro-George.local':
+    SQLALCHEMY_DATABASE_URI = 'postgresql://george:55555555@localhost/hostel'
 else:
     SQLALCHEMY_DATABASE_URI = 'postgresql://hostel:hostelsp@localhost/hostel'
 

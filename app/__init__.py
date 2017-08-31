@@ -28,6 +28,8 @@ db = SQLAlchemy(app)
 mail = Mail(app)
 if platform.node() == 'DESKTOP-FANOEFQ':
     engine = create_engine('postgresql://postgres:root@localhost/hostel')
+elif platform.node() == 'MacBook-Pro-George.local':
+    engine = create_engine('postgresql://george:55555555@localhost/hostel')
 else:
     engine = create_engine('postgresql://hostel:hostelsp@localhost/hostel')
 
