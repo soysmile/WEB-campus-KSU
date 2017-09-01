@@ -2405,8 +2405,14 @@
             },
             success: function(response) {
                 response = JSON.parse(response);
-                modal.find('.modal-body h2').text('Общежитие № ' + response['hostel'] + ' (комната № ' + response['number'] + ')');
-                modal.find('.modal-body h3').text('Свободных мест: (' + response['free'] + '/' + response['persons'] + ')')
+                modal.find('.modal-body h2').text('Гуртожиток № ' + response['hostel'] + ' (кімната № ' + response['number'] + ')');
+                if (response['note'] === 'ktp')
+                {
+                    modal.find('.modal-body h3').text('Кімната тимчасового проживання')
+
+                } else {
+                    modal.find('.modal-body h3').text('Вільних місць: ' + response['free'] + ' з ' + response['persons'])
+}
             }
         });
     });

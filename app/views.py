@@ -924,7 +924,7 @@ def gen():
 def get_room_info():
     room = models.Room.query.filter_by(id=request.form['id']).first()
     free = room.numbers_of_person - len(models.Person.query.filter_by(room=room.id).all())
-    return json.dumps({'number': room.room_number, 'persons': room.numbers_of_person, 'free': free,
+    return json.dumps({'number': room.room_number, 'persons': room.numbers_of_person, 'free': free, 'note': room.note,
                        'hostel': models.Hostel.query.filter_by(id=room.hostel_id).first().number})
 
 
