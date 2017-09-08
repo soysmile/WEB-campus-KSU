@@ -83,7 +83,7 @@
 
                                     <div class="panel-body" id="grade-campus">
                                         <h1 class="page-header">Курси</h1>
-                                        <canvas id="departments_2"></canvas>
+                                        <canvas id="courses"></canvas>
                                     </div>
 
                                 </div>
@@ -96,7 +96,7 @@
                                     </div>
 
                                     <div class="panel-body" id="campus-places">
-                                        <h1 class="page-header">Міста</h1>
+                                        <h1 class="page-header">Місця</h1>
                                         <canvas id="places_2"></canvas>
                                     </div>
 
@@ -115,12 +115,12 @@
                                     </div>
 
                                     <div class="panel-body" id="campus-places">
-                                        <h1 class="page-header">Міста</h1>
+                                        <h1 class="page-header">Місця</h1>
                                         <canvas id="places_3"></canvas>
                                     </div>
 
                                     <div class="panel-body" id="campus-windows">
-                                        <h1 class="page-header">Пластиковіе вікна</h1>
+                                        <h1 class="page-header">Пластикові вікна</h1>
                                         <canvas id="windows_3"></canvas>
                                     </div>
 
@@ -133,7 +133,7 @@
                                     </div>
 
                                     <div class="panel-body" id="campus-places">
-                                        <h1 class="page-header">Міста</h1>
+                                        <h1 class="page-header">Місця</h1>
                                         <canvas id="places_4"></canvas>
                                     </div>
 
@@ -160,7 +160,7 @@
 
                                     <div class="panel-body" id="hot-water">
                                         <h1 class="page-header">Блок с гор. водою</h1>
-                                        <canvas id="hot_watter_4"></canvas>
+                                        <canvas id="hot_watter_3"></canvas>
                                     </div>
 
                                 </div>
@@ -198,6 +198,7 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script>Chart.defaults.global.defaultFontColor = "#fff";</script>
     <script>
         var ctx = document.getElementById("departments");
         var json = {{ departments | tojson }};
@@ -482,7 +483,7 @@
         var ctx = document.getElementById("places_2");
         var json = {{ hostel2 | tojson }};
         var data = [json[0].places - json[0].persons, json[0].persons];
-        var labels = ['Свободно', 'Занято'];
+        var labels = ['Вільно', 'Зайнято'];
         var myChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
@@ -528,7 +529,7 @@
         var ctx = document.getElementById("places_3");
         var json = {{ hostel3 | tojson }};
         var data = [json[0].places - json[0].persons, json[0].persons];
-        var labels = ['Свободно', 'Занято'];
+        var labels = ['Вільно', 'Зайнято'];
         var myChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
@@ -574,7 +575,7 @@
         var ctx = document.getElementById("places_4");
         var json = {{ hostel4 | tojson }};
         var data = [json[0].places - json[0].persons, json[0].persons];
-        var labels = ['Свободно', 'Занято'];
+        var labels = ['Вільно', 'Зайнято'];
         var myChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
@@ -670,7 +671,7 @@
         var ctx = document.getElementById("windows_2");
         var json = {{ windows_2 | tojson }};
         var data = [json[0].rooms - json[0].windows, json[0].windows];
-        var labels = ['Деревяные', 'Пластиковые'];
+        var labels = ['Звичайні', 'Пластикові'];
         var myChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
@@ -716,7 +717,7 @@
         var ctx = document.getElementById("windows_3");
         var json = {{ windows_3 | tojson }};
         var data = [json[0].rooms - json[0].windows, json[0].windows];
-        var labels = ['Деревяные', 'Пластиковые'];
+        var labels = ['Звичайні', 'Пластикові'];
 
         var myChart = new Chart(ctx, {
             type: 'doughnut',
@@ -763,7 +764,7 @@
         var ctx = document.getElementById("windows_4");
         var json = {{ windows_4 | tojson }};
         var data = [json[0].rooms - json[0].windows, json[0].windows];
-        var labels = ['Деревяные', 'Пластиковые'];
+        var labels = ['Звичайні', 'Пластикові'];
         var myChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
@@ -903,7 +904,7 @@
         var ctx = document.getElementById("econom_2");
         var json = {{ econom_2 | tojson }};
         var data = [json[0].rooms - json[0].econom, json[0].econom];
-        var labels = ['Обычные', 'Эконом'];
+        var labels = ['Звичайні', 'Економ'];
         var myChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
@@ -949,7 +950,7 @@
         var ctx = document.getElementById("econom_3");
         var json = {{ econom_3 | tojson }};
         var data = [json[0].rooms - json[0].econom, json[0].econom];
-        var labels = ['Обычные', 'Эконом'];
+        var labels = ['Звичайні', 'Економ'];
         var myChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
@@ -995,7 +996,7 @@
         var ctx = document.getElementById("econom_4");
         var json = {{ econom_4 | tojson }};
         var data = [json[0].rooms - json[0].econom, json[0].econom];
-        var labels = ['Обычные', 'Эконом'];
+        var labels = ['Звичайні', 'Економ'];
         var myChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
@@ -1089,7 +1090,7 @@
                 datasets: [
 
                     {
-                        label: "Общежитие 2",
+                        label: "Гуртожиток 2",
                         fill: false,
                         lineTension: 0.1,
                         backgroundColor: "rgba(192,192,75,1)",
@@ -1111,7 +1112,7 @@
 
                     },
                     {
-                        label: "Общежитие 4",
+                        label: "Гуртожиток 4",
                         fill: false,
                         lineTension: 0.1,
                         backgroundColor: "rgba(195,72,192,1)",
@@ -1133,7 +1134,7 @@
 
                     },
                     {
-                        label: "Общежитие 4",
+                        label: "Гуртожиток 4",
                         fill: false,
                         lineTension: 0.1,
                         backgroundColor: "rgba(75,192,192,1)",
@@ -1171,10 +1172,10 @@
                         ctx.rect(this.chart['scales']['x-axis-0']['left'], this.chart['legend']['height'], this.chart['scales']['x-axis-0']['width'], this.calculatePointY(24) - this.chart['legend']['height']);
                         ctx.fill();
                     }
-                    if (this.chart['scales']['x-axis-0']['top'] > this.calculatePointY(14)) {
+                    if (this.chart['scales']['x-axis-0']['top'] > this.calculatePointY(17)) {
                         ctx.fillStyle = "rgba(52, 21, 255, 0.2)";
                         ctx.beginPath();
-                        ctx.rect(this.chart['scales']['x-axis-0']['left'], this.calculatePointY(14), this.chart['scales']['x-axis-0']['width'], this.chart['scales']['x-axis-0']['top'] - this.calculatePointY(14));
+                        ctx.rect(this.chart['scales']['x-axis-0']['left'], this.calculatePointY(17), this.chart['scales']['x-axis-0']['width'], this.chart['scales']['x-axis-0']['top'] - this.calculatePointY(17));
                         ctx.fill();
                         ctx.restore();
                     }
